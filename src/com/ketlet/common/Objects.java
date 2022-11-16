@@ -7,10 +7,15 @@ package com.ketlet.common;
  */
 public final class Objects {
 
-    private Objects() {}
+    /**
+     * @author Ketlet
+     * @since 0.0.0
+     */
+    private Objects() {
+    }
 
     /**
-     * @param <T> Not specified
+     * @param <T>    Not specified
      * @param object Not specified
      *
      * @return Not specified
@@ -23,7 +28,7 @@ public final class Objects {
     }
 
     /**
-     * @param <T> Not specified
+     * @param <T>    Not specified
      * @param object Not specified
      *
      * @return Not specified
@@ -36,9 +41,9 @@ public final class Objects {
     }
 
     /**
-     * @param <T1> Not specified
-     * @param <T2> Not specified
-     * @param base Not specified
+     * @param <T1>   Not specified
+     * @param <T2>   Not specified
+     * @param base   Not specified
      * @param common Not specified
      *
      * @return Not specified
@@ -53,9 +58,9 @@ public final class Objects {
     }
 
     /**
-     * @param <T1> Not specified
-     * @param <T2> Not specified
-     * @param base Not specified
+     * @param <T1>   Not specified
+     * @param <T2>   Not specified
+     * @param base   Not specified
      * @param common Not specified
      *
      * @return Not specified

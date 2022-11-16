@@ -1,7 +1,5 @@
 package com.ketlet.common;
 
-import com.ketlet.common.Objects;
-
 /**
  * @author Ketlet
  * @version 0.0
@@ -60,7 +58,7 @@ public class StrictException extends Exception {
     }
 
     /**
-     * @param message Not specified
+     * @param message    Not specified
      * @param suppressed Not specified
      *
      * @author Ketlet
@@ -90,7 +88,7 @@ public class StrictException extends Exception {
     }
 
     /**
-     * @param cause Not specified
+     * @param cause      Not specified
      * @param suppressed Not specified
      *
      * @author Ketlet
@@ -107,7 +105,7 @@ public class StrictException extends Exception {
 
     /**
      * @param message Not specified
-     * @param cause Not specified
+     * @param cause   Not specified
      *
      * @author Ketlet
      * @since 0.0.0
@@ -122,8 +120,8 @@ public class StrictException extends Exception {
     }
 
     /**
-     * @param message Not specified
-     * @param cause Not specified
+     * @param message    Not specified
+     * @param cause      Not specified
      * @param suppressed Not specified
      *
      * @author Ketlet
@@ -140,10 +138,10 @@ public class StrictException extends Exception {
     }
 
     /**
-     * @param message Not specified
-     * @param cause Not specified
+     * @param message     Not specified
+     * @param cause       Not specified
      * @param suppression Not specified
-     * @param writable Not specified
+     * @param writable    Not specified
      *
      * @author Ketlet
      * @since 0.0.0
@@ -160,11 +158,11 @@ public class StrictException extends Exception {
     }
 
     /**
-     * @param message Not specified
-     * @param cause Not specified
+     * @param message     Not specified
+     * @param cause       Not specified
      * @param suppression Not specified
-     * @param writable Not specified
-     * @param suppressed Not specified
+     * @param writable    Not specified
+     * @param suppressed  Not specified
      *
      * @author Ketlet
      * @since 0.0.0
