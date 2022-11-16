@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/fileTemplates/includes/File Header.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KL.Common.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/Objects.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/SoftError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/SoftException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/StrictException.java" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Adding com.ketlet.common.function">
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Action.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Condition.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Consumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/FunctionException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Function.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Getter.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Handler.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Predicate.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Setter.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Supplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/package-info.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/validation/ValidationException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/validation/Validator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ketlet/common/Objects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ketlet/common/Objects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ketlet/common/SoftError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ketlet/common/SoftError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ketlet/common/SoftException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ketlet/common/SoftException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ketlet/common/StrictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ketlet/common/StrictException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,9 +62,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ketlet.common.function" />
       <recent name="com.ketlet.common.validation" />
       <recent name="com.ketlet.common.exception" />
-      <recent name="com.ketlet.common.function" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -85,8 +75,58 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668609340604</updated>
-      <workItem from="1668609357720" duration="10596000" />
+      <workItem from="1668609357720" duration="11293000" />
     </task>
+    <task id="LOCAL-00001" summary="Configuring the project">
+      <created>1668621404548</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621404548</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Adding com.ketlet.common">
+      <created>1668621537909</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621537909</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adding StrictException">
+      <created>1668621582076</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621582076</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adding SoftException">
+      <created>1668621591823</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621591823</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Adding SoftError">
+      <created>1668621602552</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621602552</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Adding Objects">
+      <created>1668621642029</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621642029</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Adding com.ketlet.common.function">
+      <created>1668621665224</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621665224</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,5 +145,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Configuring the project" />
+    <MESSAGE value="Adding com.ketlet.common" />
+    <MESSAGE value="Adding StrictException" />
+    <MESSAGE value="Adding SoftException" />
+    <MESSAGE value="Adding SoftError" />
+    <MESSAGE value="Adding Objects" />
+    <MESSAGE value="Adding com.ketlet.common.function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding com.ketlet.common.function" />
   </component>
 </project>
