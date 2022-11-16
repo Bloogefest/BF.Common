@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Adding com.ketlet.common.function">
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Action.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Condition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Consumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Function.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Getter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Handler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Predicate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Setter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/function/Supplier.java" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Adding functional interfaces">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/validation/ValidationException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/validation/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ketlet/common/Objects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ketlet/common/Objects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ketlet/common/SoftError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ketlet/common/SoftError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ketlet/common/SoftException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ketlet/common/SoftException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ketlet/common/StrictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ketlet/common/StrictException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -75,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668609340604</updated>
-      <workItem from="1668609357720" duration="11293000" />
+      <workItem from="1668609357720" duration="12497000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -126,7 +116,28 @@
       <option name="project" value="LOCAL" />
       <updated>1668621665224</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Styling to standard">
+      <created>1668622174499</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668622174499</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Reconfiguring the project">
+      <created>1668622191579</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1668622191579</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Adding functional interfaces">
+      <created>1668622227094</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668622227094</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +163,9 @@
     <MESSAGE value="Adding SoftError" />
     <MESSAGE value="Adding Objects" />
     <MESSAGE value="Adding com.ketlet.common.function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding com.ketlet.common.function" />
+    <MESSAGE value="Styling to standard" />
+    <MESSAGE value="Reconfiguring the project" />
+    <MESSAGE value="Adding functional interfaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding functional interfaces" />
   </component>
 </project>
