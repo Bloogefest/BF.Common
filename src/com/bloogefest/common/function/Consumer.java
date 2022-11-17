@@ -1,9 +1,9 @@
-package com.ketlet.common.function;
+package com.bloogefest.common.function;
 
 /**
  * @param <T> Not specified
  *
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
@@ -15,7 +15,7 @@ public interface Consumer<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Consumer<V> empty() {
@@ -29,7 +29,7 @@ public interface Consumer<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Consumer<V> as(final Consumer<V> consumer) {
@@ -40,7 +40,7 @@ public interface Consumer<T> {
     /**
      * @param object Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     void consume(final T object);
@@ -50,7 +50,7 @@ public interface Consumer<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Consumer<T> and(final Consumer<T> consumer) {
@@ -66,7 +66,7 @@ public interface Consumer<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Consumer<T> suppress(final T object) {

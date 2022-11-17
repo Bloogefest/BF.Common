@@ -1,9 +1,9 @@
-package com.ketlet.common.function;
+package com.bloogefest.common.function;
 
 /**
  * @param <V> Not specified
  *
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
@@ -15,7 +15,7 @@ public interface Setter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Setter<V> empty() {
@@ -29,7 +29,7 @@ public interface Setter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Setter<V> as(final Setter<V> setter) {
@@ -40,7 +40,7 @@ public interface Setter<V> {
     /**
      * @param value Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     void set(final V value);
@@ -50,7 +50,7 @@ public interface Setter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Setter<V> and(final Setter<V> setter) {
@@ -66,7 +66,7 @@ public interface Setter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Setter<V> suppress(final V value) {

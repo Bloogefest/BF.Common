@@ -1,11 +1,11 @@
-package com.ketlet.common;
+package com.bloogefest.common;
 
 /**
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
-public class SoftException extends RuntimeException {
+public class SoftError extends Error {
 
     protected static final String DEFAULT_MESSAGE = null;
 
@@ -18,10 +18,10 @@ public class SoftException extends RuntimeException {
     protected static final Throwable[] DEFAULT_SUPPRESSED = null;
 
     /**
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException() {
+    public SoftError() {
         this(DEFAULT_MESSAGE,
              DEFAULT_CAUSE,
              DEFAULT_SUPPRESSION,
@@ -32,10 +32,10 @@ public class SoftException extends RuntimeException {
     /**
      * @param suppressed Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final Throwable... suppressed) {
+    public SoftError(final Throwable... suppressed) {
         this(DEFAULT_MESSAGE,
              DEFAULT_CAUSE,
              DEFAULT_SUPPRESSION,
@@ -46,10 +46,10 @@ public class SoftException extends RuntimeException {
     /**
      * @param message Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final String message) {
+    public SoftError(final String message) {
         this(message,
              DEFAULT_CAUSE,
              DEFAULT_SUPPRESSION,
@@ -61,11 +61,11 @@ public class SoftException extends RuntimeException {
      * @param message    Not specified
      * @param suppressed Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final String message,
-                         final Throwable... suppressed) {
+    public SoftError(final String message,
+                     final Throwable... suppressed) {
         this(message,
              DEFAULT_CAUSE,
              DEFAULT_SUPPRESSION,
@@ -76,10 +76,10 @@ public class SoftException extends RuntimeException {
     /**
      * @param cause Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final Throwable cause) {
+    public SoftError(final Throwable cause) {
         this(DEFAULT_MESSAGE,
              cause,
              DEFAULT_SUPPRESSION,
@@ -91,11 +91,11 @@ public class SoftException extends RuntimeException {
      * @param cause      Not specified
      * @param suppressed Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final Throwable cause,
-                         final Throwable... suppressed) {
+    public SoftError(final Throwable cause,
+                     final Throwable... suppressed) {
         this(DEFAULT_MESSAGE,
              cause,
              DEFAULT_SUPPRESSION,
@@ -107,11 +107,11 @@ public class SoftException extends RuntimeException {
      * @param message Not specified
      * @param cause   Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final String message,
-                         final Throwable cause) {
+    public SoftError(final String message,
+                     final Throwable cause) {
         this(message,
              cause,
              DEFAULT_SUPPRESSION,
@@ -124,12 +124,12 @@ public class SoftException extends RuntimeException {
      * @param cause      Not specified
      * @param suppressed Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final String message,
-                         final Throwable cause,
-                         final Throwable suppressed) {
+    public SoftError(final String message,
+                     final Throwable cause,
+                     final Throwable suppressed) {
         this(message,
              cause,
              DEFAULT_SUPPRESSION,
@@ -143,13 +143,13 @@ public class SoftException extends RuntimeException {
      * @param suppression Not specified
      * @param writable    Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    protected SoftException(final String message,
-                            final Throwable cause,
-                            final boolean suppression,
-                            final boolean writable) {
+    protected SoftError(final String message,
+                        final Throwable cause,
+                        final boolean suppression,
+                        final boolean writable) {
         this(message,
              cause,
              suppression,
@@ -164,14 +164,14 @@ public class SoftException extends RuntimeException {
      * @param writable    Not specified
      * @param suppressed  Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    protected SoftException(final String message,
-                            final Throwable cause,
-                            final boolean suppression,
-                            final boolean writable,
-                            final Throwable... suppressed) {
+    protected SoftError(final String message,
+                        final Throwable cause,
+                        final boolean suppression,
+                        final boolean writable,
+                        final Throwable... suppressed) {
         super(message,
               cause,
               suppression,
@@ -182,7 +182,7 @@ public class SoftException extends RuntimeException {
     /**
      * @param suppressed Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     public final synchronized void suppress(Throwable... suppressed) {

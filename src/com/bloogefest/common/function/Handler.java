@@ -1,15 +1,15 @@
-package com.ketlet.common.function;
+package com.bloogefest.common.function;
 
 /**
  * @param <T> Not specified
  * @param <R> Not specified
  *
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
 @FunctionalInterface
-public interface Function<T, R> {
+public interface Handler<T, R> {
 
     /**
      * @param <V> Not specified
@@ -17,10 +17,10 @@ public interface Function<T, R> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Function<V, R> nullable() {
+    static <V, R> Handler<V, R> nullable() {
         return __ -> null;
     }
 
@@ -31,10 +31,10 @@ public interface Function<T, R> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Function<V, R> strict(final R result) {
+    static <V, R> Handler<V, R> strict(final R result) {
         return __ -> result;
     }
 
@@ -45,10 +45,10 @@ public interface Function<T, R> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Function<V, R> as(final Function<V, R> handler) {
+    static <V, R> Handler<V, R> as(final Handler<V, R> handler) {
         assert handler != null : "The handler mustn't be null";
         return handler;
     }
@@ -58,24 +58,24 @@ public interface Function<T, R> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    R execute(final T object);
+    R handle(final T object);
 
     /**
-     * @param function Not specified
+     * @param handler Not specified
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    default Function<T, R> and(final Function<T, R> function) {
-        assert function != null : "The function mustn't be null";
+    default Handler<T, R> and(final Handler<T, R> handler) {
+        assert handler != null : "The handler mustn't be null";
         return object -> {
-            execute(object);
-            return function.execute(object);
+            handle(object);
+            return handler.handle(object);
         };
     }
 
@@ -84,11 +84,11 @@ public interface Function<T, R> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
-    default Function<T, R> suppress(final T object) {
-        return __ -> execute(object);
+    default Handler<T, R> suppress(final T object) {
+        return __ -> handle(object);
     }
 
 }

@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Adding functional interfaces">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/validation/ValidationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ketlet/common/validation/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Rebranding of the project">
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/Objects.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Action.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Condition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Consumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Function.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Getter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Handler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Predicate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Setter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Supplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/.idea/artifacts/KL_Common_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/.idea/artifacts/BF_Common_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/KL.Common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/BF.Common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/Objects.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/SoftError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/SoftException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/StrictException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Action.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Condition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Consumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Function.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Getter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Handler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Predicate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Setter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/Supplier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/function/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/ketlet/common/package-info.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +54,7 @@
     <option name="SCHEME" value="Project" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../BF.Common" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -44,7 +75,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "fileTemplates"
@@ -65,7 +96,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668609340604</updated>
-      <workItem from="1668609357720" duration="12497000" />
+      <workItem from="1668609357720" duration="12748000" />
+      <workItem from="1668687442681" duration="1375000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -137,7 +169,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668622227094</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Reconfiguring the project">
+      <created>1668623421669</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668623421669</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Adding the license">
+      <created>1668623513363</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1668623513363</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,8 +210,10 @@
     <MESSAGE value="Adding Objects" />
     <MESSAGE value="Adding com.ketlet.common.function" />
     <MESSAGE value="Styling to standard" />
-    <MESSAGE value="Reconfiguring the project" />
     <MESSAGE value="Adding functional interfaces" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding functional interfaces" />
+    <MESSAGE value="Reconfiguring the project" />
+    <MESSAGE value="Adding the license" />
+    <MESSAGE value="Rebranding of the project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rebranding of the project" />
   </component>
 </project>

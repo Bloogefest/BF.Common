@@ -1,9 +1,9 @@
-package com.ketlet.common.function;
+package com.bloogefest.common.function;
 
 /**
  * @param <T> Not specified
  *
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
@@ -14,7 +14,7 @@ public interface Supplier<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Supplier<V> nullable() {
@@ -27,7 +27,7 @@ public interface Supplier<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Supplier<V> strict(final V object) {
@@ -40,7 +40,7 @@ public interface Supplier<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Supplier<V> as(final Supplier<V> supplier) {
@@ -51,7 +51,7 @@ public interface Supplier<T> {
     /**
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     T supply();
@@ -61,7 +61,7 @@ public interface Supplier<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Supplier<T> and(final Supplier<T> supplier) {
@@ -77,7 +77,7 @@ public interface Supplier<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Supplier<T> suppress(final T object) {

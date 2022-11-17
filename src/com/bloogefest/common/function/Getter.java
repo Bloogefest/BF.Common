@@ -1,9 +1,9 @@
-package com.ketlet.common.function;
+package com.bloogefest.common.function;
 
 /**
  * @param <V> Not specified
  *
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
@@ -15,7 +15,7 @@ public interface Getter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Getter<V> nullable() {
@@ -28,7 +28,7 @@ public interface Getter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Getter<V> strict(final V value) {
@@ -42,7 +42,7 @@ public interface Getter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Getter<V> as(final Getter<V> getter) {
@@ -53,7 +53,7 @@ public interface Getter<V> {
     /**
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     V get();
@@ -63,7 +63,7 @@ public interface Getter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Getter<V> and(final Getter<V> getter) {
@@ -79,7 +79,7 @@ public interface Getter<V> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Getter<V> suppress(final V value) {

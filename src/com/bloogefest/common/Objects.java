@@ -1,14 +1,14 @@
-package com.ketlet.common;
+package com.bloogefest.common;
 
 /**
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
 public final class Objects {
 
     /**
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     private Objects() {
@@ -20,7 +20,7 @@ public final class Objects {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     public static <T> boolean isNull(final T object) {
@@ -33,7 +33,7 @@ public final class Objects {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     public static <T> boolean notNull(final T object) {
@@ -48,7 +48,7 @@ public final class Objects {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     @SuppressWarnings("EqualsReplaceableByObjectsCall")
@@ -65,7 +65,7 @@ public final class Objects {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     public static <T1, T2> boolean notEquals(final T1 base,

@@ -1,7 +1,7 @@
-package com.ketlet.common.function;
+package com.bloogefest.common.function;
 
 /**
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
@@ -13,7 +13,7 @@ public interface Condition {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static Condition strict(final boolean value) {
@@ -25,7 +25,7 @@ public interface Condition {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static Condition as(final Condition condition) {
@@ -36,7 +36,7 @@ public interface Condition {
     /**
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     boolean calculate();
@@ -44,7 +44,7 @@ public interface Condition {
     /**
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Condition invert() {
@@ -56,7 +56,7 @@ public interface Condition {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Condition and(final Condition condition) {
@@ -69,7 +69,7 @@ public interface Condition {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Condition or(final Condition condition) {
@@ -82,7 +82,7 @@ public interface Condition {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Condition xor(final Condition condition) {
@@ -95,7 +95,7 @@ public interface Condition {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Condition suppress(final boolean value) {

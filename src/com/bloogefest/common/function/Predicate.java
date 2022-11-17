@@ -1,9 +1,9 @@
-package com.ketlet.common.function;
+package com.bloogefest.common.function;
 
 /**
  * @param <T> Not specified
  *
- * @author Ketlet
+ * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
@@ -15,7 +15,7 @@ public interface Predicate<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Predicate<V> strict(final boolean object) {
@@ -28,7 +28,7 @@ public interface Predicate<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     static <V> Predicate<V> as(final Predicate<V> predicate) {
@@ -41,7 +41,7 @@ public interface Predicate<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     boolean evaluate(final T object);
@@ -49,7 +49,7 @@ public interface Predicate<T> {
     /**
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Predicate<T> invert() {
@@ -61,7 +61,7 @@ public interface Predicate<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Predicate<T> and(final Predicate<T> predicate) {
@@ -74,7 +74,7 @@ public interface Predicate<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Predicate<T> or(final Predicate<T> predicate) {
@@ -87,7 +87,7 @@ public interface Predicate<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Predicate<T> xor(final Predicate<T> predicate) {
@@ -100,7 +100,7 @@ public interface Predicate<T> {
      *
      * @return Not specified
      *
-     * @author Ketlet
+     * @author Bloogefest
      * @since 0.0.0
      */
     default Predicate<T> suppress(final boolean object) {
