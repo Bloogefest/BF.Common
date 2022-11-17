@@ -33,7 +33,7 @@ public final class Conditions {
      * @param <T1> Not specified
      * @param <T2> Not specified
      * @param object Not specified
-     * @param common Not specified
+     * @param another Not specified
      *
      * @return Not specified
      *
@@ -41,15 +41,15 @@ public final class Conditions {
      * @since 0.0.0
      */
     public static <T1, T2> boolean equals(final T1 object,
-                                          final T2 common) {
-        return object == common || notNull(object) && object.equals(common);
+                                          final T2 another) {
+        return object == another || notNull(object) && object.equals(another);
     }
 
     /**
      * @param <T1> Not specified
      * @param <T2> Not specified
      * @param object Not specified
-     * @param common Not specified
+     * @param another Not specified
      *
      * @return Not specified
      *
@@ -57,8 +57,8 @@ public final class Conditions {
      * @since 0.0.0
      */
     public static <T1, T2> boolean notEquals(final T1 object,
-                                             final T2 common) {
-        return object != common && notNull(object) && object.equals(common);
+                                             final T2 another) {
+        return object != another && notNull(object) && object.equals(another);
     }
 
 }
