@@ -11,6 +11,7 @@ public class FunctionException extends SoftException {
 
     /**
      * Конструктор, использующий стандартное сообщение.
+     *
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -20,6 +21,7 @@ public class FunctionException extends SoftException {
 
     /**
      * Конструктор, использующий сообщение, переданное параметром.
+     *
      * @param message Сообщение, используемое вместо стандартного.
      *
      * @author Bloogefest
@@ -31,6 +33,7 @@ public class FunctionException extends SoftException {
 
     /**
      * Конструктор, использующий причину, переданную параметром.
+     *
      * @param cause Причина возникновения исключения.
      *
      * @author Bloogefest
@@ -42,6 +45,7 @@ public class FunctionException extends SoftException {
 
     /**
      * Конструктор, использующий сообщение и причину, переданные параметрами.
+     *
      * @param message Сообщение, используемое вместо стандартного.
      * @param cause   Причина возникновения исключения.
      *
@@ -56,6 +60,7 @@ public class FunctionException extends SoftException {
 
     /**
      * Конструктор, использующий сообщение, причину, разрешение об упоминании подавленных исключений и разрешение для записи трассировки стека, переданные параметрами.
+     *
      * @param message     Сообщение, используемое вместо стандартного.
      * @param cause       Причина возникновения исключения.
      * @param suppression Позволяет упоминать подавленные исключения.
