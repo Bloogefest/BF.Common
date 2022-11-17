@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KL.Common.iml" filepath="$PROJECT_DIR$/KL.Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../BF.Common/BF.Common.iml" filepath="$PROJECT_DIR$/../BF.Common/BF.Common.iml" />
     </modules>
   </component>
 </project>
