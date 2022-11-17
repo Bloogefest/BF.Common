@@ -1,2 +1,2 @@
 # BF.Common
-#### `Shared API Library`
+#### `Утилитарная библиотека`

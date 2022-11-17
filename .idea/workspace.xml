@@ -6,28 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Fix artifact name">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/Conditions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/CreationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/CreationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/EqualException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/EqualException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/NotEqualException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/NotEqualException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/NullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/NullException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Consumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/FunctionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/FunctionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Getter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Getter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Predicate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Predicate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Setter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Setter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictException.java" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Документация, рефакторинг, пакет валидации">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="package-info" />
         <option value="Class" />
+        <option value="package-info" />
       </list>
     </option>
     <option name="SCHEME" value="Project" />
@@ -92,7 +72,7 @@
       <updated>1668609340604</updated>
       <workItem from="1668609357720" duration="12748000" />
       <workItem from="1668687442681" duration="7214000" />
-      <workItem from="1668696403788" duration="3191000" />
+      <workItem from="1668696403788" duration="3537000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -262,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668696614907</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Документация, рефакторинг, пакет валидации">
+      <created>1668699921973</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1668699921973</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,6 +291,7 @@
     <MESSAGE value="Refactoring with Validator" />
     <MESSAGE value="Changing the version" />
     <MESSAGE value="Fix artifact name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix artifact name" />
+    <MESSAGE value="Документация, рефакторинг, пакет валидации" />
+    <option name="LAST_COMMIT_MESSAGE" value="Документация, рефакторинг, пакет валидации" />
   </component>
 </project>
