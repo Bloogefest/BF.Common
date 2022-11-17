@@ -11,8 +11,7 @@ public final class Objects {
      * @author Bloogefest
      * @since 0.0.0
      */
-    private Objects() {
-    }
+    private Objects() {}
 
     /**
      * @param <T>    Not specified

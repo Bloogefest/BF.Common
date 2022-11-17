@@ -1,30 +1,29 @@
 package com.bloogefest.common.function;
 
 /**
- * @param <V> Not specified
+ * @param <T> Not specified
  *
  * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
 @FunctionalInterface
-public interface Setter<V> {
+public interface Setter<T> {
 
     /**
-     * @param <V> Not specified
+     * @param <T> Not specified
      *
      * @return Not specified
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Setter<V> empty() {
-        return __ -> {
-        };
+    static <T> Setter<T> empty() {
+        return __ -> {};
     }
 
     /**
-     * @param <V>    Not specified
+     * @param <T>    Not specified
      * @param setter Not specified
      *
      * @return Not specified
@@ -32,7 +31,7 @@ public interface Setter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Setter<V> as(final Setter<V> setter) {
+    static <T> Setter<T> as(final Setter<T> setter) {
         assert setter != null : "The setter mustn't be null";
         return setter;
     }
@@ -43,7 +42,7 @@ public interface Setter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    void set(final V value);
+    void set(final T value);
 
     /**
      * @param setter Not specified
@@ -53,7 +52,7 @@ public interface Setter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Setter<V> and(final Setter<V> setter) {
+    default Setter<T> with(final Setter<T> setter) {
         assert setter != null : "The setter mustn't be null";
         return value -> {
             set(value);
@@ -69,7 +68,7 @@ public interface Setter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Setter<V> suppress(final V value) {
+    default Setter<T> suppress(final T value) {
         return __ -> set(value);
     }
 

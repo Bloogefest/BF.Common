@@ -1,29 +1,29 @@
 package com.bloogefest.common.function;
 
 /**
- * @param <V> Not specified
+ * @param <T> Not specified
  *
  * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
 @FunctionalInterface
-public interface Getter<V> {
+public interface Getter<T> {
 
     /**
-     * @param <V> Not specified
+     * @param <T> Not specified
      *
      * @return Not specified
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Getter<V> nullable() {
+    static <T> Getter<T> nullable() {
         return () -> null;
     }
 
     /**
-     * @param <V>   Not specified
+     * @param <T>   Not specified
      * @param value Not specified
      *
      * @return Not specified
@@ -31,13 +31,13 @@ public interface Getter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Getter<V> strict(final V value) {
+    static <T> Getter<T> strict(final T value) {
         assert value != null : "The value mustn't be null";
         return () -> value;
     }
 
     /**
-     * @param <V>    Not specified
+     * @param <T>    Not specified
      * @param getter Not specified
      *
      * @return Not specified
@@ -45,7 +45,7 @@ public interface Getter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Getter<V> as(final Getter<V> getter) {
+    static <T> Getter<T> as(final Getter<T> getter) {
         assert getter != null : "The getter mustn't be null";
         return getter;
     }
@@ -56,7 +56,7 @@ public interface Getter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    V get();
+    T get();
 
     /**
      * @param getter Not specified
@@ -66,7 +66,7 @@ public interface Getter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Getter<V> and(final Getter<V> getter) {
+    default Getter<T> with(final Getter<T> getter) {
         assert getter != null : "The getter mustn't be null";
         return () -> {
             get();
@@ -82,7 +82,7 @@ public interface Getter<V> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Getter<V> suppress(final V value) {
+    default Getter<T> suppress(final T value) {
         return () -> value;
     }
 

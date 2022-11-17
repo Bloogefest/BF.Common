@@ -12,7 +12,7 @@ package com.bloogefest.common.function;
 public interface Handler<T, R> {
 
     /**
-     * @param <V> Not specified
+     * @param <T> Not specified
      * @param <R> Not specified
      *
      * @return Not specified
@@ -20,12 +20,12 @@ public interface Handler<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Handler<V, R> nullable() {
+    static <T, R> Handler<T, R> nullable() {
         return __ -> null;
     }
 
     /**
-     * @param <V>    Not specified
+     * @param <T>    Not specified
      * @param <R>    Not specified
      * @param result Not specified
      *
@@ -34,12 +34,12 @@ public interface Handler<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Handler<V, R> strict(final R result) {
+    static <T, R> Handler<T, R> strict(final R result) {
         return __ -> result;
     }
 
     /**
-     * @param <V>     Not specified
+     * @param <T>     Not specified
      * @param <R>     Not specified
      * @param handler Not specified
      *
@@ -48,7 +48,7 @@ public interface Handler<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Handler<V, R> as(final Handler<V, R> handler) {
+    static <T, R> Handler<T, R> as(final Handler<T, R> handler) {
         assert handler != null : "The handler mustn't be null";
         return handler;
     }
@@ -71,7 +71,7 @@ public interface Handler<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Handler<T, R> and(final Handler<T, R> handler) {
+    default Handler<T, R> with(final Handler<T, R> handler) {
         assert handler != null : "The handler mustn't be null";
         return object -> {
             handle(object);

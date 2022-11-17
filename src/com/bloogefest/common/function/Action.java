@@ -15,8 +15,7 @@ public interface Action {
      * @since 0.0.0
      */
     static Action empty() {
-        return () -> {
-        };
+        return () -> {};
     }
 
     /**
@@ -37,5 +36,21 @@ public interface Action {
      * @since 0.0.0
      */
     void perform();
+
+    /**
+     * @param action Not specified
+     *
+     * @return Not specified
+     *
+     * @author Bloogefest
+     * @since 0.0.0
+     */
+    default Action with(final Action action) {
+        assert action != null : "The action mustn't be null";
+        return () -> {
+            perform();
+            action.perform();
+        };
+    }
 
 }

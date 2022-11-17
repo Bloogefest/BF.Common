@@ -12,7 +12,7 @@ package com.bloogefest.common.function;
 public interface Function<T, R> {
 
     /**
-     * @param <V> Not specified
+     * @param <T> Not specified
      * @param <R> Not specified
      *
      * @return Not specified
@@ -20,12 +20,12 @@ public interface Function<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Function<V, R> nullable() {
+    static <T, R> Function<T, R> nullable() {
         return __ -> null;
     }
 
     /**
-     * @param <V>    Not specified
+     * @param <T>    Not specified
      * @param <R>    Not specified
      * @param result Not specified
      *
@@ -34,23 +34,23 @@ public interface Function<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Function<V, R> strict(final R result) {
+    static <T, R> Function<T, R> strict(final R result) {
         return __ -> result;
     }
 
     /**
-     * @param <V>     Not specified
+     * @param <T>     Not specified
      * @param <R>     Not specified
-     * @param handler Not specified
+     * @param function Not specified
      *
      * @return Not specified
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V, R> Function<V, R> as(final Function<V, R> handler) {
-        assert handler != null : "The handler mustn't be null";
-        return handler;
+    static <T, R> Function<T, R> as(final Function<T, R> function) {
+        assert function != null : "The function mustn't be null";
+        return function;
     }
 
     /**
@@ -71,7 +71,7 @@ public interface Function<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Function<T, R> and(final Function<T, R> function) {
+    default Function<T, R> with(final Function<T, R> function) {
         assert function != null : "The function mustn't be null";
         return object -> {
             execute(object);

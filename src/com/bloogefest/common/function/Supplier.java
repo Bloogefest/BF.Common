@@ -10,19 +10,19 @@ package com.bloogefest.common.function;
 public interface Supplier<T> {
 
     /**
-     * @param <V> Not specified
+     * @param <T> Not specified
      *
      * @return Not specified
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Supplier<V> nullable() {
+    static <T> Supplier<T> nullable() {
         return () -> null;
     }
 
     /**
-     * @param <V>    Not specified
+     * @param <T>    Not specified
      * @param object Not specified
      *
      * @return Not specified
@@ -30,12 +30,12 @@ public interface Supplier<T> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Supplier<V> strict(final V object) {
+    static <T> Supplier<T> strict(final T object) {
         return () -> object;
     }
 
     /**
-     * @param <V>      Not specified
+     * @param <T>      Not specified
      * @param supplier Not specified
      *
      * @return Not specified
@@ -43,7 +43,7 @@ public interface Supplier<T> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Supplier<V> as(final Supplier<V> supplier) {
+    static <T> Supplier<T> as(final Supplier<T> supplier) {
         assert supplier != null : "The supplier mustn't be null";
         return supplier;
     }
@@ -64,7 +64,7 @@ public interface Supplier<T> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Supplier<T> and(final Supplier<T> supplier) {
+    default Supplier<T> with(final Supplier<T> supplier) {
         assert supplier != null : "The supplier mustn't be null";
         return () -> {
             supply();

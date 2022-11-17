@@ -19,12 +19,11 @@ public interface Consumer<T> {
      * @since 0.0.0
      */
     static <V> Consumer<V> empty() {
-        return __ -> {
-        };
+        return __ -> {};
     }
 
     /**
-     * @param <V>      Not specified
+     * @param <T>      Not specified
      * @param consumer Not specified
      *
      * @return Not specified
@@ -32,7 +31,7 @@ public interface Consumer<T> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Consumer<V> as(final Consumer<V> consumer) {
+    static <T> Consumer<T> as(final Consumer<T> consumer) {
         assert consumer != null : "The consumer mustn't be null";
         return consumer;
     }
@@ -53,7 +52,7 @@ public interface Consumer<T> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Consumer<T> and(final Consumer<T> consumer) {
+    default Consumer<T> with(final Consumer<T> consumer) {
         assert consumer != null : "The consumer mustn't be null";
         return object -> {
             consume(object);
