@@ -1,5 +1,8 @@
 package com.bloogefest.common.function;
 
+import com.bloogefest.common.NullException;
+import com.bloogefest.common.Validator;
+
 /**
  * @param <T> Not specified
  *
@@ -40,12 +43,12 @@ public interface Supplier<T> {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Supplier<T> as(final Supplier<T> supplier) {
-        assert supplier != null : "The supplier mustn't be null";
-        return supplier;
+    static <T> Supplier<T> as(final Supplier<T> supplier) throws NullException {
+        return Validator.notNull(supplier, "supplier");
     }
 
     /**
@@ -62,11 +65,12 @@ public interface Supplier<T> {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Supplier<T> with(final Supplier<T> supplier) {
-        assert supplier != null : "The supplier mustn't be null";
+    default Supplier<T> with(final Supplier<T> supplier) throws NullException {
+        Validator.notNull(supplier, "supplier");
         return () -> {
             supply();
             return supplier.supply();

@@ -1,5 +1,8 @@
 package com.bloogefest.common.function;
 
+import com.bloogefest.common.NullException;
+import com.bloogefest.common.Validator;
+
 /**
  * @param <T> Not specified
  * @param <R> Not specified
@@ -45,12 +48,13 @@ public interface Handler<T, R> {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T, R> Handler<T, R> as(final Handler<T, R> handler) {
+    static <T, R> Handler<T, R> as(final Handler<T, R> handler) throws NullException {
         assert handler != null : "The handler mustn't be null";
-        return handler;
+        return Validator.notNull(handler, "handler");
     }
 
     /**
@@ -69,11 +73,12 @@ public interface Handler<T, R> {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
     default Handler<T, R> with(final Handler<T, R> handler) {
-        assert handler != null : "The handler mustn't be null";
+        Validator.notNull(handler, "handler");
         return object -> {
             handle(object);
             return handler.handle(object);

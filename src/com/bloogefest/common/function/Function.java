@@ -1,5 +1,8 @@
 package com.bloogefest.common.function;
 
+import com.bloogefest.common.NullException;
+import com.bloogefest.common.Validator;
+
 /**
  * @param <T> Not specified
  * @param <R> Not specified
@@ -45,12 +48,12 @@ public interface Function<T, R> {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T, R> Function<T, R> as(final Function<T, R> function) {
-        assert function != null : "The function mustn't be null";
-        return function;
+    static <T, R> Function<T, R> as(final Function<T, R> function) throws NullException {
+        return Validator.notNull(function, "function");
     }
 
     /**
@@ -69,11 +72,12 @@ public interface Function<T, R> {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Function<T, R> with(final Function<T, R> function) {
-        assert function != null : "The function mustn't be null";
+    default Function<T, R> with(final Function<T, R> function) throws NullException {
+        Validator.notNull(function, "function");
         return object -> {
             execute(object);
             return function.execute(object);

@@ -1,5 +1,8 @@
 package com.bloogefest.common.function;
 
+import com.bloogefest.common.NullException;
+import com.bloogefest.common.Validator;
+
 /**
  * @param <T> Not specified
  *
@@ -42,12 +45,12 @@ public interface Getter<T> {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Getter<T> as(final Getter<T> getter) {
-        assert getter != null : "The getter mustn't be null";
-        return getter;
+    static <T> Getter<T> as(final Getter<T> getter) throws NullException {
+        return Validator.notNull(getter, "getter");
     }
 
     /**
@@ -64,11 +67,12 @@ public interface Getter<T> {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Getter<T> with(final Getter<T> getter) {
-        assert getter != null : "The getter mustn't be null";
+    default Getter<T> with(final Getter<T> getter) throws NullException {
+        Validator.notNull(getter, "getter");
         return () -> {
             get();
             return getter.get();

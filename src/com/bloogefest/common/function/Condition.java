@@ -1,5 +1,8 @@
 package com.bloogefest.common.function;
 
+import com.bloogefest.common.NullException;
+import com.bloogefest.common.Validator;
+
 /**
  * @author Bloogefest
  * @version 0.0
@@ -25,12 +28,12 @@ public interface Condition {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    static Condition as(final Condition condition) {
-        assert condition != null : "The condition mustn't be null";
-        return condition;
+    static Condition as(final Condition condition) throws NullException {
+        return Validator.notNull(condition, "condition");
     }
 
     /**
@@ -57,11 +60,12 @@ public interface Condition {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Condition and(final Condition condition) {
-        assert condition != null : "The condition mustn't be null";
+    default Condition and(final Condition condition) throws NullException {
+        Validator.notNull(condition, "condition");
         return () -> calculate() && condition.calculate();
     }
 
@@ -70,11 +74,12 @@ public interface Condition {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Condition or(final Condition condition) {
-        assert condition != null : "The condition mustn't be null";
+    default Condition or(final Condition condition) throws NullException {
+        Validator.notNull(condition, "condition");
         return () -> calculate() && condition.calculate();
     }
 
@@ -83,11 +88,12 @@ public interface Condition {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Condition xor(final Condition condition) {
-        assert condition != null : "The condition mustn't be null";
+    default Condition xor(final Condition condition) throws NullException {
+        Validator.notNull(condition, "condition");
         return () -> calculate() ^ condition.calculate();
     }
 

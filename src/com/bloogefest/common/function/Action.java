@@ -1,5 +1,8 @@
 package com.bloogefest.common.function;
 
+import com.bloogefest.common.NullException;
+import com.bloogefest.common.Validator;
+
 /**
  * @author Bloogefest
  * @version 0.0
@@ -23,12 +26,12 @@ public interface Action {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    static Action as(final Action action) {
-        assert action != null : "The action mustn't be null";
-        return action;
+    static Action as(final Action action) throws NullException {
+        return Validator.notNull(action, "action");
     }
 
     /**
@@ -43,11 +46,12 @@ public interface Action {
      *
      * @return Not specified
      *
+     * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Action with(final Action action) {
-        assert action != null : "The action mustn't be null";
+    default Action with(final Action action) throws NullException {
+        Validator.notNull(action, "action");
         return () -> {
             perform();
             action.perform();
