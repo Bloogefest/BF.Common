@@ -1,49 +1,23 @@
-package com.bloogefest.common.throwable;
+package com.bloogefest.common.validation;
+
+import com.bloogefest.common.throwable.SoftException;
 
 /**
- * Строгое исключение, требующее обработки.
+ * Мягкое исключение, возникающее при попытке валидации объекта.
  *
  * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
-public class StrictException extends Exception {
-
-    /**
-     * Содержит стандартное сообщение.
-     *
-     * @since 0.0.0
-     */
-    protected static final String defaultMessage = "Not specified";
-
-    /**
-     * Содержит стандартную причину возникновения исключения.
-     *
-     * @since 0.0.0
-     */
-    protected static final Throwable defaultCause = null;
-
-    /**
-     * Содержит стандартное разрешение о упоминании подавленных исключений.
-     *
-     * @since 0.0.0
-     */
-    protected static final boolean defaultSuppression = false;
-
-    /**
-     * Содержит стандартное разрешение для записи трассировки стека.
-     *
-     * @since 0.0.0
-     */
-    protected static final boolean defaultWritable = true;
+public class ValidationException extends SoftException {
 
     /**
      * Конструктор, использующий стандартное сообщение.
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException() {
-        super(defaultMessage);
+    public ValidationException() {
+        this(defaultMessage);
     }
 
     /**
@@ -53,7 +27,7 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final String message) {
+    public ValidationException(final String message) {
         super(message);
     }
 
@@ -64,7 +38,7 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final Throwable cause) {
+    public ValidationException(final Throwable cause) {
         super(cause);
     }
 
@@ -76,8 +50,8 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final String message,
-                           final Throwable cause) {
+    public ValidationException(final String message,
+                               final Throwable cause) {
         super(message,
               cause);
     }
@@ -92,10 +66,10 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected StrictException(final String message,
-                              final Throwable cause,
-                              final boolean suppression,
-                              final boolean writable) {
+    protected ValidationException(final String message,
+                                  final Throwable cause,
+                                  final boolean suppression,
+                                  final boolean writable) {
         super(message,
               cause,
               suppression,

@@ -1,7 +1,7 @@
 package com.bloogefest.common.function;
 
-import com.bloogefest.common.NullException;
-import com.bloogefest.common.Validator;
+import com.bloogefest.common.validation.NullException;
+import com.bloogefest.common.validation.Validator;
 
 /**
  * @param <T> Not specified
@@ -42,8 +42,8 @@ public interface Function<T, R> {
     }
 
     /**
-     * @param <T>     Not specified
-     * @param <R>     Not specified
+     * @param <T>      Not specified
+     * @param <R>      Not specified
      * @param function Not specified
      *
      * @return Not specified
@@ -53,7 +53,8 @@ public interface Function<T, R> {
      * @since 0.0.0
      */
     static <T, R> Function<T, R> as(final Function<T, R> function) throws NullException {
-        return Validator.notNull(function, "function");
+        return Validator.notNull(function,
+                                 "function");
     }
 
     /**
@@ -77,7 +78,8 @@ public interface Function<T, R> {
      * @since 0.0.0
      */
     default Function<T, R> with(final Function<T, R> function) throws NullException {
-        Validator.notNull(function, "function");
+        Validator.notNull(function,
+                          "function");
         return object -> {
             execute(object);
             return function.execute(object);

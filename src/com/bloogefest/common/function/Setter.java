@@ -1,7 +1,7 @@
 package com.bloogefest.common.function;
 
-import com.bloogefest.common.NullException;
-import com.bloogefest.common.Validator;
+import com.bloogefest.common.validation.NullException;
+import com.bloogefest.common.validation.Validator;
 
 /**
  * @param <T> Not specified
@@ -36,7 +36,8 @@ public interface Setter<T> {
      * @since 0.0.0
      */
     static <T> Setter<T> as(final Setter<T> setter) throws NullException {
-        return Validator.notNull(setter, "setter");
+        return Validator.notNull(setter,
+                                 "setter");
     }
 
     /**
@@ -58,7 +59,8 @@ public interface Setter<T> {
      * @since 0.0.0
      */
     default Setter<T> with(final Setter<T> setter) throws NullException {
-        Validator.notNull(setter, "setter");
+        Validator.notNull(setter,
+                          "setter");
         return value -> {
             set(value);
             setter.set(value);

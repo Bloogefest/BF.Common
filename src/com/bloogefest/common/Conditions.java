@@ -17,7 +17,7 @@ public final class Conditions {
     }
 
     /**
-     * @param <T> Not specified
+     * @param <T>    Not specified
      * @param object Not specified
      *
      * @return Not specified
@@ -30,9 +30,9 @@ public final class Conditions {
     }
 
     /**
-     * @param <T1> Not specified
-     * @param <T2> Not specified
-     * @param object Not specified
+     * @param <T1>    Not specified
+     * @param <T2>    Not specified
+     * @param object  Not specified
      * @param another Not specified
      *
      * @return Not specified
@@ -46,9 +46,9 @@ public final class Conditions {
     }
 
     /**
-     * @param <T1> Not specified
-     * @param <T2> Not specified
-     * @param object Not specified
+     * @param <T1>    Not specified
+     * @param <T2>    Not specified
+     * @param object  Not specified
      * @param another Not specified
      *
      * @return Not specified

@@ -1,7 +1,7 @@
 package com.bloogefest.common.function;
 
-import com.bloogefest.common.NullException;
-import com.bloogefest.common.Validator;
+import com.bloogefest.common.validation.NullException;
+import com.bloogefest.common.validation.Validator;
 
 /**
  * @author Bloogefest
@@ -31,7 +31,8 @@ public interface Action {
      * @since 0.0.0
      */
     static Action as(final Action action) throws NullException {
-        return Validator.notNull(action, "action");
+        return Validator.notNull(action,
+                                 "action");
     }
 
     /**
@@ -51,7 +52,8 @@ public interface Action {
      * @since 0.0.0
      */
     default Action with(final Action action) throws NullException {
-        Validator.notNull(action, "action");
+        Validator.notNull(action,
+                          "action");
         return () -> {
             perform();
             action.perform();

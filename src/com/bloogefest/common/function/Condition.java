@@ -1,7 +1,7 @@
 package com.bloogefest.common.function;
 
-import com.bloogefest.common.NullException;
-import com.bloogefest.common.Validator;
+import com.bloogefest.common.validation.NullException;
+import com.bloogefest.common.validation.Validator;
 
 /**
  * @author Bloogefest
@@ -33,7 +33,8 @@ public interface Condition {
      * @since 0.0.0
      */
     static Condition as(final Condition condition) throws NullException {
-        return Validator.notNull(condition, "condition");
+        return Validator.notNull(condition,
+                                 "condition");
     }
 
     /**
@@ -65,7 +66,8 @@ public interface Condition {
      * @since 0.0.0
      */
     default Condition and(final Condition condition) throws NullException {
-        Validator.notNull(condition, "condition");
+        Validator.notNull(condition,
+                          "condition");
         return () -> calculate() && condition.calculate();
     }
 
@@ -79,7 +81,8 @@ public interface Condition {
      * @since 0.0.0
      */
     default Condition or(final Condition condition) throws NullException {
-        Validator.notNull(condition, "condition");
+        Validator.notNull(condition,
+                          "condition");
         return () -> calculate() && condition.calculate();
     }
 
@@ -93,7 +96,8 @@ public interface Condition {
      * @since 0.0.0
      */
     default Condition xor(final Condition condition) throws NullException {
-        Validator.notNull(condition, "condition");
+        Validator.notNull(condition,
+                          "condition");
         return () -> calculate() ^ condition.calculate();
     }
 

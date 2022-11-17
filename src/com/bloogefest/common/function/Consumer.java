@@ -1,7 +1,7 @@
 package com.bloogefest.common.function;
 
-import com.bloogefest.common.NullException;
-import com.bloogefest.common.Validator;
+import com.bloogefest.common.validation.NullException;
+import com.bloogefest.common.validation.Validator;
 
 /**
  * @param <T> Not specified
@@ -36,7 +36,8 @@ public interface Consumer<T> {
      * @since 0.0.0
      */
     static <T> Consumer<T> as(final Consumer<T> consumer) throws NullException {
-        return Validator.notNull(consumer, "consumer");
+        return Validator.notNull(consumer,
+                                 "consumer");
     }
 
     /**
@@ -58,7 +59,8 @@ public interface Consumer<T> {
      * @since 0.0.0
      */
     default Consumer<T> with(final Consumer<T> consumer) throws NullException {
-        Validator.notNull(consumer, "consumer");
+        Validator.notNull(consumer,
+                          "consumer");
         return object -> {
             consume(object);
             consumer.consume(object);

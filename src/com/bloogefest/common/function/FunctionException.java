@@ -10,6 +10,7 @@ import com.bloogefest.common.throwable.SoftException;
 public class FunctionException extends SoftException {
 
     /**
+     * Конструктор, использующий стандартное сообщение.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -18,7 +19,8 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * @param message     Not specified
+     * Конструктор, использующий сообщение, переданное параметром.
+     * @param message Сообщение, используемое вместо стандартного.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -28,7 +30,8 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * @param cause       Not specified
+     * Конструктор, использующий причину, переданную параметром.
+     * @param cause Причина возникновения исключения.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -38,8 +41,9 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * @param message     Not specified
-     * @param cause       Not specified
+     * Конструктор, использующий сообщение и причину, переданные параметрами.
+     * @param message Сообщение, используемое вместо стандартного.
+     * @param cause   Причина возникновения исключения.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -51,10 +55,11 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * @param message     Not specified
-     * @param cause       Not specified
-     * @param suppression Not specified
-     * @param writable    Not specified
+     * Конструктор, использующий сообщение, причину, разрешение об упоминании подавленных исключений и разрешение для записи трассировки стека, переданные параметрами.
+     * @param message     Сообщение, используемое вместо стандартного.
+     * @param cause       Причина возникновения исключения.
+     * @param suppression Позволяет упоминать подавленные исключения.
+     * @param writable    Позволяет трассировке стека записываться.
      *
      * @author Bloogefest
      * @since 0.0.0

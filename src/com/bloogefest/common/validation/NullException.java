@@ -1,49 +1,28 @@
-package com.bloogefest.common.throwable;
+package com.bloogefest.common.validation;
 
 /**
- * Строгое исключение, требующее обработки.
+ * Мягкое исключение, возникающее при попытке валидации объекта, считая, что он не является нулевым.
  *
  * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
-public class StrictException extends Exception {
+public class NullException extends ValidationException {
 
     /**
      * Содержит стандартное сообщение.
      *
      * @since 0.0.0
      */
-    protected static final String defaultMessage = "Not specified";
-
-    /**
-     * Содержит стандартную причину возникновения исключения.
-     *
-     * @since 0.0.0
-     */
-    protected static final Throwable defaultCause = null;
-
-    /**
-     * Содержит стандартное разрешение о упоминании подавленных исключений.
-     *
-     * @since 0.0.0
-     */
-    protected static final boolean defaultSuppression = false;
-
-    /**
-     * Содержит стандартное разрешение для записи трассировки стека.
-     *
-     * @since 0.0.0
-     */
-    protected static final boolean defaultWritable = true;
+    protected static final String defaultMessage = "The object mustn't be null";
 
     /**
      * Конструктор, использующий стандартное сообщение.
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException() {
-        super(defaultMessage);
+    public NullException() {
+        this(defaultMessage);
     }
 
     /**
@@ -53,7 +32,7 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final String message) {
+    public NullException(final String message) {
         super(message);
     }
 
@@ -64,7 +43,7 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final Throwable cause) {
+    public NullException(final Throwable cause) {
         super(cause);
     }
 
@@ -76,8 +55,8 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final String message,
-                           final Throwable cause) {
+    public NullException(final String message,
+                         final Throwable cause) {
         super(message,
               cause);
     }
@@ -92,10 +71,10 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected StrictException(final String message,
-                              final Throwable cause,
-                              final boolean suppression,
-                              final boolean writable) {
+    protected NullException(final String message,
+                            final Throwable cause,
+                            final boolean suppression,
+                            final boolean writable) {
         super(message,
               cause,
               suppression,
