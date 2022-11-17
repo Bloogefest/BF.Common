@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Rebranding of the project">
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Style Refactoring">
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/throwable/Throwables.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BF.Common/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/Objects.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/Objects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Consumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Getter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Getter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Setter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Setter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668609340604</updated>
       <workItem from="1668609357720" duration="12748000" />
-      <workItem from="1668687442681" duration="2835000" />
+      <workItem from="1668687442681" duration="4073000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -171,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668689336753</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Style Refactoring">
+      <created>1668690595329</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1668690595329</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +207,7 @@
     <MESSAGE value="Reconfiguring the project" />
     <MESSAGE value="Adding the license" />
     <MESSAGE value="Rebranding of the project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rebranding of the project" />
+    <MESSAGE value="Style Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Style Refactoring" />
   </component>
 </project>

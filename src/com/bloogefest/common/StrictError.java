@@ -5,7 +5,7 @@ package com.bloogefest.common;
  * @version 0.0
  * @since 0.0.0
  */
-public class StrictException extends Exception {
+public class StrictError extends Error {
 
     /**
      * @since 0.0.0
@@ -31,7 +31,7 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException() {
+    public StrictError() {
         super();
     }
 
@@ -41,7 +41,7 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final String message) {
+    public StrictError(final String message) {
         super(message);
     }
 
@@ -51,7 +51,7 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final Throwable cause) {
+    public StrictError(final Throwable cause) {
         super(cause);
     }
 
@@ -62,8 +62,8 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final String message,
-                           final Throwable cause) {
+    public StrictError(final String message,
+                       final Throwable cause) {
         super(message,
               cause);
     }
@@ -77,10 +77,10 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected StrictException(final String message,
-                              final Throwable cause,
-                              final boolean suppression,
-                              final boolean writable) {
+    protected StrictError(final String message,
+                          final Throwable cause,
+                          final boolean suppression,
+                          final boolean writable) {
         super(message,
               cause,
               suppression,

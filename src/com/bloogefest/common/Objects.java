@@ -1,5 +1,7 @@
 package com.bloogefest.common;
 
+import com.bloogefest.common.function.Predicate;
+
 /**
  * @author Bloogefest
  * @version 0.0
