@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Style Refactoring">
-      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/throwable/Throwables.java" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Adding FunctionException">
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/Conditions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/throwable/SoftException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/throwable/StrictException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/throwable/package-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BF.Common/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/Objects.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/Objects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/Objects.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/throwable/SoftError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/SoftException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/FunctionException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictError.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/throwable/StrictError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/StrictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/CreationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Consumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Getter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Getter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Predicate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Predicate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Setter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Setter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/function/Supplier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="package-info" />
         <option value="Class" />
+        <option value="package-info" />
       </list>
     </option>
     <option name="SCHEME" value="Project" />
@@ -55,6 +67,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bloogefest.common" />
+      <recent name="com.bloogefest.common.function" />
       <recent name="com.ketlet.common.function" />
       <recent name="com.ketlet.common.validation" />
       <recent name="com.ketlet.common.exception" />
@@ -69,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668609340604</updated>
       <workItem from="1668609357720" duration="12748000" />
-      <workItem from="1668687442681" duration="4073000" />
+      <workItem from="1668687442681" duration="5514000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -176,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668690595329</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Refactoring errors and exceptions">
+      <created>1668691901295</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1668691901295</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +229,8 @@
     <MESSAGE value="Adding the license" />
     <MESSAGE value="Rebranding of the project" />
     <MESSAGE value="Style Refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Style Refactoring" />
+    <MESSAGE value="Refactoring errors and exceptions" />
+    <MESSAGE value="Adding FunctionException" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding FunctionException" />
   </component>
 </project>

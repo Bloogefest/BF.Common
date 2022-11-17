@@ -1,37 +1,19 @@
-package com.bloogefest.common;
+package com.bloogefest.common.function;
+
+import com.bloogefest.common.throwable.SoftException;
 
 /**
  * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
-public class SoftError extends Error {
-
-    /**
-     * @since 0.0.0
-     */
-    protected static final String defaultMessage = "Not specified";
-
-    /**
-     * @since 0.0.0
-     */
-    protected static final Throwable defaultCause = null;
-
-    /**
-     * @since 0.0.0
-     */
-    protected static final boolean defaultSuppression = false;
-
-    /**
-     * @since 0.0.0
-     */
-    protected static final boolean defaultWritable = true;
+public class FunctionException extends SoftException {
 
     /**
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftError() {
+    public FunctionException() {
         super();
     }
 
@@ -41,7 +23,7 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftError(final String message) {
+    public FunctionException(final String message) {
         super(message);
     }
 
@@ -51,7 +33,7 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftError(final Throwable cause) {
+    public FunctionException(final Throwable cause) {
         super(cause);
     }
 
@@ -62,8 +44,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftError(final String message,
-                     final Throwable cause) {
+    public FunctionException(final String message,
+                             final Throwable cause) {
         super(message,
               cause);
     }
@@ -77,10 +59,10 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected SoftError(final String message,
-                        final Throwable cause,
-                        final boolean suppression,
-                        final boolean writable) {
+    protected FunctionException(final String message,
+                                final Throwable cause,
+                                final boolean suppression,
+                                final boolean writable) {
         super(message,
               cause,
               suppression,

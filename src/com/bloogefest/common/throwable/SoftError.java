@@ -1,11 +1,11 @@
-package com.bloogefest.common;
+package com.bloogefest.common.throwable;
 
 /**
  * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
-public class SoftException extends RuntimeException {
+public class SoftError extends Error {
 
     /**
      * @since 0.0.0
@@ -31,8 +31,8 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException() {
-        super();
+    public SoftError() {
+        super(defaultMessage);
     }
 
     /**
@@ -41,7 +41,7 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final String message) {
+    public SoftError(final String message) {
         super(message);
     }
 
@@ -51,7 +51,7 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final Throwable cause) {
+    public SoftError(final Throwable cause) {
         super(cause);
     }
 
@@ -62,8 +62,8 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final String message,
-                         final Throwable cause) {
+    public SoftError(final String message,
+                     final Throwable cause) {
         super(message,
               cause);
     }
@@ -77,10 +77,10 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected SoftException(final String message,
-                            final Throwable cause,
-                            final boolean suppression,
-                            final boolean writable) {
+    protected SoftError(final String message,
+                        final Throwable cause,
+                        final boolean suppression,
+                        final boolean writable) {
         super(message,
               cause,
               suppression,
