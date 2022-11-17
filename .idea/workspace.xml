@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="BF.Common:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Refactoring Objects">
-      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/NotEqualException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/NullException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BF.Common/src/com/bloogefest/common/Validator.java" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Refactoring with Validator">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +25,7 @@
     <option name="SCHEME" value="Project" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../BF.Common" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,11 +45,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Projects/BF.Common",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+    "settings.editor.selected.configurable": "fileTemplates"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -67,7 +71,8 @@
       <option name="presentableId" value="Default" />
       <updated>1668609340604</updated>
       <workItem from="1668609357720" duration="12748000" />
-      <workItem from="1668687442681" duration="6018000" />
+      <workItem from="1668687442681" duration="7214000" />
+      <workItem from="1668696403788" duration="44000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -202,7 +207,28 @@
       <option name="project" value="LOCAL" />
       <updated>1668693478532</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Adding Validator">
+      <created>1668694725638</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1668694725638</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Conditions Style Refactoring">
+      <created>1668694751368</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1668694751368</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Refactoring with Validator">
+      <created>1668694786840</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1668694786840</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +265,9 @@
     <MESSAGE value="Integration with FunctionException" />
     <MESSAGE value="Refactoring throwable API" />
     <MESSAGE value="Refactoring Objects" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring Objects" />
+    <MESSAGE value="Adding Validator" />
+    <MESSAGE value="Conditions Style Refactoring" />
+    <MESSAGE value="Refactoring with Validator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring with Validator" />
   </component>
 </project>
