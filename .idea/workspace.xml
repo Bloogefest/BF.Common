@@ -6,8 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Refactoring with Validator">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Changing the version">
+      <change beforePath="$PROJECT_DIR$/.idea/fileTemplates/includes/File Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fileTemplates/includes/File Header.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +47,7 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Projects/BF.Common",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "fileTemplates"
@@ -72,7 +72,7 @@
       <updated>1668609340604</updated>
       <workItem from="1668609357720" duration="12748000" />
       <workItem from="1668687442681" duration="7214000" />
-      <workItem from="1668696403788" duration="44000" />
+      <workItem from="1668696403788" duration="187000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -228,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668694786840</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Changing the version">
+      <created>1668696465424</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1668696465424</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +275,7 @@
     <MESSAGE value="Adding Validator" />
     <MESSAGE value="Conditions Style Refactoring" />
     <MESSAGE value="Refactoring with Validator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring with Validator" />
+    <MESSAGE value="Changing the version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing the version" />
   </component>
 </project>
