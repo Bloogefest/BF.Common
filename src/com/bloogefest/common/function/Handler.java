@@ -58,10 +58,11 @@ public interface Handler<T, R> {
      *
      * @return Not specified
      *
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    R handle(final T object);
+    R handle(final T object) throws FunctionException;
 
     /**
      * @param handler Not specified

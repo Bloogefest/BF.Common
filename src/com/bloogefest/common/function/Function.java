@@ -58,10 +58,11 @@ public interface Function<T, R> {
      *
      * @return Not specified
      *
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    R execute(final T object);
+    R execute(final T object) throws FunctionException;
 
     /**
      * @param function Not specified

@@ -41,10 +41,11 @@ public interface Predicate<T> {
      *
      * @return Not specified
      *
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    boolean evaluate(final T object);
+    boolean evaluate(final T object) throws FunctionException;
 
     /**
      * @return Not specified

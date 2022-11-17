@@ -36,10 +36,11 @@ public interface Condition {
     /**
      * @return Not specified
      *
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    boolean calculate();
+    boolean calculate() throws FunctionException;
 
     /**
      * @return Not specified

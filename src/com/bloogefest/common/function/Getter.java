@@ -53,10 +53,11 @@ public interface Getter<T> {
     /**
      * @return Not specified
      *
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    T get();
+    T get() throws FunctionException;
 
     /**
      * @param getter Not specified

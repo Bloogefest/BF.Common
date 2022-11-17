@@ -32,10 +32,11 @@ public interface Action {
     }
 
     /**
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    void perform();
+    void perform() throws FunctionException;
 
     /**
      * @param action Not specified

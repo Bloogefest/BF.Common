@@ -39,10 +39,11 @@ public interface Consumer<T> {
     /**
      * @param object Not specified
      *
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    void consume(final T object);
+    void consume(final T object) throws FunctionException;
 
     /**
      * @param consumer Not specified

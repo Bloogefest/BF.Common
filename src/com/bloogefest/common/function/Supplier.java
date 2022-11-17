@@ -51,10 +51,11 @@ public interface Supplier<T> {
     /**
      * @return Not specified
      *
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    T supply();
+    T supply() throws FunctionException;
 
     /**
      * @param supplier Not specified

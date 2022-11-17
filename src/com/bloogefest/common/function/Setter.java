@@ -39,10 +39,11 @@ public interface Setter<T> {
     /**
      * @param value Not specified
      *
+     * @throws FunctionException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    void set(final T value);
+    void set(final T value) throws FunctionException;
 
     /**
      * @param setter Not specified
