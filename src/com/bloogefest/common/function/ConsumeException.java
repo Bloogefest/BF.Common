@@ -3,7 +3,7 @@ package com.bloogefest.common.function;
 /**
  * @author Bloogefest
  * @version 0.0
- * @since 0.0.0
+ * @since 0.0.1
  */
 public class ConsumeException extends FunctionException {
 
