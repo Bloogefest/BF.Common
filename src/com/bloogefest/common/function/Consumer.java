@@ -2,9 +2,13 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * @param <T> Not specified
+ * Функциональный интерфейс, позволяющий реализовать логику для обработки типизированного экземпляра.
+ *
+ * @param <T> тип обрабатываемого экземпляра.
  *
  * @author Bloogefest
  * @version 0.0
@@ -14,53 +18,62 @@ import com.bloogefest.common.validation.Validator;
 public interface Consumer<T> {
 
     /**
-     * @param <V> Not specified
+     * Создаёт экземпляр данного функционального интерфейса, не содержащий логику.
      *
-     * @return Not specified
+     * @return Экземпляр данного функционального интерфейса, не содержащий логику.
      *
+     * @apiNote Данный метод всегда возвращает схожие между собой экземпляры данного функционального интерфейса, поэтому рекомендуется, кэшировать экземпляр, для разгрузки сборщика мусора.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Consumer<V> empty() {
+    @Contract(value = "-> new", pure = true)
+    static <T> @NotNull Consumer<T> empty() {
         return __ -> {};
     }
 
     /**
-     * @param <T>      Not specified
-     * @param consumer Not specified
+     * Предоставляет экземпляр данного функционального интерфейса, преобразуя либо лямбда-выражение, либо экземпляр какого-либо типа в экземпляр данного функционального интерфейса.
      *
-     * @return Not specified
+     * @param consumer либо лямбда-выражение, либо экземпляр какого-либо типа.
      *
-     * @throws NullException Not specified
+     * @return Экземпляр данного функционального интерфейса.
+     *
+     * @throws NullException переданное значение является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Consumer<T> as(final Consumer<T> consumer) throws NullException {
-        return Validator.notNull(consumer,
-                                 "consumer");
+    @Contract(value = "_ -> param1", pure = true)
+    static <T> @NotNull Consumer<T> of(final @NotNull Consumer<T> consumer) throws NullException {
+        return Validator.notNull(consumer, "consumer");
     }
 
     /**
-     * @param object Not specified
+     * Выполняет логику, не связанную с контекстом.
      *
-     * @throws FunctionException Not specified
+     * @param object типизированный экземпляр.
+     *
+     * @throws NullException переданное значение является нулевым.
+     * @throws ConsumeException возникла исключительная ситуация, не позволяющая продолжить выполнение логики.
      * @author Bloogefest
      * @since 0.0.0
      */
-    void consume(final T object) throws FunctionException;
+    @Contract(pure = true)
+    void consume(final @NotNull T object) throws NullException, ConsumeException;
 
     /**
-     * @param consumer Not specified
+     * Предоставляет экземпляр данного функционального интерфейса, гарантирующий последовательное выполнение логики, начиная с данного и заканчивая либо переданным лямбда-выражением, либо переданным экземпляром какого-либо типа.
      *
-     * @return Not specified
+     * @param consumer либо лямбда-выражение, либо экземпляр какого-либо типа.
      *
-     * @throws NullException Not specified
+     * @return Экземпляр данного функционального интерфейса.
+     *
+     * @throws NullException переданное значение является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Consumer<T> with(final Consumer<T> consumer) throws NullException {
-        Validator.notNull(consumer,
-                          "consumer");
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Consumer<T> with(final @NotNull Consumer<T> consumer) throws NullException {
+        Validator.notNull(consumer, "consumer");
         return object -> {
             consume(object);
             consumer.consume(object);
@@ -68,14 +81,19 @@ public interface Consumer<T> {
     }
 
     /**
-     * @param object Not specified
+     * Подавляет любые типизированные экземпляры переданным.
      *
-     * @return Not specified
+     * @param object типизированный экземпляр.
      *
+     * @return Экземпляр данного функционального интерфейса.
+     *
+     * @throws NullException переданное значение является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Consumer<T> suppress(final T object) {
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Consumer<T> suppress(final @NotNull T object) throws NullException {
+        Validator.notNull(object, "object");
         return __ -> consume(object);
     }
 
