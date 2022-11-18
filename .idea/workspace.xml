@@ -9,32 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Подключение библиотеки аннотаций">
-      <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/ConsumeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/PerformException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NotNullException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/Conditions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/CreationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/CreationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Consumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/FunctionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/FunctionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Getter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Getter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Predicate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Predicate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Setter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Setter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/EqualException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/EqualException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NotEqualException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NotEqualException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NullException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/ValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/ValidationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/Validator.java" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Исправление документации">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,25 +41,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Projects/BF.Common/lib/annotations-20.1.0-sources.jar",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.editor.code.editing"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Projects/BF.Common/lib/annotations-20.1.0-sources.jar&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor.code.editing&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.bloogefest.common.function" />
@@ -303,7 +279,28 @@
       <option name="project" value="LOCAL" />
       <updated>1668780832660</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Документация, рефакторинг, исправления">
+      <created>1668781576843</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1668781576843</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Документация, рефакторинг, исправления">
+      <created>1668781605970</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1668781605970</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Исправление документации">
+      <created>1668781674047</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1668781674047</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +311,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -322,10 +331,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Adding StrictException" />
-    <MESSAGE value="Adding SoftException" />
-    <MESSAGE value="Adding SoftError" />
-    <MESSAGE value="Adding Objects" />
     <MESSAGE value="Adding com.ketlet.common.function" />
     <MESSAGE value="Styling to standard" />
     <MESSAGE value="Adding functional interfaces" />
@@ -347,6 +352,10 @@
     <MESSAGE value="Изменение описания проекта" />
     <MESSAGE value="Рефакторинг стиля кода" />
     <MESSAGE value="Подключение библиотеки аннотаций" />
-    <option name="LAST_COMMIT_MESSAGE" value="Подключение библиотеки аннотаций" />
+    <MESSAGE value="Исправление коммита" />
+    <MESSAGE value="Документация, рефакторинг" />
+    <MESSAGE value="Документация, рефакторинг, исправления" />
+    <MESSAGE value="Исправление документации" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправление документации" />
   </component>
 </project>
