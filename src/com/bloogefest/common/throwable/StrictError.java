@@ -80,10 +80,8 @@ public class StrictError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictError(final String message,
-                       final Throwable cause) {
-        super(message,
-              cause);
+    public StrictError(final String message, final Throwable cause) {
+        super(message, cause);
     }
 
     /**
@@ -97,14 +95,8 @@ public class StrictError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected StrictError(final String message,
-                          final Throwable cause,
-                          final boolean suppression,
-                          final boolean writable) {
-        super(message,
-              cause,
-              suppression,
-              writable);
+    protected StrictError(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+        super(message, cause, suppression, writable);
     }
 
 }

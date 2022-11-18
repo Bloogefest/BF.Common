@@ -36,8 +36,7 @@ public interface Predicate<T> {
      * @since 0.0.0
      */
     static <V> Predicate<V> as(final Predicate<V> predicate) throws NullException {
-        return Validator.notNull(predicate,
-                                 "predicate");
+        return Validator.notNull(predicate, "predicate");
     }
 
     /**
@@ -71,8 +70,7 @@ public interface Predicate<T> {
      * @since 0.0.0
      */
     default Predicate<T> and(final Predicate<T> predicate) throws NullException {
-        Validator.notNull(predicate,
-                          "predicate");
+        Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) && predicate.evaluate(object);
     }
 
@@ -86,8 +84,7 @@ public interface Predicate<T> {
      * @since 0.0.0
      */
     default Predicate<T> or(final Predicate<T> predicate) throws NullException {
-        Validator.notNull(predicate,
-                          "predicate");
+        Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) || predicate.evaluate(object);
     }
 
@@ -101,8 +98,7 @@ public interface Predicate<T> {
      * @since 0.0.0
      */
     default Predicate<T> xor(final Predicate<T> predicate) throws NullException {
-        Validator.notNull(predicate,
-                          "predicate");
+        Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) ^ predicate.evaluate(object);
     }
 

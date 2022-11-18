@@ -50,8 +50,7 @@ public interface Getter<T> {
      * @since 0.0.0
      */
     static <T> Getter<T> as(final Getter<T> getter) throws NullException {
-        return Validator.notNull(getter,
-                                 "getter");
+        return Validator.notNull(getter, "getter");
     }
 
     /**
@@ -73,8 +72,7 @@ public interface Getter<T> {
      * @since 0.0.0
      */
     default Getter<T> with(final Getter<T> getter) throws NullException {
-        Validator.notNull(getter,
-                          "getter");
+        Validator.notNull(getter, "getter");
         return () -> {
             get();
             return getter.get();

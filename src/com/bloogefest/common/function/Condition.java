@@ -33,8 +33,7 @@ public interface Condition {
      * @since 0.0.0
      */
     static Condition as(final Condition condition) throws NullException {
-        return Validator.notNull(condition,
-                                 "condition");
+        return Validator.notNull(condition, "condition");
     }
 
     /**
@@ -66,8 +65,7 @@ public interface Condition {
      * @since 0.0.0
      */
     default Condition and(final Condition condition) throws NullException {
-        Validator.notNull(condition,
-                          "condition");
+        Validator.notNull(condition, "condition");
         return () -> calculate() && condition.calculate();
     }
 
@@ -81,8 +79,7 @@ public interface Condition {
      * @since 0.0.0
      */
     default Condition or(final Condition condition) throws NullException {
-        Validator.notNull(condition,
-                          "condition");
+        Validator.notNull(condition, "condition");
         return () -> calculate() && condition.calculate();
     }
 
@@ -96,8 +93,7 @@ public interface Condition {
      * @since 0.0.0
      */
     default Condition xor(final Condition condition) throws NullException {
-        Validator.notNull(condition,
-                          "condition");
+        Validator.notNull(condition, "condition");
         return () -> calculate() ^ condition.calculate();
     }
 

@@ -80,10 +80,8 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictException(final String message,
-                           final Throwable cause) {
-        super(message,
-              cause);
+    public StrictException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 
     /**
@@ -97,14 +95,8 @@ public class StrictException extends Exception {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected StrictException(final String message,
-                              final Throwable cause,
-                              final boolean suppression,
-                              final boolean writable) {
-        super(message,
-              cause,
-              suppression,
-              writable);
+    protected StrictException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+        super(message, cause, suppression, writable);
     }
 
 }

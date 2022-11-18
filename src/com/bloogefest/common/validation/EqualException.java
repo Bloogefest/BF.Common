@@ -59,10 +59,8 @@ public class EqualException extends ValidationException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public EqualException(final String message,
-                          final Throwable cause) {
-        super(message,
-              cause);
+    public EqualException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 
     /**
@@ -76,14 +74,8 @@ public class EqualException extends ValidationException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected EqualException(final String message,
-                             final Throwable cause,
-                             final boolean suppression,
-                             final boolean writable) {
-        super(message,
-              cause,
-              suppression,
-              writable);
+    protected EqualException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+        super(message, cause, suppression, writable);
     }
 
 }

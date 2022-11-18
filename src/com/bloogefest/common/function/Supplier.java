@@ -48,8 +48,7 @@ public interface Supplier<T> {
      * @since 0.0.0
      */
     static <T> Supplier<T> as(final Supplier<T> supplier) throws NullException {
-        return Validator.notNull(supplier,
-                                 "supplier");
+        return Validator.notNull(supplier, "supplier");
     }
 
     /**
@@ -71,8 +70,7 @@ public interface Supplier<T> {
      * @since 0.0.0
      */
     default Supplier<T> with(final Supplier<T> supplier) throws NullException {
-        Validator.notNull(supplier,
-                          "supplier");
+        Validator.notNull(supplier, "supplier");
         return () -> {
             supply();
             return supplier.supply();

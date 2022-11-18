@@ -61,10 +61,8 @@ public class CreationException extends StrictException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public CreationException(final String message,
-                             final Throwable cause) {
-        super(message,
-              cause);
+    public CreationException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 
     /**
@@ -78,14 +76,8 @@ public class CreationException extends StrictException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected CreationException(final String message,
-                                final Throwable cause,
-                                final boolean suppression,
-                                final boolean writable) {
-        super(message,
-              cause,
-              suppression,
-              writable);
+    protected CreationException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+        super(message, cause, suppression, writable);
     }
 
 }

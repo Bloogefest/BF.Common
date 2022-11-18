@@ -9,14 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Рефакторинг стиля кода">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/annotations-20.1.0-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/annotations-20.1.0.jar" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Подключение библиотеки аннотаций">
+      <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/ConsumeException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/PerformException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NotNullException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BF.Common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BF.Common.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/Conditions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/CreationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/CreationException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Action.java" afterDir="false" />
@@ -109,7 +105,7 @@
       <workItem from="1668687442681" duration="7214000" />
       <workItem from="1668696403788" duration="4634000" />
       <workItem from="1668716266966" duration="2251000" />
-      <workItem from="1668773198224" duration="5819000" />
+      <workItem from="1668773198224" duration="6981000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -300,7 +296,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668700423952</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Подключение библиотеки аннотаций">
+      <created>1668780832660</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1668780832660</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,7 +322,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Adding com.ketlet.common" />
     <MESSAGE value="Adding StrictException" />
     <MESSAGE value="Adding SoftException" />
     <MESSAGE value="Adding SoftError" />
@@ -344,6 +346,7 @@
     <MESSAGE value="Документация, рефакторинг, пакет валидации" />
     <MESSAGE value="Изменение описания проекта" />
     <MESSAGE value="Рефакторинг стиля кода" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг стиля кода" />
+    <MESSAGE value="Подключение библиотеки аннотаций" />
+    <option name="LAST_COMMIT_MESSAGE" value="Подключение библиотеки аннотаций" />
   </component>
 </project>

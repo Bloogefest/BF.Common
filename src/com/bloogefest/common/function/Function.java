@@ -53,8 +53,7 @@ public interface Function<T, R> {
      * @since 0.0.0
      */
     static <T, R> Function<T, R> as(final Function<T, R> function) throws NullException {
-        return Validator.notNull(function,
-                                 "function");
+        return Validator.notNull(function, "function");
     }
 
     /**
@@ -78,8 +77,7 @@ public interface Function<T, R> {
      * @since 0.0.0
      */
     default Function<T, R> with(final Function<T, R> function) throws NullException {
-        Validator.notNull(function,
-                          "function");
+        Validator.notNull(function, "function");
         return object -> {
             execute(object);
             return function.execute(object);

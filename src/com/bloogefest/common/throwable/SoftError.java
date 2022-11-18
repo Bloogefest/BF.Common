@@ -80,10 +80,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftError(final String message,
-                     final Throwable cause) {
-        super(message,
-              cause);
+    public SoftError(final String message, final Throwable cause) {
+        super(message, cause);
     }
 
     /**
@@ -97,14 +95,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected SoftError(final String message,
-                        final Throwable cause,
-                        final boolean suppression,
-                        final boolean writable) {
-        super(message,
-              cause,
-              suppression,
-              writable);
+    protected SoftError(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+        super(message, cause, suppression, writable);
     }
 
 }

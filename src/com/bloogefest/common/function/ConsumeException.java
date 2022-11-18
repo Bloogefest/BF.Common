@@ -1,41 +1,11 @@
-package com.bloogefest.common.throwable;
+package com.bloogefest.common.function;
 
 /**
- * Мягкое исключение, не требующее обработки.
- *
  * @author Bloogefest
  * @version 0.0
  * @since 0.0.0
  */
-public class SoftException extends RuntimeException {
-
-    /**
-     * Содержит стандартное сообщение.
-     *
-     * @since 0.0.0
-     */
-    protected static final String defaultMessage = "Not specified";
-
-    /**
-     * Содержит стандартную причину возникновения исключения.
-     *
-     * @since 0.0.0
-     */
-    protected static final Throwable defaultCause = null;
-
-    /**
-     * Содержит стандартное разрешение о упоминании подавленных исключений.
-     *
-     * @since 0.0.0
-     */
-    protected static final boolean defaultSuppression = false;
-
-    /**
-     * Содержит стандартное разрешение для записи трассировки стека.
-     *
-     * @since 0.0.0
-     */
-    protected static final boolean defaultWritable = true;
+public class ConsumeException extends FunctionException {
 
     /**
      * Конструктор, использующий стандартное сообщение.
@@ -43,8 +13,8 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException() {
-        super(defaultMessage);
+    public ConsumeException() {
+        super();
     }
 
     /**
@@ -55,7 +25,7 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final String message) {
+    public ConsumeException(final String message) {
         super(message);
     }
 
@@ -67,7 +37,7 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final Throwable cause) {
+    public ConsumeException(final Throwable cause) {
         super(cause);
     }
 
@@ -80,7 +50,7 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final String message, final Throwable cause) {
+    public ConsumeException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -95,7 +65,7 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected SoftException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+    protected ConsumeException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

@@ -52,10 +52,8 @@ public class FunctionException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public FunctionException(final String message,
-                             final Throwable cause) {
-        super(message,
-              cause);
+    public FunctionException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 
     /**
@@ -69,14 +67,8 @@ public class FunctionException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected FunctionException(final String message,
-                                final Throwable cause,
-                                final boolean suppression,
-                                final boolean writable) {
-        super(message,
-              cause,
-              suppression,
-              writable);
+    protected FunctionException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+        super(message, cause, suppression, writable);
     }
 
 }
