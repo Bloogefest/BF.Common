@@ -5,9 +5,40 @@
       <artifact name="BF.Common:jar" />
     </artifacts-to-build>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Документация, рефакторинг, пакет валидации">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Рефакторинг стиля кода">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/annotations-20.1.0-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/annotations-20.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/PerformException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NotNullException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BF.Common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BF.Common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/Conditions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/CreationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/CreationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Consumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/FunctionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/FunctionException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Getter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Getter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Predicate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Predicate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Setter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Setter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/SoftException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/throwable/StrictException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/EqualException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/EqualException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NotEqualException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NotEqualException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NullException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/NullException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/ValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/ValidationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/validation/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/validation/Validator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,25 +72,29 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Projects/BF.Common",
+    "last_opened_file_path": "C:/Projects/BF.Common/lib/annotations-20.1.0-sources.jar",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "fileTemplates"
+    "settings.editor.selected.configurable": "preferences.editor.code.editing"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.bloogefest.common" />
       <recent name="com.bloogefest.common.function" />
+      <recent name="com.bloogefest.common.validation" />
+      <recent name="com.bloogefest.common" />
       <recent name="com.ketlet.common.function" />
       <recent name="com.ketlet.common.validation" />
-      <recent name="com.ketlet.common.exception" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -72,7 +107,9 @@
       <updated>1668609340604</updated>
       <workItem from="1668609357720" duration="12748000" />
       <workItem from="1668687442681" duration="7214000" />
-      <workItem from="1668696403788" duration="3537000" />
+      <workItem from="1668696403788" duration="4634000" />
+      <workItem from="1668716266966" duration="2251000" />
+      <workItem from="1668773198224" duration="5819000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -249,7 +286,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668699921973</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Изменение описания проекта">
+      <created>1668700206987</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1668700206987</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Рефакторинг стиля кода">
+      <created>1668700423952</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1668700423952</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,7 +319,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Configuring the project" />
     <MESSAGE value="Adding com.ketlet.common" />
     <MESSAGE value="Adding StrictException" />
     <MESSAGE value="Adding SoftException" />
@@ -292,6 +342,8 @@
     <MESSAGE value="Changing the version" />
     <MESSAGE value="Fix artifact name" />
     <MESSAGE value="Документация, рефакторинг, пакет валидации" />
-    <option name="LAST_COMMIT_MESSAGE" value="Документация, рефакторинг, пакет валидации" />
+    <MESSAGE value="Изменение описания проекта" />
+    <MESSAGE value="Рефакторинг стиля кода" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг стиля кода" />
   </component>
 </project>
