@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Исправление документации интерфейса Action">
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Исправление документации интерфейса Consumer">
+      <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/GetException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Consumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/PerformException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/PerformException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Getter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Getter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,7 @@
       <workItem from="1668696403788" duration="4634000" />
       <workItem from="1668716266966" duration="2251000" />
       <workItem from="1668773198224" duration="6981000" />
-      <workItem from="1668871215608" duration="4010000" />
+      <workItem from="1668871215608" duration="5822000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -331,7 +331,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668874240731</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Исправление документации и реализации интерфейса Consumer">
+      <created>1668875518645</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1668875518645</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Исправление документации интерфейса Consumer">
+      <created>1668875718915</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1668875718915</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,8 +376,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Reconfiguring the project" />
-    <MESSAGE value="Adding the license" />
     <MESSAGE value="Rebranding of the project" />
     <MESSAGE value="Style Refactoring" />
     <MESSAGE value="Refactoring errors and exceptions" />
@@ -387,6 +399,8 @@
     <MESSAGE value="Исправление зависимостей" />
     <MESSAGE value="Исправление зависимостей" />
     <MESSAGE value="Исправление документации интерфейса Action" />
-    <option name="LAST_COMMIT_MESSAGE" value="Исправление документации интерфейса Action" />
+    <MESSAGE value="Исправление документации и реализации интерфейса Consumer" />
+    <MESSAGE value="Исправление документации интерфейса Consumer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправление документации интерфейса Consumer" />
   </component>
 </project>

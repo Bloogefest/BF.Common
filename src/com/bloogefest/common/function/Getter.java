@@ -2,93 +2,97 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * @param <T> Not specified
+ * Функциональный интерфейс, позволяющий реализовать логику возвращения типизированного экземпляра.
+ *
+ * @param <T> тип возвращаемого экземпляра.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 public interface Getter<T> {
 
     /**
-     * @param <T> Not specified
+     * Создаёт нулевой экземпляр данного интерфейса.
+     * Гарантирует возвращение только нулевого типизированного экземпляра.
      *
-     * @return Not specified
+     * @return Нулевой экземпляр данного интерфейса.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Getter<T> nullable() {
+    @Contract(value = "-> new", pure = true)
+    static <T> @NotNull Getter<T> nullable() {
         return () -> null;
     }
 
     /**
-     * @param <T>   Not specified
-     * @param value Not specified
+     * Создаёт строгий экземпляр данного интерфейса.
+     * Гарантирует возвращение только переданного типизированного экземпляра.
      *
-     * @return Not specified
+     * @param object типизированный экземпляр.
      *
+     * @return Строгий экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Getter<T> strict(final T value) {
-        assert value != null : "The value mustn't be null";
-        return () -> value;
+    static <T> @NotNull Getter<T> strict(final @NotNull T object) throws NullException {
+        Validator.notNull(object, "object");
+        return () -> object;
     }
 
     /**
-     * @param <T>    Not specified
-     * @param getter Not specified
+     * Проверяет переданный экземпляр данного интерфейса и возвращает его.
      *
-     * @return Not specified
+     * @param getter экземпляр данного интерфейса.
      *
-     * @throws NullException Not specified
+     * @return Переданный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Getter<T> as(final Getter<T> getter) throws NullException {
+    @Contract(value = "_ -> param1", pure = true)
+    static <T> @NotNull Getter<T> of(final @NotNull Getter<T> getter) throws NullException {
         return Validator.notNull(getter, "getter");
     }
 
     /**
-     * @return Not specified
+     * Выполняет логику возвращения типизированного экземпляра.
      *
-     * @throws FunctionException Not specified
+     * @return Возвращаемый типизированный экземпляр.
+     *
+     * @throws GetException невозможно продолжить выполнение логики.
      * @author Bloogefest
      * @since 0.0.0
      */
-    T get() throws FunctionException;
+    @Contract(pure = true)
+    @Nullable T get() throws GetException;
 
     /**
-     * @param getter Not specified
+     * Комбинирует переданный типизированный экземпляр с данным экземпляром.
+     * Гарантирует возвращение только переданного типизированного экземпляра.
      *
-     * @return Not specified
+     * @param object типизированный экземпляр.
      *
-     * @throws NullException Not specified
+     * @return Комбинированный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Getter<T> with(final Getter<T> getter) throws NullException {
-        Validator.notNull(getter, "getter");
-        return () -> {
-            get();
-            return getter.get();
-        };
-    }
-
-    /**
-     * @param value Not specified
-     *
-     * @return Not specified
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    default Getter<T> suppress(final T value) {
-        return () -> value;
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Getter<T> suppress(final @NotNull T object) {
+        return () -> object;
     }
 
 }
