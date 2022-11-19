@@ -44,6 +44,7 @@ public interface Getter<T> {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @Contract(value = "_ -> new", pure = true)
     static <T> @NotNull Getter<T> strict(final @Nullable T object) {
         return () -> object;
     }
