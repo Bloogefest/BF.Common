@@ -2,111 +2,142 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
+ * Функциональный интерфейс, являющийся логическим выражением.
+ *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 public interface Condition {
 
     /**
-     * @param value Not specified
+     * Создаёт логическое выражение с постоянным результатом вычисления.
      *
-     * @return Not specified
+     * @param result постоянный результат вычисления.
+     *
+     * @return Постоянное логическое выражение.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static Condition strict(final boolean value) {
-        return () -> value;
+    @Contract(value = "_ -> new", pure = true)
+    static @NotNull Condition constant(final boolean result) {
+        return () -> result;
     }
 
     /**
-     * @param condition Not specified
+     * Проверяет логическое выражение и возвращает его.
      *
-     * @return Not specified
+     * @param condition логическое выражение.
      *
-     * @throws NullException Not specified
+     * @return Проверенное логическое выражение.
+     *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static Condition as(final Condition condition) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
         return Validator.notNull(condition, "condition");
     }
 
     /**
-     * @return Not specified
+     * Вычисляет результат.
      *
-     * @throws FunctionException Not specified
+     * @return Результат вычисления.
+     *
+     * @throws CalculateException невозможно вычислить результат.
      * @author Bloogefest
      * @since 0.0.0
      */
-    boolean calculate() throws FunctionException;
+    @Contract(pure = true)
+    boolean calculate() throws CalculateException;
 
     /**
-     * @return Not specified
+     * Инвертирует логическое выражение.
+     *
+     * @return Инвертированное логическое выражение.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Condition invert() {
+    @Contract(value = "-> new", pure = true)
+    default @NotNull Condition invert() {
         return () -> !calculate();
     }
 
     /**
-     * @param condition Not specified
+     * Комбинирует данное логическое выражение конъюнкцией с переданным.
      *
-     * @return Not specified
+     * @param condition логическое выражение.
+     *
+     * @return Комбинированное логическое выражение.
      *
      * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Condition and(final Condition condition) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Condition and(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> calculate() && condition.calculate();
     }
 
     /**
-     * @param condition Not specified
+     * Комбинирует данное логическое выражение мягкой дизъюнкцией с переданным.
      *
-     * @return Not specified
+     * @param condition логическое выражение.
+     *
+     * @return Комбинированное логическое выражение.
      *
      * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Condition or(final Condition condition) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Condition or(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
-        return () -> calculate() && condition.calculate();
+        return () -> calculate() || condition.calculate();
     }
 
     /**
-     * @param condition Not specified
+     * Комбинирует данное логическое выражение строгой дизъюнкцией с переданным.
      *
-     * @return Not specified
+     * @param condition логическое выражение.
+     *
+     * @return Комбинированное логическое выражение.
      *
      * @throws NullException Not specified
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Condition xor(final Condition condition) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> calculate() ^ condition.calculate();
     }
 
     /**
-     * @param value Not specified
+     * Комбинирует логическое выражение с постоянным результатом вычисления.
      *
-     * @return Not specified
+     * @param result постоянный результат вычисления.
+     *
+     * @return Постоянное логическое выражение.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Condition suppress(final boolean value) {
-        return () -> value;
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Condition suppress(final boolean result) {
+        return () -> {
+            calculate();
+            return result;
+        };
     }
 
 }
