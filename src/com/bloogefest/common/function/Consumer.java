@@ -4,11 +4,12 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс, позволяющий реализовать логику обработки типизированного экземпляра.
+ * Функциональный интерфейс, являющийся потребителем объекта.
  *
- * @param <T> тип обрабатываемого экземпляра.
+ * @param <T> тип потребляемого объекта.
  *
  * @author Bloogefest
  * @version 0.1
@@ -19,9 +20,9 @@ import org.jetbrains.annotations.NotNull;
 public interface Consumer<T> {
 
     /**
-     * Создаёт пустой экземпляр данного интерфейса.
+     * Создаёт пустого потребителя.
      *
-     * @return Пустой экземпляр данного интерфейса.
+     * @return Пустой потребитель.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -32,13 +33,13 @@ public interface Consumer<T> {
     }
 
     /**
-     * Проверяет переданный экземпляр данного интерфейса и возвращает его.
+     * Проверяет потребителя и возвращает его.
      *
-     * @param consumer экземпляр данного интерфейса.
+     * @param consumer потребитель.
      *
-     * @return Переданный экземпляр данного интерфейса.
+     * @return Проверенный потребитель.
      *
-     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
+     * @throws NullException потребитель является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -48,28 +49,27 @@ public interface Consumer<T> {
     }
 
     /**
-     * Выполняет логику обработки типизированного экземпляра.
+     * Потребляет объект.
      *
-     * @param object обрабатываемый экземпляр.
+     * @param object объект.
      *
-     * @throws NullException    переданный типизированный экземпляр является нулевым.
-     * @throws ConsumeException невозможно продолжить выполнение логики.
+     * @throws NullException    объект является нулевым.
+     * @throws ConsumeException невозможно потребить объект.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(pure = true)
-    void consume(final @NotNull T object) throws NullException, ConsumeException;
+    void consume(final @Nullable T object) throws NullException, ConsumeException;
 
     /**
-     * Комбинирует переданный экземпляр данного интерфейса с данным экземпляром.
-     * Гарантирует выполнение логики обоих экземпляров данного интерфейса,
-     * начиная с данного и заканчивая переданным.
+     * Комбинирует данный потребитель с переданным.
+     * Гарантирует последовательное потребление объекта обоими потребителями.
      *
-     * @param consumer экземпляр данного интерфейса.
+     * @param consumer потребитель.
      *
-     * @return Комбинированный экземпляр данного интерфейса.
+     * @return Комбинированный потребитель.
      *
-     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
+     * @throws NullException потребитель является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -86,24 +86,19 @@ public interface Consumer<T> {
     }
 
     /**
-     * Комбинирует переданный обрабатываемый экземпляр с данным экземпляром.
-     * Гарантирует выполнение логики обработки только этого типизированного экземпляра.
+     * Комбинирует данный потребитель с переданным объектом.
+     * Гарантирует потребление только этого объекта.
      *
-     * @param object обрабатываемый экземпляр.
+     * @param object объект.
      *
      * @return Комбинированный экземпляр данного интерфейса.
      *
-     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Consumer<T> suppress(final @NotNull T object) throws NullException {
-        Validator.notNull(object, "object");
-        return object_ -> {
-            Validator.notNull(object_, "object");
-            consume(object);
-        };
+    default @NotNull Consumer<T> suppress(final @Nullable T object) throws NullException {
+        return __ -> consume(object);
     }
 
 }
