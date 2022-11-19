@@ -4,6 +4,7 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Функциональный интерфейс, позволяющий реализовать логику задания типизированного экземпляра.
@@ -58,7 +59,7 @@ public interface Setter<T> {
      * @since 0.0.0
      */
     @Contract(pure = true)
-    void set(final @NotNull T object) throws NullException, SetException;
+    void set(final @Nullable T object) throws NullException, SetException;
 
     /**
      * Комбинирует переданный экземпляр данного интерфейса с данным экземпляром.
@@ -96,12 +97,8 @@ public interface Setter<T> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    default @NotNull Setter<T> suppress(final @NotNull T object) {
-        Validator.notNull(object, "object");
-        return object_ -> {
-            Validator.notNull(object_, "object");
-            set(object);
-        };
+    default @NotNull Setter<T> suppress(final @Nullable T object) {
+        return __ -> set(object);
     }
 
 }
