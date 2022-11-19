@@ -11,7 +11,7 @@ public class ConsumeException extends FunctionException {
      * Конструктор, использующий стандартное сообщение.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.0.1
      */
     public ConsumeException() {
         super();
@@ -23,7 +23,7 @@ public class ConsumeException extends FunctionException {
      * @param message Сообщение, используемое вместо стандартного.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.0.1
      */
     public ConsumeException(final String message) {
         super(message);
@@ -35,7 +35,7 @@ public class ConsumeException extends FunctionException {
      * @param cause Причина возникновения исключения.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.0.1
      */
     public ConsumeException(final Throwable cause) {
         super(cause);
@@ -48,7 +48,7 @@ public class ConsumeException extends FunctionException {
      * @param cause   Причина возникновения исключения.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.0.1
      */
     public ConsumeException(final String message, final Throwable cause) {
         super(message, cause);
@@ -63,7 +63,7 @@ public class ConsumeException extends FunctionException {
      * @param writable    Позволяет трассировке стека записываться.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.0.1
      */
     protected ConsumeException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
