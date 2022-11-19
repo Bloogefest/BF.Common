@@ -1,7 +1,5 @@
 package com.bloogefest.common.function;
 
-import com.bloogefest.common.throwable.SoftException;
-
 /**
  * @author Bloogefest
  * @version 0.0
