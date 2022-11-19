@@ -93,7 +93,6 @@ public interface Setter<T> {
      *
      * @return Комбинированный экземпляр данного интерфейса.
      *
-     * @throws NullException переданный типизированный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
