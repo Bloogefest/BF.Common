@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 public interface Consumer<T> {
 
     /**
-     * Создаёт пустой экземпляр данного интерфейса
+     * Создаёт пустой экземпляр данного интерфейса.
      *
      * @return Пустой экземпляр данного интерфейса.
      *
@@ -52,7 +52,7 @@ public interface Consumer<T> {
      *
      * @param object типизированный экземпляр.
      *
-     * @throws NullException переданный типизированный экземпляр является нулевым.
+     * @throws NullException    переданный типизированный экземпляр является нулевым.
      * @throws ConsumeException невозможно продолжить выполнение логики.
      * @author Bloogefest
      * @since 0.0.0
@@ -91,7 +91,7 @@ public interface Consumer<T> {
      *
      * @param object типизированный экземпляр.
      *
-     * @return Экземпляр данного интерфейса
+     * @return Комбинированный экземпляр данного интерфейса.
      *
      * @throws NullException переданный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
