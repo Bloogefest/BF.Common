@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="BF.Common:jar">
-    <output-path>$PROJECT_DIR$/out</output-path>
-    <root id="archive" name="BF.Common.jar">
-      <element id="module-output" name="BF.Common" />
-    </root>
-  </artifact>
-</component>
