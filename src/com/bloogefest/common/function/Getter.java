@@ -41,12 +41,10 @@ public interface Getter<T> {
      *
      * @return Строгий экземпляр данного интерфейса.
      *
-     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> @NotNull Getter<T> strict(final @NotNull T object) throws NullException {
-        Validator.notNull(object, "object");
+    static <T> @NotNull Getter<T> strict(final @Nullable T object) {
         return () -> object;
     }
 
@@ -86,12 +84,11 @@ public interface Getter<T> {
      *
      * @return Комбинированный экземпляр данного интерфейса.
      *
-     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Getter<T> suppress(final @NotNull T object) {
+    default @NotNull Getter<T> suppress(final @Nullable T object) {
         return () -> object;
     }
 
