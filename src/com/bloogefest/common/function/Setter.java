@@ -2,79 +2,106 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * @param <T> Not specified
+ * Функциональный интерфейс, позволяющий реализовать логику задания типизированного экземпляра.
+ *
+ * @param <T> тип задаваемого экземпляра.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 public interface Setter<T> {
 
     /**
-     * @param <T> Not specified
+     * Создаёт пустой экземпляр данного интерфейса.
      *
-     * @return Not specified
+     * @return Пустой экземпляр данного интерфейса.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Setter<T> empty() {
+    @Contract(value = "-> new", pure = true)
+    static <T> @NotNull Setter<T> empty() {
         return __ -> {};
     }
 
     /**
-     * @param <T>    Not specified
-     * @param setter Not specified
+     * Проверяет переданный экземпляр данного интерфейса и возвращает его.
      *
-     * @return Not specified
+     * @param setter экземпляр данного интерфейса.
      *
-     * @throws NullException Not specified
+     * @return Переданный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Setter<T> as(final Setter<T> setter) throws NullException {
+    @Contract(value = "_ -> param1", pure = true)
+    static <T> @NotNull Setter<T> of(final @NotNull Setter<T> setter) throws NullException {
         return Validator.notNull(setter, "setter");
     }
 
     /**
-     * @param value Not specified
+     * Выполняет логику задания типизированного экземпляра.
      *
-     * @throws FunctionException Not specified
+     * @param object типизированный экземпляр.
+     *
+     * @throws NullException переданный типизированный экземпляр является нулевым.
+     * @throws SetException невозможно продолжить выполнение логики.
      * @author Bloogefest
      * @since 0.0.0
      */
-    void set(final T value) throws FunctionException;
+    @Contract(pure = true)
+    void set(final @NotNull T object) throws NullException, SetException;
 
     /**
-     * @param setter Not specified
+     * Комбинирует переданный экземпляр данного интерфейса с данным экземпляром.
+     * Гарантирует выполнение логики обоих экземпляров данного интерфейса,
+     * начиная с данного и заканчивая переданным.
      *
-     * @return Not specified
+     * @param setter экземпляр данного интерфейса.
      *
-     * @throws NullException Not specified
+     * @return Комбинированный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Setter<T> with(final Setter<T> setter) throws NullException {
+    default @NotNull Setter<T> with(final @NotNull Setter<T> setter) throws NullException {
         Validator.notNull(setter, "setter");
-        return value -> {
-            set(value);
-            setter.set(value);
+        return object -> {
+            try {
+                set(object);
+            } finally {
+                setter.set(object);
+            }
         };
     }
 
     /**
-     * @param value Not specified
+     * Комбинирует переданный типизированный экземпляр с данным экземпляром.
+     * Гарантирует выполнение логики задания только этого типизированного экземпляра.
      *
-     * @return Not specified
+     * @param object типизированный экземпляр.
      *
+     * @return Комбинированный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный типизированный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Setter<T> suppress(final T value) {
-        return __ -> set(value);
+    default @NotNull Setter<T> suppress(final @NotNull T object) {
+        Validator.notNull(object, "object");
+        return object_ -> {
+            Validator.notNull(object_, "object");
+            set(object);
+        };
     }
 
 }
