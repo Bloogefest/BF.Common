@@ -2,90 +2,82 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * @param <T> Not specified
+ * Функциональный интерфейс, позволяющий реализовать логику поставки типизированного экземпляра.
+ *
+ * @param <T> тип поставляемого экземпляра.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
+@FunctionalInterface
 public interface Supplier<T> {
 
     /**
-     * @param <T> Not specified
+     * Создаёт строгий экземпляр данного интерфейса.
+     * Гарантирует поставку только переданного типизированного экземпляра.
      *
-     * @return Not specified
+     * @param object задаваемый экземпляр.
      *
+     * @return Строгий экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Supplier<T> nullable() {
-        return () -> null;
-    }
-
-    /**
-     * @param <T>    Not specified
-     * @param object Not specified
-     *
-     * @return Not specified
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    static <T> Supplier<T> strict(final T object) {
+    static <T> @NotNull Supplier<T> strict(final @NotNull T object) throws NullException {
+        Validator.notNull(object, "object");
         return () -> object;
     }
 
     /**
-     * @param <T>      Not specified
-     * @param supplier Not specified
+     * Проверяет переданный экземпляр данного интерфейса и возвращает его.
      *
-     * @return Not specified
+     * @param supplier экземпляр данного интерфейса.
      *
-     * @throws NullException Not specified
+     * @return Переданный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> Supplier<T> as(final Supplier<T> supplier) throws NullException {
+    @Contract(value = "_ -> param1", pure = true)
+    static <T> @NotNull Supplier<T> of(final @NotNull Supplier<T> supplier) throws NullException {
         return Validator.notNull(supplier, "supplier");
     }
 
     /**
-     * @return Not specified
+     * Выполняет логику поставки типизированного экземпляра.
      *
-     * @throws FunctionException Not specified
+     * @return Типизированный экземпляр.
+     *
+     * @throws SupplyException невозможно продолжить выполнение логики.
      * @author Bloogefest
      * @since 0.0.0
      */
-    T supply() throws FunctionException;
+    @Contract(pure = true)
+    @NotNull T supply() throws SupplyException;
 
     /**
-     * @param supplier Not specified
+     * Комбинирует переданный поставляемый экземпляр с данным экземпляром.
+     * Гарантирует поставку только переданного типизированного экземпляра.
      *
-     * @return Not specified
+     * @param object поставляемый экземпляр.
      *
-     * @throws NullException Not specified
+     * @return Комбинированный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Supplier<T> with(final Supplier<T> supplier) throws NullException {
-        Validator.notNull(supplier, "supplier");
-        return () -> {
-            supply();
-            return supplier.supply();
-        };
-    }
-
-    /**
-     * @param object Not specified
-     *
-     * @return Not specified
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    default Supplier<T> suppress(final T object) {
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Supplier<T> suppress(final @NotNull T object) throws NullException {
+        Validator.notNull(object, "object");
         return () -> object;
     }
 

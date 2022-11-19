@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Исправление документации и реализации интерфейса Getter">
-      <change afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/SetException.java" afterDir="false" />
+    <list default="true" id="9ab7114c-9fde-499c-ad3b-6589a371ec87" name="Changes" comment="Исправление документации интерфейса Getter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Setter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Setter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bloogefest/common/function/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bloogefest/common/function/Supplier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +83,7 @@
       <workItem from="1668696403788" duration="4634000" />
       <workItem from="1668716266966" duration="2251000" />
       <workItem from="1668773198224" duration="6981000" />
-      <workItem from="1668871215608" duration="6604000" />
+      <workItem from="1668871215608" duration="7776000" />
     </task>
     <task id="LOCAL-00001" summary="Configuring the project">
       <created>1668621404548</created>
@@ -373,7 +372,49 @@
       <option name="project" value="LOCAL" />
       <updated>1668877949363</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Исправление документации интерфейса Consumer">
+      <created>1668878854280</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1668878854280</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Добавление исключения интерфейса Setter">
+      <created>1668878939274</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1668878939274</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Исправление документации и реализации интерфейса Setter">
+      <created>1668878955495</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1668878955495</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Исправление исключений">
+      <created>1668879162391</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1668879162391</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Добавление исключения интерфейса Supplier">
+      <created>1668879183778</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1668879183778</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Исправление документации интерфейса Getter">
+      <created>1668879398556</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1668879398556</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,11 +445,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactoring errors and exceptions" />
-    <MESSAGE value="Adding FunctionException" />
-    <MESSAGE value="Integration with FunctionException" />
-    <MESSAGE value="Refactoring throwable API" />
-    <MESSAGE value="Refactoring Objects" />
     <MESSAGE value="Adding Validator" />
     <MESSAGE value="Conditions Style Refactoring" />
     <MESSAGE value="Refactoring with Validator" />
@@ -426,9 +462,14 @@
     <MESSAGE value="Исправление зависимостей" />
     <MESSAGE value="Исправление документации интерфейса Action" />
     <MESSAGE value="Исправление документации и реализации интерфейса Consumer" />
-    <MESSAGE value="Исправление документации интерфейса Consumer" />
     <MESSAGE value="Добавление исключения интерфейса Getter" />
     <MESSAGE value="Исправление документации и реализации интерфейса Getter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Исправление документации и реализации интерфейса Getter" />
+    <MESSAGE value="Исправление документации интерфейса Consumer" />
+    <MESSAGE value="Добавление исключения интерфейса Setter" />
+    <MESSAGE value="Исправление документации и реализации интерфейса Setter" />
+    <MESSAGE value="Исправление исключений" />
+    <MESSAGE value="Добавление исключения интерфейса Supplier" />
+    <MESSAGE value="Исправление документации интерфейса Getter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправление документации интерфейса Getter" />
   </component>
 </project>
