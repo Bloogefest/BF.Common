@@ -93,7 +93,7 @@ public interface Consumer<T> {
      *
      * @return Комбинированный экземпляр данного интерфейса.
      *
-     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
+     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
