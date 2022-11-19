@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 0.1
  * @since 0.0.0
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 @FunctionalInterface
 public interface Condition {
 
@@ -38,6 +38,7 @@ public interface Condition {
      *
      * @return Проверенное логическое выражение.
      *
+     * @throws NullException логическое выражение является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
