@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс, позволяющий реализовать логику возврата внутри контекста.
+ * Функциональный интерфейс, позволяющий реализовать логику внутри контекста.
  *
  * @param <T> тип контекстного экземпляра.
  * @param <R> тип возвращаемого экземпляра.
@@ -51,57 +51,63 @@ public interface Function<T, R> {
     }
 
     /**
-     * @param <T>      Not specified
-     * @param <R>      Not specified
-     * @param function Not specified
+     * Проверяет переданный экземпляр данного интерфейса и возвращает его.
      *
-     * @return Not specified
+     * @param function экземпляр данного интерфейса.
      *
-     * @throws NullException Not specified
+     * @return Переданный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T, R> Function<T, R> of(final Function<T, R> function) throws NullException {
+    @Contract(value = "_ -> param1", pure = true)
+    static <T, R> @NotNull Function<T, R> of(final @NotNull Function<T, R> function) throws NullException {
         return Validator.notNull(function, "function");
     }
 
     /**
-     * @param object Not specified
+     * Выполняет логику внутри контекста.
      *
-     * @return Not specified
+     * @return Типизированный экземпляр.
      *
-     * @throws FunctionException Not specified
+     * @throws ExecuteException невозможно продолжить выполнение логики.
      * @author Bloogefest
      * @since 0.0.0
      */
+    @Contract(pure = true)
     @Nullable R execute(final @Nullable T object) throws ExecuteException;
 
     /**
-     * @param function Not specified
+     * Комбинирует переданный экземпляр данного интерфейса с данным экземпляром.
      *
-     * @return Not specified
+     * @param function экземпляр данного интерфейса.
      *
-     * @throws NullException Not specified
+     * @return Комбинированный экземпляр данного интерфейса.
+     *
+     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Function<T, R> with(final Function<T, R> function) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    default <R_> @NotNull Function<T, R_> with(final @NotNull Function<? super R, R_> function) throws NullException {
         Validator.notNull(function, "function");
-        return object -> {
-            execute(object);
-            return function.execute(object);
-        };
+        return object -> function.execute(execute(object));
     }
 
     /**
-     * @param object Not specified
+     * Комбинирует переданный возвращаемый экземпляр с данным экземпляром.
+     * Гарантирует возврат только переданного типизированного экземпляра.
      *
-     * @return Not specified
+     * @param object возвращаемый экземпляр.
+     *
+     * @return Комбинированный экземпляр данного интерфейса.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Function<T, R> suppress(final T object) {
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Function<T, R> suppress(final @NotNull T object) {
         return __ -> execute(object);
     }
 
