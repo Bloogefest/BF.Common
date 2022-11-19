@@ -54,7 +54,7 @@ public interface Setter<T> {
      * @param object задаваемый экземпляр.
      *
      * @throws NullException переданный типизированный экземпляр является нулевым.
-     * @throws SetException невозможно продолжить выполнение логики.
+     * @throws SetException  невозможно продолжить выполнение логики.
      * @author Bloogefest
      * @since 0.0.0
      */
