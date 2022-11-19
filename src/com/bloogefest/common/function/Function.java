@@ -2,42 +2,51 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * @param <T> Not specified
- * @param <R> Not specified
+ * Функциональный интерфейс, позволяющий реализовать логику возврата внутри контекста.
+ *
+ * @param <T> тип контекстного экземпляра.
+ * @param <R> тип возвращаемого экземпляра.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
 @FunctionalInterface
 public interface Function<T, R> {
 
     /**
-     * @param <T> Not specified
-     * @param <R> Not specified
+     * Создаёт нулевой экземпляр данного интерфейса.
+     * Гарантирует возврат только нулевого типизированного экземпляра.
      *
-     * @return Not specified
+     * @return Нулевой экземпляр данного интерфейса.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T, R> Function<T, R> nullable() {
+    @Contract(value = "-> new", pure = true)
+    static <T, R> @NotNull Function<T, R> nullable() {
         return __ -> null;
     }
 
     /**
-     * @param <T>    Not specified
-     * @param <R>    Not specified
-     * @param result Not specified
+     * Создаёт строгий экземпляр данного интерфейса.
+     * Гарантирует возврат только переданного типизированного экземпляра.
      *
-     * @return Not specified
+     * @param result возвращаемый экземпляр.
+     *
+     * @return Строгий экземпляр данного интерфейса.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T, R> Function<T, R> strict(final R result) {
+    @Contract(value = "_ -> new", pure = true)
+    static <T, R> @NotNull Function<T, R> strict(final @Nullable R result) {
         return __ -> result;
     }
 
@@ -52,7 +61,7 @@ public interface Function<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T, R> Function<T, R> as(final Function<T, R> function) throws NullException {
+    static <T, R> Function<T, R> of(final Function<T, R> function) throws NullException {
         return Validator.notNull(function, "function");
     }
 
@@ -65,7 +74,7 @@ public interface Function<T, R> {
      * @author Bloogefest
      * @since 0.0.0
      */
-    R execute(final T object) throws FunctionException;
+    @Nullable R execute(final @Nullable T object) throws ExecuteException;
 
     /**
      * @param function Not specified
