@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Функциональный интерфейс, являющийся действием.
+ * Функциональный интерфейс действия.
  *
  * @author Bloogefest
  * @version 0.1
@@ -36,7 +36,7 @@ public interface Action {
      *
      * @return Проверенное действие.
      *
-     * @throws NullException действие является нулевым.
+     * @throws NullException действие не должно являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -63,7 +63,7 @@ public interface Action {
      *
      * @return Комбинированное действие.
      *
-     * @throws NullException действие является нулевым.
+     * @throws NullException действие не должно являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */

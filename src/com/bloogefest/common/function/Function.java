@@ -7,10 +7,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс, позволяющий реализовать логику внутри контекста.
+ * Функциональный интерфейс функции.
  *
- * @param <T> тип контекстного экземпляра.
- * @param <R> тип возвращаемого экземпляра.
+ * @param <T> тип потребляемого объекта.
+ * @param <R> тип результата потребления.
  *
  * @author Bloogefest
  * @version 0.1
@@ -21,10 +21,9 @@ import org.jetbrains.annotations.Nullable;
 public interface Function<T, R> {
 
     /**
-     * Создаёт нулевой экземпляр данного интерфейса.
-     * Гарантирует возврат только нулевого типизированного экземпляра.
+     * Создаёт функцию с нулевым результатом потребления.
      *
-     * @return Нулевой экземпляр данного интерфейса.
+     * @return Нулевая функция.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -35,29 +34,28 @@ public interface Function<T, R> {
     }
 
     /**
-     * Создаёт строгий экземпляр данного интерфейса.
-     * Гарантирует возврат только переданного типизированного экземпляра.
+     * Создаёт функцию с постоянным результатом потребления.
      *
-     * @param result возвращаемый экземпляр.
+     * @param result результат потребления.
      *
-     * @return Строгий экземпляр данного интерфейса.
+     * @return Постоянная функция.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(value = "_ -> new", pure = true)
-    static <T, R> @NotNull Function<T, R> strict(final @Nullable R result) {
+    static <T, R> @NotNull Function<T, R> constant(final @Nullable R result) {
         return __ -> result;
     }
 
     /**
-     * Проверяет переданный экземпляр данного интерфейса и возвращает его.
+     * Проверяет функцию и возвращает её.
      *
-     * @param function экземпляр данного интерфейса.
+     * @param function функция.
      *
-     * @return Переданный экземпляр данного интерфейса.
+     * @return Проверенная функция.
      *
-     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
+     * @throws NullException функция не должна являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -67,48 +65,35 @@ public interface Function<T, R> {
     }
 
     /**
-     * Выполняет логику внутри контекста.
+     * Потребляет объект и возвращает результат потребления.
      *
-     * @return Типизированный экземпляр.
+     * @param object объект.
      *
-     * @throws ExecuteException невозможно продолжить выполнение логики.
+     * @return Результат потребления.
+     *
+     * @throws NullException объект не должен являться нулём.
+     * @throws ExecuteException невозможно потребить объект.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(pure = true)
-    @Nullable R execute(final @Nullable T object) throws ExecuteException;
+    @Nullable R execute(final @Nullable T object) throws NullException, ExecuteException;
 
     /**
-     * Комбинирует переданный экземпляр данного интерфейса с данным экземпляром.
+     * Комбинирует данную функцию с переданной.
      *
-     * @param function экземпляр данного интерфейса.
+     * @param function функция.
      *
-     * @return Комбинированный экземпляр данного интерфейса.
+     * @return Комбинированная функция.
      *
-     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
+     * @throws NullException фунция не должна являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default <R_> @NotNull Function<T, R_> with(final @NotNull Function<? super R, R_> function) throws NullException {
+    default <R_> @NotNull Function<T, R_> with(final @NotNull Function<R, R_> function) throws NullException {
         Validator.notNull(function, "function");
         return object -> function.execute(execute(object));
-    }
-
-    /**
-     * Комбинирует переданный возвращаемый экземпляр с данным экземпляром.
-     * Гарантирует возврат только переданного типизированного экземпляра.
-     *
-     * @param object возвращаемый экземпляр.
-     *
-     * @return Комбинированный экземпляр данного интерфейса.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    @Contract(value = "_ -> new", pure = true)
-    default @NotNull Function<T, R> suppress(final @NotNull T object) {
-        return __ -> execute(object);
     }
 
 }

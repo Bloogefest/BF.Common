@@ -7,9 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс, позволяющий реализовать логику задания типизированного экземпляра.
+ * Функциональный интерфейс установщика значения.
  *
- * @param <T> тип задаваемого экземпляра.
+ * @param <V> тип значения.
  *
  * @author Bloogefest
  * @version 0.1
@@ -17,87 +17,71 @@ import org.jetbrains.annotations.Nullable;
  */
 @SuppressWarnings("unused")
 @FunctionalInterface
-public interface Setter<T> {
+public interface Setter<V> {
 
     /**
-     * Создаёт пустой экземпляр данного интерфейса.
+     * Создаёт пустой установщик значения.
      *
-     * @return Пустой экземпляр данного интерфейса.
+     * @return Пустой установщик значения.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(value = "-> new", pure = true)
-    static <T> @NotNull Setter<T> empty() {
+    static <V> @NotNull Setter<V> empty() {
         return __ -> {};
     }
 
     /**
-     * Проверяет переданный экземпляр данного интерфейса и возвращает его.
+     * Проверяет установщик значения и возвращает его.
      *
-     * @param setter экземпляр данного интерфейса.
+     * @param setter установщик значения.
      *
-     * @return Переданный экземпляр данного интерфейса.
+     * @return Проверенный установщик значения.
      *
-     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
+     * @throws NullException установщик значения не должно являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
-    static <T> @NotNull Setter<T> of(final @NotNull Setter<T> setter) throws NullException {
+    static <V> @NotNull Setter<V> of(final @NotNull Setter<V> setter) throws NullException {
         return Validator.notNull(setter, "setter");
     }
 
     /**
-     * Выполняет логику задания типизированного экземпляра.
+     * Устанавливает значение.
      *
-     * @param object задаваемый экземпляр.
+     * @param value значение.
      *
-     * @throws NullException переданный типизированный экземпляр является нулевым.
-     * @throws SetException  невозможно продолжить выполнение логики.
+     * @throws NullException значение не должно быть нулём.
+     * @throws SetException  невозможно установить значение.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(pure = true)
-    void set(final @Nullable T object) throws NullException, SetException;
+    void set(final @Nullable V value) throws NullException, SetException;
 
     /**
-     * Комбинирует переданный экземпляр данного интерфейса с данным экземпляром.
-     * Гарантирует выполнение логики обоих экземпляров данного интерфейса,
-     * начиная с данного и заканчивая переданным.
+     * Комбинирует данный установщик значения с переданным.
+     * Гарантирует последовательную установку значения обоими установщиками.
      *
-     * @param setter экземпляр данного интерфейса.
+     * @param setter установщик значения.
      *
-     * @return Комбинированный экземпляр данного интерфейса.
+     * @return Комбинированный установщик значения.
      *
-     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
+     * @throws NullException установщик значения не должен быть нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default @NotNull Setter<T> with(final @NotNull Setter<T> setter) throws NullException {
+    default @NotNull Setter<V> with(final @NotNull Setter<V> setter) throws NullException {
         Validator.notNull(setter, "setter");
-        return object -> {
+        return value -> {
             try {
-                set(object);
+                set(value);
             } finally {
-                setter.set(object);
+                setter.set(value);
             }
         };
-    }
-
-    /**
-     * Комбинирует переданный задаваемый экземпляр с данным экземпляром.
-     * Гарантирует выполнение логики задания только этого типизированного экземпляра.
-     *
-     * @param object задаваемый экземпляр.
-     *
-     * @return Комбинированный экземпляр данного интерфейса.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    default @NotNull Setter<T> suppress(final @Nullable T object) {
-        return __ -> set(object);
     }
 
 }

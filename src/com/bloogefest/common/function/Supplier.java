@@ -4,11 +4,12 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс, позволяющий реализовать логику поставки типизированного экземпляра.
+ * Функциональный интерфейс поставщика объекта.
  *
- * @param <T> тип поставляемого экземпляра.
+ * @param <T> тип поставляемого объекта.
  *
  * @author Bloogefest
  * @version 0.1
@@ -19,30 +20,41 @@ import org.jetbrains.annotations.NotNull;
 public interface Supplier<T> {
 
     /**
-     * Создаёт строгий экземпляр данного интерфейса.
-     * Гарантирует поставку только переданного типизированного экземпляра.
+     * Создаёт поставщик объекта с нулевым поставляемым объектом.
      *
-     * @param object задаваемый экземпляр.
+     * @return Нулевой поставщик объекта.
      *
-     * @return Строгий экземпляр данного интерфейса.
-     *
-     * @throws NullException переданный типизированный экземпляр является нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <T> @NotNull Supplier<T> strict(final @NotNull T object) throws NullException {
+    static <T> @NotNull Supplier<T> nullable() {
+        return () -> null;
+    }
+
+    /**
+     * Создаёт поставщик объекта с постоянным поставляемым объектом.
+     *
+     * @param object объект.
+     *
+     * @return Постоянный поставщик объекта.
+     *
+     * @throws NullException объект не должен являться нулём.
+     * @author Bloogefest
+     * @since 0.0.0
+     */
+    static <T> @NotNull Supplier<T> constant(final @NotNull T object) throws NullException {
         Validator.notNull(object, "object");
         return () -> object;
     }
 
     /**
-     * Проверяет переданный экземпляр данного интерфейса и возвращает его.
+     * Проверяет поставщик объекта и возвращает его.
      *
-     * @param supplier экземпляр данного интерфейса.
+     * @param supplier поставщик объекта.
      *
-     * @return Переданный экземпляр данного интерфейса.
+     * @return Проверенный поставщик объекта.
      *
-     * @throws NullException переданный экземпляр данного интерфейса является нулевым.
+     * @throws NullException поставщик объекта не должен являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -52,33 +64,15 @@ public interface Supplier<T> {
     }
 
     /**
-     * Выполняет логику поставки типизированного экземпляра.
+     * Поставляет объект.
      *
-     * @return Типизированный экземпляр.
+     * @return Объект.
      *
-     * @throws SupplyException невозможно продолжить выполнение логики.
+     * @throws SupplyException невозможно поставить объект.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(pure = true)
-    @NotNull T supply() throws SupplyException;
-
-    /**
-     * Комбинирует переданный поставляемый экземпляр с данным экземпляром.
-     * Гарантирует поставку только переданного типизированного экземпляра.
-     *
-     * @param object поставляемый экземпляр.
-     *
-     * @return Комбинированный экземпляр данного интерфейса.
-     *
-     * @throws NullException переданный типизированный экземпляр является нулевым.
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    @Contract(value = "_ -> new", pure = true)
-    default @NotNull Supplier<T> suppress(final @NotNull T object) throws NullException {
-        Validator.notNull(object, "object");
-        return () -> object;
-    }
+    @Nullable T supply() throws SupplyException;
 
 }

@@ -6,13 +6,13 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Функциональный интерфейс, являющийся логическим выражением.
+ * Функциональный интерфейс логического выражения.
  *
  * @author Bloogefest
  * @version 0.1
  * @since 0.0.0
  */
-@SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
+@SuppressWarnings("unused")
 @FunctionalInterface
 public interface Condition {
 
@@ -38,7 +38,7 @@ public interface Condition {
      *
      * @return Проверенное логическое выражение.
      *
-     * @throws NullException логическое выражение является нулевым.
+     * @throws NullException логическое выражение не должно являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -79,7 +79,7 @@ public interface Condition {
      *
      * @return Комбинированное логическое выражение.
      *
-     * @throws NullException Not specified
+     * @throws NullException логическое выражение не должно являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -96,7 +96,7 @@ public interface Condition {
      *
      * @return Комбинированное логическое выражение.
      *
-     * @throws NullException Not specified
+     * @throws NullException логическое выражение не должно являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -113,7 +113,7 @@ public interface Condition {
      *
      * @return Комбинированное логическое выражение.
      *
-     * @throws NullException Not specified
+     * @throws NullException логическое выражение не должно являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -121,24 +121,6 @@ public interface Condition {
     default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> calculate() ^ condition.calculate();
-    }
-
-    /**
-     * Комбинирует логическое выражение с постоянным результатом вычисления.
-     *
-     * @param result постоянный результат вычисления.
-     *
-     * @return Постоянное логическое выражение.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    @Contract(value = "_ -> new", pure = true)
-    default @NotNull Condition suppress(final boolean result) {
-        return () -> {
-            calculate();
-            return result;
-        };
     }
 
 }

@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс, являющийся потребителем объекта.
+ * Функциональный интерфейс потребителя объекта.
  *
  * @param <T> тип потребляемого объекта.
  *
@@ -39,7 +39,7 @@ public interface Consumer<T> {
      *
      * @return Проверенный потребитель.
      *
-     * @throws NullException потребитель является нулевым.
+     * @throws NullException потребитель не должен являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -53,7 +53,7 @@ public interface Consumer<T> {
      *
      * @param object объект.
      *
-     * @throws NullException    объект является нулевым.
+     * @throws NullException    объект не должен являться нулём.
      * @throws ConsumeException невозможно потребить объект.
      * @author Bloogefest
      * @since 0.0.0
@@ -63,13 +63,13 @@ public interface Consumer<T> {
 
     /**
      * Комбинирует данный потребитель с переданным.
-     * Гарантирует последовательное потребление объекта обоими потребителями.
+     * Гарантирует последовательное потребление объекта потребителями.
      *
      * @param consumer потребитель.
      *
      * @return Комбинированный потребитель.
      *
-     * @throws NullException потребитель является нулевым.
+     * @throws NullException потребитель не должен являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -83,22 +83,6 @@ public interface Consumer<T> {
                 consumer.consume(object);
             }
         };
-    }
-
-    /**
-     * Комбинирует данный потребитель с переданным объектом.
-     * Гарантирует потребление только этого объекта.
-     *
-     * @param object объект.
-     *
-     * @return Комбинированный экземпляр данного интерфейса.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    @Contract(value = "_ -> new", pure = true)
-    default @NotNull Consumer<T> suppress(final @Nullable T object) throws NullException {
-        return __ -> consume(object);
     }
 
 }
