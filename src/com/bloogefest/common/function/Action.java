@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public interface Action {
 
     /**
-     * Создаёт пустое действие..
+     * Создаёт пустое действие.
      *
      * @return Пустое действие.
      *
