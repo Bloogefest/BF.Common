@@ -1,21 +1,25 @@
 package com.bloogefest.common.function;
 
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.Nullable;
+
 /**
+ * Мягкое исключение выполнения действия, не требующее обязательного перехвата.
+ *
  * @author Bloogefest
- * @version 0.0
- * @since 0.0.1
+ * @version 0.1
+ * @since 0.1.0
  */
+@SuppressWarnings("unused")
 public class PerformException extends FunctionException {
 
     /**
      * Конструктор, использующий стандартное сообщение.
      *
      * @author Bloogefest
-     * @since 0.0.1
+     * @since 0.1.0
      */
-    public PerformException() {
-        super();
-    }
+    public PerformException() {}
 
     /**
      * Конструктор, использующий сообщение, переданное параметром.
@@ -23,9 +27,9 @@ public class PerformException extends FunctionException {
      * @param message Сообщение, используемое вместо стандартного.
      *
      * @author Bloogefest
-     * @since 0.0.1
+     * @since 0.1.0
      */
-    public PerformException(final String message) {
+    public PerformException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -35,9 +39,9 @@ public class PerformException extends FunctionException {
      * @param cause Причина возникновения исключения.
      *
      * @author Bloogefest
-     * @since 0.0.1
+     * @since 0.1.0
      */
-    public PerformException(final Throwable cause) {
+    public PerformException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -48,9 +52,9 @@ public class PerformException extends FunctionException {
      * @param cause   Причина возникновения исключения.
      *
      * @author Bloogefest
-     * @since 0.0.1
+     * @since 0.1.0
      */
-    public PerformException(final String message, final Throwable cause) {
+    public PerformException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -63,9 +67,9 @@ public class PerformException extends FunctionException {
      * @param writable    Позволяет трассировке стека записываться.
      *
      * @author Bloogefest
-     * @since 0.0.1
+     * @since 0.1.0
      */
-    protected PerformException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+    protected PerformException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Функциональный интерфейс поставщика объекта.
  *
- * @param <T> тип поставляемого объекта.
+ * @param <T> тип объекта.
  *
  * @author Bloogefest
  * @version 0.1
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 public interface Supplier<T> {
 
     /**
-     * Создаёт поставщик объекта с нулевым поставляемым объектом.
+     * Создаёт поставщик объекта с нулевым объектом.
      *
      * @return Нулевой поставщик объекта.
      *
@@ -32,13 +32,13 @@ public interface Supplier<T> {
     }
 
     /**
-     * Создаёт поставщик объекта с постоянным поставляемым объектом.
+     * Создаёт поставщик объекта с постоянным объектом.
      *
      * @param object объект.
      *
      * @return Постоянный поставщик объекта.
      *
-     * @throws NullException объект не должен являться нулём.
+     * @throws NullException объект не должен быть нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -54,7 +54,7 @@ public interface Supplier<T> {
      *
      * @return Проверенный поставщик объекта.
      *
-     * @throws NullException поставщик объекта не должен являться нулём.
+     * @throws NullException поставщик объекта не должен быть нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */

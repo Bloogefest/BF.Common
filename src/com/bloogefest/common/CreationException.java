@@ -1,25 +1,28 @@
 package com.bloogefest.common;
 
-import com.bloogefest.common.throwable.StrictException;
+import com.bloogefest.common.throwable.SoftException;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Строгое исключение, возникающее при несанкционированной попытке создания экземпляра.
+ * Мягкое исключение создания объекта, не требующее обязательного перехвата.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
-public class CreationException extends StrictException {
+@SuppressWarnings("unused")
+public class CreationException extends SoftException {
 
     /**
-     * Содержит стандартное сообщение.
+     * Содержит сообщение по умолчанию.
      *
      * @since 0.0.0
      */
-    protected static final String defaultMessage = "The instance mustn't be created";
+    protected static final @NonNls String defaultMessage = "The object mustn't be created";
 
     /**
-     * Конструктор, использующий стандартное сообщение.
+     * Создаёт экземпляр по умолчанию.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -29,54 +32,54 @@ public class CreationException extends StrictException {
     }
 
     /**
-     * Конструктор, использующий сообщение, переданное параметром.
+     * Создаёт экземпляр, используя переопределённое сообщение.
      *
-     * @param message Сообщение, используемое вместо стандартного.
+     * @param message сообщение.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public CreationException(final String message) {
+    public CreationException(final @NonNls @Nullable String message) {
         super(message);
     }
 
     /**
-     * Конструктор, использующий причину, переданную параметром.
+     * Создаёт экземпляр, используя переопределённую причину.
      *
-     * @param cause Причина возникновения исключения.
+     * @param cause причина.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public CreationException(final Throwable cause) {
+    public CreationException(final @Nullable Throwable cause) {
         super(cause);
     }
 
     /**
-     * Конструктор, использующий сообщение и причину, переданные параметрами.
+     * Создаёт экземпляр, используя переопределённое сообщение и причину.
      *
-     * @param message Сообщение, используемое вместо стандартного.
-     * @param cause   Причина возникновения исключения.
+     * @param message сообщение.
+     * @param cause   причина.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public CreationException(final String message, final Throwable cause) {
+    public CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Конструктор, использующий сообщение, причину, разрешение об упоминании подавленных исключений и разрешение для записи трассировки стека, переданные параметрами.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
      *
-     * @param message     Сообщение, используемое вместо стандартного.
-     * @param cause       Причина возникновения исключения.
-     * @param suppression Позволяет упоминать подавленные исключения.
-     * @param writable    Позволяет трассировке стека записываться.
+     * @param message     сообщение.
+     * @param cause       причина.
+     * @param suppression параметр подавления.
+     * @param writable    параметр записи трассировки стека.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected CreationException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+    protected CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

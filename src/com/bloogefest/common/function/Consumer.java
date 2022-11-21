@@ -4,12 +4,11 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Функциональный интерфейс потребителя объекта.
  *
- * @param <T> тип потребляемого объекта.
+ * @param <T> тип объекта.
  *
  * @author Bloogefest
  * @version 0.1
@@ -20,9 +19,9 @@ import org.jetbrains.annotations.Nullable;
 public interface Consumer<T> {
 
     /**
-     * Создаёт пустого потребителя.
+     * Создаёт пустого потребителя объекта.
      *
-     * @return Пустой потребитель.
+     * @return Пустой потребитель объекта.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -33,13 +32,13 @@ public interface Consumer<T> {
     }
 
     /**
-     * Проверяет потребителя и возвращает его.
+     * Проверяет потребителя объекта и возвращает его.
      *
-     * @param consumer потребитель.
+     * @param consumer потребитель объекта.
      *
-     * @return Проверенный потребитель.
+     * @return Проверенный потребитель объекта.
      *
-     * @throws NullException потребитель не должен являться нулём.
+     * @throws NullException потребитель объекта не должен быть нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -53,23 +52,23 @@ public interface Consumer<T> {
      *
      * @param object объект.
      *
-     * @throws NullException    объект не должен являться нулём.
+     * @throws NullException    объект не должен быть нулевым.
      * @throws ConsumeException невозможно потребить объект.
      * @author Bloogefest
      * @since 0.0.0
      */
     @Contract(pure = true)
-    void consume(final @Nullable T object) throws NullException, ConsumeException;
+    void consume(final @NotNull T object) throws NullException, ConsumeException;
 
     /**
-     * Комбинирует данный потребитель с переданным.
-     * Гарантирует последовательное потребление объекта потребителями.
+     * Комбинирует данный потребитель объекта с переданным.
+     * Гарантирует последовательное потребление объекта обоими потребителями.
      *
-     * @param consumer потребитель.
+     * @param consumer потребитель объекта.
      *
-     * @return Комбинированный потребитель.
+     * @return Комбинированный потребитель объекта.
      *
-     * @throws NullException потребитель не должен являться нулём.
+     * @throws NullException потребитель объекта не должен быть нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */

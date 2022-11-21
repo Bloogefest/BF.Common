@@ -36,7 +36,7 @@ public interface Action {
      *
      * @return Проверенное действие.
      *
-     * @throws NullException действие не должно являться нулём.
+     * @throws NullException действие не должно быть нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -63,7 +63,7 @@ public interface Action {
      *
      * @return Комбинированное действие.
      *
-     * @throws NullException действие не должно являться нулём.
+     * @throws NullException действие не должно быть нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */

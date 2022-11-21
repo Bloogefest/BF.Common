@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Функциональный интерфейс функции.
  *
- * @param <T> тип потребляемого объекта.
+ * @param <T> тип объекта.
  * @param <R> тип результата потребления.
  *
  * @author Bloogefest
@@ -71,7 +71,7 @@ public interface Function<T, R> {
      *
      * @return Результат потребления.
      *
-     * @throws NullException объект не должен являться нулём.
+     * @throws NullException    объект не должен быть нулевым.
      * @throws ExecuteException невозможно потребить объект.
      * @author Bloogefest
      * @since 0.0.0
@@ -86,7 +86,7 @@ public interface Function<T, R> {
      *
      * @return Комбинированная функция.
      *
-     * @throws NullException фунция не должна являться нулём.
+     * @throws NullException функция не должна являться нулём.
      * @author Bloogefest
      * @since 0.0.0
      */

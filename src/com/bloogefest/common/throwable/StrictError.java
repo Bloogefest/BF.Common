@@ -1,44 +1,48 @@
 package com.bloogefest.common.throwable;
 
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.Nullable;
+
 /**
- * Строгая ошибка, требующая обработки.
+ * Строгая ошибка, не рекомендованная для перехвата.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
 public class StrictError extends Error {
 
     /**
-     * Содержит стандартное сообщение.
+     * Содержит сообщение по умолчанию.
      *
      * @since 0.0.0
      */
-    protected static final String defaultMessage = "Not specified";
+    protected static final @NonNls String defaultMessage = "Not specified";
 
     /**
-     * Содержит стандартную причину возникновения ошибки.
+     * Содержит причину по умолчанию.
      *
      * @since 0.0.0
      */
     protected static final Throwable defaultCause = null;
 
     /**
-     * Содержит стандартное разрешение о упоминании подавленных ошибок.
+     * Содержит параметр подавления по умолчанию.
      *
      * @since 0.0.0
      */
     protected static final boolean defaultSuppression = false;
 
     /**
-     * Содержит стандартное разрешение для записи трассировки стека.
+     * Содержит параметр записи трассировки стека по умолчанию.
      *
      * @since 0.0.0
      */
     protected static final boolean defaultWritable = true;
 
     /**
-     * Конструктор, использующий стандартное сообщение.
+     * Создаёт экземпляр по умолчанию.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -48,54 +52,54 @@ public class StrictError extends Error {
     }
 
     /**
-     * Конструктор, использующий сообщение, переданное параметром.
+     * Создаёт экземпляр, используя переопределённое сообщение.
      *
-     * @param message Сообщение, используемое вместо стандартного.
+     * @param message сообщение.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictError(final String message) {
+    public StrictError(final @NonNls @Nullable String message) {
         super(message);
     }
 
     /**
-     * Конструктор, использующий причину, переданную параметром.
+     * Создаёт экземпляр, используя переопределённую причину.
      *
-     * @param cause Причина возникновения ошибки.
+     * @param cause причина.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictError(final Throwable cause) {
+    public StrictError(final @Nullable Throwable cause) {
         super(cause);
     }
 
     /**
-     * Конструктор, использующий сообщение и причину, переданные параметрами.
+     * Создаёт экземпляр, используя переопределённое сообщение и причину.
      *
-     * @param message Сообщение, используемое вместо стандартного.
-     * @param cause   Причина возникновения ошибки.
+     * @param message сообщение.
+     * @param cause   причина.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public StrictError(final String message, final Throwable cause) {
+    public StrictError(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Конструктор, использующий сообщение, причину, разрешение об упоминании подавленных ошибок и разрешение для записи трассировки стека, переданные параметрами.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
      *
-     * @param message     Сообщение, используемое вместо стандартного.
-     * @param cause       Причина возникновения ошибки.
-     * @param suppression Позволяет упоминать подавленные ошибки.
-     * @param writable    Позволяет трассировке стека записываться.
+     * @param message     сообщение.
+     * @param cause       причина.
+     * @param suppression параметр подавления.
+     * @param writable    параметр записи трассировки стека.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected StrictError(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+    protected StrictError(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

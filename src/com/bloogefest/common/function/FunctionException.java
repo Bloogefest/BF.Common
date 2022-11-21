@@ -1,73 +1,76 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.common.throwable.SoftException;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.Nullable;
 
 /**
+ * Мягкое исключение функционального интерфейса, не требующее обязательного перехвата.
+ *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
 public class FunctionException extends SoftException {
 
     /**
-     * Конструктор, использующий стандартное сообщение.
+     * Создаёт экземпляр по умолчанию.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public FunctionException() {
-        super();
-    }
+    public FunctionException() {}
 
     /**
-     * Конструктор, использующий сообщение, переданное параметром.
+     * Создаёт экземпляр, используя переопределённое сообщение.
      *
-     * @param message Сообщение, используемое вместо стандартного.
+     * @param message сообщение.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public FunctionException(final String message) {
+    public FunctionException(final @NonNls @Nullable String message) {
         super(message);
     }
 
     /**
-     * Конструктор, использующий причину, переданную параметром.
+     * Создаёт экземпляр, используя переопределённую причину.
      *
-     * @param cause Причина возникновения исключения.
+     * @param cause причина.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public FunctionException(final Throwable cause) {
+    public FunctionException(final @Nullable Throwable cause) {
         super(cause);
     }
 
     /**
-     * Конструктор, использующий сообщение и причину, переданные параметрами.
+     * Создаёт экземпляр, используя переопределённое сообщение и причину.
      *
-     * @param message Сообщение, используемое вместо стандартного.
-     * @param cause   Причина возникновения исключения.
+     * @param message сообщение.
+     * @param cause   причина.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public FunctionException(final String message, final Throwable cause) {
+    public FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Конструктор, использующий сообщение, причину, разрешение об упоминании подавленных исключений и разрешение для записи трассировки стека, переданные параметрами.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
      *
-     * @param message     Сообщение, используемое вместо стандартного.
-     * @param cause       Причина возникновения исключения.
-     * @param suppression Позволяет упоминать подавленные исключения.
-     * @param writable    Позволяет трассировке стека записываться.
+     * @param message     сообщение.
+     * @param cause       причина.
+     * @param suppression параметр подавления.
+     * @param writable    параметр записи трассировки стека.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected FunctionException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+    protected FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

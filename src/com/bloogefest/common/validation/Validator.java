@@ -1,24 +1,27 @@
 package com.bloogefest.common.validation;
 
-import com.bloogefest.common.Conditions;
 import com.bloogefest.common.CreationException;
+import com.bloogefest.common.Predicates;
 import com.bloogefest.common.function.Supplier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Утилитарный класс, содержащий методы валидации условий.
+ * Утилитарный класс валидации объектов.
  *
  * @author Bloogefest
- * @version 0.0
- * @apiNote Предполагается использование методов данного класса вместо написания повторяющегося кода, если это возможно.
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
 public final class Validator {
 
     /**
-     * Базовый конструктор утилитарного класса.
+     * Бросает мягкое исключение.
      *
-     * @throws CreationException Означает то, что была совершена попытка создания экземпляра утилитарного класса.
-     * @apiNote Предполагается, что экземпляр утилитарного класса не должен быть создан, поэтому при попытке его создания, будет брошено строгое исключение.
+     * @throws CreationException невозможно создать объект.
      * @author Bloogefest
      * @since 0.0.0
      */
@@ -27,208 +30,250 @@ public final class Validator {
     }
 
     /**
-     * Базовая валидация условия, определяющее, является ли проверяемый объект нулевым, или же нет.
+     * Подтверждает нулевое явление объекта.
      *
-     * @param <T>    Тип проверяемого объекта.
-     * @param object Проверяемый объект.
+     * @param object объект.
      *
-     * @return Всегда null.
+     * @return Объект.
      *
-     * @throws NotNullException Not specified
+     * @throws NotNullException объект должен быть нулевым.
      * @author Bloogefest
-     * @since 0.0.1
+     * @since 0.1.0
      */
-    public static <T> T isNull(final T object) throws NotNullException {
-        if (Conditions.isNull(object)) return null;
+    @Contract(value = "null -> null; !null -> fail", pure = true)
+    public static <T> @Nullable T isNull(final @Nullable T object) throws NotNullException {
+        if (Predicates.isNull(object)) return null;
         throw new NotNullException();
     }
 
     /**
-     * @param <T>    Not specified
-     * @param object Not specified
-     * @param name   Not specified
+     * Подтверждает нулевое явление объекта.
      *
-     * @return Not specified
+     * @param object объект.
+     * @param name   имя объекта.
      *
-     * @throws NotNullException Not specified
-     * @throws NullException    Not specified
+     * @return Объект.
+     *
+     * @throws NotNullException объект должен быть нулевым.
      * @author Bloogefest
-     * @since 0.0.1
+     * @since 0.1.0
      */
-    public static <T> T isNull(final T object, final String name) throws NotNullException, NullException {
-        if (Conditions.isNull(object)) return null;
-        throw new NotNullException("The %s must be null".formatted(notNull(name, "name")));
+    @Contract(value = "null, _ -> null; !null, _ -> fail", pure = true)
+    public static <T> @Nullable T isNull(final @Nullable T object, final @NonNls @NotNull String name) throws NotNullException {
+        if (Predicates.isNull(object)) return null;
+        throw new NotNullException("The %s must be null".formatted(name));
     }
 
     /**
-     * @param <T>      Not specified
-     * @param <E>      Not specified
-     * @param object   Not specified
-     * @param supplier Not specified
+     * Подтверждает нулевое явление объекта.
      *
-     * @return Not specified
+     * @param object   объект.
+     * @param supplier поставщик исключения.
      *
-     * @throws NullException Not specified
+     * @return Объект.
+     *
+     * @throws NullException исключение не должно быть нулевым.
+     * @throws E             параметризованное исключение.
      * @author Bloogefest
-     * @since 0.0.1
+     * @since 0.1.0
      */
-    public static <T, E extends Throwable> T isNull(final T object, final Supplier<E> supplier) throws NullException, E {
-        if (Conditions.isNull(object)) return null;
-        throw notNull(notNull(supplier, "supplier").supply(), "throwable");
+    @Contract(value = "null, _ -> null; !null, _ -> fail", pure = true)
+    public static <T, E extends Throwable> @Nullable T isNull(final @Nullable T object, final @NonNls @NotNull Supplier<E> supplier) throws NullException, E {
+        if (Predicates.isNull(object)) return null;
+        throw notNull(supplier.supply(), "exception");
     }
 
     /**
-     * @param <T>    Not specified
-     * @param object Not specified
+     * Подтверждает ненулевое явление объекта.
      *
-     * @return Not specified
+     * @param object объект.
      *
-     * @throws NullException Not specified
+     * @return Объект.
+     *
+     * @throws NullException объект не должен быть нулевым.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T> T notNull(final T object) throws NullException {
-        if (Conditions.notNull(object)) return object;
+    @Contract(value = "null -> fail; !null -> param1", pure = true)
+    public static <T> @NotNull T notNull(final @Nullable T object) throws NullException {
+        if (Predicates.notNull(object)) return object;
         throw new NullException();
     }
 
     /**
-     * @param <T>    Not specified
-     * @param object Not specified
-     * @param name   Not specified
+     * Подтверждает ненулевое явление объекта.
      *
-     * @return Not specified
+     * @param object объект.
+     * @param name   имя объекта.
      *
-     * @throws NullException Not specified
+     * @return Объект.
+     *
+     * @throws NullException объект не должен быть нулевым.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T> T notNull(final T object, final String name) throws NullException {
-        if (Conditions.notNull(object)) return object;
-        throw new NullException("The %s mustn't be null".formatted(notNull(name, "name")));
+    @Contract(value = "null, _ -> fail; !null, _ -> param1", pure = true)
+    public static <T> @NotNull T notNull(final @Nullable T object, final @NonNls @NotNull String name) throws NullException {
+        if (Predicates.notNull(object)) return object;
+        throw new NullException("The %s mustn't be null".formatted(name));
     }
 
     /**
-     * @param <T>      Not specified
-     * @param <E>      Not specified
-     * @param object   Not specified
-     * @param supplier Not specified
+     * Подтверждает ненулевое явление объекта.
      *
-     * @return Not specified
+     * @param object   объект.
+     * @param supplier поставщик исключения.
      *
-     * @throws NullException Not specified
+     * @return Объект.
+     *
+     * @throws NullException исключение не должно быть нулевым.
+     * @throws E             параметризованное исключение.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T, E extends Throwable> T notNull(final T object, final Supplier<E> supplier) throws NullException, E {
-        if (Conditions.notNull(object)) return object;
-        throw notNull(notNull(supplier, "supplier").supply(), "throwable");
+    @Contract(value = "null, _ -> fail; !null, _ -> param1", pure = true)
+    public static <T, E extends Throwable> @NotNull T notNull(final @Nullable T object, final @NonNls @NotNull Supplier<E> supplier) throws NullException, E {
+        if (Predicates.notNull(object)) return object;
+        throw notNull(supplier.supply(), "throwable");
     }
 
     /**
-     * @param <T1>    Not specified
-     * @param <T2>    Not specified
-     * @param object  Not specified
-     * @param another Not specified
+     * Подтверждает явление равенства первичного объекта со вторичным.
      *
-     * @return Not specified
+     * @param object  первичный объект.
+     * @param object_ вторичный объект.
      *
-     * @throws NotEqualException Not specified
+     * @return Первичный объект.
+     *
+     * @throws NotEqualException первичный объект должен быть равен вторичному.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T1, T2> T1 equals(final T1 object, final T2 another) throws NotEqualException {
-        if (Conditions.equals(object, another)) return object;
+    @Contract(value = "null, null -> null; _, _ -> _", pure = true)
+    public static <T, T_> @Nullable T equals(final @Nullable T object, final @Nullable T_ object_) throws NotEqualException {
+        if (Predicates.equals(object, object_)) return null;
         throw new NotEqualException();
     }
 
     /**
-     * @param <T1>    Not specified
-     * @param <T2>    Not specified
-     * @param object  Not specified
-     * @param another Not specified
-     * @param name    Not specified
+     * Подтверждает явление равенства первичного объекта со вторичным.
      *
-     * @return Not specified
+     * @param object  первичный объект.
+     * @param object_ вторичный объект.
+     * @param name    имя первичного объекта.
+     * @param name_   имя вторичного объекта.
      *
-     * @throws NotEqualException Not specified
+     * @return Первичный объект.
+     *
+     * @throws NotEqualException первичный объект должен быть равен вторичному.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T1, T2> T1 equals(final T1 object, final T2 another, final String name) throws NullException, NotEqualException {
-        if (Conditions.equals(object, another)) return object;
-        throw new NotEqualException("The %s must be equal to another".formatted(notNull(name, "name")));
+    @Contract(value = "null, null, _, _ -> null; _, _, _, _ -> _", pure = true)
+    public static <T, T_> @Nullable T equals(final @Nullable T object, final @Nullable T_ object_, final @NonNls @NotNull String name,
+                                             final @NonNls @NotNull String name_) throws NotEqualException {
+        if (Predicates.equals(object, object_)) return null;
+        throw new NotEqualException("The %s must be equal to %s".formatted(name, name_));
     }
 
     /**
-     * @param <T1>     Not specified
-     * @param <T2>     Not specified
-     * @param object   Not specified
-     * @param another  Not specified
-     * @param supplier Not specified
+     * Подтверждает явление равенства первичного объекта со вторичным.
      *
-     * @return Not specified
+     * @param object   первичный объект.
+     * @param object_  вторичный объект.
+     * @param supplier поставщик исключения.
      *
-     * @throws NotEqualException Not specified
+     * @return Первичный объект.
+     *
+     * @throws NullException исключение не должно быть нулевым.
+     * @throws E             параметризованное исключение.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T1, T2, E extends Throwable> T1 equals(final T1 object, final T2 another, final Supplier<E> supplier) throws NullException, E {
-        if (Conditions.equals(object, another)) return object;
-        throw notNull(notNull(supplier, "supplier").supply(), "throwable");
+    @Contract(value = "null, null, _ -> null; _, _, _ -> _", pure = true)
+    public static <T, T_, E extends Throwable> @Nullable T equals(final @Nullable T object, final @Nullable T_ object_,
+                                                                  final @NonNls @NotNull Supplier<E> supplier) throws NullException, E {
+        if (Predicates.equals(object, object_)) return object;
+        throw notNull(supplier.supply(), "exception");
     }
 
     /**
-     * @param <T1>    Not specified
-     * @param <T2>    Not specified
-     * @param object  Not specified
-     * @param another Not specified
+     * Подтверждает ненулевое явление объекта.
      *
-     * @return Not specified
+     * @param object   объект.
+     * @param supplier поставщик исключения.
      *
-     * @throws EqualException Not specified
+     * @return Объект.
+     *
+     * @throws NullException исключение не должно быть нулевым.
+     * @throws E             параметризованное исключение.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T1, T2> T1 notEquals(final T1 object, final T2 another) throws EqualException {
-        if (Conditions.notEquals(object, another)) return object;
+    @Contract(value = "null, _ -> fail; !null, _ -> param1", pure = true)
+    public static <T, E extends Throwable> @NotNull T notEquals(final @Nullable T object, final @NonNls @NotNull Supplier<E> supplier) throws NullException, E {
+        if (Predicates.notNull(object)) return object;
+        throw notNull(supplier.supply(), "throwable");
+    }
+
+    /**
+     * Подтверждает явление неравенства первичного объекта со вторичным.
+     *
+     * @param object  первичный объект.
+     * @param object_ вторичный объект.
+     *
+     * @return Первичный объект.
+     *
+     * @throws EqualException первичный объект не должен быть равен вторичному.
+     * @author Bloogefest
+     * @since 0.1.0
+     */
+    @Contract(value = "null, null -> fail; _, _ -> _", pure = true)
+    public static <T, T_> @Nullable T notEquals(final @Nullable T object, final @Nullable T_ object_) throws EqualException {
+        if (Predicates.notEquals(object, object_)) return null;
         throw new EqualException();
     }
 
     /**
-     * @param <T1>    Not specified
-     * @param <T2>    Not specified
-     * @param object  Not specified
-     * @param another Not specified
-     * @param name    Not specified
+     * Подтверждает явление неравенства первичного объекта со вторичным.
      *
-     * @return Not specified
+     * @param object  первичный объект.
+     * @param object_ вторичный объект.
+     * @param name    имя первичного объекта.
+     * @param name_   имя вторичного объекта.
      *
-     * @throws EqualException Not specified
+     * @return Первичный объект.
+     *
+     * @throws EqualException первичный объект не должен быть равен вторичному.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T1, T2> T1 notEquals(final T1 object, final T2 another, final String name) throws NullException, EqualException {
-        if (Conditions.notEquals(object, another)) return object;
-        throw new EqualException("The %s must be equal to another".formatted(notNull(name, "name")));
+    @Contract(value = "null, null, _, _ -> fail; _, _, _, _ -> _", pure = true)
+    public static <T, T_> @Nullable T notEquals(final @Nullable T object, final @Nullable T_ object_, final @NonNls @NotNull String name,
+                                                final @NonNls @NotNull String name_) throws EqualException {
+        if (Predicates.notEquals(object, object_)) return null;
+        throw new EqualException("The %s mustn't be equal to %s".formatted(name, name_));
     }
 
     /**
-     * @param <T1>     Not specified
-     * @param <T2>     Not specified
-     * @param object   Not specified
-     * @param another  Not specified
-     * @param supplier Not specified
+     * Подтверждает явление неравенства первичного объекта со вторичным.
      *
-     * @return Not specified
+     * @param object   первичный объект.
+     * @param object_  вторичный объект.
+     * @param supplier поставщик исключения.
      *
-     * @throws NotEqualException Not specified
+     * @return Первичный объект.
+     *
+     * @throws NullException исключение не должно быть нулевым.
+     * @throws E             параметризованное исключение.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public static <T1, T2, E extends Throwable> T1 notEquals(final T1 object, final T2 another, final Supplier<E> supplier) throws NullException, E {
-        if (Conditions.notEquals(object, another)) return object;
-        throw notNull(notNull(supplier, "supplier").supply(), "throwable");
+    @Contract(value = "null, null, _ -> fail; _, _, _ -> _", pure = true)
+    public static <T, T_, E extends Throwable> @Nullable T notEquals(final @Nullable T object, final @Nullable T_ object_,
+                                                                     final @NonNls @NotNull Supplier<E> supplier) throws NullException, E {
+        if (Predicates.notEquals(object, object_)) return object;
+        throw notNull(supplier.supply(), "exception");
     }
 
 }

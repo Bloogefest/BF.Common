@@ -1,23 +1,27 @@
 package com.bloogefest.common.validation;
 
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.Nullable;
+
 /**
- * Мягкое исключение, возникающее при попытке валидации объекта, считая, что он является другим объектом.
+ * Мягкое исключение валидации явления равенства первичного объекта со вторичным объектом.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
 public class NotEqualException extends ValidationException {
 
     /**
-     * Содержит стандартное сообщение.
+     * Содержит сообщение по умолчанию.
      *
      * @since 0.0.0
      */
-    protected static final String defaultMessage = "The object must be equal to another";
+    protected static final String defaultMessage = "The object must be equal to object_";
 
     /**
-     * Конструктор, использующий стандартное сообщение.
+     * Создаёт экземпляр по умолчанию.
      *
      * @author Bloogefest
      * @since 0.0.0
@@ -27,54 +31,54 @@ public class NotEqualException extends ValidationException {
     }
 
     /**
-     * Конструктор, использующий сообщение, переданное параметром.
+     * Создаёт экземпляр, используя переопределённое сообщение.
      *
-     * @param message Сообщение, используемое вместо стандартного.
+     * @param message сообщение.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public NotEqualException(final String message) {
+    public NotEqualException(final @NonNls @Nullable String message) {
         super(message);
     }
 
     /**
-     * Конструктор, использующий причину, переданную параметром.
+     * Создаёт экземпляр, используя переопределённую причину.
      *
-     * @param cause Причина возникновения исключения.
+     * @param cause причина.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public NotEqualException(final Throwable cause) {
+    public NotEqualException(final @Nullable Throwable cause) {
         super(cause);
     }
 
     /**
-     * Конструктор, использующий сообщение и причину, переданные параметрами.
+     * Создаёт экземпляр, используя переопределённое сообщение и причину.
      *
-     * @param message Сообщение, используемое вместо стандартного.
-     * @param cause   Причина возникновения исключения.
+     * @param message сообщение.
+     * @param cause   причина.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    public NotEqualException(final String message, final Throwable cause) {
+    public NotEqualException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Конструктор, использующий сообщение, причину, разрешение об упоминании подавленных исключений и разрешение для записи трассировки стека, переданные параметрами.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
      *
-     * @param message     Сообщение, используемое вместо стандартного.
-     * @param cause       Причина возникновения исключения.
-     * @param suppression Позволяет упоминать подавленные исключения.
-     * @param writable    Позволяет трассировке стека записываться.
+     * @param message     сообщение.
+     * @param cause       причина.
+     * @param suppression параметр подавления.
+     * @param writable    параметр записи трассировки стека.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected NotEqualException(final String message, final Throwable cause, final boolean suppression, final boolean writable) {
+    protected NotEqualException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

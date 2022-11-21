@@ -1,55 +1,25 @@
-package com.bloogefest.common.throwable;
+package com.bloogefest.common.function;
 
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Мягкая ошибка, рекомендованная для перехвата.
+ * Мягкое исключение вычисления условного выражения, не требующее обязательного перехвата.
  *
  * @author Bloogefest
- * @version 0.1
- * @since 0.0.0
+ * @version 0.0
+ * @since 0.1.0
  */
 @SuppressWarnings("unused")
-public class SoftError extends Error {
-
-    /**
-     * Содержит сообщение по умолчанию.
-     *
-     * @since 0.0.0
-     */
-    protected static final @NonNls String defaultMessage = "Not specified";
-
-    /**
-     * Содержит причину по умолчанию.
-     *
-     * @since 0.0.0
-     */
-    protected static final Throwable defaultCause = null;
-
-    /**
-     * Содержит параметр подавления по умолчанию.
-     *
-     * @since 0.0.0
-     */
-    protected static final boolean defaultSuppression = false;
-
-    /**
-     * Содержит параметр записи трассировки стека по умолчанию.
-     *
-     * @since 0.0.0
-     */
-    protected static final boolean defaultWritable = true;
+public class EvaluateException extends FunctionException {
 
     /**
      * Создаёт экземпляр по умолчанию.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public SoftError() {
-        super(defaultMessage);
-    }
+    public EvaluateException() {}
 
     /**
      * Создаёт экземпляр, используя переопределённое сообщение.
@@ -57,9 +27,9 @@ public class SoftError extends Error {
      * @param message сообщение.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public SoftError(final @NonNls @Nullable String message) {
+    public EvaluateException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -69,9 +39,9 @@ public class SoftError extends Error {
      * @param cause причина.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public SoftError(final @Nullable Throwable cause) {
+    public EvaluateException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -82,9 +52,9 @@ public class SoftError extends Error {
      * @param cause   причина.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    public SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    public EvaluateException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -97,9 +67,9 @@ public class SoftError extends Error {
      * @param writable    параметр записи трассировки стека.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    protected SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+    protected EvaluateException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

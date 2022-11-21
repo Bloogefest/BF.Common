@@ -2,53 +2,67 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * @param <T> Not specified
+ * Функциональный интерфейс предиката объекта.
+ *
+ * @param <T> тип объекта.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
  * @since 0.0.0
  */
+@SuppressWarnings("unused")
+@FunctionalInterface
 public interface Predicate<T> {
 
     /**
-     * @param <V>    Not specified
-     * @param object Not specified
+     * Создаёт предикат объекта с постоянным результатом оценивания.
      *
-     * @return Not specified
+     * @param result результат оценивания.
+     *
+     * @return Постоянный предикат объекта.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Predicate<V> strict(final boolean object) {
-        return __ -> object;
+    @Contract(value = "_ -> new", pure = true)
+    static <T> @NotNull Predicate<T> constant(final boolean result) {
+        return __ -> result;
     }
 
     /**
-     * @param <V>       Not specified
-     * @param predicate Not specified
+     * Проверяет предикат объекта и возвращает его.
      *
-     * @return Not specified
+     * @param predicate предикат объекта.
      *
-     * @throws NullException Not specified
+     * @return Проверенный предикат объекта.
+     *
+     * @throws NullException предикат объекта не должен быть нулевым.
      * @author Bloogefest
      * @since 0.0.0
      */
-    static <V> Predicate<V> as(final Predicate<V> predicate) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    static <T> @NotNull Predicate<T> of(final @NotNull Predicate<T> predicate) throws NullException {
         return Validator.notNull(predicate, "predicate");
     }
 
     /**
-     * @param object Not specified
+     * Оценивает объект и возвращает результат оценивания.
      *
-     * @return Not specified
+     * @param object объект.
      *
-     * @throws FunctionException Not specified
+     * @return Результат оценивания.
+     *
+     * @throws NullException     объект не должен быть нулевым.
+     * @throws EvaluateException невозможно оценить объект.
      * @author Bloogefest
      * @since 0.0.0
      */
-    boolean evaluate(final T object) throws FunctionException;
+    @Contract(value = "_ -> _", pure = true)
+    boolean evaluate(final @NotNull T object) throws NullException, EvaluateException;
 
     /**
      * @return Not specified
