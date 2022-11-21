@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Строгое исключение, требующее обязательного перехвата.
+ * Строгое исключение, требующее обязательный перехват.
  *
  * @author Bloogefest
  * @version 0.1
