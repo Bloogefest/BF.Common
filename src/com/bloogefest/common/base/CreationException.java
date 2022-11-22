@@ -1,4 +1,4 @@
-package com.bloogefest.common;
+package com.bloogefest.common.base;
 
 import com.bloogefest.common.throwable.SoftException;
 import org.jetbrains.annotations.NonNls;

@@ -1,4 +1,4 @@
-package com.bloogefest.common;
+package com.bloogefest.common.base;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
@@ -7,8 +7,8 @@ import org.jetbrains.annotations.Nullable;
  * Утилитарный класс предиката объекта.
  *
  * @author Bloogefest
- * @version 0.0
- * @see com.bloogefest.common.function.Predicate Предикат объекта.
+ * @version 0.1
+ * @see com.bloogefest.common.function.Predicate Функциональный интерфейс предиката объекта.
  * @since 0.1.0
  */
 @SuppressWarnings("unused")
