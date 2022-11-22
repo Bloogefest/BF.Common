@@ -4,7 +4,6 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Функциональный интерфейс поставщика объекта.
@@ -12,25 +11,13 @@ import org.jetbrains.annotations.Nullable;
  * @param <T> тип объекта.
  *
  * @author Bloogefest
- * @version 0.2
+ * @version 0.3
  * @see SupplyException
  * @since 0.0.0
  */
 @SuppressWarnings("unused")
 @FunctionalInterface
 public interface Supplier<T> {
-
-    /**
-     * Создаёт поставщик объекта с нулевым объектом.
-     *
-     * @return Нулевой поставщик объекта.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    static <T> @NotNull Supplier<T> nullable() {
-        return () -> null;
-    }
 
     /**
      * Создаёт поставщик объекта с постоянным объектом.
@@ -74,6 +61,6 @@ public interface Supplier<T> {
      * @since 0.0.0
      */
     @Contract(pure = true)
-    @Nullable T supply() throws SupplyException;
+    @NotNull T supply() throws SupplyException;
 
 }
