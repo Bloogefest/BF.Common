@@ -7,7 +7,8 @@ import org.jetbrains.annotations.Nullable;
  * Мягкое исключение выполнения функции, не требующее обязательного перехвата.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see Function
  * @since 0.1.0
  */
 @SuppressWarnings("unused")

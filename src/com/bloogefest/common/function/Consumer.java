@@ -11,7 +11,8 @@ import org.jetbrains.annotations.NotNull;
  * @param <T> тип объекта.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see ConsumeException
  * @since 0.0.0
  */
 @SuppressWarnings("unused")

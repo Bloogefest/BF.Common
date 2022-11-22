@@ -7,7 +7,8 @@ import org.jetbrains.annotations.Nullable;
  * Мягкое исключение вычисления условного выражения, не требующее обязательного перехвата.
  *
  * @author Bloogefest
- * @version 0.0
+ * @version 0.1
+ * @see Predicate
  * @since 0.1.0
  */
 @SuppressWarnings("unused")

@@ -5,10 +5,15 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Мягкое исключение валидации объекта.
+ * Мягкое исключение валидации явления объекта.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see Validator
+ * @see EqualException
+ * @see NotEqualException
+ * @see NotNullException
+ * @see NullException
  * @since 0.0.0
  */
 @SuppressWarnings("unused")

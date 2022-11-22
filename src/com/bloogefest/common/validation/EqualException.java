@@ -1,5 +1,6 @@
 package com.bloogefest.common.validation;
 
+import com.bloogefest.common.function.Supplier;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
@@ -7,7 +8,11 @@ import org.jetbrains.annotations.Nullable;
  * Мягкое исключение валидации явления неравенства первичного объекта со вторичным объектом.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see ValidationException
+ * @see Validator#notEquals(Object, Object)
+ * @see Validator#notEquals(Object, Object, String, String)
+ * @see Validator#notEquals(Object, Object, Supplier)
  * @since 0.0.0
  */
 @SuppressWarnings("unused")

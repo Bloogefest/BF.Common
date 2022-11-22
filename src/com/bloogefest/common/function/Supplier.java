@@ -12,7 +12,8 @@ import org.jetbrains.annotations.Nullable;
  * @param <T> тип объекта.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see SupplyException
  * @since 0.0.0
  */
 @SuppressWarnings("unused")

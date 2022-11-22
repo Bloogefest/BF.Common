@@ -7,7 +7,8 @@ import org.jetbrains.annotations.Nullable;
  * Мягкое исключение поставки объекта, не требующее обязательного перехвата.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see Supplier
  * @since 0.1.0
  */
 @SuppressWarnings("unused")
@@ -17,7 +18,7 @@ public class SupplyException extends FunctionException {
      * Создаёт экземпляр по умолчанию.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
     public SupplyException() {}
 
@@ -27,7 +28,7 @@ public class SupplyException extends FunctionException {
      * @param message сообщение.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
     public SupplyException(final @NonNls @Nullable String message) {
         super(message);
@@ -39,7 +40,7 @@ public class SupplyException extends FunctionException {
      * @param cause причина.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
     public SupplyException(final @Nullable Throwable cause) {
         super(cause);
@@ -52,7 +53,7 @@ public class SupplyException extends FunctionException {
      * @param cause   причина.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
     public SupplyException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
@@ -67,7 +68,7 @@ public class SupplyException extends FunctionException {
      * @param writable    параметр записи трассировки стека.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
     protected SupplyException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);

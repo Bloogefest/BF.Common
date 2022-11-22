@@ -8,7 +8,13 @@ import org.jetbrains.annotations.Nullable;
  * Мягкое исключение функционального интерфейса, не требующее обязательного перехвата.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see CalculateException
+ * @see ConsumeException
+ * @see EvaluateException
+ * @see ExecuteException
+ * @see PerformException
+ * @see SupplyException
  * @since 0.0.0
  */
 @SuppressWarnings("unused")

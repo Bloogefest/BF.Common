@@ -1,7 +1,7 @@
 package com.bloogefest.common.validation;
 
-import com.bloogefest.common.CreationException;
-import com.bloogefest.common.Predicates;
+import com.bloogefest.common.base.CreationException;
+import com.bloogefest.common.base.Predicates;
 import com.bloogefest.common.function.Supplier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
@@ -12,7 +12,12 @@ import org.jetbrains.annotations.Nullable;
  * Утилитарный класс валидации объектов.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see ValidationException
+ * @see EqualException
+ * @see NotEqualException
+ * @see NotNullException
+ * @see NullException
  * @since 0.0.0
  */
 @SuppressWarnings("unused")
@@ -195,25 +200,6 @@ public final class Validator {
                                                                   final @NonNls @NotNull Supplier<E> supplier) throws NullException, E {
         if (Predicates.equals(object, object_)) return object;
         throw notNull(supplier.supply(), "exception");
-    }
-
-    /**
-     * Подтверждает ненулевое явление объекта.
-     *
-     * @param object   объект.
-     * @param supplier поставщик исключения.
-     *
-     * @return Объект.
-     *
-     * @throws NullException исключение не должно быть нулевым.
-     * @throws E             параметризованное исключение.
-     * @author Bloogefest
-     * @since 0.1.0
-     */
-    @Contract(value = "null, _ -> fail; !null, _ -> param1", pure = true)
-    public static <T, E extends Throwable> @NotNull T notEquals(final @Nullable T object, final @NonNls @NotNull Supplier<E> supplier) throws NullException, E {
-        if (Predicates.notNull(object)) return object;
-        throw notNull(supplier.supply(), "throwable");
     }
 
     /**

@@ -9,7 +9,8 @@ import org.jetbrains.annotations.NotNull;
  * Функциональный интерфейс действия.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see PerformException
  * @since 0.0.0
  */
 @SuppressWarnings("unused")

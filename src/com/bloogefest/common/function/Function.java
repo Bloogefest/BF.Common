@@ -13,7 +13,8 @@ import org.jetbrains.annotations.Nullable;
  * @param <R> тип результата потребления.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see ExecuteException
  * @since 0.0.0
  */
 @SuppressWarnings("unused")

@@ -1,5 +1,6 @@
 package com.bloogefest.common.function;
 
+import com.bloogefest.common.base.Predicates;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
@@ -11,7 +12,9 @@ import org.jetbrains.annotations.NotNull;
  * @param <T> тип объекта.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 0.2
+ * @see EvaluateException
+ * @see Predicates
  * @since 0.0.0
  */
 @SuppressWarnings("unused")
