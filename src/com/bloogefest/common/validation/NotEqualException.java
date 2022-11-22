@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
  * Мягкое исключение валидации явления равенства первичного объекта со вторичным объектом.
  *
  * @author Bloogefest
- * @version 0.2
+ * @version 0.3
  * @see ValidationException
  * @see Validator#equals(Object, Object)
  * @see Validator#equals(Object, Object, String, String)
@@ -24,6 +24,13 @@ public class NotEqualException extends ValidationException {
      * @since 0.0.0
      */
     protected static final String defaultMessage = "The object must be equal to object_";
+
+    /**
+     * Содержит сообщение для значений по умолчанию.
+     *
+     * @since 0.2.0
+     */
+    protected static final String defaultValuedMessage = "The value must be equal to value_";
 
     /**
      * Создаёт экземпляр по умолчанию.
