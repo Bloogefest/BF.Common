@@ -1,38 +1,33 @@
 package com.bloogefest.common.function;
 
-import com.bloogefest.common.other.SoftException;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Является мягким исключением функционального интерфейса.
+ * Является мягким исключением функционального интерфейса процессора типизированного экземпляра.
  *
  * @author Bloogefest
  * @version 1.0
  * @apiNote Не рекомендуется для обязательного перехвата и обработки.
- * @see WorkerException
- * @see CallbackException
- * @see SupplierException
- * @see ProcessorException
- * @see PredicateException
- * @see ConditionException
- * @since 0.0.0
+ * @see Callback
+ * @since 0.2.0
  */
-@ApiStatus.AvailableSince("0.0.0")
+@ApiStatus.Experimental
+@ApiStatus.AvailableSince("0.2.0")
 @SuppressWarnings("unused")
-public class FunctionException extends SoftException {
+public class ProcessorException extends FunctionException {
 
     /**
      * Создаёт экземпляр по умолчанию.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @ApiStatus.AvailableSince("0.2.0")
     @Contract(pure = true)
-    public FunctionException() {}
+    public ProcessorException() {}
 
     /**
      * Создаёт экземпляр, используя переопределённое сообщение.
@@ -40,11 +35,11 @@ public class FunctionException extends SoftException {
      * @param message сообщение.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @ApiStatus.AvailableSince("0.2.0")
     @Contract(pure = true)
-    public FunctionException(final @NonNls @Nullable String message) {
+    public ProcessorException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -54,11 +49,11 @@ public class FunctionException extends SoftException {
      * @param cause причина.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @ApiStatus.AvailableSince("0.2.0")
     @Contract(pure = true)
-    public FunctionException(final @Nullable Throwable cause) {
+    public ProcessorException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -69,11 +64,11 @@ public class FunctionException extends SoftException {
      * @param cause   причина.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @ApiStatus.AvailableSince("0.2.0")
     @Contract(pure = true)
-    public FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    public ProcessorException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -86,11 +81,11 @@ public class FunctionException extends SoftException {
      * @param writable    параметр записи трассировки стека.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @ApiStatus.AvailableSince("0.2.0")
     @Contract(pure = true)
-    protected FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+    protected ProcessorException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

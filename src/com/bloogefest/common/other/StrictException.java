@@ -1,37 +1,41 @@
-package com.bloogefest.common.throwable;
+package com.bloogefest.common.other;
 
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
 /**
- * Мягкое исключение, не требующее обязательного перехвата.
+ * Является строгим исключением.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 1.0
+ * @apiNote Рекомендуется для обязательного перехвата и обработки.
  * @since 0.0.0
  */
+@ApiStatus.AvailableSince("0.0.0")
 @SuppressWarnings("unused")
-public class SoftException extends RuntimeException {
+public class StrictException extends Exception {
 
     /**
      * Содержит сообщение по умолчанию.
      *
      * @since 0.0.0
      */
-    protected static final @NonNls String defaultMessage = "Not specified";
+    @ApiStatus.AvailableSince("0.0.0")
+    protected static final @NonNls @NotNull String defaultMessage = "Not specified";
 
     /**
      * Содержит причину по умолчанию.
      *
      * @since 0.0.0
      */
-    protected static final Throwable defaultCause = null;
+    @ApiStatus.AvailableSince("0.0.0")
+    protected static final @Nullable Throwable defaultCause = null;
 
     /**
      * Содержит параметр подавления по умолчанию.
      *
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
     protected static final boolean defaultSuppression = false;
 
     /**
@@ -39,6 +43,7 @@ public class SoftException extends RuntimeException {
      *
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
     protected static final boolean defaultWritable = true;
 
     /**
@@ -47,7 +52,9 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException() {
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
+    public StrictException() {
         super(defaultMessage);
     }
 
@@ -59,7 +66,9 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final @NonNls @Nullable String message) {
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
+    public StrictException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -71,7 +80,9 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final @Nullable Throwable cause) {
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
+    public StrictException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -84,12 +95,14 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    public SoftException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
+    public StrictException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
@@ -99,7 +112,9 @@ public class SoftException extends RuntimeException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    protected SoftException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
+    protected StrictException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

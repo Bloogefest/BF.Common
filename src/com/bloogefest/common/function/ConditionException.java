@@ -1,18 +1,22 @@
 package com.bloogefest.common.function;
 
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Мягкое исключение поставки объекта, не требующее обязательного перехвата.
+ * Является мягким исключением функционального интерфейса вычисляемого условного выражения.
  *
  * @author Bloogefest
  * @version 0.2
- * @see Supplier
+ * @apiNote Не рекомендуется для обязательного перехвата и обработки.
+ * @see Condition
  * @since 0.1.0
  */
+@ApiStatus.AvailableSince("0.1.0")
 @SuppressWarnings("unused")
-public class SupplyException extends FunctionException {
+public class ConditionException extends FunctionException {
 
     /**
      * Создаёт экземпляр по умолчанию.
@@ -20,7 +24,9 @@ public class SupplyException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    public SupplyException() {}
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    public ConditionException() {}
 
     /**
      * Создаёт экземпляр, используя переопределённое сообщение.
@@ -30,7 +36,9 @@ public class SupplyException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    public SupplyException(final @NonNls @Nullable String message) {
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    public ConditionException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -42,7 +50,9 @@ public class SupplyException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    public SupplyException(final @Nullable Throwable cause) {
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    public ConditionException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -55,12 +65,14 @@ public class SupplyException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    public SupplyException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    public ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
@@ -70,7 +82,9 @@ public class SupplyException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    protected SupplyException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    protected ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

@@ -2,65 +2,73 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Функциональный интерфейс поставщика объекта.
+ * Является функциональным интерфейсом поставщика типизированного экземпляра.
  *
- * @param <T> тип объекта.
+ * @param <TYPE> тип поставляемого экземпляра.
  *
  * @author Bloogefest
- * @version 0.3
- * @see SupplyException
+ * @version 1.0
+ * @see SupplierException
  * @since 0.0.0
  */
+@ApiStatus.AvailableSince("0.0.0")
 @SuppressWarnings("unused")
 @FunctionalInterface
-public interface Supplier<T> {
+public interface Supplier<TYPE> {
 
     /**
-     * Создаёт поставщик объекта с постоянным объектом.
+     * Подтверждает ненулевое явление переданного поставляемого типизированного экземпляра.
+     * Производит константный экземпляр поставщика типизированного экземпляра.
      *
-     * @param object объект.
+     * @param <TYPE>   тип поставляемого экземпляра.
+     * @param instance поставляемый типизированный экземпляр.
      *
-     * @return Постоянный поставщик объекта.
+     * @return Константный экземпляр поставщика типизированного экземпляра.
      *
-     * @throws NullException объект не должен быть нулевым.
+     * @throws NullException невозможность подтверждения ненулевого явления переданного поставляемого типизированного экземпляра.
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    static <T> @NotNull Supplier<T> constant(final @NotNull T object) throws NullException {
-        Validator.notNull(object, "object");
-        return () -> object;
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(value = "_ -> new", pure = true)
+    static <TYPE> @NotNull Supplier<TYPE> constant(final @NotNull TYPE instance) throws NullException {
+        Validator.notNull(instance, "instance");
+        return () -> instance;
     }
 
     /**
-     * Проверяет поставщик объекта и возвращает его.
+     * Подтверждает ненулевое явление переданного экземпляра поставщика типизированного экземпляра.
      *
-     * @param supplier поставщик объекта.
+     * @param supplier экземпляр поставщика типизированного экземпляра.
      *
-     * @return Проверенный поставщик объекта.
+     * @return Подтверждённый переданный экземпляр поставщика типизированного экземпляра.
      *
-     * @throws NullException поставщик объекта не должен быть нулевым.
+     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра поставщика типизированного экземпляра.
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
     @Contract(value = "_ -> param1", pure = true)
-    static <T> @NotNull Supplier<T> of(final @NotNull Supplier<T> supplier) throws NullException {
+    static <TYPE> @NotNull Supplier<TYPE> of(final @NotNull Supplier<TYPE> supplier) throws NullException {
         return Validator.notNull(supplier, "supplier");
     }
 
     /**
-     * Поставляет объект.
+     * Выполняет поставку типизированного экземпляра.
      *
-     * @return Объект.
+     * @return Поставляемый типизированный экземпляр.
      *
-     * @throws SupplyException невозможно поставить объект.
+     * @throws SupplierException невозможность выполнения поставки типизированного экземпляра.
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
-    @NotNull T supply() throws SupplyException;
+    @NotNull TYPE supply() throws SupplierException;
 
 }

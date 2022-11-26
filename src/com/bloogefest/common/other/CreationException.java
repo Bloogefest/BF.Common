@@ -1,16 +1,16 @@
-package com.bloogefest.common.base;
+package com.bloogefest.common.other;
 
-import com.bloogefest.common.throwable.SoftException;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
 /**
- * Мягкое исключение создания объекта, не требующее обязательного перехвата.
+ * Является мягким исключением создания экземпляра.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 1.0
+ * @apiNote Не рекомендуется для обязательного перехвата и обработки.
  * @since 0.0.0
  */
+@ApiStatus.AvailableSince("0.0.0")
 @SuppressWarnings("unused")
 public class CreationException extends SoftException {
 
@@ -19,7 +19,8 @@ public class CreationException extends SoftException {
      *
      * @since 0.0.0
      */
-    protected static final @NonNls String defaultMessage = "The object mustn't be created";
+    @ApiStatus.AvailableSince("0.0.0")
+    protected static final @NonNls @NotNull String defaultMessage = "The instance should not be created";
 
     /**
      * Создаёт экземпляр по умолчанию.
@@ -27,6 +28,8 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     public CreationException() {
         this(defaultMessage);
     }
@@ -39,6 +42,8 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     public CreationException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -51,6 +56,8 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     public CreationException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -64,12 +71,14 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     public CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
@@ -79,6 +88,8 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     protected CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

@@ -1,36 +1,45 @@
 package com.bloogefest.common.validation;
 
-import com.bloogefest.common.function.Supplier;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
 /**
- * Мягкое исключение валидации ненулевого явления объекта.
+ * Является мягким исключением валидации ненулевого явления экземпляра.
  *
  * @author Bloogefest
- * @version 0.2
- * @see ValidationException
- * @see Validator#notNull(Object)
- * @see Validator#notNull(Object, String)
- * @see Validator#notNull(Object, Supplier)
- * @since 0.0.0
+ * @version 1.0
+ * @apiNote Не рекомендуется для обязательного перехвата и обработки.
+ * @see Validator#notNull(Object instance)
+ * @see Validator#notNull(Object instance, String name)
+ * @since 0.1.0
  */
+@ApiStatus.AvailableSince("0.1.0")
 @SuppressWarnings("unused")
 public class NullException extends ValidationException {
 
     /**
      * Содержит сообщение по умолчанию.
      *
-     * @since 0.0.0
+     * @since 0.1.0
      */
-    protected static final String defaultMessage = "The object mustn't be null";
+    @ApiStatus.AvailableSince("0.1.0")
+    protected static final @NonNls @NotNull String defaultMessage = "The instance should not be null";
+
+    /**
+     * Содержит шаблонное сообщение.
+     *
+     * @since 0.2.0
+     */
+    @ApiStatus.AvailableSince("0.2.0")
+    protected static final @NonNls @NotNull String templateMessage = "The %s should not be null";
 
     /**
      * Создаёт экземпляр по умолчанию.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     public NullException() {
         this(defaultMessage);
     }
@@ -41,8 +50,10 @@ public class NullException extends ValidationException {
      * @param message сообщение.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     public NullException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -53,8 +64,10 @@ public class NullException extends ValidationException {
      * @param cause причина.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     public NullException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -66,14 +79,16 @@ public class NullException extends ValidationException {
      * @param cause   причина.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     public NullException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
@@ -81,8 +96,10 @@ public class NullException extends ValidationException {
      * @param writable    параметр записи трассировки стека.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     protected NullException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

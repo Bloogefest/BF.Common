@@ -1,15 +1,16 @@
-package com.bloogefest.common.throwable;
+package com.bloogefest.common.other;
 
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
 /**
- * Мягкая ошибка, рекомендованная для перехвата.
+ * Является мягкой ошибкой.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 1.0
+ * @apiNote Рекомендуется для перехвата и обработки.
  * @since 0.0.0
  */
+@ApiStatus.AvailableSince("0.0.0")
 @SuppressWarnings("unused")
 public class SoftError extends Error {
 
@@ -18,20 +19,23 @@ public class SoftError extends Error {
      *
      * @since 0.0.0
      */
-    protected static final @NonNls String defaultMessage = "Not specified";
+    @ApiStatus.AvailableSince("0.0.0")
+    protected static final @NonNls @NotNull String defaultMessage = "Not specified";
 
     /**
      * Содержит причину по умолчанию.
      *
      * @since 0.0.0
      */
-    protected static final Throwable defaultCause = null;
+    @ApiStatus.AvailableSince("0.0.0")
+    protected static final @Nullable Throwable defaultCause = null;
 
     /**
      * Содержит параметр подавления по умолчанию.
      *
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
     protected static final boolean defaultSuppression = false;
 
     /**
@@ -39,6 +43,7 @@ public class SoftError extends Error {
      *
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
     protected static final boolean defaultWritable = true;
 
     /**
@@ -47,6 +52,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     public SoftError() {
         super(defaultMessage);
     }
@@ -59,6 +66,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     public SoftError(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -71,6 +80,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     public SoftError(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -84,12 +95,14 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     public SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
@@ -99,6 +112,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
     protected SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

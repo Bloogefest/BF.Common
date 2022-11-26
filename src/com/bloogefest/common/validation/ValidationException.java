@@ -1,21 +1,25 @@
 package com.bloogefest.common.validation;
 
-import com.bloogefest.common.throwable.SoftException;
+import com.bloogefest.common.other.SoftException;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Мягкое исключение валидации явления объекта.
+ * Является мягким исключением валидации явления типизированного экземпляра.
  *
  * @author Bloogefest
- * @version 0.2
+ * @version 1.0
+ * @apiNote Не рекомендуется для обязательного перехвата и обработки.
  * @see Validator
- * @see EqualException
- * @see NotEqualException
  * @see NotNullException
  * @see NullException
+ * @see NotEqualException
+ * @see EqualException
  * @since 0.0.0
  */
+@ApiStatus.AvailableSince("0.1.0")
 @SuppressWarnings("unused")
 public class ValidationException extends SoftException {
 
@@ -25,6 +29,8 @@ public class ValidationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     public ValidationException() {
         this(defaultMessage);
     }
@@ -37,6 +43,8 @@ public class ValidationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     public ValidationException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -49,6 +57,8 @@ public class ValidationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     public ValidationException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -62,12 +72,14 @@ public class ValidationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     public ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
@@ -77,6 +89,8 @@ public class ValidationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
     protected ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

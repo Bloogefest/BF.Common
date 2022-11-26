@@ -1,134 +1,141 @@
 package com.bloogefest.common.function;
 
-import com.bloogefest.common.base.Predicates;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Функциональный интерфейс предиката объекта.
+ * Является функциональным интерфейсом предиката типизированного экземпляра.
  *
- * @param <T> тип объекта.
+ * @param <TYPE> тип обрабатываемого экземпляра.
  *
  * @author Bloogefest
- * @version 0.2
- * @see EvaluateException
- * @see Predicates
+ * @version 1.0
+ * @see PredicateException
  * @since 0.0.0
  */
+@ApiStatus.AvailableSince("0.0.0")
 @SuppressWarnings("unused")
 @FunctionalInterface
-public interface Predicate<T> {
+public interface Predicate<TYPE> {
 
     /**
-     * Создаёт предикат объекта с постоянным результатом оценивания.
+     * Производит константный экземпляр предиката типизированного экземпляра.
      *
-     * @param result результат оценивания.
+     * @param result вычисляемое значение.
      *
-     * @return Постоянный предикат объекта.
+     * @return Константный экземпляр предиката типизированного экземпляра.
      *
      * @author Bloogefest
-     * @since 0.0.0
+     * @since 0.1.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
     @Contract(value = "_ -> new", pure = true)
-    static <T> @NotNull Predicate<T> constant(final boolean result) {
-        return __ -> result;
+    static <TYPE> @NotNull Predicate<TYPE> constant(final boolean result) {
+        return instance -> result;
     }
 
     /**
-     * Проверяет предикат объекта и возвращает его.
+     * Подтверждает ненулевое явление переданного экземпляра предиката типизированного экземпляра.
      *
-     * @param predicate предикат объекта.
+     * @param predicate экземпляр предиката типизированного экземпляра.
      *
-     * @return Проверенный предикат объекта.
+     * @return Подтверждённый переданный экземпляр предиката типизированного экземпляра.
      *
-     * @throws NullException предикат объекта не должен быть нулевым.
+     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката типизированного экземпляра.
      * @author Bloogefest
      * @since 0.0.0
      */
+    @ApiStatus.AvailableSince("0.0.0")
     @Contract(value = "_ -> new", pure = true)
-    static <T> @NotNull Predicate<T> of(final @NotNull Predicate<T> predicate) throws NullException {
+    static <TYPE> @NotNull Predicate<TYPE> of(final @NotNull Predicate<TYPE> predicate) throws NullException {
         return Validator.notNull(predicate, "predicate");
     }
 
     /**
-     * Оценивает объект и возвращает результат оценивания.
+     * Выполняет обработку переданного типизированного экземпляра и вычисляет значение данного экземпляра предиката типизированного экземпляра.
      *
-     * @param object объект.
+     * @param instance обрабатываемый типизированный экземпляр.
      *
-     * @return Результат оценивания.
+     * @return Вычисляемое значение.
      *
-     * @throws NullException     объект не должен быть нулевым.
-     * @throws EvaluateException невозможно оценить объект.
+     * @throws NullException      невозможность подтверждения ненулевого явления переданного обрабатываемого типизированного экземпляра.
+     * @throws PredicateException невозможность выполнения обработки переданного типизированного экземпляра и вычисления значения данного экземпляра предиката типизированного экземпляра.
      * @author Bloogefest
      * @since 0.0.0
      */
-    @Contract(value = "_ -> _", pure = true)
-    boolean evaluate(final @NotNull T object) throws NullException, EvaluateException;
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(pure = true)
+    boolean evaluate(final @NotNull TYPE instance) throws NullException, PredicateException;
 
     /**
-     * @return Not specified
+     * Инвертирует данный экземпляр предиката типизированного экземпляра.
+     *
+     * @return Инвертированный экземпляр предиката типизированного экземпляра.
      *
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Predicate<T> invert() {
-        return object -> !evaluate(object);
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(value = "-> new", pure = true)
+    default @NotNull Predicate<TYPE> invert() {
+        return instance -> !evaluate(instance);
     }
 
     /**
-     * @param predicate Not specified
+     * Комбинирует данный экземпляр предиката типизированного экземпляра конъюнкцией с переданным.
      *
-     * @return Not specified
+     * @param predicate экземпляр предиката типизированного экземпляра.
      *
-     * @throws NullException Not specified
+     * @return Комбинированный экземпляр предиката типизированного экземпляра.
+     *
+     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката типизированного экземпляра.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Predicate<T> and(final Predicate<T> predicate) throws NullException {
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Predicate<TYPE> and(final @NotNull Predicate<TYPE> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
-        return object -> evaluate(object) && predicate.evaluate(object);
+        return instance -> evaluate(instance) && predicate.evaluate(instance);
     }
 
     /**
-     * @param predicate Not specified
+     * Комбинирует данный экземпляр предиката типизированного экземпляра мягкой дизъюнкцией с переданным.
      *
-     * @return Not specified
+     * @param predicate экземпляр предиката типизированного экземпляра.
      *
-     * @throws NullException Not specified
+     * @return Комбинированный экземпляр предиката типизированного экземпляра.
+     *
+     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката типизированного экземпляра.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Predicate<T> or(final Predicate<T> predicate) throws NullException {
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Predicate<TYPE> or(final @NotNull Predicate<TYPE> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
-        return object -> evaluate(object) || predicate.evaluate(object);
+        return instance -> evaluate(instance) || predicate.evaluate(instance);
     }
 
     /**
-     * @param predicate Not specified
+     * Комбинирует данный экземпляр предиката типизированного экземпляра строгой дизъюнкцией с переданным.
      *
-     * @return Not specified
+     * @param predicate экземпляр предиката типизированного экземпляра.
      *
-     * @throws NullException Not specified
+     * @return Комбинированный экземпляр предиката типизированного экземпляра.
+     *
+     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката типизированного экземпляра.
      * @author Bloogefest
      * @since 0.0.0
      */
-    default Predicate<T> xor(final Predicate<T> predicate) throws NullException {
+    @ApiStatus.AvailableSince("0.0.0")
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Predicate<TYPE> xor(final @NotNull Predicate<TYPE> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
-        return object -> evaluate(object) ^ predicate.evaluate(object);
-    }
-
-    /**
-     * @param object Not specified
-     *
-     * @return Not specified
-     *
-     * @author Bloogefest
-     * @since 0.0.0
-     */
-    default Predicate<T> suppress(final boolean object) {
-        return __ -> object;
+        return instance -> evaluate(instance) ^ predicate.evaluate(instance);
     }
 
 }

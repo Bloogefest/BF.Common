@@ -1,18 +1,22 @@
 package com.bloogefest.common.function;
 
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Мягкое исключение вычисления условного выражения, не требующее обязательного перехвата.
+ * Является мягким исключением функционального интерфейса предиката типизированного экземпляра.
  *
  * @author Bloogefest
- * @version 0.1
+ * @version 1.0
+ * @apiNote Не рекомендуется для обязательного перехвата и обработки.
  * @see Predicate
  * @since 0.1.0
  */
+@ApiStatus.AvailableSince("0.1.0")
 @SuppressWarnings("unused")
-public class EvaluateException extends FunctionException {
+public class PredicateException extends FunctionException {
 
     /**
      * Создаёт экземпляр по умолчанию.
@@ -20,7 +24,9 @@ public class EvaluateException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    public EvaluateException() {}
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    public PredicateException() {}
 
     /**
      * Создаёт экземпляр, используя переопределённое сообщение.
@@ -30,7 +36,9 @@ public class EvaluateException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    public EvaluateException(final @NonNls @Nullable String message) {
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    public PredicateException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -42,7 +50,9 @@ public class EvaluateException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    public EvaluateException(final @Nullable Throwable cause) {
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    public PredicateException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -55,12 +65,14 @@ public class EvaluateException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    public EvaluateException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    public PredicateException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека по умолчанию.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
@@ -70,7 +82,9 @@ public class EvaluateException extends FunctionException {
      * @author Bloogefest
      * @since 0.1.0
      */
-    protected EvaluateException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+    @ApiStatus.AvailableSince("0.1.0")
+    @Contract(pure = true)
+    protected PredicateException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 
