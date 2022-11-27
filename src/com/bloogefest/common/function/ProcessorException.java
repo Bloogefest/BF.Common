@@ -14,7 +14,6 @@ import org.jetbrains.annotations.Nullable;
  * @see Callback
  * @since 0.2.0
  */
-@ApiStatus.Experimental
 @ApiStatus.AvailableSince("0.2.0")
 @SuppressWarnings("unused")
 public class ProcessorException extends FunctionException {
