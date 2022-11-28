@@ -7,11 +7,10 @@ import org.jetbrains.annotations.*;
  *
  * @author Bloogefest
  * @version 1.0
- * @apiNote Рекомендуется для перехвата и обработки.
  * @since 0.0.0
  */
-@ApiStatus.AvailableSince("0.0.0")
 @SuppressWarnings("unused")
+@ApiStatus.AvailableSince("0.0.0")
 public class SoftError extends Error {
 
     /**
@@ -52,8 +51,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     public SoftError() {
         super(defaultMessage);
     }
@@ -66,8 +65,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     public SoftError(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -80,8 +79,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     public SoftError(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -95,8 +94,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     public SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -112,8 +111,8 @@ public class SoftError extends Error {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     protected SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

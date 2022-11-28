@@ -3,15 +3,14 @@ package com.bloogefest.common.other;
 import org.jetbrains.annotations.*;
 
 /**
- * Является мягким исключением создания экземпляра.
+ * Является исключением создания.
  *
  * @author Bloogefest
  * @version 1.0
- * @apiNote Не рекомендуется для обязательного перехвата и обработки.
  * @since 0.0.0
  */
-@ApiStatus.AvailableSince("0.0.0")
 @SuppressWarnings("unused")
+@ApiStatus.AvailableSince("0.0.0")
 public class CreationException extends SoftException {
 
     /**
@@ -42,8 +41,8 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     public CreationException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -56,8 +55,8 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     public CreationException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -71,8 +70,8 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     public CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -88,8 +87,8 @@ public class CreationException extends SoftException {
      * @author Bloogefest
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
     @Contract(pure = true)
+    @ApiStatus.AvailableSince("0.0.0")
     protected CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
