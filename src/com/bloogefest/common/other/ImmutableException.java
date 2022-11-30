@@ -1,19 +1,19 @@
 package com.bloogefest.common.other;
 
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Является исключением неизменяемого.
+ * Исключение неизменяемого.
  *
  * @author Bloogefest
  * @version 1.0
  * @see Immutable
  * @since 0.3.0
  */
+@AvailableSince("0.3.0")
 @SuppressWarnings("unused")
-@ApiStatus.AvailableSince("0.3.0")
 public class ImmutableException extends SoftException {
 
     /**
@@ -22,8 +22,8 @@ public class ImmutableException extends SoftException {
      * @author Bloogefest
      * @since 0.3.0
      */
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     public ImmutableException() {}
 
     /**
@@ -34,8 +34,8 @@ public class ImmutableException extends SoftException {
      * @author Bloogefest
      * @since 0.3.0
      */
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     public ImmutableException(final @Nullable String message) {
         super(message);
     }
@@ -48,8 +48,8 @@ public class ImmutableException extends SoftException {
      * @author Bloogefest
      * @since 0.3.0
      */
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     public ImmutableException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -63,8 +63,8 @@ public class ImmutableException extends SoftException {
      * @author Bloogefest
      * @since 0.3.0
      */
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     public ImmutableException(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -80,8 +80,8 @@ public class ImmutableException extends SoftException {
      * @author Bloogefest
      * @since 0.3.0
      */
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     protected ImmutableException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
