@@ -1,20 +1,21 @@
 package com.bloogefest.common.environment;
 
 import com.bloogefest.common.other.SoftException;
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.AvailableSince;
+import org.jetbrains.annotations.ApiStatus.Experimental;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Исключение среды выполнения.
+ * Инструмент-исключение среды выполнения.
  *
  * @author Bloogefest
  * @version 1.0
  * @since 0.3.0
  */
-@ApiStatus.Experimental
+@Experimental
+@AvailableSince("0.3.0")
 @SuppressWarnings("unused")
-@ApiStatus.AvailableSince("0.3.0")
 public class EnvironmentException extends SoftException {
 
     /**
@@ -23,71 +24,66 @@ public class EnvironmentException extends SoftException {
      * @author Bloogefest
      * @since 0.3.0
      */
-    @ApiStatus.Experimental
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     public EnvironmentException() {}
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение.
+     * Создаёт экземпляр, используя переданное сообщение возникновения.
      *
-     * @param message сообщение.
+     * @param message сообщение возникновения.
      *
      * @author Bloogefest
      * @since 0.3.0
      */
-    @ApiStatus.Experimental
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     public EnvironmentException(final @Nullable String message) {
         super(message);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённую причину.
+     * Создаёт экземпляр, используя переданную причину возникновения.
      *
-     * @param cause причина.
+     * @param cause причина возникновения.
      *
      * @author Bloogefest
      * @since 0.3.0
      */
-    @ApiStatus.Experimental
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     public EnvironmentException(final @Nullable Throwable cause) {
         super(cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение и причину.
+     * Создаёт экземпляр, используя переданное сообщение и причину возникновения.
      *
-     * @param message сообщение.
-     * @param cause   причина.
+     * @param message сообщение возникновения.
+     * @param cause   причина возникновения.
      *
      * @author Bloogefest
      * @since 0.3.0
      */
-    @ApiStatus.Experimental
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     public EnvironmentException(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
+     * Создаёт экземпляр, используя переданное сообщение и причину возникновения, разрешение на запись подавленных исключений и трассировки стека.
      *
-     * @param message     сообщение.
-     * @param cause       причина.
-     * @param suppression параметр подавления.
-     * @param writable    параметр записи трассировки стека.
+     * @param message     сообщение возникновения.
+     * @param cause       причина возникновения.
+     * @param suppression разрешение на запись подавленных исключений.
+     * @param writable    разрешение на запись трассировки стека.
      *
      * @author Bloogefest
      * @since 0.3.0
      */
-    @ApiStatus.Experimental
+    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.3.0")
     protected EnvironmentException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

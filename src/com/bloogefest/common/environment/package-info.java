@@ -1,10 +1,11 @@
 /**
- * Содержит инструменты для работы со средой выполнения.
+ * Содержит инструменты среды выполнения.
  *
  * @since 0.3.0
  */
-@ApiStatus.Experimental
-@ApiStatus.AvailableSince("0.2.0")
+@Experimental
+@AvailableSince("0.3.0")
 package com.bloogefest.common.environment;
 
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.AvailableSince;
+import org.jetbrains.annotations.ApiStatus.Experimental;

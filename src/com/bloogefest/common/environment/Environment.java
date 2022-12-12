@@ -1,6 +1,5 @@
 package com.bloogefest.common.environment;
 
-import com.bloogefest.common.environment.version.EnvironmentVersion;
 import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.ApiStatus.Experimental;
 import org.jetbrains.annotations.Contract;
@@ -8,12 +7,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Range;
 
 /**
- * Среда выполнения.
+ * Инструмент-представление среды выполнения.
  *
  * @author Bloogefest
  * @version 1.0
- * @apiNote Рекомендуется использовать только реализацию по умолчанию, во избежание возникновения неожиданных проблем.
- * @see #defaultInstance() Реализация по умолчанию.
+ * @apiNote Используйте только экземпляр инструмента-представления среды выполнения с реализацией по умолчанию, во избежание некорректной работы.
+ * @implNote Следуйте спецификации, во избежание некорректной работы.
+ * @see #defaultInstance() Метод получения реализации по умолчанию.
  * @since 0.3.0
  */
 @Experimental
@@ -22,90 +22,45 @@ import org.jetbrains.annotations.Range;
 public interface Environment {
 
     /**
-     * Код завершения работы по умолчанию.
+     * Статус завершения работы по умолчанию.
      *
-     * @see #shutdown()
-     * @see #shutdown(int)
+     * @see #exit()
+     * @see #exit(int)
      * @since 0.3.0
      */
-    @Experimental
     @AvailableSince("0.3.0")
-    int DEFAULT_SHUTDOWN_CODE = 0;
+    int DEFAULT_EXIT_STATUS = 0;
 
     /**
-     * Код принудительного завершения работы по умолчанию.
+     * Статус принудительного завершения работы по умолчанию.
      *
      * @see #halt()
      * @see #halt(int)
      * @since 0.3.0
      */
-    @Experimental
     @AvailableSince("0.3.0")
-    int DEFAULT_HALT_CODE = 0;
+    int DEFAULT_HALT_STATUS = 0;
 
     /**
-     * Возвращает экземпляр среды выполнения с реализацией по умолчанию.
-     * Если такого экземпляра не существует, создаёт его, сохраняет и возвращает.
+     * Возвращает экземпляр инструмента-представления среды выполнения с реализацией по умолчанию.
      *
-     * @return Экземпляр среды выполнения по умолчанию.
+     * @return Экземпляр инструмента-представления среды выполнения с реализацией по умолчанию.
      *
-     * @apiNote Рекомендуется использовать только данный метод для получения экземпляра среды выполнения,
-     * ведь реализация по умолчанию гарантированно соответствует всем требованиям спецификации.
-     * @implNote Рекомендуется использовать метод хранения экземпляра среды выполнения,
-     * поддерживающий ленивую инициализацию, для повышения производительности и эффективности.
+     * @apiNote Используйте только данный метод для получения экземпляра инструмента-представления среды выполнения с реализацией по умолчанию,
+     * во избежание некорректной работы.
+     * @implSpec Всегда возвращайте один и тот же экземпляр инструмента-представления среды выполнения с реализацией по умолчанию.
      * @author Bloogefest
-     * @see Environment Среда выполнения.
+     * @see Environment Инструмент-представление среды выполнения.
      * @since 0.3.0
      */
-    @Experimental
     @AvailableSince("0.3.0")
     @Contract(pure = true)
     static @NotNull Environment defaultInstance() {
+        @AvailableSince("0.3.0")
         interface Internal {
 
-            /**
-             * Экземпляр среды выполнения по умолчанию.
-             *
-             * @since 0.3.0
-             */
-            @Experimental
             @AvailableSince("0.3.0")
             @NotNull Environment defaultInstance = new Environment() {};
-
-        }
-        return Internal.defaultInstance;
-    }
-
-    /**
-     * Возвращает экземпляр версии среды выполнения с реализацией по умолчанию.
-     * Если такого экземпляра не существует, создаёт его, сохраняет и возвращает.
-     *
-     * @return Экземпляр версии среды выполнения по умолчанию.
-     *
-     * @apiNote Рекомендуется использовать только данный метод для получения экземпляра среды выполнения,
-     * ведь реализация по умолчанию гарантированно соответствует всем требованиям спецификации.
-     * @implSpec Предполагается возврат постоянного экземпляра версии среды выполнения с корректной реализацией,
-     * гарантированно соответствующей всем требованиям спецификации.
-     * @implNote Рекомендуется использовать метод хранения экземпляра версии среды выполнения,
-     * поддерживающий ленивую инициализацию, для повышения производительности и эффективности.
-     * @author Bloogefest
-     * @see EnvironmentVersion Версия среды выполнения.
-     * @since 0.3.0
-     */
-    @Experimental
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
-    default @NotNull EnvironmentVersion version() {
-        interface Internal {
-
-            /**
-             * Экземпляр версии среды выполнения по умолчанию.
-             *
-             * @since 0.3.0
-             */
-            @Experimental
-            @AvailableSince("0.3.0")
-            @NotNull EnvironmentVersion defaultInstance = new EnvironmentVersion() {};
 
         }
         return Internal.defaultInstance;
@@ -197,33 +152,31 @@ public interface Environment {
     }
 
     /**
-     * Завершает работу среды выполнения, используя код по умолчанию.
+     * Завершает работу среды выполнения, используя статус по умолчанию.
      *
-     * @throws EnvironmentException отсутствие разрешения на завершение работы.
+     * @throws EnvironmentException отсутствует разрешение на завершение работы.
      * @author Bloogefest
-     * @see #DEFAULT_SHUTDOWN_CODE  Код по умолчанию.
+     * @see #DEFAULT_EXIT_STATUS  Статус завершения работы по умолчанию.
      * @since 0.3.0
      */
-    @Experimental
     @AvailableSince("0.3.0")
     @Contract("-> fail")
-    default void shutdown() throws EnvironmentException {
-        shutdown(DEFAULT_SHUTDOWN_CODE);
+    default void exit() throws EnvironmentException {
+        exit(DEFAULT_EXIT_STATUS);
     }
 
     /**
-     * Завершает работу среды выполнения, используя переданный код.
+     * Завершает работу среды выполнения, используя переданный статус завершения работы.
      *
-     * @param code код завершения работы.
+     * @param code статус завершения работы.
      *
-     * @throws EnvironmentException отсутствие разрешения на завершение работы.
+     * @throws EnvironmentException отсутствует разрешение на завершение работы.
      * @author Bloogefest
      * @since 0.3.0
      */
-    @Experimental
     @AvailableSince("0.3.0")
     @Contract("_ -> fail")
-    default void shutdown(final @Range(from = Integer.MIN_VALUE, to = Integer.MAX_VALUE) int code) throws EnvironmentException {
+    default void exit(final @Range(from = Integer.MIN_VALUE, to = Integer.MAX_VALUE) int code) throws EnvironmentException {
         try {
             Runtime.getRuntime().exit(code);
         } catch (final SecurityException e) {
@@ -234,28 +187,26 @@ public interface Environment {
     /**
      * Принудительно завершает работу среды выполнения, используя код по умолчанию.
      *
-     * @throws EnvironmentException отсутствие разрешения на принудительное завершение работы.
+     * @throws EnvironmentException отсутствует разрешение на принудительное завершение работы.
      * @author Bloogefest
-     * @see #DEFAULT_HALT_CODE  Код по умолчанию.
+     * @see #DEFAULT_HALT_STATUS  Статус принудительного завершения работы по умолчанию.
      * @since 0.3.0
      */
-    @Experimental
     @AvailableSince("0.3.0")
     @Contract("-> fail")
     default void halt() throws EnvironmentException {
-        halt(DEFAULT_HALT_CODE);
+        halt(DEFAULT_HALT_STATUS);
     }
 
     /**
-     * Принудительно завершает работу среды выполнения, используя переданный код.
+     * Принудительно завершает работу среды выполнения, используя переданный статус принудительного завершения работы.
      *
-     * @param code код принудительного завершения работы.
+     * @param code статус принудительного завершения работы.
      *
-     * @throws EnvironmentException отсутствие разрешения на принудительное завершение работы.
+     * @throws EnvironmentException отсутствует разрешение на принудительное завершение работы.
      * @author Bloogefest
      * @since 0.3.0
      */
-    @Experimental
     @AvailableSince("0.3.0")
     @Contract("_ -> fail")
     default void halt(final @Range(from = Integer.MIN_VALUE, to = Integer.MAX_VALUE) int code) throws EnvironmentException {
