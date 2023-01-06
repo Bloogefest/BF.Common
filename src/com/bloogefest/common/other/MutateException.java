@@ -3,47 +3,21 @@ package com.bloogefest.common.other;
 import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Тип исключения, экземпляр которого не требует обработки.
+ * Тип исключения изменения, экземпляр которого не требует обработки.
  */
-@AvailableSince("0.0.0")
+@AvailableSince("0.3.0")
 @SuppressWarnings("unused")
-public class SoftException extends RuntimeException {
-
-    /**
-     * Содержит сообщение по умолчанию.
-     */
-    @AvailableSince("0.0.0")
-    protected static final @NonNls @NotNull String defaultMessage = "Not specified";
-
-    /**
-     * Содержит причину по умолчанию.
-     */
-    @AvailableSince("0.0.0")
-    protected static final @Nullable Throwable defaultCause = null;
-
-    /**
-     * Содержит параметр подавления по умолчанию.
-     */
-    @AvailableSince("0.0.0")
-    protected static final boolean defaultSuppression = false;
-
-    /**
-     * Содержит параметр трассировки стека по умолчанию.
-     */
-    @AvailableSince("0.0.0")
-    protected static final boolean defaultWritable = true;
+public class MutateException extends MutableException {
 
     /**
      * Создаёт экземпляр по умолчанию.
      */
     @Contract(pure = true)
-    @AvailableSince("0.0.0")
-    public SoftException() {
-        super(defaultMessage);
+    @AvailableSince("0.3.0")
+    public MutateException() {
     }
 
     /**
@@ -52,8 +26,8 @@ public class SoftException extends RuntimeException {
      * @param message сообщение.
      */
     @Contract(pure = true)
-    @AvailableSince("0.0.0")
-    public SoftException(final @NonNls @Nullable String message) {
+    @AvailableSince("0.3.0")
+    public MutateException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -63,8 +37,8 @@ public class SoftException extends RuntimeException {
      * @param cause причина.
      */
     @Contract(pure = true)
-    @AvailableSince("0.0.0")
-    public SoftException(final @Nullable Throwable cause) {
+    @AvailableSince("0.3.0")
+    public MutateException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -75,8 +49,8 @@ public class SoftException extends RuntimeException {
      * @param cause   причина.
      */
     @Contract(pure = true)
-    @AvailableSince("0.0.0")
-    public SoftException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    @AvailableSince("0.3.0")
+    public MutateException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -89,9 +63,9 @@ public class SoftException extends RuntimeException {
      * @param writable    параметр трассировки стека.
      */
     @Contract(pure = true)
-    @AvailableSince("0.0.0")
-    protected SoftException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
-                            final boolean suppression, final boolean writable) {
+    @AvailableSince("0.3.0")
+    protected MutateException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+                              final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

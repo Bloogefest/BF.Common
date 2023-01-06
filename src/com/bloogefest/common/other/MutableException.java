@@ -2,15 +2,11 @@ package com.bloogefest.common.other;
 
 import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Исключение изменяемого.
- *
- * @author Bloogefest
- * @version 1.0
- * @see Mutable
- * @since 0.3.0
+ * Тип исключения изменяемого, экземпляр которого не требует обработки.
  */
 @AvailableSince("0.3.0")
 @SuppressWarnings("unused")
@@ -18,71 +14,58 @@ public class MutableException extends SoftException {
 
     /**
      * Создаёт экземпляр по умолчанию.
-     *
-     * @author Bloogefest
-     * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    public MutableException() {}
+    @AvailableSince("0.3.0")
+    public MutableException() {
+    }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение.
+     * Создаёт экземпляр с переопределённым сообщением.
      *
      * @param message сообщение.
-     *
-     * @author Bloogefest
-     * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    public MutableException(final @Nullable String message) {
+    @AvailableSince("0.3.0")
+    public MutableException(final @NonNls @Nullable String message) {
         super(message);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённую причину.
+     * Создаёт экземпляр с переопределённой причиной.
      *
      * @param cause причина.
-     *
-     * @author Bloogefest
-     * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
     @Contract(pure = true)
+    @AvailableSince("0.3.0")
     public MutableException(final @Nullable Throwable cause) {
         super(cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение и причину.
+     * Создаёт экземпляр с переопределённым сообщением и причиной.
      *
      * @param message сообщение.
      * @param cause   причина.
-     *
-     * @author Bloogefest
-     * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    public MutableException(final @Nullable String message, final @Nullable Throwable cause) {
+    @AvailableSince("0.3.0")
+    public MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
+     * Создаёт экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
      * @param suppression параметр подавления.
-     * @param writable    параметр записи трассировки стека.
-     *
-     * @author Bloogefest
-     * @since 0.3.0
+     * @param writable    параметр трассировки стека.
      */
-    @AvailableSince("0.3.0")
     @Contract(pure = true)
-    protected MutableException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+    @AvailableSince("0.3.0")
+    protected MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+                               final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

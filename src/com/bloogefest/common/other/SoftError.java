@@ -1,24 +1,22 @@
 package com.bloogefest.common.other;
 
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.ApiStatus.AvailableSince;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Является мягкой ошибкой.
- *
- * @author Bloogefest
- * @version 1.0
- * @since 0.0.0
+ * Тип ошибки, экземпляр которой не требует обработки.
  */
+@AvailableSince("0.0.0")
 @SuppressWarnings("unused")
-@ApiStatus.AvailableSince("0.0.0")
 public class SoftError extends Error {
 
     /**
      * Содержит сообщение по умолчанию.
-     *
-     * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @AvailableSince("0.0.0")
     protected static final @NonNls @NotNull String defaultMessage = "Not specified";
 
     /**
@@ -26,7 +24,7 @@ public class SoftError extends Error {
      *
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @AvailableSince("0.0.0")
     protected static final @Nullable Throwable defaultCause = null;
 
     /**
@@ -34,86 +32,72 @@ public class SoftError extends Error {
      *
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @AvailableSince("0.0.0")
     protected static final boolean defaultSuppression = false;
 
     /**
-     * Содержит параметр записи трассировки стека по умолчанию.
+     * Содержит параметр трассировки стека по умолчанию.
      *
      * @since 0.0.0
      */
-    @ApiStatus.AvailableSince("0.0.0")
+    @AvailableSince("0.0.0")
     protected static final boolean defaultWritable = true;
 
     /**
      * Создаёт экземпляр по умолчанию.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
      */
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.0.0")
+    @AvailableSince("0.0.0")
     public SoftError() {
         super(defaultMessage);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение.
+     * Создаёт экземпляр с переопределённым сообщением.
      *
      * @param message сообщение.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
      */
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.0.0")
+    @AvailableSince("0.0.0")
     public SoftError(final @NonNls @Nullable String message) {
         super(message);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённую причину.
+     * Создаёт экземпляр с переопределённой причиной.
      *
      * @param cause причина.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
      */
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.0.0")
+    @AvailableSince("0.0.0")
     public SoftError(final @Nullable Throwable cause) {
         super(cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение и причину.
+     * Создаёт экземпляр с переопределённым сообщением и причиной.
      *
      * @param message сообщение.
      * @param cause   причина.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
      */
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.0.0")
+    @AvailableSince("0.0.0")
     public SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
+     * Создаёт экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
      *
      * @param message     сообщение.
      * @param cause       причина.
      * @param suppression параметр подавления.
-     * @param writable    параметр записи трассировки стека.
-     *
-     * @author Bloogefest
-     * @since 0.0.0
+     * @param writable    параметр трассировки стека.
      */
     @Contract(pure = true)
-    @ApiStatus.AvailableSince("0.0.0")
-    protected SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+    @AvailableSince("0.0.0")
+    protected SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+                        final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 
