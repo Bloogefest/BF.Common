@@ -13,8 +13,6 @@ import org.jetbrains.annotations.*;
  *
  * @version 1.0
  * @apiNote Не рекомендуется для обязательного перехвата и обработки.
- * @see Validator#notEquals(Object instance, Object instance_)
- * @see Validator#notEquals(Object instance, Object instance_, String name, String name_)
  * @since 0.1.0
  */
 @ApiStatus.AvailableSince("0.1.0")
@@ -89,7 +87,8 @@ public class EqualException extends ValidationException {
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки стека.
+     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки
+     * стека.
      *
      * @param message сообщение.
      * @param cause причина.
