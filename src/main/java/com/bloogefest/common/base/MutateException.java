@@ -6,7 +6,6 @@
 
 package com.bloogefest.common.base;
 
-import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
@@ -15,8 +14,7 @@ import org.jetbrains.annotations.Nullable;
  * Тип исключения изменения, экземпляр которого не требует обработки.
  */
 @Deprecated(since = "0.3.0", forRemoval = true)
-@AvailableSince("0.3.0")
-@SuppressWarnings({"unused", "removal"})
+@SuppressWarnings("removal")
 public class MutateException extends MutableException {
 
     /**
@@ -24,8 +22,7 @@ public class MutateException extends MutableException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public MutateException() {
+        public MutateException() {
     }
 
     /**
@@ -35,8 +32,7 @@ public class MutateException extends MutableException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public MutateException(final @NonNls @Nullable String message) {
+        public MutateException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -47,8 +43,7 @@ public class MutateException extends MutableException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public MutateException(final @Nullable Throwable cause) {
+        public MutateException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -60,8 +55,7 @@ public class MutateException extends MutableException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public MutateException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+        public MutateException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -75,8 +69,7 @@ public class MutateException extends MutableException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    protected MutateException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+        protected MutateException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                               final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

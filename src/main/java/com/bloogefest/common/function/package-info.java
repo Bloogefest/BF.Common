@@ -7,7 +7,5 @@
 /**
  * Содержит функциональные инструменты.
  */
-@AvailableSince("0.0.0")
 package com.bloogefest.common.function;
 
-import org.jetbrains.annotations.ApiStatus.AvailableSince;

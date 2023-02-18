@@ -8,7 +8,6 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -16,9 +15,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Представление обратно вызываемого.
  */
-@AvailableSince("0.2.0")
 @FunctionalInterface
-@SuppressWarnings("unused")
 public interface Callback {
 
     /**
@@ -27,8 +24,7 @@ public interface Callback {
      * @return Пустой экземпляр.
      */
     @Contract(value = "-> new", pure = true)
-    @AvailableSince("0.2.0")
-    static @NotNull Callback empty() {
+        static @NotNull Callback empty() {
         return () -> {
         };
     }
@@ -43,8 +39,7 @@ public interface Callback {
      * @throws NullException нулевой экземпляр.
      */
     @Contract(value = "_ -> param1", pure = true)
-    @AvailableSince("0.2.0")
-    static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
+        static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
         return Validator.notNull(callback, "callback");
     }
 
@@ -56,8 +51,7 @@ public interface Callback {
      * @return Ненулевой экземпляр.
      */
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    static @NotNull Callback auto(final @Nullable Callback callback) {
+        static @NotNull Callback auto(final @Nullable Callback callback) {
         return callback != null ? callback : empty();
     }
 
@@ -68,8 +62,7 @@ public interface Callback {
      * @since 0.2.0
      */
     @Contract(pure = true)
-    @AvailableSince("0.2.0")
-    void call() throws CallException;
+        void call() throws CallException;
 
     /**
      * Последовательно комбинирует данный экземпляр с переданным.
@@ -82,8 +75,7 @@ public interface Callback {
      * @since 0.2.0
      */
     @Contract(value = "_ -> new", pure = true)
-    @AvailableSince("0.2.0")
-    default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
+        default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
             try {

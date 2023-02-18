@@ -6,7 +6,6 @@
 
 package com.bloogefest.common.base;
 
-import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
@@ -15,8 +14,6 @@ import org.jetbrains.annotations.Nullable;
  * Тип исключения изменяемого, экземпляр которого не требует обработки.
  */
 @Deprecated(since = "0.3.0", forRemoval = true)
-@AvailableSince("0.3.0")
-@SuppressWarnings("unused")
 public class MutableException extends SoftException {
 
     /**
@@ -24,8 +21,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public MutableException() {
+        public MutableException() {
     }
 
     /**
@@ -35,8 +31,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public MutableException(final @NonNls @Nullable String message) {
+        public MutableException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -47,8 +42,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public MutableException(final @Nullable Throwable cause) {
+        public MutableException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -60,8 +54,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+        public MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -75,8 +68,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    protected MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+        protected MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

@@ -6,7 +6,6 @@
 
 package com.bloogefest.common.environment;
 
-import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.ApiStatus.Experimental;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -23,8 +22,6 @@ import org.jetbrains.annotations.Range;
  * @since 0.3.0
  */
 @Experimental
-@AvailableSince("0.3.0")
-@SuppressWarnings("unused")
 public interface Environment {
 
     /**
@@ -34,8 +31,7 @@ public interface Environment {
      * @see #exit(int)
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    int DEFAULT_EXIT_STATUS = 0;
+        int DEFAULT_EXIT_STATUS = 0;
 
     /**
      * Статус принудительного завершения работы по умолчанию.
@@ -44,8 +40,7 @@ public interface Environment {
      * @see #halt(int)
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    int DEFAULT_HALT_STATUS = 0;
+        int DEFAULT_HALT_STATUS = 0;
 
     /**
      * Возвращает экземпляр инструмента-представления среды выполнения с реализацией по умолчанию.
@@ -59,14 +54,11 @@ public interface Environment {
      * @see Environment Инструмент-представление среды выполнения.
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     static @NotNull Environment defaultInstance() {
-        @AvailableSince("0.3.0")
-        interface Internal {
+                interface Internal {
 
-            @AvailableSince("0.3.0")
-            @NotNull Environment defaultInstance = new Environment() {
+                        @NotNull Environment defaultInstance = new Environment() {
             };
 
         }
@@ -83,8 +75,7 @@ public interface Environment {
      * @since 0.3.0
      */
     @Experimental
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     default @Range(from = 1, to = Integer.MAX_VALUE) int availableCores() {
         return Runtime.getRuntime().availableProcessors();
     }
@@ -99,8 +90,7 @@ public interface Environment {
      * @since 0.3.0
      */
     @Experimental
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     default @Range(from = 0, to = Integer.MAX_VALUE) long availableMemory() {
         return Runtime.getRuntime().maxMemory();
     }
@@ -116,8 +106,7 @@ public interface Environment {
      * @since 0.3.0
      */
     @Experimental
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     default @Range(from = 0, to = Integer.MAX_VALUE) long unloadedMemory() {
         return Runtime.getRuntime().freeMemory();
     }
@@ -133,8 +122,7 @@ public interface Environment {
      * @since 0.3.0
      */
     @Experimental
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     default @Range(from = 0, to = Integer.MAX_VALUE) long loadedMemory() {
         return Runtime.getRuntime().totalMemory();
     }
@@ -145,8 +133,7 @@ public interface Environment {
      * @since 0.3.0
      */
     @Experimental
-    @AvailableSince("0.3.0")
-    @Contract
+        @Contract
     default void collectGarbage() {
         Runtime.getRuntime().gc();
     }
@@ -158,8 +145,7 @@ public interface Environment {
      * @see #DEFAULT_EXIT_STATUS  Статус завершения работы по умолчанию.
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract("-> fail")
+        @Contract("-> fail")
     default void exit() throws EnvironmentException {
         exit(DEFAULT_EXIT_STATUS);
     }
@@ -172,8 +158,7 @@ public interface Environment {
      * @throws EnvironmentException отсутствует разрешение на завершение работы.
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract("_ -> fail")
+        @Contract("_ -> fail")
     default void exit(
             final @Range(from = Integer.MIN_VALUE, to = Integer.MAX_VALUE) int code) throws EnvironmentException {
         try {
@@ -190,8 +175,7 @@ public interface Environment {
      * @see #DEFAULT_HALT_STATUS  Статус принудительного завершения работы по умолчанию.
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract("-> fail")
+        @Contract("-> fail")
     default void halt() throws EnvironmentException {
         halt(DEFAULT_HALT_STATUS);
     }
@@ -204,8 +188,7 @@ public interface Environment {
      * @throws EnvironmentException отсутствует разрешение на принудительное завершение работы.
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract("_ -> fail")
+        @Contract("_ -> fail")
     default void halt(
             final @Range(from = Integer.MIN_VALUE, to = Integer.MAX_VALUE) int code) throws EnvironmentException {
         try {

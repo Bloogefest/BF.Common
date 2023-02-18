@@ -6,7 +6,6 @@
 
 package com.bloogefest.common.function;
 
-import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
@@ -14,16 +13,13 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Тип исключения условного выражения, экземпляр которого не требует обработки.
  */
-@AvailableSince("0.1.0")
-@SuppressWarnings("unused")
 public class ConditionException extends FunctionException {
 
     /**
      * Создаёт экземпляр по умолчанию.
      */
     @Contract(pure = true)
-    @AvailableSince("0.1.0")
-    public ConditionException() {
+        public ConditionException() {
     }
 
     /**
@@ -32,8 +28,7 @@ public class ConditionException extends FunctionException {
      * @param message сообщение.
      */
     @Contract(pure = true)
-    @AvailableSince("0.1.0")
-    public ConditionException(final @NonNls @Nullable String message) {
+        public ConditionException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -43,8 +38,7 @@ public class ConditionException extends FunctionException {
      * @param cause причина.
      */
     @Contract(pure = true)
-    @AvailableSince("0.1.0")
-    public ConditionException(final @Nullable Throwable cause) {
+        public ConditionException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -55,8 +49,7 @@ public class ConditionException extends FunctionException {
      * @param cause причина.
      */
     @Contract(pure = true)
-    @AvailableSince("0.1.0")
-    public ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+        public ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -69,8 +62,7 @@ public class ConditionException extends FunctionException {
      * @param writable параметр трассировки стека.
      */
     @Contract(pure = true)
-    @AvailableSince("0.1.0")
-    protected ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+        protected ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                  final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

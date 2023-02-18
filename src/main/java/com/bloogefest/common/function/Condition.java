@@ -8,16 +8,13 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Представление условного выражения.
  */
-@AvailableSince("0.0.0")
 @FunctionalInterface
-@SuppressWarnings("unused")
 public interface Condition {
 
     /**
@@ -28,8 +25,7 @@ public interface Condition {
      * @return Константный экземпляр вычисляемого условного выражения.
      */
     @Contract(value = "_ -> new", pure = true)
-    @AvailableSince("0.1.0")
-    static @NotNull Condition constant(final boolean result) {
+        static @NotNull Condition constant(final boolean result) {
         return () -> result;
     }
 
@@ -44,8 +40,7 @@ public interface Condition {
      * условного выражения.
      */
     @Contract(value = "_ -> new", pure = true)
-    @AvailableSince("0.0.0")
-    static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
+        static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
         return Validator.notNull(condition, "condition");
     }
 
@@ -58,8 +53,7 @@ public interface Condition {
      * выражения.
      */
     @Contract(pure = true)
-    @AvailableSince("0.0.0")
-    boolean calculate() throws ConditionException;
+        boolean calculate() throws ConditionException;
 
     /**
      * Инвертирует данный экземпляр вычисляемого условного выражения.
@@ -67,8 +61,7 @@ public interface Condition {
      * @return Инвертированный экземпляр вычисляемого условного выражения.
      */
     @Contract(value = "-> new", pure = true)
-    @AvailableSince("0.0.0")
-    default @NotNull Condition invert() {
+        default @NotNull Condition invert() {
         return () -> !calculate();
     }
 
@@ -83,8 +76,7 @@ public interface Condition {
      * условного выражения.
      */
     @Contract(value = "_ -> new", pure = true)
-    @AvailableSince("0.0.0")
-    default @NotNull Condition and(final @NotNull Condition condition) throws NullException {
+        default @NotNull Condition and(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> calculate() && condition.calculate();
     }
@@ -100,8 +92,7 @@ public interface Condition {
      * условного выражения.
      */
     @Contract(value = "_ -> new", pure = true)
-    @AvailableSince("0.0.0")
-    default @NotNull Condition or(final @NotNull Condition condition) throws NullException {
+        default @NotNull Condition or(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> calculate() || condition.calculate();
     }
@@ -117,8 +108,7 @@ public interface Condition {
      * условного выражения.
      */
     @Contract(value = "_ -> new", pure = true)
-    @AvailableSince("0.0.0")
-    default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
+        default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> calculate() ^ condition.calculate();
     }

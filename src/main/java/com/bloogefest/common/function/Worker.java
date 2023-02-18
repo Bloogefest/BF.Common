@@ -8,7 +8,6 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,8 +20,6 @@ import org.jetbrains.annotations.NotNull;
  * @see WorkerException
  * @since 0.2.0
  */
-@ApiStatus.AvailableSince("0.2.0")
-@SuppressWarnings("unused")
 @FunctionalInterface
 public interface Worker<TYPE> {
 
@@ -35,8 +32,7 @@ public interface Worker<TYPE> {
      *
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(value = "-> new", pure = true)
+        @Contract(value = "-> new", pure = true)
     static <TYPE> @NotNull Worker<TYPE> empty() {
         return instance -> {
         };
@@ -53,8 +49,7 @@ public interface Worker<TYPE> {
      * типизированного экземпляра.
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(value = "_ -> param1", pure = true)
+        @Contract(value = "_ -> param1", pure = true)
     static <TYPE> @NotNull Worker<TYPE> of(final @NotNull Worker<TYPE> worker) throws NullException {
         return Validator.notNull(worker, "worker");
     }
@@ -67,8 +62,7 @@ public interface Worker<TYPE> {
      * @throws WorkerException невозможность выполнения обработки переданного типизированного экземпляра.
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     void work(final @NotNull TYPE instance) throws WorkerException;
 
     /**
@@ -84,8 +78,7 @@ public interface Worker<TYPE> {
      * типизированного экземпляра.
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(value = "_ -> new", pure = true)
+        @Contract(value = "_ -> new", pure = true)
     default @NotNull Worker<TYPE> with(final @NotNull Worker<? super TYPE> worker) throws NullException {
         Validator.notNull(worker, "worker");
         return instance -> {

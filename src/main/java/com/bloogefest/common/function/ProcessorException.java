@@ -6,7 +6,6 @@
 
 package com.bloogefest.common.function;
 
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
@@ -19,8 +18,6 @@ import org.jetbrains.annotations.Nullable;
  * @see Callback
  * @since 0.2.0
  */
-@ApiStatus.AvailableSince("0.2.0")
-@SuppressWarnings("unused")
 public class ProcessorException extends FunctionException {
 
     /**
@@ -28,8 +25,7 @@ public class ProcessorException extends FunctionException {
      *
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public ProcessorException() {
     }
 
@@ -40,8 +36,7 @@ public class ProcessorException extends FunctionException {
      *
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public ProcessorException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -53,8 +48,7 @@ public class ProcessorException extends FunctionException {
      *
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public ProcessorException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -67,8 +61,7 @@ public class ProcessorException extends FunctionException {
      *
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public ProcessorException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -84,8 +77,7 @@ public class ProcessorException extends FunctionException {
      *
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.2.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     protected ProcessorException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                  final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);

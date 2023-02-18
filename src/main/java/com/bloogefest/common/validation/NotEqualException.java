@@ -6,7 +6,10 @@
 
 package com.bloogefest.common.validation;
 
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Является мягким исключением валидации явления равенства первичного типизированного экземпляра со вторичным.
@@ -15,8 +18,6 @@ import org.jetbrains.annotations.*;
  * @apiNote Не рекомендуется для обязательного перехвата и обработки.
  * @since 0.1.0
  */
-@ApiStatus.AvailableSince("0.1.0")
-@SuppressWarnings("unused")
 public class NotEqualException extends ValidationException {
 
     /**
@@ -24,24 +25,21 @@ public class NotEqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-    @ApiStatus.AvailableSince("0.1.0")
-    protected static final @NonNls @NotNull String defaultMessage = "The primary instance should be equal to the secondary";
+        protected static final @NonNls @NotNull String defaultMessage = "The primary instance should be equal to the secondary";
 
     /**
      * Содержит шаблонное сообщение.
      *
      * @since 0.2.0
      */
-    @ApiStatus.AvailableSince("0.1.0")
-    protected static final @NonNls @NotNull String templateMessage = "The %s should be equal to the %s";
+        protected static final @NonNls @NotNull String templateMessage = "The %s should be equal to the %s";
 
     /**
      * Создаёт экземпляр по умолчанию.
      *
      * @since 0.1.0
      */
-    @ApiStatus.AvailableSince("0.1.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public NotEqualException() {
         this(defaultMessage);
     }
@@ -53,8 +51,7 @@ public class NotEqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-    @ApiStatus.AvailableSince("0.1.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public NotEqualException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -66,8 +63,7 @@ public class NotEqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-    @ApiStatus.AvailableSince("0.1.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public NotEqualException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -80,8 +76,7 @@ public class NotEqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-    @ApiStatus.AvailableSince("0.1.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public NotEqualException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -97,8 +92,7 @@ public class NotEqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-    @ApiStatus.AvailableSince("0.1.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     protected NotEqualException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                 final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);

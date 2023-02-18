@@ -7,7 +7,6 @@
 package com.bloogefest.common.environment;
 
 import com.bloogefest.common.base.SoftException;
-import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.ApiStatus.Experimental;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
@@ -19,8 +18,6 @@ import org.jetbrains.annotations.Nullable;
  * @since 0.3.0
  */
 @Experimental
-@AvailableSince("0.3.0")
-@SuppressWarnings("unused")
 public class EnvironmentException extends SoftException {
 
     /**
@@ -28,8 +25,7 @@ public class EnvironmentException extends SoftException {
      *
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public EnvironmentException() {
     }
 
@@ -40,8 +36,7 @@ public class EnvironmentException extends SoftException {
      *
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public EnvironmentException(final @Nullable String message) {
         super(message);
     }
@@ -53,8 +48,7 @@ public class EnvironmentException extends SoftException {
      *
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public EnvironmentException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -67,8 +61,7 @@ public class EnvironmentException extends SoftException {
      *
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     public EnvironmentException(final @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -84,8 +77,7 @@ public class EnvironmentException extends SoftException {
      *
      * @since 0.3.0
      */
-    @AvailableSince("0.3.0")
-    @Contract(pure = true)
+        @Contract(pure = true)
     protected EnvironmentException(final @Nullable String message, final @Nullable Throwable cause,
                                    final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);

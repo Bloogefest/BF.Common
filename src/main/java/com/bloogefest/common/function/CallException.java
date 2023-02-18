@@ -6,7 +6,6 @@
 
 package com.bloogefest.common.function;
 
-import org.jetbrains.annotations.ApiStatus.AvailableSince;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
@@ -14,16 +13,13 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Тип исключения обратного вызова, экземпляр которого не требует обработки.
  */
-@AvailableSince("0.3.0")
-@SuppressWarnings("unused")
 public class CallException extends CallbackException {
 
     /**
      * Создаёт экземпляр по умолчанию.
      */
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public CallException() {
+        public CallException() {
     }
 
     /**
@@ -32,8 +28,7 @@ public class CallException extends CallbackException {
      * @param message сообщение.
      */
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public CallException(final @NonNls @Nullable String message) {
+        public CallException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -43,8 +38,7 @@ public class CallException extends CallbackException {
      * @param cause причина.
      */
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public CallException(final @Nullable Throwable cause) {
+        public CallException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -55,8 +49,7 @@ public class CallException extends CallbackException {
      * @param cause причина.
      */
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    public CallException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+        public CallException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -69,8 +62,7 @@ public class CallException extends CallbackException {
      * @param writable параметр трассировки стека.
      */
     @Contract(pure = true)
-    @AvailableSince("0.3.0")
-    protected CallException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+        protected CallException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                             final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
