@@ -27,21 +27,21 @@ public class StrictException extends Exception {
     protected static final @NonNls @Nullable String defaultMessage = null;
 
     /**
-     * Содержит причину по умолчанию.
+     * Причина по умолчанию.
      *
      * @since 0.3.0
      */
     protected static final @Nullable Throwable defaultCause = null;
 
     /**
-     * Содержит параметр подавления по умолчанию.
+     * Параметр подавления по умолчанию.
      *
      * @since 0.3.0
      */
     protected static final boolean defaultSuppression = false;
 
     /**
-     * Содержит параметр трассировки стека по умолчанию.
+     * Параметр трассировки стека по умолчанию.
      *
      * @since 0.3.0
      */
