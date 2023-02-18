@@ -17,18 +17,46 @@ import org.jetbrains.annotations.NotNull;
 public interface SoftBoolean extends SoftPrimitive<Boolean> {
 
     /**
-     * Экземпляр обёртки логического примитива истинного значения.
+     * Экземпляр обёртки логического примитива с истинным значением.
      *
      * @since 0.3.0
      */
     SoftBoolean TRUE = new Default(true);
 
     /**
-     * Экземпляр обёртки логического примитива ложного значения.
+     * Экземпляр целочисленного примитива со значением хеш-кода истинного значения логического примитива.
+     *
+     * @since 0.3.0
+     */
+    int TRUE_HASHCODE = 1231;
+
+    /**
+     * Экземпляр строки истинного значения логического примитива.
+     *
+     * @since 0.3.0
+     */
+    String TRUE_STRING = "true";
+
+    /**
+     * Экземпляр обёртки логического примитива с ложным значением.
      *
      * @since 0.3.0
      */
     SoftBoolean FALSE = new Default(false);
+
+    /**
+     * Экземпляр целочисленного примитива со значением хеш-кода ложного значения логического примитива.
+     *
+     * @since 0.3.0
+     */
+    int FALSE_HASHCODE = 1237;
+
+    /**
+     * Экземпляр строки ложного значения логического примитива.
+     *
+     * @since 0.3.0
+     */
+    String FALSE_STRING = "false";
 
     /**
      * Выполняет запаковку экземпляра родной обёртки логического примитива.
@@ -181,6 +209,21 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
         @Contract(pure = true)
         public boolean toNative() {
             return value;
+        }
+
+        @Override
+        public boolean equals(final Object object) {
+            return this == object || object instanceof SoftBoolean wrapper && toNative() == wrapper.toNative();
+        }
+
+        @Override
+        public int hashCode() {
+            return toNative() ? TRUE_HASHCODE : FALSE_HASHCODE;
+        }
+
+        @Override
+        public String toString() {
+            return toNative() ? TRUE_STRING : FALSE_STRING;
         }
 
     }
