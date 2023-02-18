@@ -11,32 +11,46 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Тип мягкого исключения, экземпляр которого не требует обязательной обработки.
+ * Тип мягкого исключения.
+ *
+ * @apiNote Данный тип исключения оповещает о несерьёзной проблеме, без решения которой корректное выполнение кода
+ * возможно.
+ * @since 0.3.0
  */
 public class SoftException extends RuntimeException {
 
     /**
      * Содержит сообщение по умолчанию.
+     *
+     * @since 0.3.0
      */
     protected static final @NonNls @Nullable String defaultMessage = null;
 
     /**
      * Содержит причину по умолчанию.
+     *
+     * @since 0.3.0
      */
     protected static final @Nullable Throwable defaultCause = null;
 
     /**
      * Содержит параметр подавления по умолчанию.
+     *
+     * @since 0.3.0
      */
     protected static final boolean defaultSuppression = false;
 
     /**
      * Содержит параметр трассировки стека по умолчанию.
+     *
+     * @since 0.3.0
      */
     protected static final boolean defaultWritable = true;
 
     /**
      * Инициализирует экземпляр по умолчанию.
+     *
+     * @since 0.3.0
      */
     @Contract(pure = true)
     public SoftException() {
@@ -47,6 +61,8 @@ public class SoftException extends RuntimeException {
      * Инициализирует экземпляр с переопределённым сообщением.
      *
      * @param message сообщение.
+     *
+     * @since 0.3.0
      */
     @Contract(pure = true)
     public SoftException(final @NonNls @Nullable String message) {
@@ -57,6 +73,8 @@ public class SoftException extends RuntimeException {
      * Инициализирует экземпляр с переопределённой причиной.
      *
      * @param cause причина.
+     *
+     * @since 0.3.0
      */
     @Contract(pure = true)
     public SoftException(final @Nullable Throwable cause) {
@@ -68,6 +86,8 @@ public class SoftException extends RuntimeException {
      *
      * @param message сообщение.
      * @param cause причина.
+     *
+     * @since 0.3.0
      */
     @Contract(pure = true)
     public SoftException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -81,6 +101,8 @@ public class SoftException extends RuntimeException {
      * @param cause причина.
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
+     *
+     * @since 0.3.0
      */
     @Contract(pure = true)
     protected SoftException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
