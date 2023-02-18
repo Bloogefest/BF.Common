@@ -37,7 +37,7 @@ public interface Processor<TYPE, RESULT> {
      * экземпляра.
      * @since 0.2.0
      */
-        @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new", pure = true)
     static <TYPE, RESULT> @NotNull Processor<TYPE, RESULT> constant(
             final @NotNull RESULT instance) throws NullException {
         Validator.notNull(instance, "instance");
@@ -55,7 +55,7 @@ public interface Processor<TYPE, RESULT> {
      * экземпляра.
      * @since 0.2.0
      */
-        @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1", pure = true)
     static <TYPE, RESULT> @NotNull Processor<TYPE, RESULT> of(
             final @NotNull Processor<TYPE, RESULT> processor) throws NullException {
         return Validator.notNull(processor, "processor");
@@ -72,7 +72,7 @@ public interface Processor<TYPE, RESULT> {
      * типизированного экземпляра.
      * @since 0.2.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     @NotNull RESULT process(final @NotNull TYPE instance) throws WorkerException;
 
     /**
@@ -88,7 +88,7 @@ public interface Processor<TYPE, RESULT> {
      * типизированного экземпляра.
      * @since 0.2.0
      */
-        @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new", pure = true)
     default <RESULT_> @NotNull Processor<TYPE, RESULT_> with(
             final @NotNull Processor<? super RESULT, ? extends RESULT_> processor) throws NullException {
         Validator.notNull(processor, "processor");

@@ -25,21 +25,21 @@ public class EqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-        protected static final @NonNls @NotNull String defaultMessage = "The primary instance should not be equal to the secondary";
+    protected static final @NonNls @NotNull String defaultMessage = "The primary instance should not be equal to the secondary";
 
     /**
      * Содержит шаблонное сообщение.
      *
      * @since 0.2.0
      */
-        protected static final @NonNls @NotNull String templateMessage = "The %s should not be equal to the %s";
+    protected static final @NonNls @NotNull String templateMessage = "The %s should not be equal to the %s";
 
     /**
      * Создаёт экземпляр по умолчанию.
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public EqualException() {
         this(defaultMessage);
     }
@@ -51,7 +51,7 @@ public class EqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public EqualException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -63,7 +63,7 @@ public class EqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public EqualException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -76,7 +76,7 @@ public class EqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public EqualException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -92,7 +92,7 @@ public class EqualException extends ValidationException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     protected EqualException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                              final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);

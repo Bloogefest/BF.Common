@@ -24,7 +24,7 @@ public interface Callback {
      * @return Пустой экземпляр.
      */
     @Contract(value = "-> new", pure = true)
-        static @NotNull Callback empty() {
+    static @NotNull Callback empty() {
         return () -> {
         };
     }
@@ -39,7 +39,7 @@ public interface Callback {
      * @throws NullException нулевой экземпляр.
      */
     @Contract(value = "_ -> param1", pure = true)
-        static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
+    static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
         return Validator.notNull(callback, "callback");
     }
 
@@ -51,7 +51,7 @@ public interface Callback {
      * @return Ненулевой экземпляр.
      */
     @Contract(pure = true)
-        static @NotNull Callback auto(final @Nullable Callback callback) {
+    static @NotNull Callback auto(final @Nullable Callback callback) {
         return callback != null ? callback : empty();
     }
 
@@ -62,7 +62,7 @@ public interface Callback {
      * @since 0.2.0
      */
     @Contract(pure = true)
-        void call() throws CallException;
+    void call() throws CallException;
 
     /**
      * Последовательно комбинирует данный экземпляр с переданным.
@@ -75,7 +75,7 @@ public interface Callback {
      * @since 0.2.0
      */
     @Contract(value = "_ -> new", pure = true)
-        default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
+    default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
             try {

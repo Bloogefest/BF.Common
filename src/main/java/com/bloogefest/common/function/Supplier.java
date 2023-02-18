@@ -36,7 +36,7 @@ public interface Supplier<TYPE> {
      * экземпляра.
      * @since 0.1.0
      */
-        @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new", pure = true)
     static <TYPE> @NotNull Supplier<TYPE> constant(final @NotNull TYPE instance) throws NullException {
         Validator.notNull(instance, "instance");
         return () -> instance;
@@ -53,7 +53,7 @@ public interface Supplier<TYPE> {
      * типизированного экземпляра.
      * @since 0.0.0
      */
-        @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1", pure = true)
     static <TYPE> @NotNull Supplier<TYPE> of(final @NotNull Supplier<TYPE> supplier) throws NullException {
         return Validator.notNull(supplier, "supplier");
     }
@@ -66,7 +66,7 @@ public interface Supplier<TYPE> {
      * @throws SupplierException невозможность выполнения поставки типизированного экземпляра.
      * @since 0.0.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     @NotNull TYPE supply() throws SupplierException;
 
 }

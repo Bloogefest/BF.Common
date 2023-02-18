@@ -21,7 +21,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-        public MutableException() {
+    public MutableException() {
     }
 
     /**
@@ -31,7 +31,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-        public MutableException(final @NonNls @Nullable String message) {
+    public MutableException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -42,7 +42,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-        public MutableException(final @Nullable Throwable cause) {
+    public MutableException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -54,7 +54,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-        public MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    public MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -68,7 +68,7 @@ public class MutableException extends SoftException {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-        protected MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+    protected MutableException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

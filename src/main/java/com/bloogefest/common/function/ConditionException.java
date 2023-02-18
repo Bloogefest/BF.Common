@@ -19,7 +19,7 @@ public class ConditionException extends FunctionException {
      * Создаёт экземпляр по умолчанию.
      */
     @Contract(pure = true)
-        public ConditionException() {
+    public ConditionException() {
     }
 
     /**
@@ -28,7 +28,7 @@ public class ConditionException extends FunctionException {
      * @param message сообщение.
      */
     @Contract(pure = true)
-        public ConditionException(final @NonNls @Nullable String message) {
+    public ConditionException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -38,7 +38,7 @@ public class ConditionException extends FunctionException {
      * @param cause причина.
      */
     @Contract(pure = true)
-        public ConditionException(final @Nullable Throwable cause) {
+    public ConditionException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -49,7 +49,7 @@ public class ConditionException extends FunctionException {
      * @param cause причина.
      */
     @Contract(pure = true)
-        public ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    public ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -62,7 +62,7 @@ public class ConditionException extends FunctionException {
      * @param writable параметр трассировки стека.
      */
     @Contract(pure = true)
-        protected ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+    protected ConditionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                  final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

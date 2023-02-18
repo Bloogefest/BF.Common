@@ -20,7 +20,7 @@ public class FunctionException extends SoftException {
      * Создаёт экземпляр по умолчанию.
      */
     @Contract(pure = true)
-        public FunctionException() {
+    public FunctionException() {
     }
 
     /**
@@ -29,7 +29,7 @@ public class FunctionException extends SoftException {
      * @param message сообщение.
      */
     @Contract(pure = true)
-        public FunctionException(final @NonNls @Nullable String message) {
+    public FunctionException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -39,7 +39,7 @@ public class FunctionException extends SoftException {
      * @param cause причина.
      */
     @Contract(pure = true)
-        public FunctionException(final @Nullable Throwable cause) {
+    public FunctionException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -50,7 +50,7 @@ public class FunctionException extends SoftException {
      * @param cause причина.
      */
     @Contract(pure = true)
-        public FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    public FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -63,7 +63,7 @@ public class FunctionException extends SoftException {
      * @param writable параметр трассировки стека.
      */
     @Contract(pure = true)
-        protected FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+    protected FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                 final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

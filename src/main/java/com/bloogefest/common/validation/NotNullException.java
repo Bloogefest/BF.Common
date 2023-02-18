@@ -25,21 +25,21 @@ public class NotNullException extends ValidationException {
      *
      * @since 0.1.0
      */
-        protected static final @NonNls @NotNull String defaultMessage = "The instance should be null";
+    protected static final @NonNls @NotNull String defaultMessage = "The instance should be null";
 
     /**
      * Содержит шаблонное сообщение.
      *
      * @since 0.2.0
      */
-        protected static final @NonNls @NotNull String templateMessage = "The %s should be null";
+    protected static final @NonNls @NotNull String templateMessage = "The %s should be null";
 
     /**
      * Создаёт экземпляр по умолчанию.
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public NotNullException() {
         this(defaultMessage);
     }
@@ -51,7 +51,7 @@ public class NotNullException extends ValidationException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public NotNullException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -63,7 +63,7 @@ public class NotNullException extends ValidationException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public NotNullException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -76,7 +76,7 @@ public class NotNullException extends ValidationException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public NotNullException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -92,7 +92,7 @@ public class NotNullException extends ValidationException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     protected NotNullException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);

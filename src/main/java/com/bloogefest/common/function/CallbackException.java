@@ -19,7 +19,7 @@ public class CallbackException extends FunctionException {
      * Создаёт экземпляр по умолчанию.
      */
     @Contract(pure = true)
-        public CallbackException() {
+    public CallbackException() {
     }
 
     /**
@@ -28,7 +28,7 @@ public class CallbackException extends FunctionException {
      * @param message сообщение.
      */
     @Contract(pure = true)
-        public CallbackException(final @NonNls @Nullable String message) {
+    public CallbackException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -38,7 +38,7 @@ public class CallbackException extends FunctionException {
      * @param cause причина.
      */
     @Contract(pure = true)
-        public CallbackException(final @Nullable Throwable cause) {
+    public CallbackException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -49,7 +49,7 @@ public class CallbackException extends FunctionException {
      * @param cause причина.
      */
     @Contract(pure = true)
-        public CallbackException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    public CallbackException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -62,7 +62,7 @@ public class CallbackException extends FunctionException {
      * @param writable параметр трассировки стека.
      */
     @Contract(pure = true)
-        protected CallbackException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+    protected CallbackException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                 final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

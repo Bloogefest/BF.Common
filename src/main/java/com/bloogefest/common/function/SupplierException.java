@@ -25,7 +25,7 @@ public class SupplierException extends FunctionException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public SupplierException() {
     }
 
@@ -36,7 +36,7 @@ public class SupplierException extends FunctionException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public SupplierException(final @NonNls @Nullable String message) {
         super(message);
     }
@@ -48,7 +48,7 @@ public class SupplierException extends FunctionException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public SupplierException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -61,7 +61,7 @@ public class SupplierException extends FunctionException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     public SupplierException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
@@ -77,7 +77,7 @@ public class SupplierException extends FunctionException {
      *
      * @since 0.1.0
      */
-        @Contract(pure = true)
+    @Contract(pure = true)
     protected SupplierException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
                                 final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);

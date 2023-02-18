@@ -4,12 +4,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+package com.bloogefest.common.base;
+
 /**
- * Содержит инструменты среды выполнения.
+ * Мягкий вещественный тип обёртки примитива.
  *
  * @since 0.3.0
  */
-@Experimental
-package com.bloogefest.common.environment;
+public interface SoftFloat extends SoftNumber {
 
-import org.jetbrains.annotations.ApiStatus.Experimental;
+}

@@ -19,7 +19,7 @@ public interface Mutable {
      */
     @Deprecated(since = "0.3.0", forRemoval = true)
     @Contract(pure = true)
-        default boolean mutable() {
+    default boolean mutable() {
         return true;
     }
 
