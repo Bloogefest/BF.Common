@@ -12,21 +12,28 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Тип исключения функционального, экземпляр которого не требует обработки.
+ * Тип исключения функционального интерфейса.
+ *
+ * @since 0.0.0
  */
 public class FunctionException extends SoftException {
 
     /**
-     * Создаёт экземпляр по умолчанию.
+     * Инициализирует экземпляр по умолчанию.
+     *
+     * @since 0.0.0
      */
     @Contract(pure = true)
     public FunctionException() {
+        super();
     }
 
     /**
-     * Создаёт экземпляр с переопределённым сообщением.
+     * Инициализирует экземпляр с переопределённым сообщением.
      *
      * @param message сообщение.
+     *
+     * @since 0.0.0
      */
     @Contract(pure = true)
     public FunctionException(final @NonNls @Nullable String message) {
@@ -34,9 +41,11 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * Создаёт экземпляр с переопределённой причиной.
+     * Инициализирует экземпляр с переопределённой причиной.
      *
      * @param cause причина.
+     *
+     * @since 0.0.0
      */
     @Contract(pure = true)
     public FunctionException(final @Nullable Throwable cause) {
@@ -44,10 +53,12 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * Создаёт экземпляр с переопределённым сообщением и причиной.
+     * Инициализирует экземпляр с переопределённым сообщением и причиной.
      *
      * @param message сообщение.
      * @param cause причина.
+     *
+     * @since 0.0.0
      */
     @Contract(pure = true)
     public FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -55,12 +66,27 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * Создаёт экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
+     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     *
+     * @param suppression параметр подавления.
+     * @param writable параметр трассировки стека.
+     *
+     * @since 0.3.0
+     */
+    @Contract(pure = true)
+    public FunctionException(final boolean suppression, final boolean writable) {
+        super(suppression, writable);
+    }
+
+    /**
+     * Инициализирует экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
+     *
+     * @since 0.0.0
      */
     @Contract(pure = true)
     protected FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
