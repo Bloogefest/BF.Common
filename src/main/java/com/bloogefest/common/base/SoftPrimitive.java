@@ -6,14 +6,16 @@
 
 package com.bloogefest.common.base;
 
+import org.jetbrains.annotations.ApiStatus.Experimental;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Мягкий тип обёртки примитива.
+ * Интерфейс мягкой обёртки примитива.
  *
  * @since 0.3.0
  */
+@Experimental
 public interface SoftPrimitive<J> {
 
     /**
