@@ -54,7 +54,7 @@ public class SoftException extends RuntimeException {
      */
     @Contract(pure = true)
     public SoftException() {
-        super();
+        super(defaultMessage, defaultCause, defaultSuppression, defaultWritable);
     }
 
     /**
@@ -66,7 +66,7 @@ public class SoftException extends RuntimeException {
      */
     @Contract(pure = true)
     public SoftException(final @NonNls @Nullable String message) {
-        super(message);
+        super(message, defaultCause, defaultSuppression, defaultWritable);
     }
 
     /**
@@ -78,7 +78,7 @@ public class SoftException extends RuntimeException {
      */
     @Contract(pure = true)
     public SoftException(final @Nullable Throwable cause) {
-        super(cause);
+        super(defaultMessage, cause, defaultSuppression, defaultWritable);
     }
 
     /**
@@ -91,7 +91,20 @@ public class SoftException extends RuntimeException {
      */
     @Contract(pure = true)
     public SoftException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
-        super(message, cause);
+        super(message, cause, defaultSuppression, defaultWritable);
+    }
+
+    /**
+     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     *
+     * @param suppression параметр подавления.
+     * @param writable параметр трассировки стека.
+     *
+     * @since 0.3.0
+     */
+    @Contract(pure = true)
+    public SoftException(final boolean suppression, final boolean writable) {
+        super(defaultMessage, defaultCause, suppression, writable);
     }
 
     /**
