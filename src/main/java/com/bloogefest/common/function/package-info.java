@@ -8,4 +8,3 @@
  * Содержит функциональные инструменты общего назначения.
  */
 package com.bloogefest.common.function;
-
