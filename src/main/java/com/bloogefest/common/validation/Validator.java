@@ -8,6 +8,8 @@ package com.bloogefest.common.validation;
 
 import com.bloogefest.common.creation.UtilityException;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Утилитарный тип валидатора условия.
@@ -24,7 +26,8 @@ public final class Validator {
         throw new UtilityException();
     }
 
-    public static <T, E> T notNull(T o, Object... ignored) {
+    public static <T, E> @NotNull T notNull(@Nullable T o, @NotNull Object... ignored) {
+        if (o == null) throw new NullException();
         return o;
     }
 

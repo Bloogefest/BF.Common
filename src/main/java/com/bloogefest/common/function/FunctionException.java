@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Тип исключения функционального интерфейса.
+ * Класс исключения функционального интерфейса.
  *
  * @since 0.0
  */
