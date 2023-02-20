@@ -45,7 +45,7 @@ public interface Callback {
      * функционального интерфейса обратно вызываемой логики.
      * @since 2.0
      */
-    @Contract(value = "!null -> param1; null -> fail", pure = true)
+    @Contract(value = "!null -> param1; _ -> fail", pure = true)
     static @NotNull Callback of(final @Nullable Callback callback) throws NullException {
         return Validator.notNull(callback, "callback");
     }
@@ -60,7 +60,7 @@ public interface Callback {
      *
      * @since 3.0
      */
-    @Contract(value = "!null -> param1; null -> new", pure = true)
+    @Contract(value = "!null -> param1; _ -> new", pure = true)
     static @NotNull Callback auto(final @Nullable Callback callback) {
         return callback != null ? callback : empty();
     }
@@ -87,7 +87,7 @@ public interface Callback {
      * таким образом, сначала гарантированно выполняется логика данного экземпляра, а потом логика переданного.
      * @since 2.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "!null -> new; _ -> fail", pure = true)
     default @NotNull Callback with(final @Nullable Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
