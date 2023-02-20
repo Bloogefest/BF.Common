@@ -10,63 +10,62 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Является функциональным интерфейсом поставщика типизированного экземпляра.
+ * Функциональный интерфейс поставщика экземпляра.
  *
- * @param <TYPE> тип поставляемого экземпляра.
+ * @param <T> тип поставляемого экземпляра.
  *
- * @version 1.0
- * @see SupplierException
  * @since 0.0
  */
 @FunctionalInterface
-public interface Supplier<TYPE> {
+public interface Supplier<T> {
 
     /**
-     * Подтверждает ненулевое явление переданного поставляемого типизированного экземпляра. Производит константный
-     * экземпляр поставщика типизированного экземпляра.
+     * Проверяет поставляемый экземпляр и, если он ненулевой, создаёт экземпляр его поставщика, в противном случае
+     * генерирует исключение.
      *
-     * @param <TYPE> тип поставляемого экземпляра.
-     * @param instance поставляемый типизированный экземпляр.
+     * @param <T> тип поставляемого экземпляра.
+     * @param instance поставляемый экземпляр.
      *
-     * @return Константный экземпляр поставщика типизированного экземпляра.
+     * @return Экземпляр поставщика с постоянным поставляемым экземпляром.
      *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного поставляемого типизированного
-     * экземпляра.
+     * @throws NullException исключение проверки экземпляра.
      * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
-    static <TYPE> @NotNull Supplier<TYPE> constant(final @NotNull TYPE instance) throws NullException {
+    static <T> @NotNull Supplier<T> constant(final @NotNull T instance) throws NullException {
         Validator.notNull(instance, "instance");
         return () -> instance;
     }
 
     /**
-     * Подтверждает ненулевое явление переданного экземпляра поставщика типизированного экземпляра.
+     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае генерирует исключение.
      *
-     * @param supplier экземпляр поставщика типизированного экземпляра.
+     * @param supplier экземпляр поставщика.
      *
-     * @return Подтверждённый переданный экземпляр поставщика типизированного экземпляра.
+     * @return Экземпляр поставщика.
      *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра поставщика
-     * типизированного экземпляра.
+     * @throws NullException исключение проверки экземпляра.
+     * @apiNote Данный метод можно использовать для инициализации лямбда-выражений и приведения их к типу
+     * функционального интерфейса поставщика экземпляра.
      * @since 0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
-    static <TYPE> @NotNull Supplier<TYPE> of(final @NotNull Supplier<TYPE> supplier) throws NullException {
+    @Contract(value = "!null -> param1; null -> fail", pure = true)
+    static <T> @NotNull Supplier<T> of(final @Nullable Supplier<T> supplier) throws NullException {
         return Validator.notNull(supplier, "supplier");
     }
 
     /**
-     * Выполняет поставку типизированного экземпляра.
+     * Поставляет экземпляр.
      *
-     * @return Поставляемый типизированный экземпляр.
+     * @return Поставляемый экземпляр.
      *
-     * @throws SupplierException невозможность выполнения поставки типизированного экземпляра.
+     * @throws SupplyException исключение поставки экземпляра.
      * @since 0.0
      */
     @Contract(pure = true)
-    @NotNull TYPE supply() throws SupplierException;
+    @NotNull T supply() throws SupplyException;
 
 }
