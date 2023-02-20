@@ -13,8 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Представление обратно вызываемого.
- * Интерфейс мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
+ * Функциональный интерфейс обратно вызываемой логики.
  *
  * @since 2.0
  */
@@ -22,9 +21,11 @@ import org.jetbrains.annotations.Nullable;
 public interface Callback {
 
     /**
-     * Создаёт пустой экземпляр.
+     * Инициализирует экземпляр без логики.
      *
-     * @return Пустой экземпляр.
+     * @return Экземпляр без обратно вызываемой логики.
+     *
+     * @since 2.0
      */
     @Contract(value = "-> new", pure = true)
     static @NotNull Callback empty() {
@@ -33,52 +34,61 @@ public interface Callback {
     }
 
     /**
-     * Возвращает ненулевой экземпляр.
+     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае генерирует исключение.
      *
-     * @param callback экземпляр.
+     * @param callback экземпляр обратно вызываемой логики.
      *
-     * @return Ненулевой экземпляр.
+     * @return Экземпляр обратно вызываемой логики.
      *
-     * @throws NullException нулевой экземпляр.
+     * @throws NullException исключение проверки экземпляра.
+     * @apiNote Данный метод можно использовать для инициализации лямбда-выражений и приведения их к типу
+     * функционального интерфейса обратно вызываемой логики.
+     * @since 2.0
      */
-    @Contract(value = "_ -> param1", pure = true)
-    static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
+    @Contract(value = "!null -> param1; null -> fail", pure = true)
+    static @NotNull Callback of(final @Nullable Callback callback) throws NullException {
         return Validator.notNull(callback, "callback");
     }
 
     /**
-     * Возвращает ненулевой экземпляр.
+     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае создаёт и возвращает экземпляр без
+     * логики.
      *
-     * @param callback экземпляр.
+     * @param callback экземпляр обратно вызываемой логики.
      *
-     * @return Ненулевой экземпляр.
+     * @return Экземпляр обратно вызываемой логики.
+     *
+     * @since 3.0
      */
-    @Contract(pure = true)
+    @Contract(value = "!null -> param1; null -> new", pure = true)
     static @NotNull Callback auto(final @Nullable Callback callback) {
         return callback != null ? callback : empty();
     }
 
     /**
-     * Совершает обратный вызов.
+     * Выполняет обратно вызываемую логику.
      *
-     * @throws CallbackException исключение обратного вызова.
+     * @throws CallException исключение выполнения обратно вызываемой логики.
      * @since 2.0
      */
     @Contract(pure = true)
     void call() throws CallException;
 
     /**
-     * Последовательно комбинирует данный экземпляр с переданным.
+     * Проверяет и соединяет переданный экземпляр с данным, если он ненулевой, в противном случае генерирует
+     * исключение.
      *
-     * @param callback экземпляр.
+     * @param callback экземпляр обратно вызываемой логики.
      *
-     * @return Комбинированный экземпляр.
+     * @return Экземпляр обратно вызываемой логики.
      *
-     * @throws NullException нулевой экземпляр.
+     * @throws NullException исключение проверки экземпляра.
+     * @apiNote Данный метод соединяет переданный экземпляр с данным последовательно за счёт конструкции try-finally,
+     * таким образом, сначала гарантированно выполняется логика данного экземпляра, а потом логика переданного.
      * @since 2.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
+    default @NotNull Callback with(final @Nullable Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
             try {
