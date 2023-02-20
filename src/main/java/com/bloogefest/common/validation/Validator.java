@@ -12,7 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Утилитарный тип валидатора условия.
+ * Утилитарный класс валидатора экземпляров.
+ *
+ * @since 0.0
  */
 public final class Validator {
 
@@ -20,12 +22,16 @@ public final class Validator {
      * Запрещает инициализацию экземпляра.
      *
      * @throws UtilityException экземпляр утилитарного типа не должен быть создан.
+     * @since 0.0
      */
     @Contract(value = "-> fail", pure = true)
     private Validator() throws UtilityException {
         throw new UtilityException();
     }
 
+    /**
+     * @since 0.0
+     */
     public static <T, E> @NotNull T notNull(@Nullable T o, @NotNull Object... ignored) {
         if (o == null) throw new NullException();
         return o;
