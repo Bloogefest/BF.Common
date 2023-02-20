@@ -12,12 +12,16 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Тип исключения валидации условия.
+ * Класс исключения валидации экземпляра.
+ *
+ * @since 0.0
  */
 public class ValidationException extends SoftException {
 
     /**
      * Инициализирует экземпляр по умолчанию.
+     *
+     * @since 0.0
      */
     @Contract(pure = true)
     public ValidationException() {
@@ -28,6 +32,8 @@ public class ValidationException extends SoftException {
      * Инициализирует экземпляр с переопределённым сообщением.
      *
      * @param message сообщение.
+     *
+     * @since 0.0
      */
     @Contract(pure = true)
     public ValidationException(final @NonNls @Nullable String message) {
@@ -38,6 +44,8 @@ public class ValidationException extends SoftException {
      * Инициализирует экземпляр с переопределённой причиной.
      *
      * @param cause причина.
+     *
+     * @since 0.0
      */
     @Contract(pure = true)
     public ValidationException(final @Nullable Throwable cause) {
@@ -49,10 +57,25 @@ public class ValidationException extends SoftException {
      *
      * @param message сообщение.
      * @param cause причина.
+     *
+     * @since 0.0
      */
     @Contract(pure = true)
     public ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
+    }
+
+    /**
+     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     *
+     * @param suppression параметр подавления.
+     * @param writable параметр трассировки стека.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    public ValidationException(final boolean suppression, final boolean writable) {
+        super(suppression, writable);
     }
 
     /**
@@ -62,6 +85,8 @@ public class ValidationException extends SoftException {
      * @param cause причина.
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
+     *
+     * @since 0.0
      */
     @Contract(pure = true)
     protected ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
