@@ -33,8 +33,8 @@ public interface Supplier<T> {
      * @throws NullException исключение проверки экземпляра.
      * @since 1.0
      */
-    @Contract(value = "_ -> new", pure = true)
-    static <T> @NotNull Supplier<T> constant(final @NotNull T instance) throws NullException {
+    @Contract(value = "!null -> new; _ -> fail", pure = true)
+    static <T> @NotNull Supplier<T> constant(final @Nullable T instance) throws NullException {
         Validator.notNull(instance, "instance");
         return () -> instance;
     }
@@ -51,7 +51,7 @@ public interface Supplier<T> {
      * функционального интерфейса поставщика экземпляра.
      * @since 0.0
      */
-    @Contract(value = "!null -> param1; null -> fail", pure = true)
+    @Contract(value = "!null -> param1; _ -> fail", pure = true)
     static <T> @NotNull Supplier<T> of(final @Nullable Supplier<T> supplier) throws NullException {
         return Validator.notNull(supplier, "supplier");
     }
