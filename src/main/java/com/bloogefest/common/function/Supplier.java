@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @version 1.0
  * @see SupplierException
- * @since 0.0.0
+ * @since 0.0
  */
 @FunctionalInterface
 public interface Supplier<TYPE> {
@@ -34,7 +34,7 @@ public interface Supplier<TYPE> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного поставляемого типизированного
      * экземпляра.
-     * @since 0.1.0
+     * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
     static <TYPE> @NotNull Supplier<TYPE> constant(final @NotNull TYPE instance) throws NullException {
@@ -51,7 +51,7 @@ public interface Supplier<TYPE> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра поставщика
      * типизированного экземпляра.
-     * @since 0.0.0
+     * @since 0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <TYPE> @NotNull Supplier<TYPE> of(final @NotNull Supplier<TYPE> supplier) throws NullException {
@@ -64,7 +64,7 @@ public interface Supplier<TYPE> {
      * @return Поставляемый типизированный экземпляр.
      *
      * @throws SupplierException невозможность выполнения поставки типизированного экземпляра.
-     * @since 0.0.0
+     * @since 0.0
      */
     @Contract(pure = true)
     @NotNull TYPE supply() throws SupplierException;

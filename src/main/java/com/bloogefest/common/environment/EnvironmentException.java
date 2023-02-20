@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
  * Инструмент-исключение среды выполнения.
  *
  * @version 1.0
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public class EnvironmentException extends SoftException {
@@ -23,7 +23,7 @@ public class EnvironmentException extends SoftException {
     /**
      * Создаёт экземпляр по умолчанию.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     public EnvironmentException() {
@@ -34,7 +34,7 @@ public class EnvironmentException extends SoftException {
      *
      * @param message сообщение возникновения.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     public EnvironmentException(final @Nullable String message) {
@@ -46,7 +46,7 @@ public class EnvironmentException extends SoftException {
      *
      * @param cause причина возникновения.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     public EnvironmentException(final @Nullable Throwable cause) {
@@ -59,7 +59,7 @@ public class EnvironmentException extends SoftException {
      * @param message сообщение возникновения.
      * @param cause причина возникновения.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     public EnvironmentException(final @Nullable String message, final @Nullable Throwable cause) {
@@ -75,7 +75,7 @@ public class EnvironmentException extends SoftException {
      * @param suppression разрешение на запись подавленных исключений.
      * @param writable разрешение на запись трассировки стека.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     protected EnvironmentException(final @Nullable String message, final @Nullable Throwable cause,

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива 8-ми битного целочисленного типа.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftByte extends SoftNumber<Byte> {
@@ -25,7 +25,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftByte of(final @NotNull Byte value) {
@@ -39,7 +39,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftByte of(final byte value) {
@@ -51,7 +51,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte invert();
@@ -61,7 +61,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte increment();
@@ -71,7 +71,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte decrement();
@@ -83,7 +83,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte add(final @NotNull SoftNumber<? extends Number> operand);
@@ -95,7 +95,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte subtract(final @NotNull SoftNumber<? extends Number> operand);
@@ -107,7 +107,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte multiply(final @NotNull SoftNumber<? extends Number> operand);
@@ -119,7 +119,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte divide(final @NotNull SoftNumber<? extends Number> operand);
@@ -131,7 +131,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
@@ -143,7 +143,7 @@ public interface SoftByte extends SoftNumber<Byte> {
      *
      * @return Экземпляр мягкой обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftByte divideByModule(final @NotNull SoftNumber<? extends Number> operand);
@@ -151,7 +151,7 @@ public interface SoftByte extends SoftNumber<Byte> {
     /**
      * @return Экземпляр родной обёртки примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull Byte toJava();
@@ -159,7 +159,7 @@ public interface SoftByte extends SoftNumber<Byte> {
     /**
      * @return Экземпляр примитива 8-ми битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     byte toNative();
@@ -167,14 +167,14 @@ public interface SoftByte extends SoftNumber<Byte> {
     /**
      * Тип мягкой обёртки примитива 8-ми битного целочисленного типа по умолчанию.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     class Default implements SoftByte {
 
         /**
          * Экземпляр примитива 8-ми битного целочисленного типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         protected final byte value;
 
@@ -183,7 +183,7 @@ public interface SoftByte extends SoftNumber<Byte> {
          *
          * @param value экземпляр примитива 8-ми битного целочисленного типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         @Contract(pure = true)
         protected Default(final byte value) {

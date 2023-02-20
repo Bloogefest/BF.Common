@@ -14,6 +14,9 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Представление обратно вызываемого.
+ * Интерфейс мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
+ *
+ * @since 2.0
  */
 @FunctionalInterface
 public interface Callback {
@@ -59,7 +62,7 @@ public interface Callback {
      * Совершает обратный вызов.
      *
      * @throws CallbackException исключение обратного вызова.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(pure = true)
     void call() throws CallException;
@@ -72,7 +75,7 @@ public interface Callback {
      * @return Комбинированный экземпляр.
      *
      * @throws NullException нулевой экземпляр.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Callback with(final @NotNull Callback callback) throws NullException {

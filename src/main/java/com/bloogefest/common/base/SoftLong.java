@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива 64-х битного целочисленного типа.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftLong extends SoftNumber<Long> {
@@ -25,7 +25,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftLong of(final @NotNull Long value) {
@@ -39,7 +39,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftLong of(final long value) {
@@ -51,7 +51,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong invert();
@@ -61,7 +61,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong increment();
@@ -71,7 +71,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong decrement();
@@ -83,7 +83,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong add(final @NotNull SoftNumber<? extends Number> operand);
@@ -95,7 +95,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong subtract(final @NotNull SoftNumber<? extends Number> operand);
@@ -107,7 +107,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong multiply(final @NotNull SoftNumber<? extends Number> operand);
@@ -119,7 +119,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong divide(final @NotNull SoftNumber<? extends Number> operand);
@@ -131,7 +131,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
@@ -143,7 +143,7 @@ public interface SoftLong extends SoftNumber<Long> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftLong divideByModule(final @NotNull SoftNumber<? extends Number> operand);
@@ -151,7 +151,7 @@ public interface SoftLong extends SoftNumber<Long> {
     /**
      * @return Экземпляр родной обёртки примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull Long toJava();
@@ -159,7 +159,7 @@ public interface SoftLong extends SoftNumber<Long> {
     /**
      * @return Экземпляр примитива 64-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     long toNative();
@@ -167,14 +167,14 @@ public interface SoftLong extends SoftNumber<Long> {
     /**
      * Тип мягкой обёртки примитива 64-х битного целочисленного типа по умолчанию.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     class Default implements SoftLong {
 
         /**
          * Экземпляр примитива 64-х битного целочисленного типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         protected final long value;
 
@@ -183,7 +183,7 @@ public interface SoftLong extends SoftNumber<Long> {
          *
          * @param value экземпляр примитива 64-х битного целочисленного типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         @Contract(pure = true)
         protected Default(final long value) {

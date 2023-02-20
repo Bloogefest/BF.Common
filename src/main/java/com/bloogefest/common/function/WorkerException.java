@@ -16,14 +16,14 @@ import org.jetbrains.annotations.Nullable;
  * @version 1.0
  * @apiNote Не рекомендуется для обязательного перехвата и обработки.
  * @see Callback
- * @since 0.2.0
+ * @since 2.0
  */
 public class WorkerException extends FunctionException {
 
     /**
      * Создаёт экземпляр по умолчанию.
      *
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(pure = true)
     public WorkerException() {
@@ -34,7 +34,7 @@ public class WorkerException extends FunctionException {
      *
      * @param message сообщение.
      *
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(pure = true)
     public WorkerException(final @NonNls @Nullable String message) {
@@ -46,7 +46,7 @@ public class WorkerException extends FunctionException {
      *
      * @param cause причина.
      *
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(pure = true)
     public WorkerException(final @Nullable Throwable cause) {
@@ -59,7 +59,7 @@ public class WorkerException extends FunctionException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(pure = true)
     public WorkerException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -75,7 +75,7 @@ public class WorkerException extends FunctionException {
      * @param suppression параметр подавления.
      * @param writable параметр записи трассировки стека.
      *
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(pure = true)
     protected WorkerException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

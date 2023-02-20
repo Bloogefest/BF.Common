@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива логического типа.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftBoolean extends SoftPrimitive<Boolean> {
@@ -25,7 +25,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftBoolean of(final @NotNull Boolean value) {
@@ -39,7 +39,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftBoolean of(final boolean value) {
@@ -51,7 +51,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "-> new", pure = true)
     @NotNull SoftBoolean invert();
@@ -63,7 +63,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftBoolean and(final @NotNull SoftBoolean operand);
@@ -75,7 +75,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftBoolean xor(final @NotNull SoftBoolean operand);
@@ -87,7 +87,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftBoolean or(final @NotNull SoftBoolean operand);
@@ -95,7 +95,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     /**
      * @return Экземпляр родной обёртки примитива логического типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @Contract(pure = true)
@@ -104,7 +104,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     /**
      * @return Экземпляр примитива логического типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     boolean toNative();
@@ -112,28 +112,28 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     /**
      * Интерфейс параметров мягкой обёртки примитива логического типа с ложным значением.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     interface True {
 
         /**
          * Экземпляр мягкой обёртки примитива логического типа с истинным значением.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         SoftBoolean INSTANCE = new Default(true);
 
         /**
          * Экземпляр примитива целочисленного типа со значением хеш-кода истинного значения примитива логического типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         int HASHCODE = 1231;
 
         /**
          * Экземпляр строки истинного значения примитива логического типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         String STRING = "true";
 
@@ -142,28 +142,28 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     /**
      * Интерфейс параметров мягкой обёртки примитива логического типа с ложным значением.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     interface False {
 
         /**
          * Экземпляр обёртки примитива логического типа с ложным значением.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         SoftBoolean INSTANCE = new Default(false);
 
         /**
          * Экземпляр примитива целочисленного типа со значением хеш-кода ложного значения примитива логического типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         int HASHCODE = 1237;
 
         /**
          * Экземпляр строки ложного значения примитива логического типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         String STRING = "false";
 
@@ -172,14 +172,14 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     /**
      * Тип мягкой обёртки примитива логического типа по умолчанию.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     class Default implements SoftBoolean {
 
         /**
          * Экземпляр примитива логического типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         protected final boolean value;
 
@@ -188,7 +188,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
          *
          * @param value экземпляр примитива логического типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         @Contract(pure = true)
         protected Default(final boolean value) {

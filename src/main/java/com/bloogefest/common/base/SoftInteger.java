@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива 32-х битного целочисленного типа.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftInteger extends SoftNumber<Integer> {
@@ -25,7 +25,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftInteger of(final @NotNull Integer value) {
@@ -39,7 +39,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftInteger of(final int value) {
@@ -51,7 +51,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger invert();
@@ -61,7 +61,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger increment();
@@ -71,7 +71,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger decrement();
@@ -83,7 +83,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger add(final @NotNull SoftNumber<? extends Number> operand);
@@ -95,7 +95,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger subtract(final @NotNull SoftNumber<? extends Number> operand);
@@ -107,7 +107,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger multiply(final @NotNull SoftNumber<? extends Number> operand);
@@ -119,7 +119,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger divide(final @NotNull SoftNumber<? extends Number> operand);
@@ -131,7 +131,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
@@ -143,7 +143,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftInteger divideByModule(final @NotNull SoftNumber<? extends Number> operand);
@@ -151,7 +151,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
     /**
      * @return Экземпляр родной обёртки примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull Integer toJava();
@@ -159,7 +159,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
     /**
      * @return Экземпляр примитива 32-х битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     int toNative();
@@ -167,14 +167,14 @@ public interface SoftInteger extends SoftNumber<Integer> {
     /**
      * Тип мягкой обёртки примитива 32-х битного целочисленного типа по умолчанию.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     class Default implements SoftInteger {
 
         /**
          * Экземпляр примитива 32-х битного целочисленного типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         protected final int value;
 
@@ -183,7 +183,7 @@ public interface SoftInteger extends SoftNumber<Integer> {
          *
          * @param value экземпляр примитива 32-х битного целочисленного типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         @Contract(pure = true)
         protected Default(final int value) {

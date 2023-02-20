@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива 16-ти битного целочисленного типа.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftShort extends SoftNumber<Short> {
@@ -25,7 +25,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftShort of(final @NotNull Short value) {
@@ -39,7 +39,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftShort of(final short value) {
@@ -51,7 +51,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort invert();
@@ -61,7 +61,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort increment();
@@ -71,7 +71,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort decrement();
@@ -83,7 +83,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort add(final @NotNull SoftNumber<? extends Number> operand);
@@ -95,7 +95,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort subtract(final @NotNull SoftNumber<? extends Number> operand);
@@ -107,7 +107,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort multiply(final @NotNull SoftNumber<? extends Number> operand);
@@ -119,7 +119,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort divide(final @NotNull SoftNumber<? extends Number> operand);
@@ -131,7 +131,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
@@ -143,7 +143,7 @@ public interface SoftShort extends SoftNumber<Short> {
      *
      * @return Экземпляр мягкой обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftShort divideByModule(final @NotNull SoftNumber<? extends Number> operand);
@@ -151,7 +151,7 @@ public interface SoftShort extends SoftNumber<Short> {
     /**
      * @return Экземпляр родной обёртки примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull Short toJava();
@@ -159,7 +159,7 @@ public interface SoftShort extends SoftNumber<Short> {
     /**
      * @return Экземпляр примитива 16-ти битного целочисленного типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     short toNative();
@@ -167,14 +167,14 @@ public interface SoftShort extends SoftNumber<Short> {
     /**
      * Тип мягкой обёртки примитива 16-ти битного целочисленного типа по умолчанию.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     class Default implements SoftShort {
 
         /**
          * Экземпляр примитива 16-ти битного целочисленного типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         protected final short value;
 
@@ -183,7 +183,7 @@ public interface SoftShort extends SoftNumber<Short> {
          *
          * @param value экземпляр примитива 16-ти битного целочисленного типа.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         @Contract(pure = true)
         protected Default(final short value) {

@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.bloogefest'
-version '0.3.0'
+version '3.0'
 
 repositories {
     mavenCentral()

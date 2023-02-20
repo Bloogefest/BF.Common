@@ -1,7 +1,7 @@
 /**
  * Содержит инструменты общего назначения.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 module com.bloogefest.common {
 

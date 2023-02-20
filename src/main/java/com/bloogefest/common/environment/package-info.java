@@ -7,7 +7,7 @@
 /**
  * Содержит инструменты среды выполнения.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 package com.bloogefest.common.environment;

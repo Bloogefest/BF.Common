@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Range;
  * избежание некорректной работы.
  * @implNote Следуйте спецификации, во избежание некорректной работы.
  * @see #defaultInstance() Метод получения реализации по умолчанию.
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface Environment {
@@ -29,7 +29,7 @@ public interface Environment {
      *
      * @see #exit()
      * @see #exit(int)
-     * @since 0.3.0
+     * @since 3.0
      */
     int DEFAULT_EXIT_STATUS = 0;
 
@@ -38,7 +38,7 @@ public interface Environment {
      *
      * @see #halt()
      * @see #halt(int)
-     * @since 0.3.0
+     * @since 3.0
      */
     int DEFAULT_HALT_STATUS = 0;
 
@@ -52,7 +52,7 @@ public interface Environment {
      * @implSpec Всегда возвращайте один и тот же экземпляр инструмента-представления среды выполнения с реализацией по
      * умолчанию.
      * @see Environment Инструмент-представление среды выполнения.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull Environment defaultInstance() {
@@ -72,7 +72,7 @@ public interface Environment {
      *
      * @apiNote Рекомендуется периодически обновлять данное значение, если это может повысить производительность,
      * эффективность и т.п., ведь оно способно изменяться время от времени.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Experimental
     @Contract(pure = true)
@@ -87,7 +87,7 @@ public interface Environment {
      *
      * @apiNote Рекомендуется периодически обновлять данное значение, если это может повысить производительность,
      * эффективность и т.п., ведь оно способно изменяться время от времени.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Experimental
     @Contract(pure = true)
@@ -103,7 +103,7 @@ public interface Environment {
      *
      * @apiNote Рекомендуется периодически обновлять данное значение, если это может повысить производительность,
      * эффективность и т.п., ведь оно способно изменяться время от времени.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Experimental
     @Contract(pure = true)
@@ -119,7 +119,7 @@ public interface Environment {
      *
      * @apiNote Рекомендуется периодически обновлять данное значение, если это может повысить производительность,
      * эффективность и т.п., ведь оно способно изменяться время от времени.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Experimental
     @Contract(pure = true)
@@ -130,7 +130,7 @@ public interface Environment {
     /**
      * Запускает сборщик мусора в среде выполнения.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Experimental
     @Contract
@@ -143,7 +143,7 @@ public interface Environment {
      *
      * @throws EnvironmentException отсутствует разрешение на завершение работы.
      * @see #DEFAULT_EXIT_STATUS  Статус завершения работы по умолчанию.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract("-> fail")
     default void exit() throws EnvironmentException {
@@ -156,7 +156,7 @@ public interface Environment {
      * @param code статус завершения работы.
      *
      * @throws EnvironmentException отсутствует разрешение на завершение работы.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract("_ -> fail")
     default void exit(
@@ -173,7 +173,7 @@ public interface Environment {
      *
      * @throws EnvironmentException отсутствует разрешение на принудительное завершение работы.
      * @see #DEFAULT_HALT_STATUS  Статус принудительного завершения работы по умолчанию.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract("-> fail")
     default void halt() throws EnvironmentException {
@@ -186,7 +186,7 @@ public interface Environment {
      * @param code статус принудительного завершения работы.
      *
      * @throws EnvironmentException отсутствует разрешение на принудительное завершение работы.
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract("_ -> fail")
     default void halt(

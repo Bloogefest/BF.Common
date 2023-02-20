@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftPrimitive<J> {
@@ -21,7 +21,7 @@ public interface SoftPrimitive<J> {
     /**
      * @return Экземпляр родной обёртки примитива.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     @NotNull J toJava();

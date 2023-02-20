@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftFloat extends SoftNumber<Float> {
@@ -25,7 +25,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftFloat of(final @NotNull Float value) {
@@ -39,7 +39,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftFloat of(final float value) {
@@ -51,7 +51,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat invert();
@@ -61,7 +61,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat increment();
@@ -71,7 +71,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat decrement();
@@ -83,7 +83,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat add(final @NotNull SoftNumber<? extends Number> operand);
@@ -95,7 +95,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat subtract(final @NotNull SoftNumber<? extends Number> operand);
@@ -107,7 +107,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat multiply(final @NotNull SoftNumber<? extends Number> operand);
@@ -119,7 +119,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat divide(final @NotNull SoftNumber<? extends Number> operand);
@@ -131,7 +131,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
@@ -143,7 +143,7 @@ public interface SoftFloat extends SoftNumber<Float> {
      *
      * @return Экземпляр мягкой обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftFloat divideByModule(final @NotNull SoftNumber<? extends Number> operand);
@@ -151,7 +151,7 @@ public interface SoftFloat extends SoftNumber<Float> {
     /**
      * @return Экземпляр родной обёртки примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull Float toJava();
@@ -159,7 +159,7 @@ public interface SoftFloat extends SoftNumber<Float> {
     /**
      * @return Экземпляр примитива 32-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     float toNative();
@@ -167,14 +167,14 @@ public interface SoftFloat extends SoftNumber<Float> {
     /**
      * Тип мягкой обёртки примитива 32-х битного числового типа с плавающей точкой по умолчанию.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     class Default implements SoftFloat {
 
         /**
          * Экземпляр примитива 32-х битного числового типа с плавающей точкой.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         protected final float value;
 
@@ -184,7 +184,7 @@ public interface SoftFloat extends SoftNumber<Float> {
          *
          * @param value экземпляр примитива 32-х битного числового типа с плавающей точкой.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         @Contract(pure = true)
         protected Default(final float value) {

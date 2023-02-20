@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @version 1.0
  * @see WorkerException
- * @since 0.2.0
+ * @since 2.0
  */
 @FunctionalInterface
 public interface Worker<TYPE> {
@@ -30,7 +30,7 @@ public interface Worker<TYPE> {
      *
      * @return Пустой экземпляр обработчика типизированного экземпляра.
      *
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(value = "-> new", pure = true)
     static <TYPE> @NotNull Worker<TYPE> empty() {
@@ -47,7 +47,7 @@ public interface Worker<TYPE> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра обработчика
      * типизированного экземпляра.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <TYPE> @NotNull Worker<TYPE> of(final @NotNull Worker<TYPE> worker) throws NullException {
@@ -60,7 +60,7 @@ public interface Worker<TYPE> {
      * @param instance обрабатываемый типизированный экземпляр.
      *
      * @throws WorkerException невозможность выполнения обработки переданного типизированного экземпляра.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(pure = true)
     void work(final @NotNull TYPE instance) throws WorkerException;
@@ -76,7 +76,7 @@ public interface Worker<TYPE> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра обработчика
      * типизированного экземпляра.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Worker<TYPE> with(final @NotNull Worker<? super TYPE> worker) throws NullException {

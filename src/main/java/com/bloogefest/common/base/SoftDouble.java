@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftDouble extends SoftNumber<Double> {
@@ -25,7 +25,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftDouble of(final @NotNull Double value) {
@@ -39,7 +39,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     static @NotNull SoftDouble of(final double value) {
@@ -51,7 +51,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble invert();
@@ -61,7 +61,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble increment();
@@ -71,7 +71,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble decrement();
@@ -83,7 +83,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble add(final @NotNull SoftNumber<? extends Number> operand);
@@ -95,7 +95,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble subtract(final @NotNull SoftNumber<? extends Number> operand);
@@ -107,7 +107,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble multiply(final @NotNull SoftNumber<? extends Number> operand);
@@ -119,7 +119,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble divide(final @NotNull SoftNumber<? extends Number> operand);
@@ -131,7 +131,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
@@ -143,7 +143,7 @@ public interface SoftDouble extends SoftNumber<Double> {
      *
      * @return Экземпляр мягкой обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull SoftDouble divideByModule(final @NotNull SoftNumber<? extends Number> operand);
@@ -151,7 +151,7 @@ public interface SoftDouble extends SoftNumber<Double> {
     /**
      * @return Экземпляр родной обёртки примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @NotNull Double toJava();
@@ -159,7 +159,7 @@ public interface SoftDouble extends SoftNumber<Double> {
     /**
      * @return Экземпляр примитива 64-х битного числового типа с плавающей точкой.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(pure = true)
     double toNative();
@@ -167,14 +167,14 @@ public interface SoftDouble extends SoftNumber<Double> {
     /**
      * Тип мягкой обёртки примитива 64-х битного числового типа с плавающей точкой по умолчанию.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     class Default implements SoftDouble {
 
         /**
          * Экземпляр примитива 64-х битного числового типа с плавающей точкой.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         protected final double value;
 
@@ -184,7 +184,7 @@ public interface SoftDouble extends SoftNumber<Double> {
          *
          * @param value экземпляр примитива 64-х битного числового типа с плавающей точкой.
          *
-         * @since 0.3.0
+         * @since 3.0
          */
         @Contract(pure = true)
         protected Default(final double value) {

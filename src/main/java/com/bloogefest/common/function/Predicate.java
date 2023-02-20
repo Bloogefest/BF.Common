@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @version 1.0
  * @see PredicateException
- * @since 0.0.0
+ * @since 0.0
  */
 @FunctionalInterface
 public interface Predicate<TYPE> {
@@ -30,7 +30,7 @@ public interface Predicate<TYPE> {
      *
      * @return Константный экземпляр предиката типизированного экземпляра.
      *
-     * @since 0.1.0
+     * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
     static <TYPE> @NotNull Predicate<TYPE> constant(final boolean result) {
@@ -46,7 +46,7 @@ public interface Predicate<TYPE> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката
      * типизированного экземпляра.
-     * @since 0.0.0
+     * @since 0.0
      */
     @Contract(value = "_ -> new", pure = true)
     static <TYPE> @NotNull Predicate<TYPE> of(final @NotNull Predicate<TYPE> predicate) throws NullException {
@@ -65,7 +65,7 @@ public interface Predicate<TYPE> {
      * экземпляра.
      * @throws PredicateException невозможность выполнения обработки переданного типизированного экземпляра и вычисления
      * значения данного экземпляра предиката типизированного экземпляра.
-     * @since 0.0.0
+     * @since 0.0
      */
     @Contract(pure = true)
     boolean evaluate(final @NotNull TYPE instance) throws NullException, PredicateException;
@@ -75,7 +75,7 @@ public interface Predicate<TYPE> {
      *
      * @return Инвертированный экземпляр предиката типизированного экземпляра.
      *
-     * @since 0.0.0
+     * @since 0.0
      */
     @Contract(value = "-> new", pure = true)
     default @NotNull Predicate<TYPE> invert() {
@@ -91,7 +91,7 @@ public interface Predicate<TYPE> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката
      * типизированного экземпляра.
-     * @since 0.0.0
+     * @since 0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<TYPE> and(final @NotNull Predicate<TYPE> predicate) throws NullException {
@@ -108,7 +108,7 @@ public interface Predicate<TYPE> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката
      * типизированного экземпляра.
-     * @since 0.0.0
+     * @since 0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<TYPE> or(final @NotNull Predicate<TYPE> predicate) throws NullException {
@@ -125,7 +125,7 @@ public interface Predicate<TYPE> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката
      * типизированного экземпляра.
-     * @since 0.0.0
+     * @since 0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<TYPE> xor(final @NotNull Predicate<TYPE> predicate) throws NullException {

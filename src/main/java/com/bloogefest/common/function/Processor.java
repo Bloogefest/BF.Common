@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @version 1.0
  * @see ProcessorException
- * @since 0.2.0
+ * @since 2.0
  */
 @FunctionalInterface
 public interface Processor<TYPE, RESULT> {
@@ -35,7 +35,7 @@ public interface Processor<TYPE, RESULT> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного вычисляемого типизированного
      * экземпляра.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(value = "_ -> new", pure = true)
     static <TYPE, RESULT> @NotNull Processor<TYPE, RESULT> constant(
@@ -53,7 +53,7 @@ public interface Processor<TYPE, RESULT> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления экземпляра процессора типизированного
      * экземпляра.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <TYPE, RESULT> @NotNull Processor<TYPE, RESULT> of(
@@ -70,7 +70,7 @@ public interface Processor<TYPE, RESULT> {
      *
      * @throws ProcessorException невозможность выполнения обработки переданного типизированного экземпляра и вычисления
      * типизированного экземпляра.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(pure = true)
     @NotNull RESULT process(final @NotNull TYPE instance) throws WorkerException;
@@ -86,7 +86,7 @@ public interface Processor<TYPE, RESULT> {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра процессора
      * типизированного экземпляра.
-     * @since 0.2.0
+     * @since 2.0
      */
     @Contract(value = "_ -> new", pure = true)
     default <RESULT_> @NotNull Processor<TYPE, RESULT_> with(

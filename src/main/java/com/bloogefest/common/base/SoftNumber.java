@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Интерфейс мягкой обёртки примитива числового типа.
  *
- * @since 0.3.0
+ * @since 3.0
  */
 @Experimental
 public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
@@ -23,7 +23,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "-> new", pure = true)
     @NotNull SoftNumber<J> invert();
@@ -33,7 +33,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "-> new", pure = true)
     @NotNull SoftNumber<J> increment();
@@ -43,7 +43,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "-> new", pure = true)
     @NotNull SoftNumber<J> decrement();
@@ -55,7 +55,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftNumber<J> add(final @NotNull SoftNumber<? extends Number> operand);
@@ -67,7 +67,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftNumber<J> subtract(final @NotNull SoftNumber<? extends Number> operand);
@@ -79,7 +79,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftNumber<J> multiply(final @NotNull SoftNumber<? extends Number> operand);
@@ -91,7 +91,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftNumber<J> divide(final @NotNull SoftNumber<? extends Number> operand);
@@ -103,7 +103,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftNumber<J> divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
@@ -115,7 +115,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull SoftNumber<J> divideByModule(final @NotNull SoftNumber<? extends Number> operand);
@@ -123,7 +123,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     /**
      * @return Экземпляр родной обёртки примитива.
      *
-     * @since 0.3.0
+     * @since 3.0
      */
     @Override
     @Contract(pure = true)

@@ -7,6 +7,6 @@
 /**
  * Содержит базовые инструменты общего назначения.
  *
- * @since 0.1.1
+ * @since 1.1
  */
 package com.bloogefest.common.base;

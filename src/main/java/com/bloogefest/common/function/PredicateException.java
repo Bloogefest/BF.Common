@@ -16,14 +16,14 @@ import org.jetbrains.annotations.Nullable;
  * @version 1.0
  * @apiNote Не рекомендуется для обязательного перехвата и обработки.
  * @see Predicate
- * @since 0.1.0
+ * @since 1.0
  */
 public class PredicateException extends FunctionException {
 
     /**
      * Создаёт экземпляр по умолчанию.
      *
-     * @since 0.1.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public PredicateException() {
@@ -34,7 +34,7 @@ public class PredicateException extends FunctionException {
      *
      * @param message сообщение.
      *
-     * @since 0.1.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public PredicateException(final @NonNls @Nullable String message) {
@@ -46,7 +46,7 @@ public class PredicateException extends FunctionException {
      *
      * @param cause причина.
      *
-     * @since 0.1.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public PredicateException(final @Nullable Throwable cause) {
@@ -59,7 +59,7 @@ public class PredicateException extends FunctionException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 0.1.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public PredicateException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -75,7 +75,7 @@ public class PredicateException extends FunctionException {
      * @param suppression параметр подавления.
      * @param writable параметр записи трассировки стека.
      *
-     * @since 0.1.0
+     * @since 1.0
      */
     @Contract(pure = true)
     protected PredicateException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
