@@ -10,59 +10,69 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Представление условного выражения.
+ * Функциональный интерфейс логического выражения.
+ *
+ * @since 0.0
  */
 @FunctionalInterface
 public interface Condition {
 
     /**
-     * Создаёт константный экземпляр вычисляемого условного выражения.
+     * Инициализирует экземпляр логического выражения с постоянным результатом вычисления в виде экземпляра примитива
+     * логического типа.
      *
-     * @param result значение.
+     * @param value экземпляр примитива логического типа.
      *
-     * @return Константный экземпляр вычисляемого условного выражения.
+     * @return Экземпляр логического выражения с постоянным результатом вычисления.
+     *
+     * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
-    static @NotNull Condition constant(final boolean result) {
-        return () -> result;
+    static @NotNull Condition constant(final boolean value) {
+        return () -> value;
     }
 
     /**
-     * Подтверждает ненулевое явление переданного экземпляра вычисляемого условного выражения.
+     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае генерирует исключение.
      *
-     * @param condition экземпляр вычисляемого условного выражения.
+     * @param condition экземпляр логического выражения.
      *
-     * @return Подтверждённый переданный экземпляр вычисляемого условного выражения.
+     * @return Экземпляр логического выражения.
      *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра вычисляемого
-     * условного выражения.
+     * @throws NullException исключение проверки экземпляра.
+     * @apiNote Данный метод можно использовать для инициализации лямбда-выражений и приведения их к типу
+     * функционального интерфейса логического выражения.
+     * @since 0.0
      */
-    @Contract(value = "_ -> new", pure = true)
-    static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
+    @Contract(value = "!null -> param1; _ -> fail", pure = true)
+    static @NotNull Condition of(final @Nullable Condition condition) throws NullException {
         return Validator.notNull(condition, "condition");
     }
 
     /**
-     * Выполняет вычисление значения данного экземпляра вычисляемого условного выражения.
+     * Вычисляет экземпляр примитива логического типа.
      *
-     * @return Вычисляемое значение.
+     * @return Экземпляр примитива логического типа.
      *
-     * @throws ConditionException невозможность выполнения вычисления значения данного экземпляра вычисляемого условного
-     * выражения.
+     * @throws ComputeException исключение вычисления результата логического выражения.
+     * @since 3.0
      */
     @Contract(pure = true)
-    boolean calculate() throws ConditionException;
+    boolean compute() throws ComputeException;
 
     /**
-     * Инвертирует данный экземпляр вычисляемого условного выражения.
+     * Инвертирует экземпляр.
      *
-     * @return Инвертированный экземпляр вычисляемого условного выражения.
+     * @return Экземпляр логического выражения.
+     *
+     * @since 0.0
      */
     @Contract(value = "-> new", pure = true)
     default @NotNull Condition invert() {
-        return () -> !calculate();
+        return () -> !compute();
     }
 
     /**
@@ -74,27 +84,12 @@ public interface Condition {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра вычисляемого
      * условного выражения.
+     * @since 0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition and(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
-        return () -> calculate() && condition.calculate();
-    }
-
-    /**
-     * Комбинирует данный экземпляр вычисляемого условного выражения мягкой дизъюнкцией с переданным.
-     *
-     * @param condition экземпляр вычисляемого условного выражения.
-     *
-     * @return Комбинированный экземпляр вычисляемого условного выражения.
-     *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра вычисляемого
-     * условного выражения.
-     */
-    @Contract(value = "_ -> new", pure = true)
-    default @NotNull Condition or(final @NotNull Condition condition) throws NullException {
-        Validator.notNull(condition, "condition");
-        return () -> calculate() || condition.calculate();
+        return () -> compute() && condition.compute();
     }
 
     /**
@@ -106,11 +101,29 @@ public interface Condition {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра вычисляемого
      * условного выражения.
+     * @since 0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
-        return () -> calculate() ^ condition.calculate();
+        return () -> compute() ^ condition.compute();
+    }
+
+    /**
+     * Комбинирует данный экземпляр вычисляемого условного выражения мягкой дизъюнкцией с переданным.
+     *
+     * @param condition экземпляр вычисляемого условного выражения.
+     *
+     * @return Комбинированный экземпляр вычисляемого условного выражения.
+     *
+     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра вычисляемого
+     * условного выражения.
+     * @since 0.0
+     */
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Condition or(final @NotNull Condition condition) throws NullException {
+        Validator.notNull(condition, "condition");
+        return () -> compute() || condition.compute();
     }
 
 }
