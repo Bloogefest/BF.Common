@@ -7,6 +7,6 @@
 /**
  * Содержит инструменты валидации общего назначения.
  *
- * @since 0.0
+ * @since 1.0
  */
 package com.bloogefest.common.validation;

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Функциональный интерфейс логического выражения.
  *
- * @since 0.0
+ * @since 1.0
  */
 @FunctionalInterface
 public interface Condition {
@@ -45,7 +45,7 @@ public interface Condition {
      * @throws NullException исключение проверки экземпляра.
      * @apiNote Данный метод можно использовать для инициализации лямбда-выражений и приведения их к типу
      * функционального интерфейса логического выражения.
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(value = "!null -> param1; _ -> fail", pure = true)
     static @NotNull Condition of(final @Nullable Condition condition) throws NullException {
@@ -68,7 +68,7 @@ public interface Condition {
      *
      * @return Экземпляр логического выражения.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(value = "-> new", pure = true)
     default @NotNull Condition invert() {
@@ -84,7 +84,7 @@ public interface Condition {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра вычисляемого
      * условного выражения.
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition and(final @NotNull Condition condition) throws NullException {
@@ -101,7 +101,7 @@ public interface Condition {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра вычисляемого
      * условного выражения.
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
@@ -118,7 +118,7 @@ public interface Condition {
      *
      * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра вычисляемого
      * условного выражения.
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition or(final @NotNull Condition condition) throws NullException {

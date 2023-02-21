@@ -7,6 +7,6 @@
 /**
  * Содержит пакеты инструментов общего назначения.
  *
- * @since 0.0
+ * @since 1.0
  */
 package com.bloogefest.common;

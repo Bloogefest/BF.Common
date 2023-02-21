@@ -14,14 +14,14 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Класс исключения функционального интерфейса.
  *
- * @since 0.0
+ * @since 1.0
  */
 public class FunctionException extends SoftException {
 
     /**
      * Инициализирует экземпляр по умолчанию.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public FunctionException() {
@@ -33,7 +33,7 @@ public class FunctionException extends SoftException {
      *
      * @param message сообщение.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public FunctionException(final @NonNls @Nullable String message) {
@@ -45,7 +45,7 @@ public class FunctionException extends SoftException {
      *
      * @param cause причина.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public FunctionException(final @Nullable Throwable cause) {
@@ -58,7 +58,7 @@ public class FunctionException extends SoftException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -86,7 +86,7 @@ public class FunctionException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     protected FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

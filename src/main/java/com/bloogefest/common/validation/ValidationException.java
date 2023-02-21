@@ -14,14 +14,14 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Класс исключения валидации экземпляра.
  *
- * @since 0.0
+ * @since 1.0
  */
 public class ValidationException extends SoftException {
 
     /**
      * Инициализирует экземпляр по умолчанию.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public ValidationException() {
@@ -33,7 +33,7 @@ public class ValidationException extends SoftException {
      *
      * @param message сообщение.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public ValidationException(final @NonNls @Nullable String message) {
@@ -45,7 +45,7 @@ public class ValidationException extends SoftException {
      *
      * @param cause причина.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public ValidationException(final @Nullable Throwable cause) {
@@ -58,7 +58,7 @@ public class ValidationException extends SoftException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     public ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -86,7 +86,7 @@ public class ValidationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     protected ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

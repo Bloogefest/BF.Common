@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @param <T> тип поставляемого экземпляра.
  *
- * @since 0.0
+ * @since 1.0
  */
 @FunctionalInterface
 public interface Supplier<T> {
@@ -49,7 +49,7 @@ public interface Supplier<T> {
      * @throws NullException исключение проверки экземпляра.
      * @apiNote Данный метод можно использовать для инициализации лямбда-выражений и приведения их к типу
      * функционального интерфейса поставщика экземпляра.
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(value = "!null -> param1; _ -> fail", pure = true)
     static <T> @NotNull Supplier<T> of(final @Nullable Supplier<T> supplier) throws NullException {
@@ -62,7 +62,7 @@ public interface Supplier<T> {
      * @return Поставляемый экземпляр.
      *
      * @throws SupplyException исключение поставки экземпляра.
-     * @since 0.0
+     * @since 1.0
      */
     @Contract(pure = true)
     @NotNull T supply() throws SupplyException;
