@@ -4,6 +4,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 package com.bloogefest.common.validation;
 
 import org.jetbrains.annotations.Contract;
@@ -12,40 +18,38 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Является мягким исключением валидации нулевого явления экземпляра.
+ * Класс исключения валидации ненулевого экземпляра.
  *
- * @version 1.0
- * @apiNote Не рекомендуется для обязательного перехвата и обработки.
  * @since 1.0
  */
 public class NotNullException extends ValidationException {
 
     /**
-     * Содержит сообщение по умолчанию.
+     * Сообщение по умолчанию.
      *
      * @since 1.0
      */
-    protected static final @NonNls @NotNull String defaultMessage = "The instance should be null";
+    protected static final @NonNls @NotNull String defaultMessage = "The instance must be null";
 
     /**
-     * Содержит шаблонное сообщение.
+     * Шаблонное сообщение.
      *
      * @since 2.0
      */
-    protected static final @NonNls @NotNull String templateMessage = "The %s should be null";
+    protected static final @NonNls @NotNull String templateMessage = "The %s must be null";
 
     /**
-     * Создаёт экземпляр по умолчанию.
+     * Инициализирует экземпляр по умолчанию.
      *
      * @since 1.0
      */
     @Contract(pure = true)
     public NotNullException() {
-        this(defaultMessage);
+        super(defaultMessage);
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение.
+     * Инициализирует экземпляр с переопределённым сообщением.
      *
      * @param message сообщение.
      *
@@ -57,7 +61,7 @@ public class NotNullException extends ValidationException {
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённую причину.
+     * Инициализирует экземпляр с переопределённой причиной.
      *
      * @param cause причина.
      *
@@ -69,7 +73,7 @@ public class NotNullException extends ValidationException {
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение и причину.
+     * Инициализирует экземпляр с переопределённым сообщением и причиной.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -82,13 +86,25 @@ public class NotNullException extends ValidationException {
     }
 
     /**
-     * Создаёт экземпляр, используя переопределённое сообщение, причину, параметр подавления и записи трассировки
-     * стека.
+     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     *
+     * @param suppression параметр подавления.
+     * @param writable параметр трассировки стека.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    public NotNullException(final boolean suppression, final boolean writable) {
+        super(suppression, writable);
+    }
+
+    /**
+     * Инициализирует экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
      * @param suppression параметр подавления.
-     * @param writable параметр записи трассировки стека.
+     * @param writable параметр трассировки стека.
      *
      * @since 1.0
      */
