@@ -100,4 +100,80 @@ public final class Validator {
         return instance;
     }
 
+    /**
+     * Проверяет равенство первичного и вторичного экземпляра и, если он равны, возвращает первичный экземпляр, в противном случае генерирует исключение.
+     *
+     * @param primaryInstance первичный экземпляр.
+     * @param secondaryInstance вторичный экземпляр.
+     *
+     * @return Первичный экземпляр.
+     *
+     * @throws NotEqualException исключение валидации равенства первичного и вторичного экземпляра.
+     *
+     * @since 1.0
+     */
+    @Contract(pure = true)
+    public static <T> @Nullable T equals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance) throws NotEqualException {
+        if (primaryInstance != secondaryInstance && (primaryInstance == null || primaryInstance.equals(secondaryInstance))) throw new NotEqualException();
+        return primaryInstance;
+    }
+
+    /**
+     * Проверяет равенство первичного и вторичного экземпляра и, если он равны, возвращает первичный экземпляр, в противном случае генерирует исключение.
+     *
+     * @param primaryInstance первичный экземпляр.
+     * @param secondaryInstance вторичный экземпляр.
+     * @param primaryName имя первичного экземпляр.
+     * @param secondaryName имя вторичного экземпляр.
+     *
+     * @return Первичный экземпляр.
+     *
+     * @throws NotEqualException исключение валидации равенства первичного и вторичного экземпляра.
+     *
+     * @since 1.0
+     */
+    @Contract(pure = true)
+    public static <T> @Nullable T equals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance, final @NonNls @NotNull String primaryName, final @NonNls @NotNull String secondaryName) throws NotEqualException {
+        if (primaryInstance != secondaryInstance && (primaryInstance == null || primaryInstance.equals(secondaryInstance))) throw new NotEqualException(NotEqualException.templateMessage.formatted(primaryName, secondaryName));
+        return primaryInstance;
+    }
+
+    /**
+     * Проверяет неравенство первичного и вторичного экземпляра и, если он неравны, возвращает первичный экземпляр, в противном случае генерирует исключение.
+     *
+     * @param primaryInstance первичный экземпляр.
+     * @param secondaryInstance вторичный экземпляр.
+     *
+     * @return Первичный экземпляр.
+     *
+     * @throws EqualException исключение валидации неравенства первичного и вторичного экземпляра.
+     *
+     * @since 1.0
+     */
+    @Contract(pure = true)
+    public static <T> @Nullable T notEquals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance) throws EqualException {
+        if (primaryInstance == secondaryInstance || primaryInstance != null && primaryInstance.equals(secondaryInstance)) throw new EqualException();
+        return primaryInstance;
+    }
+
+    /**
+     * Проверяет неравенство первичного и вторичного экземпляра и, если он неравны, возвращает первичный экземпляр, в противном случае генерирует исключение.
+     *
+     * @param primaryInstance первичный экземпляр.
+     * @param secondaryInstance вторичный экземпляр.
+     * @param primaryName имя первичного экземпляр.
+     * @param secondaryName имя вторичного экземпляр.
+     *
+     * @return Первичный экземпляр.
+     *
+     * @throws EqualException исключение валидации неравенства первичного и вторичного экземпляра.
+     *
+     * @since 1.0
+     */
+    @Contract(pure = true)
+    public static <T> @Nullable T notEquals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance, final @NonNls @NotNull String primaryName, final @NonNls @NotNull String secondaryName) throws EqualException {
+        if (primaryInstance == secondaryInstance || primaryInstance != null && primaryInstance.equals(secondaryInstance)) throw new EqualException(EqualException.templateMessage.formatted(primaryName, secondaryName));
+        return primaryInstance;
+    }
+
 }
