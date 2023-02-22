@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Класс исключения вычисления экземпляра.
+ * Класс исключения вычисления логического выражения.
  *
  * @since 3.0
  */
