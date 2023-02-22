@@ -39,7 +39,7 @@ public class ValidationException extends SoftException {
      */
     @Contract(pure = true)
     public ValidationException() {
-        super();
+        super(defaultMessage);
     }
 
     /**
