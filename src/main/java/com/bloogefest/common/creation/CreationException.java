@@ -12,17 +12,30 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Тип исключения создания экземпляра.
+ * Класс исключения создания экземпляра.
+ *
+ * @since 3.0
  */
 public class CreationException extends SoftException {
 
     /**
-     * Содержит сообщение по умолчанию.
+     * Сообщение по умолчанию.
+     *
+     * @since 3.0
      */
     protected static final @NonNls @Nullable String defaultMessage = "The instance cannot be created";
 
     /**
+     * Шаблонное сообщение.
+     *
+     * @since 3.0
+     */
+    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be created";
+
+    /**
      * Инициализирует экземпляр по умолчанию.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     public CreationException() {
@@ -33,6 +46,8 @@ public class CreationException extends SoftException {
      * Инициализирует экземпляр с переопределённым сообщением.
      *
      * @param message сообщение.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     public CreationException(final @NonNls @Nullable String message) {
@@ -43,6 +58,8 @@ public class CreationException extends SoftException {
      * Инициализирует экземпляр с переопределённой причиной.
      *
      * @param cause причина.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     public CreationException(final @Nullable Throwable cause) {
@@ -54,10 +71,25 @@ public class CreationException extends SoftException {
      *
      * @param message сообщение.
      * @param cause причина.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     public CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
+    }
+
+    /**
+     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     *
+     * @param suppression параметр подавления.
+     * @param writable параметр трассировки стека.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    public CreationException(final boolean suppression, final boolean writable) {
+        super(suppression, writable);
     }
 
     /**
@@ -67,6 +99,8 @@ public class CreationException extends SoftException {
      * @param cause причина.
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     protected CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
