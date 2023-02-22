@@ -6,22 +6,36 @@
 
 package com.bloogefest.common.creation;
 
+import com.bloogefest.common.base.SoftException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Тип исключения создания экземпляра утилитарного типа.
+ * Класс исключения создания экземпляра.
+ *
+ * @since 3.0
  */
-public class UtilityException extends CreationException {
+public class UtilityException extends SoftException {
 
     /**
-     * Содержит сообщение по умолчанию.
+     * Сообщение по умолчанию.
+     *
+     * @since 3.0
      */
     protected static final @NonNls @Nullable String defaultMessage = "The instance must not be created";
 
     /**
+     * Шаблонное сообщение.
+     *
+     * @since 3.0
+     */
+    protected static final @NonNls @Nullable String templateMessage = "The %s must not be created";
+
+    /**
      * Инициализирует экземпляр по умолчанию.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     public UtilityException() {
@@ -32,6 +46,8 @@ public class UtilityException extends CreationException {
      * Инициализирует экземпляр с переопределённым сообщением.
      *
      * @param message сообщение.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     public UtilityException(final @NonNls @Nullable String message) {
@@ -42,6 +58,8 @@ public class UtilityException extends CreationException {
      * Инициализирует экземпляр с переопределённой причиной.
      *
      * @param cause причина.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     public UtilityException(final @Nullable Throwable cause) {
@@ -53,10 +71,25 @@ public class UtilityException extends CreationException {
      *
      * @param message сообщение.
      * @param cause причина.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     public UtilityException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
+    }
+
+    /**
+     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     *
+     * @param suppression параметр подавления.
+     * @param writable параметр трассировки стека.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    public UtilityException(final boolean suppression, final boolean writable) {
+        super(suppression, writable);
     }
 
     /**
@@ -66,6 +99,8 @@ public class UtilityException extends CreationException {
      * @param cause причина.
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
+     *
+     * @since 3.0
      */
     @Contract(pure = true)
     protected UtilityException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
