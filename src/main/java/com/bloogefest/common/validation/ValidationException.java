@@ -19,6 +19,20 @@ import org.jetbrains.annotations.Nullable;
 public class ValidationException extends SoftException {
 
     /**
+     * Сообщение по умолчанию.
+     *
+     * @since 3.0
+     */
+    protected static final @NonNls @Nullable String defaultMessage = "The instance cannot be validated";
+
+    /**
+     * Шаблонное сообщение.
+     *
+     * @since 3.0
+     */
+    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be validated";
+
+    /**
      * Инициализирует экземпляр по умолчанию.
      *
      * @since 1.0
