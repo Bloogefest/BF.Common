@@ -29,14 +29,14 @@ public class NullException extends ValidationException {
      *
      * @since 1.0
      */
-    protected static final @NonNls @NotNull String defaultMessage = "The instance should not be null";
+    protected static final @NonNls @NotNull String defaultMessage = "The instance must not be null";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 2.0
      */
-    protected static final @NonNls @NotNull String templateMessage = "The %s should not be null";
+    protected static final @NonNls @NotNull String templateMessage = "The %s must not be null";
 
     /**
      * Инициализирует экземпляр по умолчанию.
@@ -45,7 +45,7 @@ public class NullException extends ValidationException {
      */
     @Contract(pure = true)
     public NullException() {
-        super();
+        super(defaultMessage);
     }
 
     /**
