@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Класс исключения создания экземпляра.
+ * Класс исключения создания экземпляра утилитарного типа.
  *
  * @since 3.0
  */
