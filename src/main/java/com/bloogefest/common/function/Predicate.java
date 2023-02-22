@@ -12,125 +12,116 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Является функциональным интерфейсом предиката типизированного экземпляра.
+ * Функциональный интерфейс предиката.
  *
- * @param <TYPE> тип обрабатываемого экземпляра.
+ * @param <T> оцениваемый тип.
  *
- * @version 1.0
- * @see PredicateException
  * @since 1.0
  */
 @FunctionalInterface
-public interface Predicate<TYPE> {
+public interface Predicate<T> {
 
     /**
-     * Производит константный экземпляр предиката типизированного экземпляра.
+     * Инициализирует предикат с постоянным результатом вычисления.
      *
-     * @param result вычисляемое значение.
+     * @param result постоянный результат вычисления.
      *
-     * @return Константный экземпляр предиката типизированного экземпляра.
+     * @return Предикат с постоянным результатом вычисления.
      *
      * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
-    static <TYPE> @NotNull Predicate<TYPE> constant(final boolean result) {
+    static <T> @NotNull Predicate<T> constant(final boolean result) {
         return instance -> result;
     }
 
     /**
-     * Подтверждает ненулевое явление переданного экземпляра предиката типизированного экземпляра.
+     * Проверяет и возвращает предикат, если он ненулевой, в противном случае генерирует исключение.
      *
-     * @param predicate экземпляр предиката типизированного экземпляра.
+     * @param predicate предикат.
      *
-     * @return Подтверждённый переданный экземпляр предиката типизированного экземпляра.
+     * @return Ненулевой предикат.
      *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката
-     * типизированного экземпляра.
+     * @throws NullException предикат не должен быть нулевым.
      * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
-    static <TYPE> @NotNull Predicate<TYPE> of(final @NotNull Predicate<TYPE> predicate) throws NullException {
+    static <T> @NotNull Predicate<T> of(final @NotNull Predicate<T> predicate) throws NullException {
         return Validator.notNull(predicate, "predicate");
     }
 
     /**
-     * Выполняет обработку переданного типизированного экземпляра и вычисляет значение данного экземпляра предиката
-     * типизированного экземпляра.
+     * Оценивает экземпляр.
      *
-     * @param instance обрабатываемый типизированный экземпляр.
+     * @param instance экземпляр.
      *
-     * @return Вычисляемое значение.
+     * @return Результат оценки.
      *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного обрабатываемого типизированного
-     * экземпляра.
-     * @throws PredicateException невозможность выполнения обработки переданного типизированного экземпляра и вычисления
-     * значения данного экземпляра предиката типизированного экземпляра.
+     * @throws NullException экземпляр не должен быть нулевым.
+     * @throws EvaluateException исключение оценивания экземпляра.
      * @since 1.0
      */
     @Contract(pure = true)
-    boolean evaluate(final @NotNull TYPE instance) throws NullException, PredicateException;
+    boolean evaluate(final @NotNull T instance) throws NullException, EvaluateException;
 
     /**
-     * Инвертирует данный экземпляр предиката типизированного экземпляра.
+     * Инвертирует предикат.
      *
-     * @return Инвертированный экземпляр предиката типизированного экземпляра.
+     * @return Инвертированный предикат.
      *
      * @since 1.0
      */
     @Contract(value = "-> new", pure = true)
-    default @NotNull Predicate<TYPE> invert() {
+    default @NotNull Predicate<T> invert() {
         return instance -> !evaluate(instance);
     }
 
     /**
-     * Комбинирует данный экземпляр предиката типизированного экземпляра конъюнкцией с переданным.
+     * Соединяет конъюнкцией этот и вторичный предикат.
      *
-     * @param predicate экземпляр предиката типизированного экземпляра.
+     * @param predicate вторичный предикат.
      *
-     * @return Комбинированный экземпляр предиката типизированного экземпляра.
+     * @return Соединённый конъюнкцией этот и вторичный предикат.
      *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката
-     * типизированного экземпляра.
+     * @throws NullException вторичный предикат не должен быть нулевым.
      * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Predicate<TYPE> and(final @NotNull Predicate<TYPE> predicate) throws NullException {
+    default @NotNull Predicate<T> and(final @NotNull Predicate<T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
         return instance -> evaluate(instance) && predicate.evaluate(instance);
     }
 
     /**
-     * Комбинирует данный экземпляр предиката типизированного экземпляра мягкой дизъюнкцией с переданным.
+     * Соединяет строгой дизъюнкцией этот и вторичный предикат.
      *
-     * @param predicate экземпляр предиката типизированного экземпляра.
+     * @param predicate вторичный предикат.
      *
-     * @return Комбинированный экземпляр предиката типизированного экземпляра.
+     * @return Соединённый строгой дизъюнкцией этот и вторичный предикат.
      *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката
-     * типизированного экземпляра.
+     * @throws NullException вторичный предикат не должен быть нулевым.
      * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Predicate<TYPE> or(final @NotNull Predicate<TYPE> predicate) throws NullException {
+    default @NotNull Predicate<T> xor(final @NotNull Predicate<T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
-        return instance -> evaluate(instance) || predicate.evaluate(instance);
+        return instance -> evaluate(instance) ^ predicate.evaluate(instance);
     }
 
     /**
-     * Комбинирует данный экземпляр предиката типизированного экземпляра строгой дизъюнкцией с переданным.
+     * Соединяет мягкой дизъюнкцией этот и вторичный предикат.
      *
-     * @param predicate экземпляр предиката типизированного экземпляра.
+     * @param predicate вторичный предикат.
      *
-     * @return Комбинированный экземпляр предиката типизированного экземпляра.
+     * @return Соединённый мягкой дизъюнкцией этот и вторичный предикат.
      *
-     * @throws NullException невозможность подтверждения ненулевого явления переданного экземпляра предиката
-     * типизированного экземпляра.
+     * @throws NullException вторичный предикат не должен быть нулевым.
      * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Predicate<TYPE> xor(final @NotNull Predicate<TYPE> predicate) throws NullException {
+    default @NotNull Predicate<T> or(final @NotNull Predicate<T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
-        return instance -> evaluate(instance) ^ predicate.evaluate(instance);
+        return instance -> evaluate(instance) || predicate.evaluate(instance);
     }
 
 }
