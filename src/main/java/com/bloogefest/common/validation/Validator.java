@@ -19,9 +19,9 @@ import org.jetbrains.annotations.Nullable;
 public final class Validator {
 
     /**
-     * Запрещает инициализацию экземпляра.
+     * Генерирует исключение.
      *
-     * @throws UtilityException экземпляр утилитарного типа не должен быть создан.
+     * @throws UtilityException исключение создания экземпляра утилитарного типа.
      * @since 1.0
      */
     @Contract(value = "-> fail", pure = true)
