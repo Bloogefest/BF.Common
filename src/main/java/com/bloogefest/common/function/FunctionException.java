@@ -12,24 +12,38 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Класс исключения функционального интерфейса.
+ * Исключение функции.
  *
  * @since 1.0
  */
 public class FunctionException extends SoftException {
 
     /**
-     * Инициализирует экземпляр по умолчанию.
+     * Сообщение по умолчанию.
+     *
+     * @since 3.0
+     */
+    protected static final @NonNls @Nullable String defaultMessage = "The function cannot be executed";
+
+    /**
+     * Шаблонное сообщение.
+     *
+     * @since 3.0
+     */
+    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be executed";
+
+    /**
+     * Инициализирует исключение по умолчанию.
      *
      * @since 1.0
      */
     @Contract(pure = true)
     public FunctionException() {
-        super();
+        super(defaultMessage);
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением.
+     * Инициализирует исключение с переопределённым сообщением.
      *
      * @param message сообщение.
      *
@@ -41,7 +55,7 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённой причиной.
+     * Инициализирует исключение с переопределённой причиной.
      *
      * @param cause причина.
      *
@@ -53,7 +67,7 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением и причиной.
+     * Инициализирует исключение с переопределённым сообщением и причиной.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -66,7 +80,7 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     * Инициализирует исключение с переопределённым параметром подавления и трассировки стека.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
@@ -79,7 +93,7 @@ public class FunctionException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
+     * Инициализирует исключение с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
