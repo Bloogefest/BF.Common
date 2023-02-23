@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Класс исключения валидации неравенства первичного и вторичного экземпляра.
+ * Исключение валидации неравенства первичного и вторичного объекта.
  *
  * @since 1.0
  */
@@ -29,7 +29,7 @@ public class EqualException extends ValidationException {
      *
      * @since 1.0
      */
-    protected static final @NonNls @NotNull String defaultMessage = "The primary instance must not be equal to the secondary instance";
+    protected static final @NonNls @NotNull String defaultMessage = "The primary object must not be equal to the secondary object";
 
     /**
      * Шаблонное сообщение.
@@ -39,7 +39,7 @@ public class EqualException extends ValidationException {
     protected static final @NonNls @NotNull String templateMessage = "The %s must not be equal to the %s";
 
     /**
-     * Инициализирует экземпляр по умолчанию.
+     * Инициализирует исключение по умолчанию.
      *
      * @since 1.0
      */
@@ -49,7 +49,7 @@ public class EqualException extends ValidationException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением.
+     * Инициализирует исключение с переопределённым сообщением.
      *
      * @param message сообщение.
      *
@@ -61,7 +61,7 @@ public class EqualException extends ValidationException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённой причиной.
+     * Инициализирует исключение с переопределённой причиной.
      *
      * @param cause причина.
      *
@@ -73,7 +73,7 @@ public class EqualException extends ValidationException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением и причиной.
+     * Инициализирует исключение с переопределённым сообщением и причиной.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -86,7 +86,7 @@ public class EqualException extends ValidationException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     * Инициализирует исключение с переопределённым параметром подавления и трассировки стека.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
@@ -99,7 +99,7 @@ public class EqualException extends ValidationException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
+     * Инициализирует исключение с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
