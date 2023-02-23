@@ -23,24 +23,38 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Класс исключения анализа экземпляра.
+ * Исключение анализа объекта.
  *
  * @since 3.0
  */
 public class AnalyzeException extends FunctionException {
 
     /**
-     * Инициализирует экземпляр по умолчанию.
+     * Сообщение по умолчанию.
+     *
+     * @since 3.0
+     */
+    protected static final @NonNls @Nullable String defaultMessage = "The object cannot be analyzed";
+
+    /**
+     * Шаблонное сообщение.
+     *
+     * @since 3.0
+     */
+    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be analyzed";
+
+    /**
+     * Инициализирует исключение по умолчанию.
      *
      * @since 3.0
      */
     @Contract(pure = true)
     public AnalyzeException() {
-        super();
+        super(defaultMessage);
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением.
+     * Инициализирует исключение с переопределённым сообщением.
      *
      * @param message сообщение.
      *
@@ -52,7 +66,7 @@ public class AnalyzeException extends FunctionException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённой причиной.
+     * Инициализирует исключение с переопределённой причиной.
      *
      * @param cause причина.
      *
@@ -64,7 +78,7 @@ public class AnalyzeException extends FunctionException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением и причиной.
+     * Инициализирует исключение с переопределённым сообщением и причиной.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -77,7 +91,7 @@ public class AnalyzeException extends FunctionException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     * Инициализирует исключение с переопределённым параметром подавления и трассировки стека.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
@@ -90,7 +104,7 @@ public class AnalyzeException extends FunctionException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
+     * Инициализирует исключение с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
