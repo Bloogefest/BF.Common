@@ -6,24 +6,23 @@
 
 package com.bloogefest.common.creation;
 
-import com.bloogefest.common.base.SoftException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Класс исключения создания экземпляра утилитарного типа.
+ * Исключение создания объекта утилитарного типа.
  *
  * @since 3.0
  */
-public class UtilityException extends SoftException {
+public class UtilityException extends CreationException {
 
     /**
      * Сообщение по умолчанию.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The instance must not be created";
+    protected static final @NonNls @Nullable String defaultMessage = "The utility object must not be created";
 
     /**
      * Шаблонное сообщение.
@@ -33,7 +32,7 @@ public class UtilityException extends SoftException {
     protected static final @NonNls @Nullable String templateMessage = "The %s must not be created";
 
     /**
-     * Инициализирует экземпляр по умолчанию.
+     * Инициализирует исключение по умолчанию.
      *
      * @since 3.0
      */
@@ -43,7 +42,7 @@ public class UtilityException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением.
+     * Инициализирует исключение с переопределённым сообщением.
      *
      * @param message сообщение.
      *
@@ -55,7 +54,7 @@ public class UtilityException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённой причиной.
+     * Инициализирует исключение с переопределённой причиной.
      *
      * @param cause причина.
      *
@@ -67,7 +66,7 @@ public class UtilityException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением и причиной.
+     * Инициализирует исключение с переопределённым сообщением и причиной.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -80,7 +79,7 @@ public class UtilityException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым параметром подавления и трассировки стека.
+     * Инициализирует исключение с переопределённым параметром подавления и трассировки стека.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
@@ -93,7 +92,7 @@ public class UtilityException extends SoftException {
     }
 
     /**
-     * Инициализирует экземпляр с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
+     * Инициализирует исключение с переопределённым сообщением, причиной, параметром подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
