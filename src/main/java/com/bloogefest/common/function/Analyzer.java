@@ -62,7 +62,7 @@ public interface Analyzer<T> {
     }
 
     /**
-     * Проверяет и возвращает анализатор, если он ненулевой, в противном случае генерирует исключение.
+     * Проверяет анализатор и, если он ненулевой, возвращает его, в противном случае генерирует исключение.
      *
      * @param analyzer анализатор.
      *
@@ -75,6 +75,21 @@ public interface Analyzer<T> {
     @Contract(value = "!null -> param1; _ -> fail", pure = true)
     static <T> @NotNull Analyzer<T> of(final @Nullable Analyzer<T> analyzer) throws NullException {
         return Validator.notNull(analyzer, "analyzer");
+    }
+
+    /**
+     * Проверяет анализатор и, если он ненулевой, возвращает его, в противном случае инициализирует и возвращает
+     * другой анализатор без логики.
+     *
+     * @param analyzer анализатор.
+     *
+     * @return Переданный либо другой анализатор.
+     *
+     * @since 3.0
+     */
+    @Contract(value = "!null -> param1; _ -> new", pure = true)
+    static <T> @NotNull Analyzer<T> auto(final @Nullable Analyzer<T> analyzer) {
+        return analyzer != null ? analyzer : empty();
     }
 
     /**
