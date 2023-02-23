@@ -19,9 +19,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс анализатора экземпляра.
+ * Анализатор объектов.
  *
- * @param <T> тип анализируемого экземпляра.
+ * @param <T> тип анализируемого объекта.
  *
  * @since 3.0
  */
@@ -29,51 +29,47 @@ import org.jetbrains.annotations.Nullable;
 public interface Analyzer<T> {
 
     /**
-     * Инициализирует экземпляр без логики.
+     * Инициализирует анализатор без логики.
      *
-     * @param <T> тип анализируемого экземпляра.
-     *
-     * @return Экземпляр анализатора без логики.
+     * @return Анализатор без логики.
      *
      * @since 3.0
      */
     @Contract(value = "-> new", pure = true)
     static <T> @NotNull Analyzer<T> empty() {
-        return instance -> {
-        };
+        return ignored -> {};
     }
 
     /**
-     * Проверяет переданный экземпляр анализатора и анализируемый экземпляр и, если они ненулевые, инициализирует другой
-     * экземпляр анализатора с логикой игнорирования и замены передаваемого ему экземпляра на переданный в этот метод
-     * анализируемый экземпляр, в противном случае генерирует исключение.
+     * Проверяет переданный анализатор и анализируемый объект и, если они ненулевые, инициализирует другой анализатор,
+     * метод анализа которого всегда вызывает метод анализа переданного анализатора, используя переданный анализируемый
+     * объект, в противном случае генерирует исключение.
      *
-     * @param analyzer экземпляр анализатора.
-     * @param instance анализируемый экземпляр.
+     * @param analyzer анализатор.
+     * @param object анализируемый объект.
      *
-     * @return Экземпляр анализатора с постоянным анализируемым экземпляром.
+     * @return Анализатор с постоянным анализируемым объектом.
      *
-     * @throws NullException исключение проверки экземпляра.
+     * @throws NullException исключение валидации нулевого анализатора либо анализируемого объекта.
      * @since 3.0
      */
     @Contract(value = "!null, !null -> new; _, _ -> fail", pure = true)
     static <T> @NotNull Analyzer<T> constant(final @Nullable Analyzer<T> analyzer,
-                                             final @Nullable T instance) throws NullException {
+                                             final @Nullable T object) throws NullException {
         Validator.notNull(analyzer, "analyzer");
-        Validator.notNull(instance, "instance");
-        return ignored -> analyzer.analyze(instance);
+        Validator.notNull(object, "object");
+        return ignored -> analyzer.analyze(object);
     }
 
     /**
-     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае генерирует исключение.
+     * Проверяет и возвращает анализатор, если он ненулевой, в противном случае генерирует исключение.
      *
-     * @param analyzer экземпляр анализатора.
+     * @param analyzer анализатор.
      *
-     * @return Экземпляр анализатора.
+     * @return Переданный анализатор.
      *
-     * @throws NullException исключение проверки экземпляра.
-     * @apiNote Данный метод можно использовать для инициализации лямбда-выражений и приведения их к типу
-     * функционального интерфейса анализатора экземпляра.
+     * @throws NullException исключение валидации нулевого анализатора.
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора.
      * @since 3.0
      */
     @Contract(value = "!null -> param1; _ -> fail", pure = true)
@@ -82,37 +78,38 @@ public interface Analyzer<T> {
     }
 
     /**
-     * Анализирует экземпляр.
+     * Анализирует объект.
      *
-     * @param instance анализируемый экземпляр.
+     * @param object анализируемый объект.
      *
-     * @throws AnalyzeException исключение анализа экземпляра.
+     * @throws NullException исключение валидации нулевого объекта.
+     * @throws AnalyzeException исключение анализа объекта.
      * @since 3.0
      */
     @Contract(pure = true)
-    void analyze(final @NotNull T instance) throws AnalyzeException;
+    void analyze(final @Nullable T object) throws NullException, AnalyzeException;
 
     /**
-     * Проверяет и соединяет переданный экземпляр с данным, если он ненулевой, в противном случае генерирует
-     * исключение.
+     * Проверяет переданный анализатор и, если он ненулевой, инициализирует другой анализатор, метод анализа которого
+     * последовательно соединяет метод анализа этого и переданного анализатора, используя конструкцию try-finally, в
+     * противном случае генерирует исключение.
      *
-     * @param analyzer экземпляр анализатора.
+     * @param analyzer анализатор.
      *
-     * @return Экземпляр анализатора.
+     * @return Анализатор, метод анализа которого последовательно соединяет метод анализа этого и переданного
+     * анализатора, используя конструкцию try-finally.
      *
-     * @throws NullException исключение проверки экземпляра.
-     * @apiNote Данный метод соединяет переданный экземпляр с данным последовательно за счёт конструкции try-finally,
-     * таким образом, сначала выполняется логика данного экземпляра, а потом логика переданного.
+     * @throws NullException исключение валидации нулевого анализатора.
      * @since 3.0
      */
     @Contract(value = "!null -> new; _ -> fail", pure = true)
     default @NotNull Analyzer<T> with(final @Nullable Analyzer<? super T> analyzer) throws NullException {
         Validator.notNull(analyzer, "analyzer");
-        return instance -> {
+        return object -> {
             try {
-                analyze(instance);
+                analyze(object);
             } finally {
-                analyzer.analyze(instance);
+                analyzer.analyze(object);
             }
         };
     }
