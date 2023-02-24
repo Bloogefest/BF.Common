@@ -101,7 +101,7 @@ public interface Analyzer<T> {
      * @throws AnalyzeException исключение анализа объекта.
      * @since 3.0
      */
-    @Contract(pure = true)
+    @Contract
     void analyze(final @Nullable T object) throws NullException, AnalyzeException;
 
     /**
