@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @since 3.0
  */
-public class HandlerException extends FunctionException {
+public class HandleException extends FunctionException {
 
     /**
      * Сообщение по умолчанию.
@@ -49,7 +49,7 @@ public class HandlerException extends FunctionException {
      * @since 3.0
      */
     @Contract(pure = true)
-    public HandlerException() {
+    public HandleException() {
         super(defaultMessage);
     }
 
@@ -61,7 +61,7 @@ public class HandlerException extends FunctionException {
      * @since 3.0
      */
     @Contract(pure = true)
-    public HandlerException(final @NonNls @Nullable String message) {
+    public HandleException(final @NonNls @Nullable String message) {
         super(message);
     }
 
@@ -73,7 +73,7 @@ public class HandlerException extends FunctionException {
      * @since 3.0
      */
     @Contract(pure = true)
-    public HandlerException(final @Nullable Throwable cause) {
+    public HandleException(final @Nullable Throwable cause) {
         super(cause);
     }
 
@@ -86,7 +86,7 @@ public class HandlerException extends FunctionException {
      * @since 3.0
      */
     @Contract(pure = true)
-    public HandlerException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    public HandleException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -99,7 +99,7 @@ public class HandlerException extends FunctionException {
      * @since 3.0
      */
     @Contract(pure = true)
-    public HandlerException(final boolean suppression, final boolean writable) {
+    public HandleException(final boolean suppression, final boolean writable) {
         super(suppression, writable);
     }
 
@@ -114,8 +114,8 @@ public class HandlerException extends FunctionException {
      * @since 3.0
      */
     @Contract(pure = true)
-    protected HandlerException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
-                               final boolean suppression, final boolean writable) {
+    protected HandleException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+                              final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 
