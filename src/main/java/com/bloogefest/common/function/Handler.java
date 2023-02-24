@@ -13,10 +13,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс обработчика экземпляра.
+ * Обработчик объекта.
  *
- * @param <T> тип обрабатываемого экземпляра.
- * @param <R> тип результирующего экземпляра.
+ * @param <T> тип обрабатываемого объекта.
+ * @param <R> тип результирующего объекта.
  *
  * @since 3.0
  */
@@ -24,32 +24,31 @@ import org.jetbrains.annotations.Nullable;
 public interface Handler<T, R> {
 
     /**
-     * Проверяет результирующий экземпляр и, если он ненулевой, инициализирует экземпляр обработчика, который его
-     * возвращает, в противном случае генерирует исключение.
+     * Проверяет результирующий объект и, если он ненулевой, инициализирует обработчик, метод обработки которого всегда
+     * возвращает его, в противном случае генерирует исключение.
      *
-     * @param instance результирующий экземпляр.
+     * @param object результирующий объект.
      *
-     * @return Экземпляр обработчика.
+     * @return Обработчик с постоянным результирующим объектом.
      *
-     * @throws NullException исключение проверки экземпляра.
+     * @throws NullException исключение валидации нулевого результирующего объекта.
      * @since 3.0
      */
     @Contract(value = "!null -> new; _ -> fail", pure = true)
-    static <T, R> @NotNull Handler<T, R> constant(final @Nullable R instance) throws NullException {
-        Validator.notNull(instance, "instance");
-        return ignored -> instance;
+    static <T, R> @NotNull Handler<T, R> constant(final @Nullable R object) throws NullException {
+        Validator.notNull(object, "object");
+        return ignored -> object;
     }
 
     /**
-     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае генерирует исключение.
+     * Проверяет обработчик и, если он ненулевой, возвращает его, в противном случае генерирует исключение.
      *
-     * @param handler экземпляр обработчика
+     * @param handler обработчик.
      *
-     * @return Экземпляр обработчика.
+     * @return Ненулевой обработчик.
      *
-     * @throws NullException исключение проверки экземпляра.
-     * @apiNote Данный метод можно использовать для инициализации лямбда-выражений и приведения их к типу
-     * функционального интерфейса обработчика экземпляра.
+     * @throws NullException исключение валидации нулевого обработчика.
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика.
      * @since 3.0
      */
     @Contract(value = "!null -> param1; _ -> fail", pure = true)
@@ -58,35 +57,36 @@ public interface Handler<T, R> {
     }
 
     /**
-     * Обрабатывает экземпляр.
+     * Обрабатывает объект.
      *
-     * @param instance обрабатываемый экземпляр.
+     * @param object обрабатываемый объект.
      *
-     * @return Результирующий экземпляр.
+     * @return Результирующий объект.
      *
-     * @throws HandlerException исключение обработки экземпляра.
+     * @throws NullException исключение валидации нулевого объекта.
+     * @throws HandleException исключение обработки объекта.
      * @since 3.0
      */
-    @Contract(pure = true)
-    @NotNull R handle(final @NotNull T instance) throws HandlerException;
+    @Contract
+    @NotNull R handle(final @Nullable T object) throws NullException, HandleException;
 
     /**
-     * Проверяет и соединяет переданный экземпляр с данным, если он ненулевой, в противном случае генерирует
-     * исключение.
+     * Проверяет переданный обработчик и, если он ненулевой, инициализирует другой обработчик, метод обработки которого
+     * последовательно соединяет метод обработки этого и переданного обработчика, используя конструкцию try-finally, в
+     * противном случае генерирует исключение.
      *
-     * @param handler экземпляр обработчика.
+     * @param handler объект обработчика.
      *
-     * @return Экземпляр обработчика.
+     * @return Обработчик, метод обработки которого последовательно соединяет метод обработки этого и переданного
+     * обработчика, используя конструкцию try-finally.
      *
-     * @throws NullException исключение проверки экземпляра.
-     * @apiNote Данный метод соединяет переданный экземпляр с данным последовательно за счёт конструкции try-finally,
-     * таким образом, сначала выполняется логика данного экземпляра, а потом логика переданного.
+     * @throws NullException исключение валидации нулевого обработчика.
      * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
     default <R_> @NotNull Handler<T, R_> with(final @Nullable Handler<? super R, R_> handler) throws NullException {
         Validator.notNull(handler, "handler");
-        return instance -> handler.handle(handle(instance));
+        return object -> handler.handle(handle(object));
     }
 
 }
