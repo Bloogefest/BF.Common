@@ -13,7 +13,7 @@ module com.bloogefest.common {
 
     requires transitive org.jetbrains.annotations;
 
-    exports com.bloogefest.common.base;
+    exports com.bloogefest.common;
     exports com.bloogefest.common.creation;
     exports com.bloogefest.common.function;
     exports com.bloogefest.common.validation;
