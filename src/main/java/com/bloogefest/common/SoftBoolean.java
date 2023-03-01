@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package com.bloogefest.common.base;
+package com.bloogefest.common;
 
 import org.jetbrains.annotations.ApiStatus.Experimental;
 import org.jetbrains.annotations.Contract;
@@ -19,9 +19,9 @@ import org.jetbrains.annotations.NotNull;
 public interface SoftBoolean extends SoftPrimitive<Boolean> {
 
     /**
-     * Выполняет запаковку экземпляра родной обёртки примитива логического типа.
+     * Выполняет запаковку объекта родной обёртки примитива логического типа.
      *
-     * @param value экземпляр примитива логического типа.
+     * @param value объект примитива логического типа.
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
@@ -33,9 +33,9 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     }
 
     /**
-     * Выполняет запаковку экземпляра примитива логического типа.
+     * Выполняет запаковку объекта примитива логического типа.
      *
-     * @param value экземпляр примитива логического типа.
+     * @param value объект примитива логического типа.
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
@@ -47,7 +47,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     }
 
     /**
-     * Выполняет инверсию данного экземпляра.
+     * Выполняет инверсию данного объекта.
      *
      * @return Экземпляр мягкой обёртки примитива логического типа.
      *
@@ -57,7 +57,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     @NotNull SoftBoolean invert();
 
     /**
-     * Выполняет конъюнкцию данного экземпляра и второго операнда.
+     * Выполняет конъюнкцию данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
@@ -69,7 +69,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     @NotNull SoftBoolean and(final @NotNull SoftBoolean operand);
 
     /**
-     * Выполняет строгую дизъюнкцию данного экземпляра и второго операнда.
+     * Выполняет строгую дизъюнкцию данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
@@ -81,7 +81,7 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
     @NotNull SoftBoolean xor(final @NotNull SoftBoolean operand);
 
     /**
-     * Выполняет нестрогую дизъюнкцию данного экземпляра и второго операнда.
+     * Выполняет нестрогую дизъюнкцию данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
@@ -184,9 +184,9 @@ public interface SoftBoolean extends SoftPrimitive<Boolean> {
         protected final boolean value;
 
         /**
-         * Инициализирует экземпляр с переопределённым экземпляром примитива логического типа.
+         * Инициализирует объект с переопределённым объектом примитива логического типа.
          *
-         * @param value экземпляр примитива логического типа.
+         * @param value объект примитива логического типа.
          *
          * @since 3.0
          */
