@@ -13,9 +13,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс поставщика экземпляра.
+ * Функциональный интерфейс поставщика объекта.
  *
- * @param <T> тип поставляемого экземпляра.
+ * @param <T> тип поставляемого объекта.
  *
  * @since 1.0
  */
@@ -23,32 +23,32 @@ import org.jetbrains.annotations.Nullable;
 public interface Supplier<T> {
 
     /**
-     * Проверяет поставляемый экземпляр и, если он ненулевой, инициализирует экземпляр его поставщика, в противном
-     * случае генерирует исключение.
+     * Проверяет поставляемый объект и, если он ненулевой, инициализирует объект его поставщика, в противном случае
+     * генерирует исключение.
      *
-     * @param instance поставляемый экземпляр.
+     * @param object поставляемый объект.
      *
-     * @return Экземпляр поставщика с постоянным поставляемым экземпляром.
+     * @return Экземпляр поставщика с постоянным поставляемым объектом.
      *
-     * @throws NullException исключение проверки экземпляра.
+     * @throws NullException исключение проверки объекта.
      * @since 1.0
      */
     @Contract(value = "!null -> new; _ -> fail", pure = true)
-    static <T> @NotNull Supplier<T> constant(final @Nullable T instance) throws NullException {
-        Validator.notNull(instance, "instance");
-        return () -> instance;
+    static <T> @NotNull Supplier<T> constant(final @Nullable T object) throws NullException {
+        Validator.notNull(object, "object");
+        return () -> object;
     }
 
     /**
-     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае генерирует исключение.
+     * Проверяет и возвращает объект, если он ненулевой, в противном случае генерирует исключение.
      *
-     * @param supplier экземпляр поставщика.
+     * @param supplier объект поставщика.
      *
      * @return Экземпляр поставщика.
      *
-     * @throws NullException исключение проверки экземпляра.
+     * @throws NullException исключение проверки объекта.
      * @apiNote Данный метод можно использовать для инициализации лямбда-выражений и приведения их к типу
-     * функционального интерфейса поставщика экземпляра.
+     * функционального интерфейса поставщика объекта.
      * @since 1.0
      */
     @Contract(value = "!null -> param1; _ -> fail", pure = true)
@@ -57,11 +57,11 @@ public interface Supplier<T> {
     }
 
     /**
-     * Поставляет экземпляр.
+     * Поставляет объект.
      *
-     * @return Поставляемый экземпляр.
+     * @return Поставляемый объект.
      *
-     * @throws SupplyException исключение поставки экземпляра.
+     * @throws SupplyException исключение поставки объекта.
      * @since 1.0
      */
     @Contract(pure = true)
