@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package com.bloogefest.common.base;
+package com.bloogefest.common;
 
 import org.jetbrains.annotations.ApiStatus.Experimental;
 import org.jetbrains.annotations.Contract;
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
 
     /**
-     * Выполняет инверсию данного экземпляра.
+     * Выполняет инверсию данного объекта.
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
@@ -29,7 +29,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> invert();
 
     /**
-     * Выполняет инкремент данного экземпляра.
+     * Выполняет инкремент данного объекта.
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
@@ -39,7 +39,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> increment();
 
     /**
-     * Выполняет декремент данного экземпляра.
+     * Выполняет декремент данного объекта.
      *
      * @return Экземпляр мягкой обёртки примитива числового типа.
      *
@@ -49,7 +49,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> decrement();
 
     /**
-     * Выполняет сложение данного экземпляра и второго операнда.
+     * Выполняет сложение данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
@@ -61,7 +61,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> add(final @NotNull SoftNumber<? extends Number> operand);
 
     /**
-     * Выполняет вычитание данного экземпляра и второго операнда.
+     * Выполняет вычитание данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
@@ -73,7 +73,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> subtract(final @NotNull SoftNumber<? extends Number> operand);
 
     /**
-     * Выполняет умножение данного экземпляра и второго операнда.
+     * Выполняет умножение данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
@@ -85,7 +85,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> multiply(final @NotNull SoftNumber<? extends Number> operand);
 
     /**
-     * Выполняет деление c остатком данного экземпляра и второго операнда.
+     * Выполняет деление c остатком данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
@@ -97,7 +97,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> divide(final @NotNull SoftNumber<? extends Number> operand);
 
     /**
-     * Выполняет деление без остатка данного экземпляра и второго операнда.
+     * Выполняет деление без остатка данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
@@ -109,7 +109,7 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
 
     /**
-     * Выполняет деление по модулю данного экземпляра и второго операнда.
+     * Выполняет деление по модулю данного объекта и второго операнда.
      *
      * @param operand второй операнд.
      *
