@@ -32,7 +32,7 @@ public interface Predicate<T> {
      */
     @Contract(value = "_ -> new", pure = true)
     static <T> @NotNull Predicate<T> constant(final boolean result) {
-        return instance -> result;
+        return object -> result;
     }
 
     /**
@@ -51,18 +51,18 @@ public interface Predicate<T> {
     }
 
     /**
-     * Оценивает экземпляр.
+     * Оценивает объект.
      *
-     * @param instance экземпляр.
+     * @param object объект.
      *
      * @return Результат оценки.
      *
-     * @throws NullException экземпляр не должен быть нулевым.
-     * @throws EvaluateException исключение оценивания экземпляра.
+     * @throws NullException объект не должен быть нулевым.
+     * @throws EvaluateException исключение оценивания объекта.
      * @since 1.0
      */
     @Contract(pure = true)
-    boolean evaluate(final @NotNull T instance) throws NullException, EvaluateException;
+    boolean evaluate(final @NotNull T object) throws NullException, EvaluateException;
 
     /**
      * Инвертирует предикат.
@@ -73,7 +73,7 @@ public interface Predicate<T> {
      */
     @Contract(value = "-> new", pure = true)
     default @NotNull Predicate<T> invert() {
-        return instance -> !evaluate(instance);
+        return object -> !evaluate(object);
     }
 
     /**
@@ -89,7 +89,7 @@ public interface Predicate<T> {
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> and(final @NotNull Predicate<T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
-        return instance -> evaluate(instance) && predicate.evaluate(instance);
+        return object -> evaluate(object) && predicate.evaluate(object);
     }
 
     /**
@@ -105,7 +105,7 @@ public interface Predicate<T> {
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> xor(final @NotNull Predicate<T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
-        return instance -> evaluate(instance) ^ predicate.evaluate(instance);
+        return object -> evaluate(object) ^ predicate.evaluate(object);
     }
 
     /**
@@ -121,7 +121,7 @@ public interface Predicate<T> {
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> or(final @NotNull Predicate<T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
-        return instance -> evaluate(instance) || predicate.evaluate(instance);
+        return object -> evaluate(object) || predicate.evaluate(object);
     }
 
 }
