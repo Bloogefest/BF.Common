@@ -6,7 +6,7 @@
 
 package com.bloogefest.common.validation;
 
-import com.bloogefest.common.base.SoftException;
+import com.bloogefest.common.SoftException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
