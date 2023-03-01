@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package com.bloogefest.common.base;
+package com.bloogefest.common;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
