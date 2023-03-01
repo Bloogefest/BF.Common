@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Утилитарный класс валидатора экземпляров.
+ * Утилитарный класс валидатора объектов.
  *
  * @since 1.0
  */
@@ -22,7 +22,7 @@ public final class Validator {
     /**
      * Генерирует исключение.
      *
-     * @throws UtilityException исключение создания экземпляра утилитарного типа.
+     * @throws UtilityException исключение создания объекта утилитарного типа.
      * @since 1.0
      */
     @Contract(value = "-> fail", pure = true)
@@ -31,149 +31,157 @@ public final class Validator {
     }
 
     /**
-     * Проверяет и возвращает экземпляр, если он нулевой, в противном случае генерирует исключение.
+     * Проверяет и возвращает объект, если он нулевой, в противном случае генерирует исключение.
      *
-     * @param instance экземпляр.
+     * @param object объект.
      *
-     * @return Нулевой экземпляр.
+     * @return Нулевой объект.
      *
-     * @throws NotNullException исключение валидации ненулевого экземпляра.
-     *
+     * @throws NotNullException исключение валидации ненулевого объекта.
      * @since 1.0
      */
     @Contract(value = "!null -> fail; _ -> null", pure = true)
-    public static <T> @Nullable T isNull(final @Nullable T instance) throws NotNullException {
-        if (instance != null) throw new NotNullException();
+    public static <T> @Nullable T isNull(final @Nullable T object) throws NotNullException {
+        if (object != null) throw new NotNullException();
         return null;
     }
 
     /**
-     * Проверяет и возвращает экземпляр, если он нулевой, в противном случае генерирует исключение.
+     * Проверяет и возвращает объект, если он нулевой, в противном случае генерирует исключение.
      *
-     * @param instance экземпляр.
-     * @param name имя экземпляра.
+     * @param object объект.
+     * @param name имя объекта.
      *
-     * @return Нулевой экземпляр.
+     * @return Нулевой объект.
      *
-     * @throws NotNullException исключение валидации ненулевого экземпляра.
-     *
+     * @throws NotNullException исключение валидации ненулевого объекта.
      * @since 1.0
      */
     @Contract(value = "!null, _ -> fail; _, _ -> null", pure = true)
-    public static <T> @Nullable T isNull(final @Nullable T instance, final @NonNls @NotNull String name) throws NotNullException {
-        if (instance != null) throw new NotNullException(NotNullException.templateMessage.formatted(name));
+    public static <T> @Nullable T isNull(final @Nullable T object,
+                                         final @NonNls @NotNull String name) throws NotNullException {
+        if (object != null) throw new NotNullException(NotNullException.templateMessage.formatted(name));
         return null;
     }
 
     /**
-     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае генерирует исключение.
+     * Проверяет и возвращает объект, если он ненулевой, в противном случае генерирует исключение.
      *
-     * @param instance экземпляр.
+     * @param object объект.
      *
-     * @return Ненулевой экземпляр.
+     * @return Ненулевой объект.
      *
-     * @throws NullException исключение валидации нулевого экземпляра.
-     *
+     * @throws NullException исключение валидации нулевого объекта.
      * @since 1.0
      */
     @Contract(value = "!null -> param1; null -> fail", pure = true)
-    public static <T> @NotNull T notNull(final @Nullable T instance) throws NullException {
-        if (instance == null) throw new NullException();
-        return instance;
+    public static <T> @NotNull T notNull(final @Nullable T object) throws NullException {
+        if (object == null) throw new NullException();
+        return object;
     }
 
     /**
-     * Проверяет и возвращает экземпляр, если он ненулевой, в противном случае генерирует исключение.
+     * Проверяет и возвращает объект, если он ненулевой, в противном случае генерирует исключение.
      *
-     * @param instance экземпляр.
-     * @param name имя экземпляра.
+     * @param object объект.
+     * @param name имя объекта.
      *
-     * @return Ненулевой экземпляр.
+     * @return Ненулевой объект.
      *
-     * @throws NullException исключение валидации нулевого экземпляра.
-     *
+     * @throws NullException исключение валидации нулевого объекта.
      * @since 1.0
      */
     @Contract(value = "!null, _ -> param1; null, _ -> fail", pure = true)
-    public static <T> @NotNull T notNull(final @Nullable T instance, final @NonNls @NotNull String name) throws NullException {
-        if (instance == null) throw new NullException(NullException.templateMessage.formatted(name));
-        return instance;
+    public static <T> @NotNull T notNull(final @Nullable T object,
+                                         final @NonNls @NotNull String name) throws NullException {
+        if (object == null) throw new NullException(NullException.templateMessage.formatted(name));
+        return object;
     }
 
     /**
-     * Проверяет равенство первичного и вторичного экземпляра и, если он равны, возвращает первичный экземпляр, в противном случае генерирует исключение.
+     * Проверяет равенство первичного и вторичного объекта и, если он равны, возвращает первичный объект, в противном
+     * случае генерирует исключение.
      *
-     * @param primaryInstance первичный экземпляр.
-     * @param secondaryInstance вторичный экземпляр.
+     * @param primaryObject первичный объект.
+     * @param secondaryObject вторичный объект.
      *
-     * @return Первичный экземпляр.
+     * @return Первичный объект.
      *
-     * @throws NotEqualException исключение валидации равенства первичного и вторичного экземпляра.
-     *
+     * @throws NotEqualException исключение валидации равенства первичного и вторичного объекта.
      * @since 1.0
      */
     @Contract(pure = true)
-    public static <T> @Nullable T equals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance) throws NotEqualException {
-        if (primaryInstance != secondaryInstance && (primaryInstance == null || primaryInstance.equals(secondaryInstance))) throw new NotEqualException();
-        return primaryInstance;
+    public static <T> @Nullable T equals(final @Nullable T primaryObject,
+                                         final @Nullable T secondaryObject) throws NotEqualException {
+        if (primaryObject != secondaryObject && (primaryObject == null || primaryObject.equals(secondaryObject)))
+            throw new NotEqualException();
+        return primaryObject;
     }
 
     /**
-     * Проверяет равенство первичного и вторичного экземпляра и, если он равны, возвращает первичный экземпляр, в противном случае генерирует исключение.
+     * Проверяет равенство первичного и вторичного объекта и, если он равны, возвращает первичный объект, в противном
+     * случае генерирует исключение.
      *
-     * @param primaryInstance первичный экземпляр.
-     * @param secondaryInstance вторичный экземпляр.
-     * @param primaryName имя первичного экземпляр.
-     * @param secondaryName имя вторичного экземпляр.
+     * @param primaryObject первичный объект.
+     * @param secondaryObject вторичный объект.
+     * @param primaryName имя первичного объект.
+     * @param secondaryName имя вторичного объект.
      *
-     * @return Первичный экземпляр.
+     * @return Первичный объект.
      *
-     * @throws NotEqualException исключение валидации равенства первичного и вторичного экземпляра.
-     *
+     * @throws NotEqualException исключение валидации равенства первичного и вторичного объекта.
      * @since 1.0
      */
     @Contract(pure = true)
-    public static <T> @Nullable T equals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance, final @NonNls @NotNull String primaryName, final @NonNls @NotNull String secondaryName) throws NotEqualException {
-        if (primaryInstance != secondaryInstance && (primaryInstance == null || primaryInstance.equals(secondaryInstance))) throw new NotEqualException(NotEqualException.templateMessage.formatted(primaryName, secondaryName));
-        return primaryInstance;
+    public static <T> @Nullable T equals(final @Nullable T primaryObject, final @Nullable T secondaryObject,
+                                         final @NonNls @NotNull String primaryName,
+                                         final @NonNls @NotNull String secondaryName) throws NotEqualException {
+        if (primaryObject != secondaryObject && (primaryObject == null || primaryObject.equals(secondaryObject)))
+            throw new NotEqualException(NotEqualException.templateMessage.formatted(primaryName, secondaryName));
+        return primaryObject;
     }
 
     /**
-     * Проверяет неравенство первичного и вторичного экземпляра и, если он неравны, возвращает первичный экземпляр, в противном случае генерирует исключение.
+     * Проверяет неравенство первичного и вторичного объекта и, если он неравны, возвращает первичный объект, в
+     * противном случае генерирует исключение.
      *
-     * @param primaryInstance первичный экземпляр.
-     * @param secondaryInstance вторичный экземпляр.
+     * @param primaryObject первичный объект.
+     * @param secondaryObject вторичный объект.
      *
-     * @return Первичный экземпляр.
+     * @return Первичный объект.
      *
-     * @throws EqualException исключение валидации неравенства первичного и вторичного экземпляра.
-     *
+     * @throws EqualException исключение валидации неравенства первичного и вторичного объекта.
      * @since 1.0
      */
     @Contract(pure = true)
-    public static <T> @Nullable T notEquals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance) throws EqualException {
-        if (primaryInstance == secondaryInstance || primaryInstance != null && primaryInstance.equals(secondaryInstance)) throw new EqualException();
-        return primaryInstance;
+    public static <T> @Nullable T notEquals(final @Nullable T primaryObject,
+                                            final @Nullable T secondaryObject) throws EqualException {
+        if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
+            throw new EqualException();
+        return primaryObject;
     }
 
     /**
-     * Проверяет неравенство первичного и вторичного экземпляра и, если он неравны, возвращает первичный экземпляр, в противном случае генерирует исключение.
+     * Проверяет неравенство первичного и вторичного объекта и, если он неравны, возвращает первичный объект, в
+     * противном случае генерирует исключение.
      *
-     * @param primaryInstance первичный экземпляр.
-     * @param secondaryInstance вторичный экземпляр.
-     * @param primaryName имя первичного экземпляр.
-     * @param secondaryName имя вторичного экземпляр.
+     * @param primaryObject первичный объект.
+     * @param secondaryObject вторичный объект.
+     * @param primaryName имя первичного объект.
+     * @param secondaryName имя вторичного объект.
      *
-     * @return Первичный экземпляр.
+     * @return Первичный объект.
      *
-     * @throws EqualException исключение валидации неравенства первичного и вторичного экземпляра.
-     *
+     * @throws EqualException исключение валидации неравенства первичного и вторичного объекта.
      * @since 1.0
      */
     @Contract(pure = true)
-    public static <T> @Nullable T notEquals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance, final @NonNls @NotNull String primaryName, final @NonNls @NotNull String secondaryName) throws EqualException {
-        if (primaryInstance == secondaryInstance || primaryInstance != null && primaryInstance.equals(secondaryInstance)) throw new EqualException(EqualException.templateMessage.formatted(primaryName, secondaryName));
-        return primaryInstance;
+    public static <T> @Nullable T notEquals(final @Nullable T primaryObject, final @Nullable T secondaryObject,
+                                            final @NonNls @NotNull String primaryName,
+                                            final @NonNls @NotNull String secondaryName) throws EqualException {
+        if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
+            throw new EqualException(EqualException.templateMessage.formatted(primaryName, secondaryName));
+        return primaryObject;
     }
 
 }
