@@ -5,8 +5,8 @@
  */
 
 /**
- * Пакет базовых инструментов общего назначения.
+ * Пакет общего назначения.
  *
- * @since 2.0
+ * @since 1.0
  */
-package com.bloogefest.common.base;
+package com.bloogefest.common;
