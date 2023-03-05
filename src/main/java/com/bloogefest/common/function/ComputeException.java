@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Исключение вычисления функции.
+ * Исключение вычисления объекта.
  *
  * @since 3.0
  */
@@ -22,14 +22,14 @@ public class ComputeException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The function cannot be computed";
+    protected static final @NonNls @Nullable String defaultMessage = "The object could not be computed";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be computed";
+    protected static final @NonNls @Nullable String templateMessage = "The %s could not be computed";
 
     /**
      * Инициализирует исключение по умолчанию.
