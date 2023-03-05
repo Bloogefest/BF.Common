@@ -22,14 +22,14 @@ public class EvaluateException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The object cannot be evaluated";
+    protected static final @NonNls @Nullable String defaultMessage = "The object could not be evaluated";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be evaluated";
+    protected static final @NonNls @Nullable String templateMessage = "The %s could not be evaluated";
 
     /**
      * Инициализирует исключение по умолчанию.
