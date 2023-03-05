@@ -28,14 +28,14 @@ public class AnalyzeException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The object cannot be analyzed";
+    protected static final @NonNls @Nullable String defaultMessage = "The object could not be analyzed";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be analyzed";
+    protected static final @NonNls @Nullable String templateMessage = "The %s could not be analyzed";
 
     /**
      * Инициализирует исключение по умолчанию.
