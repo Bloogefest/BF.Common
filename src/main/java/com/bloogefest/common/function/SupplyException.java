@@ -22,14 +22,14 @@ public class SupplyException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The object cannot be supplied";
+    protected static final @NonNls @Nullable String defaultMessage = "The object could not be supplied";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be supplied";
+    protected static final @NonNls @Nullable String templateMessage = "The %s could not be supplied";
 
     /**
      * Инициализирует исключение по умолчанию.
