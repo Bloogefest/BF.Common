@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 public final class Validator {
 
     /**
-     * Генерирует исключение.
+     * Инициализирует и бросает исключение.
      *
      * @throws UtilityException исключение создания объекта утилитарного типа.
      * @since 1.0
@@ -31,7 +31,7 @@ public final class Validator {
     }
 
     /**
-     * Проверяет и возвращает объект, если он нулевой, в противном случае генерирует исключение.
+     * Проверяет объект и, если он нулевой, возвращает его, в противном случае инициализирует и бросает исключение.
      *
      * @param object объект.
      *
@@ -47,7 +47,7 @@ public final class Validator {
     }
 
     /**
-     * Проверяет и возвращает объект, если он нулевой, в противном случае генерирует исключение.
+     * Проверяет объект и, если он нулевой, возвращает его, в противном случае инициализирует и бросает исключение.
      *
      * @param object объект.
      * @param name имя объекта.
@@ -65,7 +65,7 @@ public final class Validator {
     }
 
     /**
-     * Проверяет и возвращает объект, если он ненулевой, в противном случае генерирует исключение.
+     * Проверяет объект и, если он ненулевой, возвращает его, в противном случае инициализирует и бросает исключение.
      *
      * @param object объект.
      *
@@ -81,7 +81,7 @@ public final class Validator {
     }
 
     /**
-     * Проверяет и возвращает объект, если он ненулевой, в противном случае генерирует исключение.
+     * Проверяет объект и, если он ненулевой, возвращает его, в противном случае инициализирует и бросает исключение.
      *
      * @param object объект.
      * @param name имя объекта.
@@ -100,7 +100,7 @@ public final class Validator {
 
     /**
      * Проверяет равенство первичного и вторичного объекта и, если он равны, возвращает первичный объект, в противном
-     * случае генерирует исключение.
+     * случае инициализирует и бросает исключение.
      *
      * @param primaryObject первичный объект.
      * @param secondaryObject вторичный объект.
@@ -113,14 +113,14 @@ public final class Validator {
     @Contract(pure = true)
     public static <T> @Nullable T equals(final @Nullable T primaryObject,
                                          final @Nullable T secondaryObject) throws NotEqualException {
-        if (primaryObject != secondaryObject && (primaryObject == null || primaryObject.equals(secondaryObject)))
+        if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
             throw new NotEqualException();
         return primaryObject;
     }
 
     /**
      * Проверяет равенство первичного и вторичного объекта и, если он равны, возвращает первичный объект, в противном
-     * случае генерирует исключение.
+     * случае инициализирует и бросает исключение.
      *
      * @param primaryObject первичный объект.
      * @param secondaryObject вторичный объект.
@@ -136,14 +136,14 @@ public final class Validator {
     public static <T> @Nullable T equals(final @Nullable T primaryObject, final @Nullable T secondaryObject,
                                          final @NonNls @NotNull String primaryName,
                                          final @NonNls @NotNull String secondaryName) throws NotEqualException {
-        if (primaryObject != secondaryObject && (primaryObject == null || primaryObject.equals(secondaryObject)))
+        if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
             throw new NotEqualException(NotEqualException.templateMessage.formatted(primaryName, secondaryName));
         return primaryObject;
     }
 
     /**
      * Проверяет неравенство первичного и вторичного объекта и, если он неравны, возвращает первичный объект, в
-     * противном случае генерирует исключение.
+     * противном случае инициализирует и бросает исключение.
      *
      * @param primaryObject первичный объект.
      * @param secondaryObject вторичный объект.
@@ -163,7 +163,7 @@ public final class Validator {
 
     /**
      * Проверяет неравенство первичного и вторичного объекта и, если он неравны, возвращает первичный объект, в
-     * противном случае генерирует исключение.
+     * противном случае инициализирует и бросает исключение.
      *
      * @param primaryObject первичный объект.
      * @param secondaryObject вторичный объект.
