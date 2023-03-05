@@ -23,14 +23,14 @@ public class CreationException extends SoftException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The object cannot be created";
+    protected static final @NonNls @Nullable String defaultMessage = "The object could not be created";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be created";
+    protected static final @NonNls @Nullable String templateMessage = "The %s could not be created";
 
     /**
      * Инициализирует исключение по умолчанию.
