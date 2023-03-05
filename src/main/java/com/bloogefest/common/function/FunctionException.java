@@ -23,14 +23,14 @@ public class FunctionException extends SoftException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The function cannot be executed";
+    protected static final @NonNls @Nullable String defaultMessage = "The function could not be executed";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be executed";
+    protected static final @NonNls @Nullable String templateMessage = "The %s could not be executed";
 
     /**
      * Инициализирует исключение по умолчанию.
