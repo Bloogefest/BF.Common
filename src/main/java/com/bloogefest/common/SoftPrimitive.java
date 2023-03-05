@@ -19,7 +19,9 @@ import org.jetbrains.annotations.NotNull;
 public interface SoftPrimitive<J> {
 
     /**
-     * @return Экземпляр родной обёртки примитива.
+     * Возвращает родную обёртку примитива.
+     *
+     * @return Родная обёртка примитива.
      *
      * @since 3.0
      */
