@@ -28,14 +28,14 @@ public class HandleException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The object cannot be handled";
+    protected static final @NonNls @Nullable String defaultMessage = "The object could not be handled";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be handled";
+    protected static final @NonNls @Nullable String templateMessage = "The %s could not be handled";
 
     /**
      * Инициализирует исключение по умолчанию.
