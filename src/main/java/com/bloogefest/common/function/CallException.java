@@ -22,14 +22,14 @@ public class CallException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The function cannot be called";
+    protected static final @NonNls @Nullable String defaultMessage = "The function could not be called";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s cannot be called";
+    protected static final @NonNls @Nullable String templateMessage = "The %s could not be called";
 
     /**
      * Инициализирует исключение по умолчанию.
