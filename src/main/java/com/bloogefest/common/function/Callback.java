@@ -71,7 +71,7 @@ public interface Callback {
      * @throws CallException исключение вызова функции.
      * @since 2.0
      */
-    @Contract(pure = true)
+    @Contract
     void call() throws CallException;
 
     /**
