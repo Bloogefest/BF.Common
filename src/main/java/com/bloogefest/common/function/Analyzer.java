@@ -80,6 +80,7 @@ public interface Analyzer<T> {
      *
      * @return Переданный либо другой ненулевой анализатор.
      *
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора.
      * @since 3.0
      */
     @Contract(value = "!null -> param1; _ -> new", pure = true)
