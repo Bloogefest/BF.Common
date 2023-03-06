@@ -61,7 +61,7 @@ public interface Predicate<T> {
      * @throws EvaluateException исключение оценивания объекта.
      * @since 1.0
      */
-    @Contract(pure = true)
+    @Contract
     boolean evaluate(final @NotNull T object) throws NullException, EvaluateException;
 
     /**
