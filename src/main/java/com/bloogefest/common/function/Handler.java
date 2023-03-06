@@ -16,28 +16,43 @@ import org.jetbrains.annotations.Nullable;
  * Функциональный интерфейс обработчика объекта.
  *
  * @param <T> тип обрабатываемого объекта.
- * @param <R> тип результирующего объекта.
  *
  * @since 3.0
  */
 @FunctionalInterface
-public interface Handler<T, R> {
+public interface Handler<T> {
 
     /**
-     * Проверяет результирующий объект и, если он ненулевой, инициализирует обработчик, метод обработки которого всегда
-     * возвращает его, в противном случае инициализирует и бросает исключение.
+     * Инициализирует обработчик без логики.
      *
-     * @param object результирующий объект.
+     * @return Обработчик без логики.
      *
-     * @return Обработчик с постоянным результирующим объектом.
-     *
-     * @throws NullException исключение валидации нулевого результирующего объекта.
      * @since 3.0
      */
-    @Contract(value = "!null -> new; _ -> fail", pure = true)
-    static <T, R> @NotNull Handler<T, R> constant(final @Nullable R object) throws NullException {
+    @Contract(value = "-> new", pure = true)
+    static <T> @NotNull Handler<T> empty() {
+        return ignored -> {};
+    }
+
+    /**
+     * Проверяет переданный обработчик и обрабатываемый объект и, если они ненулевые, инициализирует другой обработчик,
+     * метод обработки которого всегда вызывает метод обработки переданного обработчика, используя переданный
+     * обрабатываемый объект, в противном случае инициализирует и бросает исключение.
+     *
+     * @param handler обработчик.
+     * @param object обрабатываемый объект.
+     *
+     * @return Обработчик с постоянным обрабатываемым объектом.
+     *
+     * @throws NullException исключение валидации нулевого обработчика либо нулевого обрабатываемого объекта.
+     * @since 3.0
+     */
+    @Contract(value = "!null, !null -> new; _, _ -> fail", pure = true)
+    static <T> @NotNull Handler<T> constant(final @Nullable Handler<T> handler,
+                                            final @Nullable T object) throws NullException {
+        Validator.notNull(handler, "handler");
         Validator.notNull(object, "object");
-        return ignored -> object;
+        return ignored -> handler.handle(object);
     }
 
     /**
@@ -53,40 +68,60 @@ public interface Handler<T, R> {
      * @since 3.0
      */
     @Contract(value = "!null -> param1; _ -> fail", pure = true)
-    static <T, R> @NotNull Handler<T, R> of(final @Nullable Handler<T, R> handler) throws NullException {
+    static <T> @NotNull Handler<T> of(final @Nullable Handler<T> handler) throws NullException {
         return Validator.notNull(handler, "handler");
     }
 
     /**
-     * Обрабатывает переданный объект, инициализирует результирующий объект и возвращает его.
+     * Проверяет обработчик и, если он ненулевой, возвращает его, в противном случае инициализирует и возвращает другой
+     * обработчик без логики.
+     *
+     * @param handler обработчик.
+     *
+     * @return Переданный либо другой ненулевой обработчик.
+     *
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика.
+     * @since 3.0
+     */
+    @Contract(value = "!null -> param1; _ -> new", pure = true)
+    static <T> @NotNull Handler<T> auto(final @Nullable Handler<T> handler) {
+        return handler != null ? handler : empty();
+    }
+
+    /**
+     * Обрабатывает объект.
      *
      * @param object обрабатываемый объект.
-     *
-     * @return Результирующий объект.
      *
      * @throws NullException исключение валидации нулевого объекта.
      * @throws HandleException исключение обработки объекта.
      * @since 3.0
      */
     @Contract
-    @NotNull R handle(final @NotNull T object) throws NullException, HandleException;
+    void handle(final @NotNull T object) throws NullException, HandleException;
 
     /**
      * Проверяет переданный обработчик и, если он ненулевой, инициализирует другой обработчик, метод обработки которого
      * последовательно соединяет метод обработки этого и переданного обработчика, используя конструкцию try-finally, в
      * противном случае инициализирует и бросает исключение.
      *
-     * @param handler объект обработчика.
+     * @param handler обработчик.
      *
      * @return Обработчик с комбинированной логикой этого и переданного обработчика.
      *
      * @throws NullException исключение валидации нулевого обработчика.
      * @since 3.0
      */
-    @Contract(value = "_ -> new", pure = true)
-    default <R_> @NotNull Handler<T, R_> with(final @Nullable Handler<? super R, R_> handler) throws NullException {
+    @Contract(value = "!null -> new; _ -> fail", pure = true)
+    default @NotNull Handler<T> with(final @Nullable Handler<? super T> handler) throws NullException {
         Validator.notNull(handler, "handler");
-        return object -> handler.handle(handle(object));
+        return object -> {
+            try {
+                handle(object);
+            } finally {
+                handler.handle(object);
+            }
+        };
     }
 
 }
