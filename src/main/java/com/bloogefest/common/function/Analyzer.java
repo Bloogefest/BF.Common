@@ -98,7 +98,7 @@ public interface Analyzer<T> {
      * @since 3.0
      */
     @Contract
-    void analyze(final @Nullable T object) throws NullException, AnalyzeException;
+    void analyze(final @NotNull T object) throws NullException, AnalyzeException;
 
     /**
      * Проверяет переданный анализатор и, если он ненулевой, инициализирует другой анализатор, метод анализа которого
