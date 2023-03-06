@@ -77,11 +77,11 @@ public interface Analyzer<T, R> {
      * @return Результирующий объект.
      *
      * @throws NullException исключение валидации нулевого объекта.
-     * @throws HandleException исключение анализа объекта.
+     * @throws AnalyzeException исключение анализа объекта.
      * @since 3.0
      */
     @Contract
-    @NotNull R analyze(final @NotNull T object) throws NullException, HandleException;
+    @NotNull R analyze(final @NotNull T object) throws NullException, AnalyzeException;
 
     /**
      * Проверяет переданный анализатор и, если он ненулевой, инициализирует другой анализатор, метод анализа которого
