@@ -6,6 +6,7 @@
 
 package com.bloogefest.common;
 
+import com.bloogefest.common.validation.NullException;
 import org.jetbrains.annotations.ApiStatus.Experimental;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -19,9 +20,9 @@ import org.jetbrains.annotations.NotNull;
 public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
 
     /**
-     * Выполняет инверсию данного объекта.
+     * Инициализирует мягкую обёртку инвертированного примитива числового типа этой мягкой обёртки.
      *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка инвертированного примитива числового типа.
      *
      * @since 3.0
      */
@@ -29,9 +30,9 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> invert();
 
     /**
-     * Выполняет инкремент данного объекта.
+     * Инициализирует мягкую обёртку инкрементированного примитива числового типа этой мягкой обёртки.
      *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка инкрементированного примитива числового типа.
      *
      * @since 3.0
      */
@@ -39,9 +40,9 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> increment();
 
     /**
-     * Выполняет декремент данного объекта.
+     * Инициализирует мягкую обёртку декрементированного примитива числового типа этой мягкой обёртки.
      *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка декрементированного примитива числового типа.
      *
      * @since 3.0
      */
@@ -49,79 +50,148 @@ public interface SoftNumber<J extends Number> extends SoftPrimitive<J> {
     @NotNull SoftNumber<J> decrement();
 
     /**
-     * Выполняет сложение данного объекта и второго операнда.
+     * Инициализирует мягкую обёртку суммы примитивов числового типа этой мягкой обёртки и вторичного операнда.
      *
-     * @param operand второй операнд.
+     * @param operand вторичный операнд.
      *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка суммы примитивов числового типа.
      *
+     * @throws NullException исключение валидации нулевого вторичного операнда.
      * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
-    @NotNull SoftNumber<J> add(final @NotNull SoftNumber<? extends Number> operand);
+    @NotNull SoftNumber<J> add(final @NotNull SoftNumber<? extends Number> operand) throws NullException;
 
     /**
-     * Выполняет вычитание данного объекта и второго операнда.
+     * Инициализирует мягкую обёртку разности примитивов числового типа этой мягкой обёртки и вторичного операнда.
      *
-     * @param operand второй операнд.
+     * @param operand вторичный операнд.
      *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка разности примитивов числового типа.
      *
+     * @throws NullException исключение валидации нулевого вторичного операнда.
      * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
-    @NotNull SoftNumber<J> subtract(final @NotNull SoftNumber<? extends Number> operand);
+    @NotNull SoftNumber<J> subtract(final @NotNull SoftNumber<? extends Number> operand) throws NullException;
 
     /**
-     * Выполняет умножение данного объекта и второго операнда.
+     * Инициализирует мягкую обёртку произведения примитивов числового типа этой мягкой обёртки и вторичного операнда.
      *
-     * @param operand второй операнд.
+     * @param operand вторичный операнд.
      *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка произведения примитивов числового типа.
      *
+     * @throws NullException исключение валидации нулевого вторичного операнда.
      * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
-    @NotNull SoftNumber<J> multiply(final @NotNull SoftNumber<? extends Number> operand);
+    @NotNull SoftNumber<J> multiply(final @NotNull SoftNumber<? extends Number> operand) throws NullException;
 
     /**
-     * Выполняет деление c остатком данного объекта и второго операнда.
+     * Инициализирует мягкую обёртку деления с остатком примитивов числового типа этой мягкой обёртки и вторичного
+     * операнда.
      *
-     * @param operand второй операнд.
+     * @param operand вторичный операнд.
      *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка деления с остатком примитивов числового типа.
      *
+     * @throws NullException исключение валидации нулевого вторичного операнда.
      * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
-    @NotNull SoftNumber<J> divide(final @NotNull SoftNumber<? extends Number> operand);
+    @NotNull SoftNumber<J> divide(final @NotNull SoftNumber<? extends Number> operand) throws NullException;
 
     /**
-     * Выполняет деление без остатка данного объекта и второго операнда.
+     * Инициализирует мягкую обёртку деления по модулю примитивов числового типа этой мягкой обёртки и вторичного
+     * операнда.
      *
-     * @param operand второй операнд.
+     * @param operand вторичный операнд.
      *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка деления по модулю примитивов числового типа.
      *
+     * @throws NullException исключение валидации нулевого вторичного операнда.
      * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
-    @NotNull SoftNumber<J> divideWithoutRemainder(final @NotNull SoftNumber<? extends Number> operand);
+    @NotNull SoftNumber<J> module(final @NotNull SoftNumber<? extends Number> operand) throws NullException;
 
     /**
-     * Выполняет деление по модулю данного объекта и второго операнда.
+     * Инициализирует и возвращает мягкую обёртку 8-ми битного примитива целочисленного типа над примитивом числового
+     * типа этой мягкой обёртки.
      *
-     * @param operand второй операнд.
-     *
-     * @return Экземпляр мягкой обёртки примитива числового типа.
+     * @return Мягкая обёртка 8-ми битного примитива целочисленного типа над примитивом числового типа этой мягкой
+     * обёртки.
      *
      * @since 3.0
      */
-    @Contract(value = "_ -> new", pure = true)
-    @NotNull SoftNumber<J> divideByModule(final @NotNull SoftNumber<? extends Number> operand);
+    @Contract(pure = true)
+    @NotNull SoftByte toByte();
 
     /**
-     * @return Экземпляр родной обёртки примитива.
+     * Инициализирует и возвращает мягкую обёртку 16-ти битного примитива целочисленного типа над примитивом числового
+     * типа этой мягкой обёртки.
+     *
+     * @return Мягкая обёртка 16-ти битного примитива целочисленного типа над примитивом числового типа этой мягкой
+     * обёртки.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    @NotNull SoftShort toShort();
+
+    /**
+     * Инициализирует и возвращает мягкую обёртку 32-х битного примитива целочисленного типа над примитивом числового
+     * типа этой мягкой обёртки.
+     *
+     * @return Мягкая обёртка 32-х битного примитива целочисленного типа над примитивом числового типа этой мягкой
+     * обёртки.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    @NotNull SoftInteger toInteger();
+
+    /**
+     * Инициализирует и возвращает мягкую обёртку 64-х битного примитива целочисленного типа над примитивом числового
+     * типа этой мягкой обёртки.
+     *
+     * @return Мягкая обёртка 64-х битного примитива целочисленного типа над примитивом числового типа этой мягкой
+     * обёртки.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    @NotNull SoftLong toLong();
+
+    /**
+     * Инициализирует и возвращает мягкую обёртку 32-х битного примитива нецелочисленного типа с плавающей точкой над
+     * примитивом числового типа этой мягкой обёртки.
+     *
+     * @return Мягкая обёртка 32-х битного примитива нецелочисленного типа с плавающей точкой над примитивом числового
+     * типа этой мягкой обёртки.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    @NotNull SoftFloat toFloat();
+
+    /**
+     * Инициализирует и возвращает мягкую обёртку 64-х битного примитива нецелочисленного типа с плавающей точкой над
+     * примитивом числового типа этой мягкой обёртки.
+     *
+     * @return Мягкая обёртка 64-х битного примитива нецелочисленного типа с плавающей точкой над примитивом числового
+     * типа этой мягкой обёртки.
+     *
+     * @since 3.0
+     */
+    @Contract(pure = true)
+    @NotNull SoftDouble toDouble();
+
+    /**
+     * Возвращает родную обёртку примитива числового типа.
+     *
+     * @return Родная обёртка примитива числового типа.
      *
      * @since 3.0
      */
