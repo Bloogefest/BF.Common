@@ -60,7 +60,7 @@ public interface Condition {
      * @throws ComputeException исключение вычисления логического выражения.
      * @since 3.0
      */
-    @Contract(pure = true)
+    @Contract
     boolean compute() throws ComputeException;
 
     /**
