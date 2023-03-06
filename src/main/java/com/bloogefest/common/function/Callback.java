@@ -57,6 +57,7 @@ public interface Callback {
      *
      * @return Переданный либо другой ненулевой обратный вызов.
      *
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обратного вызова.
      * @since 3.0
      */
     @Contract(value = "!null -> param1; _ -> new", pure = true)
