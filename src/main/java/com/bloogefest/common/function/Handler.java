@@ -69,7 +69,7 @@ public interface Handler<T, R> {
      * @since 3.0
      */
     @Contract
-    @NotNull R handle(final @Nullable T object) throws NullException, HandleException;
+    @NotNull R handle(final @NotNull T object) throws NullException, HandleException;
 
     /**
      * Проверяет переданный обработчик и, если он ненулевой, инициализирует другой обработчик, метод обработки которого
