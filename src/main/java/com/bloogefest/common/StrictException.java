@@ -31,7 +31,7 @@ public class StrictException extends Exception {
      *
      * @since 3.0
      */
-    protected static final @Nullable Throwable defaultCause = null;
+    public static final @Nullable Throwable defaultCause = null;
 
     /**
      * Параметр подавления по умолчанию.
