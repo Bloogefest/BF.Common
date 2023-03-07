@@ -8,6 +8,7 @@ package com.bloogefest.common.creation;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -22,7 +23,7 @@ public class SingletonException extends CreationException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The singleton object has already been created";
+    public static final @NonNls @NotNull String defaultMessage = "The singleton object has already been created";
 
     /**
      * Шаблонное сообщение.
