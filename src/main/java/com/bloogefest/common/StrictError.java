@@ -37,7 +37,7 @@ public class StrictError extends Error {
      *
      * @since 3.0
      */
-    protected static final boolean defaultSuppression = false;
+    public static final boolean defaultSuppression = false;
 
     /**
      * Параметр трассировки стека по умолчанию.
