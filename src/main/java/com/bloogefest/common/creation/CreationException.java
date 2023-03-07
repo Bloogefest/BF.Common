@@ -31,7 +31,7 @@ public class CreationException extends SoftException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s could not be created";
+    public static final @NonNls @NotNull String templateMessage = "The %s could not be created";
 
     /**
      * Инициализирует исключение по умолчанию.
