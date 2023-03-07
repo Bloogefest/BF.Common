@@ -23,7 +23,7 @@ public class NotEqualException extends ValidationException {
      *
      * @since 1.0
      */
-    protected static final @NonNls @NotNull String defaultMessage = "The primary object must be equal to the secondary object";
+    public static final @NonNls @NotNull String defaultMessage = "The primary object must be equal to the secondary object";
 
     /**
      * Шаблонное сообщение.
