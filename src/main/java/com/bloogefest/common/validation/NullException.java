@@ -23,7 +23,7 @@ public class NullException extends ValidationException {
      *
      * @since 1.0
      */
-    protected static final @NonNls @NotNull String defaultMessage = "The object must not be null";
+    public static final @NonNls @NotNull String defaultMessage = "The object must not be null";
 
     /**
      * Шаблонное сообщение.
