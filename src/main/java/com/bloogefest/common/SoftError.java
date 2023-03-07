@@ -44,7 +44,7 @@ public class SoftError extends Error {
      *
      * @since 3.0
      */
-    protected static final boolean defaultWritable = true;
+    public static final boolean defaultWritable = true;
 
     /**
      * Инициализирует ошибку по умолчанию.
