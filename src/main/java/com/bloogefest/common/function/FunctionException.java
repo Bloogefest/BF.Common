@@ -31,7 +31,7 @@ public class FunctionException extends SoftException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s could not be executed";
+    public static final @NonNls @NotNull String templateMessage = "The %s could not be executed";
 
     /**
      * Инициализирует исключение по умолчанию.
