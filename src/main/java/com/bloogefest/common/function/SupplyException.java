@@ -30,7 +30,7 @@ public class SupplyException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s could not be supplied";
+    public static final @NonNls @NotNull String templateMessage = "The %s could not be supplied";
 
     /**
      * Инициализирует исключение по умолчанию.
