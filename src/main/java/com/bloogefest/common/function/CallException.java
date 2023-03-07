@@ -8,6 +8,7 @@ package com.bloogefest.common.function;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -22,7 +23,7 @@ public class CallException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The function could not be called";
+    public static final @NonNls @NotNull String defaultMessage = "The function could not be called";
 
     /**
      * Шаблонное сообщение.
