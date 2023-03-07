@@ -30,7 +30,7 @@ public class CallException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s could not be called";
+    public static final @NonNls @NotNull String templateMessage = "The %s could not be called";
 
     /**
      * Инициализирует исключение по умолчанию.
