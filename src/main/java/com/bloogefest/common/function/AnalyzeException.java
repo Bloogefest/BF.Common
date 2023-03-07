@@ -30,7 +30,7 @@ public class AnalyzeException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s could not be analyzed";
+    public static final @NonNls @NotNull String templateMessage = "The %s could not be analyzed";
 
     /**
      * Инициализирует исключение по умолчанию.
