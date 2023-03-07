@@ -9,6 +9,7 @@ package com.bloogefest.common.validation;
 import com.bloogefest.common.SoftException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -23,7 +24,7 @@ public class ValidationException extends SoftException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = "The object cannot be validated";
+    public static final @NonNls @NotNull String defaultMessage = "The object cannot be validated";
 
     /**
      * Шаблонное сообщение.
