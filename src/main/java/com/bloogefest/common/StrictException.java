@@ -24,7 +24,7 @@ public class StrictException extends Exception {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = null;
+    public static final @NonNls @Nullable String defaultMessage = null;
 
     /**
      * Причина по умолчанию.
