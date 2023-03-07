@@ -30,7 +30,7 @@ public class HandleException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s could not be handled";
+    public static final @NonNls @NotNull String templateMessage = "The %s could not be handled";
 
     /**
      * Инициализирует исключение по умолчанию.
