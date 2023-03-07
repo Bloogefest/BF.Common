@@ -30,7 +30,7 @@ public class ComputeException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s could not be computed";
+    public static final @NonNls @NotNull String templateMessage = "The %s could not be computed";
 
     /**
      * Инициализирует исключение по умолчанию.
