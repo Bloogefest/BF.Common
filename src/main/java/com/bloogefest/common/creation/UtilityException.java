@@ -30,7 +30,7 @@ public class UtilityException extends CreationException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s must not be created";
+    public static final @NonNls @NotNull String templateMessage = "The %s must not be created";
 
     /**
      * Инициализирует исключение по умолчанию.
