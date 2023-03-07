@@ -30,7 +30,7 @@ public class EvaluateException extends FunctionException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s could not be evaluated";
+    public static final @NonNls @NotNull String templateMessage = "The %s could not be evaluated";
 
     /**
      * Инициализирует исключение по умолчанию.
