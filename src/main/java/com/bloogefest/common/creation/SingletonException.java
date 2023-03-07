@@ -30,7 +30,7 @@ public class SingletonException extends CreationException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String templateMessage = "The %s has already been created";
+    public static final @NonNls @NotNull String templateMessage = "The %s has already been created";
 
     /**
      * Инициализирует исключение по умолчанию.
