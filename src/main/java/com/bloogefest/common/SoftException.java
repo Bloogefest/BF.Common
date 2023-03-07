@@ -24,7 +24,7 @@ public class SoftException extends RuntimeException {
      *
      * @since 3.0
      */
-    protected static final @NonNls @Nullable String defaultMessage = null;
+    public static final @NonNls @Nullable String defaultMessage = null;
 
     /**
      * Причина по умолчанию.
