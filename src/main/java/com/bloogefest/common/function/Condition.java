@@ -133,4 +133,17 @@ public interface Condition {
         return () -> compute() || condition.compute();
     }
 
+    /**
+     * @since 3.1
+     */
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Condition then(final @NotNull Callback callback) throws NullException {
+        Validator.notNull(callback, "callback");
+        return () -> {
+            final var result = compute();
+            if (result) callback.call();
+            return result;
+        };
+    }
+
 }
