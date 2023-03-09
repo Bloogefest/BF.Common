@@ -158,4 +158,17 @@ public interface Condition {
         };
     }
 
+    /**
+     * @since 3.1
+     */
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Condition otherwise(final @NotNull Callback callback) throws NullException {
+        Validator.notNull(callback, "callback");
+        return () -> {
+            final var result = compute();
+            if (!result) callback.call();
+            return result;
+        };
+    }
+
 }
