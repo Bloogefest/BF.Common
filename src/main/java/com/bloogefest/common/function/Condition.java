@@ -146,4 +146,16 @@ public interface Condition {
         };
     }
 
+    /**
+     * @since 3.1
+     */
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Condition then(final @NotNull Supplier<Throwable> supplier) throws NullException {
+        Validator.notNull(supplier, "supplier");
+        return () -> {
+            if (compute()) throw new ComputeException(supplier.supply());
+            return false;
+        };
+    }
+
 }
