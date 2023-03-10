@@ -10,7 +10,6 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Функциональный интерфейс логического выражения.
@@ -47,8 +46,8 @@ public interface Condition {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логического выражения.
      * @since 1.0
      */
-    @Contract(value = "!null -> param1; _ -> fail", pure = true)
-    static @NotNull Condition of(final @Nullable Condition condition) throws NullException {
+    @Contract(value = "_ -> param1", pure = true)
+    static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
         return Validator.notNull(condition, "condition");
     }
 
