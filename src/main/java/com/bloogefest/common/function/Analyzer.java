@@ -52,8 +52,8 @@ public interface Analyzer<T, R> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора.
      * @since 3.0
      */
-    @Contract(value = "!null -> param1; _ -> fail", pure = true)
-    static <T, R> @NotNull Analyzer<T, R> of(final @Nullable Analyzer<T, R> analyzer) throws NullException {
+    @Contract(value = "_ -> param1", pure = true)
+    static <T, R> @NotNull Analyzer<T, R> of(final @NotNull Analyzer<T, R> analyzer) throws NullException {
         return Validator.notNull(analyzer, "analyzer");
     }
 
