@@ -67,8 +67,8 @@ public interface Handler<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика.
      * @since 3.0
      */
-    @Contract(value = "!null -> param1; _ -> fail", pure = true)
-    static <T> @NotNull Handler<T> of(final @Nullable Handler<T> handler) throws NullException {
+    @Contract(value = "_ -> param1", pure = true)
+    static <T> @NotNull Handler<T> of(final @NotNull Handler<T> handler) throws NullException {
         return Validator.notNull(handler, "handler");
     }
 
