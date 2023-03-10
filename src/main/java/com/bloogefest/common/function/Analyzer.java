@@ -10,7 +10,6 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Функциональный интерфейс анализатора объекта.
@@ -34,8 +33,8 @@ public interface Analyzer<T, R> {
      * @throws NullException исключение валидации нулевого результирующего объекта.
      * @since 3.0
      */
-    @Contract(value = "!null -> new; _ -> fail", pure = true)
-    static <T, R> @NotNull Analyzer<T, R> constant(final @Nullable R object) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    static <T, R> @NotNull Analyzer<T, R> constant(final @NotNull R object) throws NullException {
         Validator.notNull(object, "object");
         return ignored -> object;
     }
