@@ -84,7 +84,7 @@ public interface Analyzer<T, R> {
      * @since 3.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default <R_> @NotNull Analyzer<T, R_> with(final @Nullable Analyzer<? super R, R_> analyzer) throws NullException {
+    default <R_> @NotNull Analyzer<T, R_> with(final @NotNull Analyzer<? super R, R_> analyzer) throws NullException {
         Validator.notNull(analyzer, "analyzer");
         return object -> analyzer.analyze(analyze(object));
     }
