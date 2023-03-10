@@ -86,8 +86,8 @@ public interface Callback {
      * @throws NullException исключение валидации нулевого обратного вызова.
      * @since 2.0
      */
-    @Contract(value = "!null -> new; _ -> fail", pure = true)
-    default @NotNull Callback with(final @Nullable Callback callback) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
             try {
