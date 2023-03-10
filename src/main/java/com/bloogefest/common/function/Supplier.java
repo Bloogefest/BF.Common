@@ -33,8 +33,8 @@ public interface Supplier<T> {
      * @throws NullException исключение валидации нулевого поставляемого объекта.
      * @since 1.0
      */
-    @Contract(value = "!null -> new; _ -> fail", pure = true)
-    static <T> @NotNull Supplier<T> constant(final @Nullable T object) throws NullException {
+    @Contract(value = "_ -> new", pure = true)
+    static <T> @NotNull Supplier<T> constant(final @NotNull T object) throws NullException {
         Validator.notNull(object, "object");
         return () -> object;
     }
