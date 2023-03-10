@@ -161,10 +161,10 @@ public interface Predicate<T> {
      * @since 3.1
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Predicate<T> then(final @NotNull Supplier<Throwable> supplier) throws NullException {
+    default @NotNull Predicate<T> then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return object -> {
-            if (evaluate(object)) throw new ComputeException(supplier.supply());
+            if (evaluate(object)) throw new EvaluateException(supplier.supply());
             return false;
         };
     }
