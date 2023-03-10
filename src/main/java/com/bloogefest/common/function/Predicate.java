@@ -173,6 +173,19 @@ public interface Predicate<T> {
      * @since 3.1
      */
     @Contract(value = "_ -> new", pure = true)
+    default @NotNull Predicate<T> otherwise(final @NotNull Callback callback) throws NullException {
+        Validator.notNull(callback, "callback");
+        return object -> {
+            final var result = evaluate(object);
+            if (!result) callback.call();
+            return result;
+        };
+    }
+
+    /**
+     * @since 3.1
+     */
+    @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> otherwise(final @NotNull Handler<T> handler) throws NullException {
         Validator.notNull(handler, "handler");
         return object -> {
