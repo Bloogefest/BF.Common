@@ -47,9 +47,9 @@ public interface Handler<T> {
      * @throws NullException исключение валидации нулевого обработчика либо нулевого обрабатываемого объекта.
      * @since 3.0
      */
-    @Contract(value = "!null, !null -> new; _, _ -> fail", pure = true)
-    static <T> @NotNull Handler<T> constant(final @Nullable Handler<T> handler,
-                                            final @Nullable T object) throws NullException {
+    @Contract(value = "_, _ -> new", pure = true)
+    static <T> @NotNull Handler<T> constant(final @NotNull Handler<T> handler,
+                                            final @NotNull T object) throws NullException {
         Validator.notNull(handler, "handler");
         Validator.notNull(object, "object");
         return ignored -> handler.handle(object);
