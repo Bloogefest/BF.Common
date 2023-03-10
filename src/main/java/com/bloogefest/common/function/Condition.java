@@ -169,7 +169,8 @@ public interface Condition {
      * @since 3.1
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Condition then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
+    default @NotNull Condition then(
+            final @NotNull Supplier<? extends Throwable> supplier) throws NullException, ComputeException {
         Validator.notNull(supplier, "supplier");
         return () -> {
             if (compute()) throw new ComputeException(supplier.supply());
