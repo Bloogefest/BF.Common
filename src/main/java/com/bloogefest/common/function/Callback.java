@@ -44,8 +44,8 @@ public interface Callback {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обратного вызова.
      * @since 2.0
      */
-    @Contract(value = "!null -> param1; _ -> fail", pure = true)
-    static @NotNull Callback of(final @Nullable Callback callback) throws NullException {
+    @Contract(value = "_ -> param1", pure = true)
+    static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
         return Validator.notNull(callback, "callback");
     }
 
