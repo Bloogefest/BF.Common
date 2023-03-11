@@ -126,7 +126,7 @@ public interface Predicate<T> {
      * @since 1.0
      */
     @Contract(value = "_ -> new", pure = true)
-    default @NotNull Predicate<T> or(final @NotNull Predicate<T> predicate) throws NullException {
+    default @NotNull Predicate<T> or(final @NotNull Predicate<? super T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) || predicate.evaluate(object);
     }
