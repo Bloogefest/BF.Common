@@ -48,7 +48,7 @@ public interface Predicate<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу предиката.
      * @since 1.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> param1", pure = true)
     static <T> @NotNull Predicate<T> of(final @NotNull Predicate<T> predicate) throws NullException {
         return Validator.notNull(predicate, "predicate");
     }
