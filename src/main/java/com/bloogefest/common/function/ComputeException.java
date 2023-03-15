@@ -14,28 +14,28 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Исключение вычисления функции.
  *
- * @since 3.0
+ * @since 3.0.0
  */
 public class ComputeException extends FunctionException {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String defaultMessage = "The function could not be computed";
 
     /**
      * Шаблонное сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String templateMessage = "The %s could not be computed";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public ComputeException() {
@@ -47,7 +47,7 @@ public class ComputeException extends FunctionException {
      *
      * @param message сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public ComputeException(final @NonNls @Nullable String message) {
@@ -59,7 +59,7 @@ public class ComputeException extends FunctionException {
      *
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public ComputeException(final @Nullable Throwable cause) {
@@ -72,7 +72,7 @@ public class ComputeException extends FunctionException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public ComputeException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -85,7 +85,7 @@ public class ComputeException extends FunctionException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public ComputeException(final boolean suppression, final boolean writable) {
@@ -100,7 +100,7 @@ public class ComputeException extends FunctionException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     protected ComputeException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

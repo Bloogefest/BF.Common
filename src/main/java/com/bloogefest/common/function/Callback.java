@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Функциональный интерфейс обратного вызова.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 @FunctionalInterface
 public interface Callback {
@@ -25,7 +25,7 @@ public interface Callback {
      *
      * @return Обратный вызов без логики.
      *
-     * @since 2.0
+     * @since 2.0.0
      */
     @Contract(value = "-> new", pure = true)
     static @NotNull Callback empty() {
@@ -42,7 +42,7 @@ public interface Callback {
      *
      * @throws NullException исключение валидации нулевого обратного вызова.
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обратного вызова.
-     * @since 2.0
+     * @since 2.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
@@ -58,7 +58,7 @@ public interface Callback {
      * @return Переданный либо другой ненулевой обратный вызов.
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обратного вызова.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "!null -> param1; _ -> new", pure = true)
     static @NotNull Callback auto(final @Nullable Callback callback) {
@@ -69,7 +69,7 @@ public interface Callback {
      * Вызывает функцию.
      *
      * @throws CallException исключение вызова функции.
-     * @since 2.0
+     * @since 2.0.0
      */
     @Contract
     void call() throws CallException;
@@ -84,7 +84,7 @@ public interface Callback {
      * @return Обратный вызов с комбинированной логикой этого и переданного анализатора.
      *
      * @throws NullException исключение валидации нулевого обратного вызова.
-     * @since 2.0
+     * @since 2.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Callback with(final @NotNull Callback callback) throws NullException {

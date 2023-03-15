@@ -14,28 +14,28 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Исключение валидации неравенства первичного и вторичного объекта.
  *
- * @since 1.0
+ * @since 1.0.0
  */
 public class EqualException extends ValidationException {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     public static final @NonNls @NotNull String defaultMessage = "The primary object must not be equal to the secondary object";
 
     /**
      * Шаблонное сообщение.
      *
-     * @since 2.0
+     * @since 2.0.0
      */
     public static final @NonNls @NotNull String templateMessage = "The %s must not be equal to the %s";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public EqualException() {
@@ -47,7 +47,7 @@ public class EqualException extends ValidationException {
      *
      * @param message сообщение.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public EqualException(final @NonNls @Nullable String message) {
@@ -59,7 +59,7 @@ public class EqualException extends ValidationException {
      *
      * @param cause причина.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public EqualException(final @Nullable Throwable cause) {
@@ -72,7 +72,7 @@ public class EqualException extends ValidationException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public EqualException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -85,7 +85,7 @@ public class EqualException extends ValidationException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public EqualException(final boolean suppression, final boolean writable) {
@@ -100,7 +100,7 @@ public class EqualException extends ValidationException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     protected EqualException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

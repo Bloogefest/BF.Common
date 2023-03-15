@@ -14,28 +14,28 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Исключение создания объекта утилитарного типа.
  *
- * @since 3.0
+ * @since 3.0.0
  */
 public class UtilityException extends CreationException {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String defaultMessage = "The utility object must not be created";
 
     /**
      * Шаблонное сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String templateMessage = "The %s must not be created";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public UtilityException() {
@@ -47,7 +47,7 @@ public class UtilityException extends CreationException {
      *
      * @param message сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public UtilityException(final @NonNls @Nullable String message) {
@@ -59,7 +59,7 @@ public class UtilityException extends CreationException {
      *
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public UtilityException(final @Nullable Throwable cause) {
@@ -72,7 +72,7 @@ public class UtilityException extends CreationException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public UtilityException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -85,7 +85,7 @@ public class UtilityException extends CreationException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public UtilityException(final boolean suppression, final boolean writable) {
@@ -100,7 +100,7 @@ public class UtilityException extends CreationException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     protected UtilityException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

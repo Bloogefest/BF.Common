@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @param <T> тип обрабатываемого объекта.
  *
- * @since 3.0
+ * @since 3.0.0
  */
 @FunctionalInterface
 public interface Handler<T> {
@@ -27,7 +27,7 @@ public interface Handler<T> {
      *
      * @return Обработчик без логики.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "-> new", pure = true)
     static <T> @NotNull Handler<T> empty() {
@@ -45,7 +45,7 @@ public interface Handler<T> {
      * @return Обработчик с постоянным обрабатываемым объектом.
      *
      * @throws NullException исключение валидации нулевого обработчика либо нулевого обрабатываемого объекта.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static <T> @NotNull Handler<T> constant(final @NotNull Handler<T> handler,
@@ -65,7 +65,7 @@ public interface Handler<T> {
      *
      * @throws NullException исключение валидации нулевого обработчика.
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <T> @NotNull Handler<T> of(final @NotNull Handler<T> handler) throws NullException {
@@ -81,7 +81,7 @@ public interface Handler<T> {
      * @return Переданный либо другой ненулевой обработчик.
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "!null -> param1; _ -> new", pure = true)
     static <T> @NotNull Handler<T> auto(final @Nullable Handler<T> handler) {
@@ -95,7 +95,7 @@ public interface Handler<T> {
      *
      * @throws NullException исключение валидации нулевого объекта.
      * @throws HandleException исключение обработки объекта.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract
     void handle(final @NotNull T object) throws NullException, HandleException;
@@ -110,7 +110,7 @@ public interface Handler<T> {
      * @return Обработчик с комбинированной логикой этого и переданного обработчика.
      *
      * @throws NullException исключение валидации нулевого обработчика.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Handler<T> with(final @NotNull Handler<? super T> handler) throws NullException {

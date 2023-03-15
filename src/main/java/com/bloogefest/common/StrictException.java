@@ -15,42 +15,42 @@ import org.jetbrains.annotations.Nullable;
  *
  * @apiNote Оповещает о серьёзной проблеме, которую следует обработать для дальнейшего корректного выполнения
  * программы.
- * @since 3.0
+ * @since 3.0.0
  */
 public class StrictException extends Exception {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @Nullable String defaultMessage = null;
 
     /**
      * Причина по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @Nullable Throwable defaultCause = null;
 
     /**
      * Параметр подавления по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final boolean defaultSuppression = false;
 
     /**
      * Параметр трассировки стека по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final boolean defaultWritable = true;
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public StrictException() {
@@ -62,7 +62,7 @@ public class StrictException extends Exception {
      *
      * @param message сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public StrictException(final @NonNls @Nullable String message) {
@@ -74,7 +74,7 @@ public class StrictException extends Exception {
      *
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public StrictException(final @Nullable Throwable cause) {
@@ -87,7 +87,7 @@ public class StrictException extends Exception {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public StrictException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -100,7 +100,7 @@ public class StrictException extends Exception {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public StrictException(final boolean suppression, final boolean writable) {
@@ -115,7 +115,7 @@ public class StrictException extends Exception {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     protected StrictException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

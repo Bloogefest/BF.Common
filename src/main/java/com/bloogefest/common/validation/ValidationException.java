@@ -15,28 +15,28 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Исключение валидации объекта.
  *
- * @since 1.0
+ * @since 1.0.0
  */
 public class ValidationException extends SoftException {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String defaultMessage = "The object cannot be validated";
 
     /**
      * Шаблонное сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String templateMessage = "The %s cannot be validated";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public ValidationException() {
@@ -48,7 +48,7 @@ public class ValidationException extends SoftException {
      *
      * @param message сообщение.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public ValidationException(final @NonNls @Nullable String message) {
@@ -60,7 +60,7 @@ public class ValidationException extends SoftException {
      *
      * @param cause причина.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public ValidationException(final @Nullable Throwable cause) {
@@ -73,7 +73,7 @@ public class ValidationException extends SoftException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -86,7 +86,7 @@ public class ValidationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public ValidationException(final boolean suppression, final boolean writable) {
@@ -101,7 +101,7 @@ public class ValidationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     protected ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

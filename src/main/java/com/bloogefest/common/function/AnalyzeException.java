@@ -14,28 +14,28 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Исключение анализа объекта.
  *
- * @since 3.0
+ * @since 3.0.0
  */
 public class AnalyzeException extends FunctionException {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String defaultMessage = "The object could not be analyzed";
 
     /**
      * Шаблонное сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String templateMessage = "The %s could not be analyzed";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public AnalyzeException() {
@@ -47,7 +47,7 @@ public class AnalyzeException extends FunctionException {
      *
      * @param message сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public AnalyzeException(final @NonNls @Nullable String message) {
@@ -59,7 +59,7 @@ public class AnalyzeException extends FunctionException {
      *
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public AnalyzeException(final @Nullable Throwable cause) {
@@ -72,7 +72,7 @@ public class AnalyzeException extends FunctionException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public AnalyzeException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -85,7 +85,7 @@ public class AnalyzeException extends FunctionException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public AnalyzeException(final boolean suppression, final boolean writable) {
@@ -100,7 +100,7 @@ public class AnalyzeException extends FunctionException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     protected AnalyzeException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

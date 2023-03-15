@@ -15,28 +15,28 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Исключение создания объекта.
  *
- * @since 3.0
+ * @since 3.0.0
  */
 public class CreationException extends SoftException {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String defaultMessage = "The object could not be created";
 
     /**
      * Шаблонное сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String templateMessage = "The %s could not be created";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public CreationException() {
@@ -48,7 +48,7 @@ public class CreationException extends SoftException {
      *
      * @param message сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public CreationException(final @NonNls @Nullable String message) {
@@ -60,7 +60,7 @@ public class CreationException extends SoftException {
      *
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public CreationException(final @Nullable Throwable cause) {
@@ -73,7 +73,7 @@ public class CreationException extends SoftException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -86,7 +86,7 @@ public class CreationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public CreationException(final boolean suppression, final boolean writable) {
@@ -101,7 +101,7 @@ public class CreationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     protected CreationException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

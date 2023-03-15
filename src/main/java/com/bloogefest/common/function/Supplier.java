@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @param <T> тип поставляемого объекта.
  *
- * @since 1.0
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface Supplier<T> {
@@ -30,7 +30,7 @@ public interface Supplier<T> {
      * @return Поставщик с постоянным поставляемым объектом.
      *
      * @throws NullException исключение валидации нулевого поставляемого объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     static <T> @NotNull Supplier<T> constant(final @NotNull T object) throws NullException {
@@ -48,7 +48,7 @@ public interface Supplier<T> {
      *
      * @throws NullException исключение валидации нулевого поставщика.
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу поставщика.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <T> @NotNull Supplier<T> of(final @NotNull Supplier<T> supplier) throws NullException {
@@ -61,7 +61,7 @@ public interface Supplier<T> {
      * @return Поставляемый объект.
      *
      * @throws SupplyException исключение поставки объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @NotNull T supply() throws SupplyException;

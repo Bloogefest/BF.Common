@@ -15,28 +15,28 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Исключение функции.
  *
- * @since 1.0
+ * @since 1.0.0
  */
 public class FunctionException extends SoftException {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String defaultMessage = "The function could not be executed";
 
     /**
      * Шаблонное сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String templateMessage = "The %s could not be executed";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public FunctionException() {
@@ -48,7 +48,7 @@ public class FunctionException extends SoftException {
      *
      * @param message сообщение.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public FunctionException(final @NonNls @Nullable String message) {
@@ -60,7 +60,7 @@ public class FunctionException extends SoftException {
      *
      * @param cause причина.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public FunctionException(final @Nullable Throwable cause) {
@@ -73,7 +73,7 @@ public class FunctionException extends SoftException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -86,7 +86,7 @@ public class FunctionException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public FunctionException(final boolean suppression, final boolean writable) {
@@ -101,7 +101,7 @@ public class FunctionException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     protected FunctionException(final @NonNls @Nullable String message, final @Nullable Throwable cause,

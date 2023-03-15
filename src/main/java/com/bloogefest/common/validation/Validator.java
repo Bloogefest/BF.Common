@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Утилитарный класс валидатора объектов.
  *
- * @since 1.0
+ * @since 1.0.0
  */
 public final class Validator {
 
@@ -23,7 +23,7 @@ public final class Validator {
      * Инициализирует и бросает исключение.
      *
      * @throws UtilityException исключение создания объекта утилитарного типа.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "-> fail", pure = true)
     private Validator() throws UtilityException {
@@ -38,7 +38,7 @@ public final class Validator {
      * @return Нулевой объект.
      *
      * @throws NotNullException исключение валидации ненулевого объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "!null -> fail; _ -> null", pure = true)
     public static <T> @Nullable T isNull(final @Nullable T object) throws NotNullException {
@@ -55,7 +55,7 @@ public final class Validator {
      * @return Нулевой объект.
      *
      * @throws NotNullException исключение валидации ненулевого объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "!null, _ -> fail; _, _ -> null", pure = true)
     public static <T> @Nullable T isNull(final @Nullable T object,
@@ -72,7 +72,7 @@ public final class Validator {
      * @return Ненулевой объект.
      *
      * @throws NullException исключение валидации нулевого объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "!null -> param1; null -> fail", pure = true)
     public static <T> @NotNull T notNull(final @Nullable T object) throws NullException {
@@ -89,7 +89,7 @@ public final class Validator {
      * @return Ненулевой объект.
      *
      * @throws NullException исключение валидации нулевого объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "!null, _ -> param1; null, _ -> fail", pure = true)
     public static <T> @NotNull T notNull(final @Nullable T object,
@@ -108,7 +108,7 @@ public final class Validator {
      * @return Первичный объект.
      *
      * @throws NotEqualException исключение валидации равенства первичного и вторичного объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static <T> @Nullable T equals(final @Nullable T primaryObject,
@@ -130,7 +130,7 @@ public final class Validator {
      * @return Первичный объект.
      *
      * @throws NotEqualException исключение валидации равенства первичного и вторичного объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static <T> @Nullable T equals(final @Nullable T primaryObject, final @Nullable T secondaryObject,
@@ -151,7 +151,7 @@ public final class Validator {
      * @return Первичный объект.
      *
      * @throws EqualException исключение валидации неравенства первичного и вторичного объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static <T> @Nullable T notEquals(final @Nullable T primaryObject,
@@ -173,7 +173,7 @@ public final class Validator {
      * @return Первичный объект.
      *
      * @throws EqualException исключение валидации неравенства первичного и вторичного объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static <T> @Nullable T notEquals(final @Nullable T primaryObject, final @Nullable T secondaryObject,

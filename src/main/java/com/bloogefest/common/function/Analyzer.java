@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * @param <T> тип анализируемого объекта.
  * @param <R> тип результирующего объекта.
  *
- * @since 3.0
+ * @since 3.0.0
  */
 @FunctionalInterface
 public interface Analyzer<T, R> {
@@ -31,7 +31,7 @@ public interface Analyzer<T, R> {
      * @return Анализатор с постоянным результирующим объектом.
      *
      * @throws NullException исключение валидации нулевого результирующего объекта.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     static <T, R> @NotNull Analyzer<T, R> constant(final @NotNull R object) throws NullException {
@@ -49,7 +49,7 @@ public interface Analyzer<T, R> {
      *
      * @throws NullException исключение валидации нулевого анализатора.
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <T, R> @NotNull Analyzer<T, R> of(final @NotNull Analyzer<T, R> analyzer) throws NullException {
@@ -65,7 +65,7 @@ public interface Analyzer<T, R> {
      *
      * @throws NullException исключение валидации нулевого объекта.
      * @throws AnalyzeException исключение анализа объекта.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract
     @NotNull R analyze(final @NotNull T object) throws NullException, AnalyzeException;
@@ -80,7 +80,7 @@ public interface Analyzer<T, R> {
      * @return Анализатор с комбинированной логикой этого и переданного анализатора.
      *
      * @throws NullException исключение валидации нулевого анализатора.
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default <R_> @NotNull Analyzer<T, R_> with(final @NotNull Analyzer<? super R, R_> analyzer) throws NullException {

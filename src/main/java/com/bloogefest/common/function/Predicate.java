@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @param <T> оцениваемый тип.
  *
- * @since 1.0
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface Predicate<T> {
@@ -28,7 +28,7 @@ public interface Predicate<T> {
      *
      * @return Предикат с постоянным результатом оценивания.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     static <T> @NotNull Predicate<T> constant(final boolean result) {
@@ -46,7 +46,7 @@ public interface Predicate<T> {
      *
      * @throws NullException исключение валидации нулевого объекта (предиката).
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу предиката.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <T> @NotNull Predicate<T> of(final @NotNull Predicate<T> predicate) throws NullException {
@@ -62,7 +62,7 @@ public interface Predicate<T> {
      *
      * @throws NullException исключение валидации нулевого объекта.
      * @throws EvaluateException исключение оценивания объекта.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract
     boolean evaluate(final @NotNull T object) throws NullException, EvaluateException;
@@ -73,7 +73,7 @@ public interface Predicate<T> {
      *
      * @return Предикат с инвертированным результатом оценивания этого предиката.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "-> new", pure = true)
     default @NotNull Predicate<T> invert() {
@@ -91,7 +91,7 @@ public interface Predicate<T> {
      * @return Предикат с соединённым конъюнкцией результатом оценивания этого и вторичного предиката.
      *
      * @throws NullException исключение валидации нулевого объекта (вторичного предиката).
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> and(final @NotNull Predicate<? super T> predicate) throws NullException {
@@ -110,7 +110,7 @@ public interface Predicate<T> {
      * @return Предикат с соединённым строгой дизъюнкцией результатом оценивания этого и вторичного предиката.
      *
      * @throws NullException исключение валидации нулевого объекта (вторичного предиката).
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> xor(final @NotNull Predicate<? super T> predicate) throws NullException {
@@ -129,7 +129,7 @@ public interface Predicate<T> {
      * @return Предикат с соединённым мягкой дизъюнкцией результатом оценивания этого и вторичного предиката.
      *
      * @throws NullException исключение валидации нулевого объекта (вторичного предиката).
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> or(final @NotNull Predicate<? super T> predicate) throws NullException {
@@ -150,7 +150,7 @@ public interface Predicate<T> {
      * обратного вызова).
      *
      * @throws NullException исключение валидации нулевого объекта (обратного вызова).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> then(final @NotNull Callback callback) throws NullException {
@@ -175,7 +175,7 @@ public interface Predicate<T> {
      * объекта (функцию обработчика) с оцениваемым объектом этого предиката.
      *
      * @throws NullException исключение валидации нулевого объекта (обработчика).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> then(final @NotNull Handler<T> handler) throws NullException {
@@ -202,7 +202,7 @@ public interface Predicate<T> {
      * ошибкой от поставщика).
      *
      * @throws NullException исключение валидации нулевого объекта (поставщика).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
@@ -226,7 +226,7 @@ public interface Predicate<T> {
      * обратного вызова).
      *
      * @throws NullException исключение валидации нулевого объекта (обратного вызова).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> otherwise(final @NotNull Callback callback) throws NullException {
@@ -251,7 +251,7 @@ public interface Predicate<T> {
      * объекта (функцию обработчика) с оцениваемым объектом этого предиката.
      *
      * @throws NullException исключение валидации нулевого объекта (обработчика).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> otherwise(final @NotNull Handler<T> handler) throws NullException {
@@ -278,7 +278,7 @@ public interface Predicate<T> {
      * ошибкой от поставщика).
      *
      * @throws NullException исключение валидации нулевого объекта (поставщика).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Predicate<T> otherwise(

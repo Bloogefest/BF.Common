@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Функциональный интерфейс логического выражения.
  *
- * @since 1.0
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface Condition {
@@ -27,7 +27,7 @@ public interface Condition {
      *
      * @return Логическое выражение с постоянным результатом вычисления.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     static @NotNull Condition constant(final boolean result) {
@@ -45,7 +45,7 @@ public interface Condition {
      *
      * @throws NullException исключение валидации нулевого объекта (логического выражения).
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логического выражения.
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
@@ -58,7 +58,7 @@ public interface Condition {
      * @return Результат вычисления.
      *
      * @throws ComputeException исключение вычисления функции (функции вычисления логического выражения).
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract
     boolean compute() throws ComputeException;
@@ -69,7 +69,7 @@ public interface Condition {
      *
      * @return Логическое выражение с инвертированным результатом вычисления этого логического выражения.
      *
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "-> new", pure = true)
     default @NotNull Condition invert() {
@@ -89,7 +89,7 @@ public interface Condition {
      * выражения.
      *
      * @throws NullException исключение валидации нулевого объекта (вторичного логического выражения).
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition and(final @NotNull Condition condition) throws NullException {
@@ -110,7 +110,7 @@ public interface Condition {
      * логического выражения.
      *
      * @throws NullException исключение валидации нулевого объекта (вторичного логического выражения).
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
@@ -131,7 +131,7 @@ public interface Condition {
      * логического выражения.
      *
      * @throws NullException исключение валидации нулевого объекта (вторичного логического выражения).
-     * @since 1.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition or(final @NotNull Condition condition) throws NullException {
@@ -152,7 +152,7 @@ public interface Condition {
      * вызывается функция (функция обратного вызова).
      *
      * @throws NullException исключение валидации нулевого объекта (обратного вызова).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition then(final @NotNull Callback callback) throws NullException {
@@ -179,7 +179,7 @@ public interface Condition {
      * (полученным исключением либо ошибкой от поставщика).
      *
      * @throws NullException исключение валидации нулевого объекта (поставщика).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
@@ -203,7 +203,7 @@ public interface Condition {
      * вызывается функция (функция обратного вызова).
      *
      * @throws NullException исключение валидации нулевого объекта (обратного вызова).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition otherwise(final @NotNull Callback callback) throws NullException {
@@ -230,7 +230,7 @@ public interface Condition {
      * (полученным исключением либо ошибкой от поставщика).
      *
      * @throws NullException исключение валидации нулевого объекта (поставщика).
-     * @since 4.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     default @NotNull Condition otherwise(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {

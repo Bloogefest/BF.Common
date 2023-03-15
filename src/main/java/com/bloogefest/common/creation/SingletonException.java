@@ -14,28 +14,28 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Исключение создания объекта одиночного типа.
  *
- * @since 3.0
+ * @since 3.0.0
  */
 public class SingletonException extends CreationException {
 
     /**
      * Сообщение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String defaultMessage = "The singleton object has already been created";
 
     /**
      * Шаблонное сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     public static final @NonNls @NotNull String templateMessage = "The %s has already been created";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public SingletonException() {
@@ -47,7 +47,7 @@ public class SingletonException extends CreationException {
      *
      * @param message сообщение.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public SingletonException(final @NonNls @Nullable String message) {
@@ -59,7 +59,7 @@ public class SingletonException extends CreationException {
      *
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public SingletonException(final @Nullable Throwable cause) {
@@ -72,7 +72,7 @@ public class SingletonException extends CreationException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public SingletonException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
@@ -85,7 +85,7 @@ public class SingletonException extends CreationException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     public SingletonException(final boolean suppression, final boolean writable) {
@@ -100,7 +100,7 @@ public class SingletonException extends CreationException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0
+     * @since 3.0.0
      */
     @Contract(pure = true)
     protected SingletonException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
