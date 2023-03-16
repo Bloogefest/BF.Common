@@ -90,8 +90,10 @@ publishing {
 }
 
 signing {
-    useInMemoryPgpKeys(findProperty("SINGING_KEY_ID").toString(), findProperty("SINGING_KEY_SECRET").toString(),
-                       findProperty("SINGING_KEY_PASSWORD").toString())
+
+    useInMemoryPgpKeys(System.getenv("SINGING_KEY_ID") ?: findProperty("SINGING_KEY_ID").toString(),
+                       System.getenv("SINGING_KEY_SECRET") ?: findProperty("SINGING_KEY_SECRET").toString(),
+                       System.getenv("SINGING_KEY_PASSWORD") ?: findProperty("SINGING_KEY_PASSWORD").toString())
 
     sign(publishing.publications["master"])
 }
