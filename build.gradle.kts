@@ -74,6 +74,7 @@ publishing {
 
     repositories {
         maven {
+            name = "OSSRH"
             val version = version.toString()
             url = uri(when {
                           "-SNAPSHOT" in version -> "https://s01.oss.sonatype.org/content/repositories/snapshots/"
@@ -82,8 +83,10 @@ publishing {
                       })
 
             credentials {
-                username = System.getenv("OSSRH_CREDENTIALS_USERNAME") ?: findProperty("OSSRH_CREDENTIALS_USERNAME").toString()
-                password = System.getenv("OSSRH_CREDENTIALS_PASSWORD") ?: findProperty("OSSRH_CREDENTIALS_PASSWORD").toString()
+                username = System.getenv("OSSRH_CREDENTIALS_USERNAME") ?: findProperty(
+                        "OSSRH_CREDENTIALS_USERNAME").toString()
+                password = System.getenv("OSSRH_CREDENTIALS_PASSWORD") ?: findProperty(
+                        "OSSRH_CREDENTIALS_PASSWORD").toString()
             }
         }
     }
