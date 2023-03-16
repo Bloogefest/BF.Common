@@ -61,7 +61,7 @@ public interface Supplier<T> {
      *
      * @return Поставляемый объект.
      *
-     * @throws SupplyException исключение поставки объекта.
+     * @throws SupplyException исключение поставки объекта (поставляемого объекта).
      * @since 1.0.0
      */
     @Contract
