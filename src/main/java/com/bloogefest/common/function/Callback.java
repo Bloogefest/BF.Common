@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс обратного вызова.
+ * Функциональный интерфейс функции обратного вызова.
  *
  * @since 2.0.0
  */
