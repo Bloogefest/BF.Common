@@ -64,7 +64,7 @@ public interface Supplier<T> {
      * @throws SupplyException исключение поставки объекта.
      * @since 1.0.0
      */
-    @Contract(pure = true)
+    @Contract
     @NotNull T supply() throws SupplyException;
 
 }
