@@ -75,6 +75,7 @@ publishing {
     repositories {
         maven {
             name = "OSSRH"
+
             val version = version.toString()
             url = uri(when {
                           "-SNAPSHOT" in version -> "https://s01.oss.sonatype.org/content/repositories/snapshots/"
