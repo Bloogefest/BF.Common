@@ -38,6 +38,8 @@ jobs:
       - name: Сборка и публикация проекта
         uses: gradle/gradle-build-action@v2.4.0
         env:
+          OSSRH_CREDENTIALS_USERNAME: ${{ secrets.OSSRH_CREDENTIALS_USERNAME }}
+          OSSRH_CREDENTIALS_PASSWORD: ${{ secrets.OSSRH_CREDENTIALS_PASSWORD }}
           SINGING_KEY_ID: ${{ secrets.SINGING_KEY_ID }}
           SINGING_KEY_PASSWORD: ${{ secrets.SINGING_KEY_PASSWORD }}
           SINGING_KEY_SECRET: ${{ secrets.SINGING_KEY_SECRET }}
