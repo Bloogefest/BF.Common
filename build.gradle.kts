@@ -75,11 +75,11 @@ publishing {
     repositories {
         maven {
             val version = version.toString()
-            url = uri(findProperty(when {
-                "-SNAPSHOT" in version -> "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                "-RC" in version -> "https://s01.oss.sonatype.org/content/repositories/releases/"
-                else -> "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            }).toString())
+            url = uri(when {
+                          "-SNAPSHOT" in version -> "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                          "-RC" in version -> "https://s01.oss.sonatype.org/content/repositories/releases/"
+                          else -> "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                      })
 
             credentials {
                 username = findProperty("OSSRH_CREDENTIALS_USERNAME").toString()
@@ -90,8 +90,7 @@ publishing {
 }
 
 signing {
-    useInMemoryPgpKeys(findProperty("SINGING_KEY_ID").toString(),
-                       findProperty("SINGING_KEY_SECRET").toString(),
+    useInMemoryPgpKeys(findProperty("SINGING_KEY_ID").toString(), findProperty("SINGING_KEY_SECRET").toString(),
                        findProperty("SINGING_KEY_PASSWORD").toString())
 
     sign(publishing.publications["master"])
