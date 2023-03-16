@@ -82,15 +82,14 @@ publishing {
                       })
 
             credentials {
-                username = findProperty("OSSRH_CREDENTIALS_USERNAME").toString()
-                password = findProperty("OSSRH_CREDENTIALS_PASSWORD").toString()
+                username = System.getenv("OSSRH_CREDENTIALS_USERNAME") ?: findProperty("OSSRH_CREDENTIALS_USERNAME").toString()
+                password = System.getenv("OSSRH_CREDENTIALS_PASSWORD") ?: findProperty("OSSRH_CREDENTIALS_PASSWORD").toString()
             }
         }
     }
 }
 
 signing {
-
     useInMemoryPgpKeys(System.getenv("SINGING_KEY_ID") ?: findProperty("SINGING_KEY_ID").toString(),
                        System.getenv("SINGING_KEY_SECRET") ?: findProperty("SINGING_KEY_SECRET").toString(),
                        System.getenv("SINGING_KEY_PASSWORD") ?: findProperty("SINGING_KEY_PASSWORD").toString())
