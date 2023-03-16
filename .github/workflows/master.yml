@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  master:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Инициализация рабочего процесса
@@ -24,6 +24,17 @@ jobs:
         with:
           gradle-version: 8.0.2
           arguments: test
+  cd:
+    runs-on: ubuntu-latest
+    needs: ci
+    steps:
+      - name: Инициализация рабочего процесса
+        uses: actions/checkout@v3.3.0
+      - name: Подготовка JDK
+        uses: actions/setup-java@v3.10.0
+        with:
+          java-version: 17
+          distribution: corretto
       - name: Сборка и публикация проекта
         uses: gradle/gradle-build-action@v2.4.0
         env:
