@@ -66,9 +66,9 @@ public interface Callback {
     }
 
     /**
-     * Вызывает функцию.
+     * Вызывает функцию обратного вызова.
      *
-     * @throws CallException исключение вызова функции.
+     * @throws CallException исключение вызова функции (функции обратного вызова).
      * @since 2.0.0
      */
     @Contract
