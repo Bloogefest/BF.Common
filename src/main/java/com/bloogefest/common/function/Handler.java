@@ -95,8 +95,8 @@ public interface Handler<T> {
      *
      * @param object обрабатываемый объект.
      *
-     * @throws NullException исключение валидации нулевого объекта.
-     * @throws HandleException исключение обработки объекта.
+     * @throws NullException исключение валидации нулевого объекта (обрабатываемого объекта).
+     * @throws HandleException исключение обработки объекта (обрабатываемого объекта).
      * @since 3.0.0
      */
     @Contract
