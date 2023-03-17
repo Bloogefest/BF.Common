@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Функциональный интерфейс логического выражения.
+ * Функциональный интерфейс логической функции.
  *
  * @since 1.0.0
  */
