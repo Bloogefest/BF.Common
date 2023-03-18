@@ -127,11 +127,8 @@ public interface Handler<T> {
     default @NotNull Handler<T> with(final @NotNull Handler<? super T> handler) throws NullException {
         Validator.notNull(handler, "handler");
         return object -> {
-            try {
-                handle(object);
-            } finally {
-                handler.handle(object);
-            }
+            handle(object);
+            handler.handle(object);
         };
     }
 
