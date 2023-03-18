@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Функциональный интерфейс предиката объекта.
  *
- * @param <T> оцениваемый тип.
+ * @param <T> тип оцениваемого объекта.
  *
  * @since 1.0.0
  */
