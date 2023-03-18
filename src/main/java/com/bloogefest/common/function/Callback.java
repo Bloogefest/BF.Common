@@ -95,11 +95,8 @@ public interface Callback {
     default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
-            try {
-                call();
-            } finally {
-                callback.call();
-            }
+            call();
+            callback.call();
         };
     }
 
