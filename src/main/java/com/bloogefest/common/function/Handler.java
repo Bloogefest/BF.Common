@@ -52,7 +52,7 @@ public interface Handler<T> {
      * @since 3.0.0
      */
     @Contract(value = "_, _ -> new", pure = true)
-    static <T> @NotNull Handler<T> constant(final @NotNull Handler<T> handler,
+    static <T> @NotNull Handler<T> constant(final @NotNull Handler<? super T> handler,
                                             final @NotNull T object) throws NullException {
         Validator.notNull(handler, "handler");
         Validator.notNull(object, "object");
