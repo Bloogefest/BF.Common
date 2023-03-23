@@ -63,7 +63,7 @@ public interface Predicate<T> {
      * @return Переданная предикативная функция.
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу предикативной функции.
-     * @since 1.0.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <T> @NotNull Predicate<T> as(final @NotNull Predicate<T> predicate) {
