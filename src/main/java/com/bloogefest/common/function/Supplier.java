@@ -59,6 +59,21 @@ public interface Supplier<T> {
     }
 
     /**
+     * Возвращает переданный поставщик.
+     *
+     * @param supplier поставщик объекта.
+     *
+     * @return Переданный поставщик.
+     *
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу поставщика объекта.
+     * @since 1.0.0
+     */
+    @Contract(value = "_ -> param1", pure = true)
+    static <T> @NotNull Supplier<T> as(final @NotNull Supplier<T> supplier) {
+        return supplier;
+    }
+
+    /**
      * Поставляет поставляемый объект.
      *
      * @return Поставляемый объект этого поставщика.
