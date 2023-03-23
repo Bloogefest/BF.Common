@@ -20,9 +20,10 @@ import org.jetbrains.annotations.Nullable;
 public final class Validator {
 
     /**
-     * Инициализирует и бросает исключение.
+     * Генерирует исключение создания объекта утилитарного типа (утилитарного класса валидатора объектов).
      *
-     * @throws UtilityException исключение создания объекта утилитарного типа.
+     * @throws UtilityException исключение создания объекта утилитарного типа (утилитарного класса валидатора
+     * объектов).
      * @since 1.0.0
      */
     @Contract(value = "-> fail", pure = true)
