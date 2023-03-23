@@ -85,7 +85,7 @@ public interface Handler<T> {
      * @return Переданный обработчик.
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика объекта.
-     * @since 3.0.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static <T> @NotNull Handler<T> as(final @NotNull Handler<T> handler) {
