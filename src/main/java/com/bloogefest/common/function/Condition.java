@@ -61,7 +61,7 @@ public interface Condition {
      * @return Переданная логическая функция.
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
-     * @since 1.0.0
+     * @since 4.0.0
      */
     @Contract(value = "_ -> param1", pure = true)
     static @NotNull Condition as(final @NotNull Condition condition) {
