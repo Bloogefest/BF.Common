@@ -56,6 +56,21 @@ public interface Predicate<T> {
     }
 
     /**
+     * Возвращает переданную предикативную функцию.
+     *
+     * @param predicate предикативная функция.
+     *
+     * @return Переданная предикативная функция.
+     *
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу предикативной функции.
+     * @since 1.0.0
+     */
+    @Contract(value = "_ -> param1", pure = true)
+    static <T> @NotNull Predicate<T> as(final @NotNull Predicate<T> predicate) {
+        return predicate;
+    }
+
+    /**
      * Оценивает переданный оцениваемый объект, инициализирует и возвращает результат его оценивания.
      *
      * @param object оцениваемый объект.
