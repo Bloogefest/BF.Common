@@ -6,6 +6,9 @@
 
 package com.bloogefest.common.function;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Функциональный интерфейс контейнера объекта.
  *
@@ -16,5 +19,15 @@ package com.bloogefest.common.function;
  */
 @FunctionalInterface
 public interface Optional<T> {
+
+    /**
+     * Возвращает объект этого контейнера.
+     *
+     * @return Объект этого контейнера.
+     *
+     * @since 4.0.0
+     */
+    @Contract
+    @Nullable T nullable();
 
 }
