@@ -10,11 +10,11 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Функциональный интерфейс контейнера объекта.
+ * Обёртка обнуляемого объекта.
  *
  * @param <T> тип объекта.
  *
- * @apiNote Позволяет безопасно работать с обнуляемыми объектами.
+ * @apiNote Эта обёртка позволяет безопасно работать с обнуляемыми объектами.
  * @since 4.0.0
  */
 @FunctionalInterface
