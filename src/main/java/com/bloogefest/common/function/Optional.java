@@ -21,9 +21,9 @@ import org.jetbrains.annotations.Nullable;
 public interface Optional<T> {
 
     /**
-     * Возвращает объект этого контейнера.
+     * Возвращает обнуляемый объект из-под этой обёртки.
      *
-     * @return Объект этого контейнера.
+     * @return Обнуляемый объект из-под этой обёртки.
      *
      * @since 4.0.0
      */
