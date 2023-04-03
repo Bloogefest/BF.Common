@@ -7,6 +7,7 @@
 package com.bloogefest.common.function;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -29,5 +30,20 @@ public interface Optional<T> {
      */
     @Contract
     @Nullable T nullable();
+
+    /**
+     * Если обнуляемый объект из-под этой обёртки ненулевой, то возвращает его, иначе генерирует исключение с его
+     * именем.
+     *
+     * @return Ненулевой объект из-под этой обёртки.
+     *
+     * @since 4.0.0
+     */
+    @Contract
+    default @NotNull T get() throws GetException {
+        final var object = nullable();
+        if (object == null) throw new GetException();
+        return object;
+    }
 
 }
