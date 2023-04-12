@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNull;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Функциональный интерфейс логической функции.
@@ -30,7 +30,7 @@ public interface Condition {
      *
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     static @NotNull Condition constant(final boolean result) {
         return () -> result;
     }
@@ -48,7 +48,7 @@ public interface Condition {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
      * @since 1.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
         return Validator.notNull(condition, "condition");
     }
@@ -63,7 +63,7 @@ public interface Condition {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
      * @since 4.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static @NotNull Condition as(final @NotNull Condition condition) {
         return condition;
     }
@@ -76,7 +76,7 @@ public interface Condition {
      * @throws ComputeException исключение вычисления функции (этой логической функции).
      * @since 3.0.0
      */
-    @Contract
+    @Contract(pure = false)
     boolean compute() throws ComputeException;
 
     /**
@@ -88,7 +88,7 @@ public interface Condition {
      *
      * @since 1.0.0
      */
-    @Contract(value = "-> new", pure = true)
+    @Contract(value = "-> new")
     default @NotNull Condition invert() {
         return () -> !compute();
     }
@@ -110,7 +110,7 @@ public interface Condition {
      * @throws NullException исключение валидации нулевого объекта (переданной логической функции).
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Condition and(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> compute() && condition.compute();
@@ -134,7 +134,7 @@ public interface Condition {
      * @throws NullException исключение валидации нулевого объекта (переданной логической функции).
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> compute() ^ condition.compute();
@@ -157,7 +157,7 @@ public interface Condition {
      * @throws NullException исключение валидации нулевого объекта (переданной логической функции).
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Condition or(final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> compute() || condition.compute();
@@ -180,7 +180,7 @@ public interface Condition {
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Condition then(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
@@ -208,7 +208,7 @@ public interface Condition {
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Condition then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return () -> {
@@ -234,7 +234,7 @@ public interface Condition {
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Condition otherwise(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
@@ -262,7 +262,7 @@ public interface Condition {
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Condition otherwise(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return () -> {

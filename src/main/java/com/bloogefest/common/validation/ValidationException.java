@@ -6,11 +6,11 @@
 
 package com.bloogefest.common.validation;
 
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNls;
+import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Nullable;
 import com.bloogefest.common.SoftException;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Исключение валидации объекта.
@@ -24,21 +24,21 @@ public class ValidationException extends SoftException {
      *
      * @since 3.0.0
      */
-    public static final @NonNls @NotNull String defaultMessage = "The object cannot be validated";
+    public static final @NotNls @NotNull String defaultMessage = "The object cannot be validated";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0.0
      */
-    public static final @NonNls @NotNull String templateMessage = "The %s cannot be validated";
+    public static final @NotNls @NotNull String templateMessage = "The %s cannot be validated";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
      * @since 1.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public ValidationException() {
         super(defaultMessage);
     }
@@ -50,8 +50,8 @@ public class ValidationException extends SoftException {
      *
      * @since 1.0.0
      */
-    @Contract(pure = true)
-    public ValidationException(final @NonNls @Nullable String message) {
+    @Contract
+    public ValidationException(final @NotNls @Nullable String message) {
         super(message);
     }
 
@@ -62,7 +62,7 @@ public class ValidationException extends SoftException {
      *
      * @since 1.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public ValidationException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -75,8 +75,8 @@ public class ValidationException extends SoftException {
      *
      * @since 1.0.0
      */
-    @Contract(pure = true)
-    public ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    @Contract
+    public ValidationException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -88,7 +88,7 @@ public class ValidationException extends SoftException {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public ValidationException(final boolean suppression, final boolean writable) {
         super(suppression, writable);
     }
@@ -103,8 +103,8 @@ public class ValidationException extends SoftException {
      *
      * @since 1.0.0
      */
-    @Contract(pure = true)
-    protected ValidationException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+    @Contract
+    protected ValidationException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
                                   final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

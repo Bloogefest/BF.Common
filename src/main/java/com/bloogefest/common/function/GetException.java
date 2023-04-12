@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNls;
+import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Nullable;
 
 /**
  * Исключение получения объекта.
@@ -23,21 +23,21 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0
      */
-    public static final @NonNls @NotNull String defaultMessage = "Failed to get the object";
+    public static final @NotNls @NotNull String defaultMessage = "Failed to get the object";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 4.0.0
      */
-    public static final @NonNls @NotNull String templateMessage = "Failed to get the %s";
+    public static final @NotNls @NotNull String templateMessage = "Failed to get the %s";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
      * @since 4.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public GetException() {
         super(defaultMessage);
     }
@@ -49,8 +49,8 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0
      */
-    @Contract(pure = true)
-    public GetException(final @NonNls @Nullable String message) {
+    @Contract
+    public GetException(final @NotNls @Nullable String message) {
         super(message);
     }
 
@@ -61,7 +61,7 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public GetException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -74,8 +74,8 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0
      */
-    @Contract(pure = true)
-    public GetException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    @Contract
+    public GetException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -87,7 +87,7 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public GetException(final boolean suppression, final boolean writable) {
         super(suppression, writable);
     }
@@ -102,8 +102,8 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0
      */
-    @Contract(pure = true)
-    protected GetException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+    @Contract
+    protected GetException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
                            final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

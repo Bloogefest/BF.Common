@@ -6,11 +6,11 @@
 
 package com.bloogefest.common.validation;
 
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNls;
+import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Nullable;
 import com.bloogefest.common.creation.UtilityException;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Утилитарный класс валидатора объектов.
@@ -26,7 +26,7 @@ public final class Validator {
      * объектов).
      * @since 1.0.0
      */
-    @Contract(value = "-> fail", pure = true)
+    @Contract(value = "-> fail")
     private Validator() throws UtilityException {
         throw new UtilityException();
     }
@@ -42,7 +42,7 @@ public final class Validator {
      * @throws NotNullException исключение валидации ненулевого объекта (переданного объекта).
      * @since 1.0.0
      */
-    @Contract(value = "!null -> fail; _ -> null", pure = true)
+    @Contract(value = "!null -> fail; _ -> null")
     public static <T> @Nullable T isNull(final @Nullable T object) throws NotNullException {
         if (object != null) throw new NotNullException();
         return null;
@@ -61,9 +61,9 @@ public final class Validator {
      * @throws NotNullException исключение валидации ненулевого объекта (переданного объекта).
      * @since 1.0.0
      */
-    @Contract(value = "!null, _ -> fail; _, _ -> null", pure = true)
+    @Contract(value = "!null, _ -> fail; _, _ -> null")
     public static <T> @Nullable T isNull(final @Nullable T object,
-                                         final @NonNls @NotNull String name) throws NotNullException {
+                                         final @NotNls @NotNull String name) throws NotNullException {
         if (object != null) throw new NotNullException(NotNullException.templateMessage.formatted(name));
         return null;
     }
@@ -79,7 +79,7 @@ public final class Validator {
      * @throws NullException исключение валидации нулевого объекта (переданного объекта).
      * @since 1.0.0
      */
-    @Contract(value = "!null -> param1; null -> fail", pure = true)
+    @Contract(value = "!null -> param1; null -> fail")
     public static <T> @NotNull T notNull(final @Nullable T object) throws NullException {
         if (object == null) throw new NullException();
         return object;
@@ -98,9 +98,9 @@ public final class Validator {
      * @throws NullException исключение валидации нулевого объекта (переданного объекта).
      * @since 1.0.0
      */
-    @Contract(value = "!null, _ -> param1; null, _ -> fail", pure = true)
+    @Contract(value = "!null, _ -> param1; null, _ -> fail")
     public static <T> @NotNull T notNull(final @Nullable T object,
-                                         final @NonNls @NotNull String name) throws NullException {
+                                         final @NotNls @NotNull String name) throws NullException {
         if (object == null) throw new NullException(NullException.templateMessage.formatted(name));
         return object;
     }
@@ -119,7 +119,7 @@ public final class Validator {
      * и вторичного объекта).
      * @since 1.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public static <T> @Nullable T equals(final @Nullable T primaryObject,
                                          final @Nullable T secondaryObject) throws NotEqualException {
         if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
@@ -144,10 +144,10 @@ public final class Validator {
      * и вторичного объекта).
      * @since 1.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public static <T> @Nullable T equals(final @Nullable T primaryObject, final @Nullable T secondaryObject,
-                                         final @NonNls @NotNull String primaryName,
-                                         final @NonNls @NotNull String secondaryName) throws NotEqualException {
+                                         final @NotNls @NotNull String primaryName,
+                                         final @NotNls @NotNull String secondaryName) throws NotEqualException {
         if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
             throw new NotEqualException(NotEqualException.templateMessage.formatted(primaryName, secondaryName));
         return primaryObject;
@@ -167,7 +167,7 @@ public final class Validator {
      * вторичного объекта).
      * @since 1.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public static <T> @Nullable T notEquals(final @Nullable T primaryObject,
                                             final @Nullable T secondaryObject) throws EqualException {
         if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
@@ -192,10 +192,10 @@ public final class Validator {
      * вторичного объекта).
      * @since 1.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public static <T> @Nullable T notEquals(final @Nullable T primaryObject, final @Nullable T secondaryObject,
-                                            final @NonNls @NotNull String primaryName,
-                                            final @NonNls @NotNull String secondaryName) throws EqualException {
+                                            final @NotNls @NotNull String primaryName,
+                                            final @NotNls @NotNull String secondaryName) throws EqualException {
         if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
             throw new EqualException(EqualException.templateMessage.formatted(primaryName, secondaryName));
         return primaryObject;

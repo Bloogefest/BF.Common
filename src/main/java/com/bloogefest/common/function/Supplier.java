@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNull;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Функциональный интерфейс поставщика объекта.
@@ -34,7 +34,7 @@ public interface Supplier<T> {
      * @throws NullException исключение валидации нулевого объекта (переданного поставляемого объекта).
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     static <T> @NotNull Supplier<T> constant(final @NotNull T object) throws NullException {
         Validator.notNull(object, "object");
         return () -> object;
@@ -53,7 +53,7 @@ public interface Supplier<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу поставщика объекта.
      * @since 1.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static <T> @NotNull Supplier<T> of(final @NotNull Supplier<T> supplier) throws NullException {
         return Validator.notNull(supplier, "supplier");
     }
@@ -68,7 +68,7 @@ public interface Supplier<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу поставщика объекта.
      * @since 4.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static <T> @NotNull Supplier<T> as(final @NotNull Supplier<T> supplier) {
         return supplier;
     }
@@ -81,7 +81,7 @@ public interface Supplier<T> {
      * @throws SupplyException исключение поставки объекта (поставляемого объекта этого поставщика).
      * @since 1.0.0
      */
-    @Contract
+    @Contract(pure = false)
     @NotNull T supply() throws SupplyException;
 
 }

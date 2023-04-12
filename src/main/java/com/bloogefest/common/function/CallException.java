@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNls;
+import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Nullable;
 
 /**
  * Исключение вызова функции.
@@ -23,21 +23,21 @@ public class CallException extends FunctionException {
      *
      * @since 3.0.0
      */
-    public static final @NonNls @NotNull String defaultMessage = "The function could not be called";
+    public static final @NotNls @NotNull String defaultMessage = "The function could not be called";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 3.0.0
      */
-    public static final @NonNls @NotNull String templateMessage = "The %s could not be called";
+    public static final @NotNls @NotNull String templateMessage = "The %s could not be called";
 
     /**
      * Инициализирует исключение по умолчанию.
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public CallException() {
         super(defaultMessage);
     }
@@ -49,8 +49,8 @@ public class CallException extends FunctionException {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
-    public CallException(final @NonNls @Nullable String message) {
+    @Contract
+    public CallException(final @NotNls @Nullable String message) {
         super(message);
     }
 
@@ -61,7 +61,7 @@ public class CallException extends FunctionException {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public CallException(final @Nullable Throwable cause) {
         super(cause);
     }
@@ -74,8 +74,8 @@ public class CallException extends FunctionException {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
-    public CallException(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    @Contract
+    public CallException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause);
     }
 
@@ -87,7 +87,7 @@ public class CallException extends FunctionException {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public CallException(final boolean suppression, final boolean writable) {
         super(suppression, writable);
     }
@@ -102,8 +102,8 @@ public class CallException extends FunctionException {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
-    protected CallException(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+    @Contract
+    protected CallException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
                             final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

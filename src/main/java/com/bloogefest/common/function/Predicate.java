@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNull;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Функциональный интерфейс предикативной функции.
@@ -32,7 +32,7 @@ public interface Predicate<T> {
      *
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     static <T> @NotNull Predicate<T> constant(final boolean result) {
         return ignored -> result;
     }
@@ -50,7 +50,7 @@ public interface Predicate<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу предикативной функции.
      * @since 1.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static <T> @NotNull Predicate<T> of(final @NotNull Predicate<T> predicate) throws NullException {
         return Validator.notNull(predicate, "predicate");
     }
@@ -65,7 +65,7 @@ public interface Predicate<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу предикативной функции.
      * @since 4.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static <T> @NotNull Predicate<T> as(final @NotNull Predicate<T> predicate) {
         return predicate;
     }
@@ -81,7 +81,7 @@ public interface Predicate<T> {
      * @throws EvaluateException исключение оценивания объекта (переданного оцениваемого объекта).
      * @since 1.0.0
      */
-    @Contract
+    @Contract(pure = false)
     boolean evaluate(final @NotNull T object) throws NullException, EvaluateException;
 
     /**
@@ -95,7 +95,7 @@ public interface Predicate<T> {
      *
      * @since 1.0.0
      */
-    @Contract(value = "-> new", pure = true)
+    @Contract(value = "-> new")
     default @NotNull Predicate<T> invert() {
         return object -> !evaluate(object);
     }
@@ -119,7 +119,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданной предикативной функции).
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> and(final @NotNull Predicate<? super T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) && predicate.evaluate(object);
@@ -145,7 +145,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданной предикативной функции).
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> xor(final @NotNull Predicate<? super T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) ^ predicate.evaluate(object);
@@ -170,7 +170,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданной предикативной функции).
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> or(final @NotNull Predicate<? super T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) || predicate.evaluate(object);
@@ -193,7 +193,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> then(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return object -> {
@@ -222,7 +222,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданного обработчика).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> then(final @NotNull Handler<T> handler) throws NullException {
         Validator.notNull(handler, "handler");
         return object -> {
@@ -250,7 +250,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return object -> {
@@ -276,7 +276,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> otherwise(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return object -> {
@@ -305,7 +305,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданного обработчика).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> otherwise(final @NotNull Handler<T> handler) throws NullException {
         Validator.notNull(handler, "handler");
         return object -> {
@@ -333,7 +333,7 @@ public interface Predicate<T> {
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика).
      * @since 4.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Predicate<T> otherwise(
             final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");

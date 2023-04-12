@@ -6,11 +6,11 @@
 
 package com.bloogefest.common.function;
 
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Функциональный интерфейс функции обратного вызова.
@@ -27,7 +27,7 @@ public interface Callback {
      *
      * @since 2.0.0
      */
-    @Contract(value = "-> new", pure = true)
+    @Contract(value = "-> new")
     static @NotNull Callback empty() {
         return () -> {};
     }
@@ -45,7 +45,7 @@ public interface Callback {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 2.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
         return Validator.notNull(callback, "callback");
     }
@@ -60,7 +60,7 @@ public interface Callback {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 4.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static @NotNull Callback as(final @NotNull Callback callback) {
         return callback;
     }
@@ -77,7 +77,7 @@ public interface Callback {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 3.0.0
      */
-    @Contract(value = "!null -> param1; _ -> new", pure = true)
+    @Contract(value = "!null -> param1; _ -> new")
     static @NotNull Callback auto(final @Nullable Callback callback) {
         return callback != null ? callback : empty();
     }
@@ -88,7 +88,7 @@ public interface Callback {
      * @throws CallException исключение вызова функции (этой функции обратного вызова).
      * @since 2.0.0
      */
-    @Contract
+    @Contract(pure = false)
     void call() throws CallException;
 
     /**
@@ -106,7 +106,7 @@ public interface Callback {
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
      * @since 2.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {

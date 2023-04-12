@@ -6,11 +6,11 @@
 
 package com.bloogefest.common.function;
 
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Функциональный интерфейс обработчика объекта.
@@ -29,7 +29,7 @@ public interface Handler<T> {
      *
      * @since 3.0.0
      */
-    @Contract(value = "-> new", pure = true)
+    @Contract(value = "-> new")
     static <T> @NotNull Handler<T> empty() {
         return ignored -> {};
     }
@@ -51,7 +51,7 @@ public interface Handler<T> {
      * объекта).
      * @since 3.0.0
      */
-    @Contract(value = "_, _ -> new", pure = true)
+    @Contract(value = "_, _ -> new")
     static <T> @NotNull Handler<T> constant(final @NotNull Handler<? super T> handler,
                                             final @NotNull T object) throws NullException {
         Validator.notNull(handler, "handler");
@@ -72,7 +72,7 @@ public interface Handler<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика объекта.
      * @since 3.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static <T> @NotNull Handler<T> of(final @NotNull Handler<T> handler) throws NullException {
         return Validator.notNull(handler, "handler");
     }
@@ -87,7 +87,7 @@ public interface Handler<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика объекта.
      * @since 4.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static <T> @NotNull Handler<T> as(final @NotNull Handler<T> handler) {
         return handler;
     }
@@ -104,7 +104,7 @@ public interface Handler<T> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу обработчика объекта.
      * @since 3.0.0
      */
-    @Contract(value = "!null -> param1; _ -> new", pure = true)
+    @Contract(value = "!null -> param1; _ -> new")
     static <T> @NotNull Handler<T> auto(final @Nullable Handler<T> handler) {
         return handler != null ? handler : empty();
     }
@@ -118,7 +118,7 @@ public interface Handler<T> {
      * @throws HandleException исключение обработки объекта (переданного обрабатываемого объекта).
      * @since 3.0.0
      */
-    @Contract
+    @Contract(pure = false)
     void handle(final @NotNull T object) throws NullException, HandleException;
 
     /**
@@ -138,7 +138,7 @@ public interface Handler<T> {
      * @throws NullException исключение валидации нулевого объекта (переданного обработчика).
      * @since 3.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default @NotNull Handler<T> with(final @NotNull Handler<? super T> handler) throws NullException {
         Validator.notNull(handler, "handler");
         return object -> {

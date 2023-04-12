@@ -6,9 +6,9 @@
 
 package com.bloogefest.common;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.Nullable;
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNls;
+import com.bloogefest.annotation.analysis.Nullable;
 
 /**
  * Мягкая ошибка.
@@ -23,7 +23,7 @@ public class SoftError extends Error {
      *
      * @since 3.0.0
      */
-    public static final @NonNls @Nullable String defaultMessage = null;
+    public static final @NotNls @Nullable String defaultMessage = null;
 
     /**
      * Причина по умолчанию.
@@ -51,7 +51,7 @@ public class SoftError extends Error {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public SoftError() {
         super(defaultMessage, defaultCause, defaultSuppression, defaultWritable);
     }
@@ -63,8 +63,8 @@ public class SoftError extends Error {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
-    public SoftError(final @NonNls @Nullable String message) {
+    @Contract
+    public SoftError(final @NotNls @Nullable String message) {
         super(message, defaultCause, defaultSuppression, defaultWritable);
     }
 
@@ -75,7 +75,7 @@ public class SoftError extends Error {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public SoftError(final @Nullable Throwable cause) {
         super(defaultMessage, cause, defaultSuppression, defaultWritable);
     }
@@ -88,8 +88,8 @@ public class SoftError extends Error {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
-    public SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause) {
+    @Contract
+    public SoftError(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
         super(message, cause, defaultSuppression, defaultWritable);
     }
 
@@ -101,7 +101,7 @@ public class SoftError extends Error {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
+    @Contract
     public SoftError(final boolean suppression, final boolean writable) {
         super(defaultMessage, defaultCause, suppression, writable);
     }
@@ -116,8 +116,8 @@ public class SoftError extends Error {
      *
      * @since 3.0.0
      */
-    @Contract(pure = true)
-    protected SoftError(final @NonNls @Nullable String message, final @Nullable Throwable cause,
+    @Contract
+    protected SoftError(final @NotNls @Nullable String message, final @Nullable Throwable cause,
                         final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

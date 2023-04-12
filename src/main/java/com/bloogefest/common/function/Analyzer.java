@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNull;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Функциональный интерфейс анализатора объекта.
@@ -40,7 +40,7 @@ public interface Analyzer<T, R> {
      * объекта).
      * @since 4.0.0
      */
-    @Contract(value = "_, _ -> new", pure = true)
+    @Contract(value = "_, _ -> new")
     static <T, R> @NotNull Analyzer<T, R> constant(final @NotNull Analyzer<? super T, R> analyzer,
                                                    final @NotNull T object) throws NullException {
         Validator.notNull(analyzer, "analyzer");
@@ -61,7 +61,7 @@ public interface Analyzer<T, R> {
      * @throws NullException исключение валидации нулевого объекта (переданного результирующего объекта).
      * @since 3.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     static <T, R> @NotNull Analyzer<T, R> constant(final @NotNull R object) throws NullException {
         Validator.notNull(object, "object");
         return ignored -> object;
@@ -80,7 +80,7 @@ public interface Analyzer<T, R> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
      * @since 3.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static <T, R> @NotNull Analyzer<T, R> of(final @NotNull Analyzer<T, R> analyzer) throws NullException {
         return Validator.notNull(analyzer, "analyzer");
     }
@@ -95,7 +95,7 @@ public interface Analyzer<T, R> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
      * @since 4.0.0
      */
-    @Contract(value = "_ -> param1", pure = true)
+    @Contract(value = "_ -> param1")
     static <T, R> @NotNull Analyzer<T, R> as(final @NotNull Analyzer<T, R> analyzer) {
         return analyzer;
     }
@@ -111,7 +111,7 @@ public interface Analyzer<T, R> {
      * @throws AnalyzeException исключение анализа объекта (переданного анализируемого объекта).
      * @since 3.0.0
      */
-    @Contract
+    @Contract(pure = false)
     @NotNull R analyze(final @NotNull T object) throws NullException, AnalyzeException;
 
     /**
@@ -131,7 +131,7 @@ public interface Analyzer<T, R> {
      * @throws NullException исключение валидации нулевого объекта (переданного анализатора).
      * @since 3.0.0
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(value = "_ -> new")
     default <R_> @NotNull Analyzer<T, R_> with(final @NotNull Analyzer<? super R, R_> analyzer) throws NullException {
         Validator.notNull(analyzer, "analyzer");
         return object -> analyzer.analyze(analyze(object));

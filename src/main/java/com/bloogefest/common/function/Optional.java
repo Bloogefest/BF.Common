@@ -6,9 +6,9 @@
 
 package com.bloogefest.common.function;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.bloogefest.annotation.analysis.Contract;
+import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Nullable;
 
 /**
  * Обёртка обнуляемого объекта.
@@ -28,7 +28,7 @@ public interface Optional<T> {
      *
      * @since 4.0.0
      */
-    @Contract
+    @Contract(pure = false)
     @Nullable T nullable();
 
     /**
@@ -39,7 +39,7 @@ public interface Optional<T> {
      *
      * @since 4.0.0
      */
-    @Contract
+    @Contract(pure = false)
     default @NotNull T get() throws GetException {
         final var object = nullable();
         if (object == null) throw new GetException();
