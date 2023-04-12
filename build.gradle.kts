@@ -14,7 +14,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains:annotations:24.0.1")
     implementation("com.bloogefest:annotation:1.0.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
