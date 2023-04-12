@@ -11,7 +11,6 @@
  */
 module com.bloogefest.common {
 
-    requires transitive org.jetbrains.annotations;
     requires transitive com.bloogefest.annotation;
 
     exports com.bloogefest.common;
