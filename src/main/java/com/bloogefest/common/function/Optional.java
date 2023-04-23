@@ -151,4 +151,16 @@ public interface Optional<T> {
         return nullable() != null;
     }
 
+    /**
+     * Если объект из-под этой обёртки нулевой, то возвращает истину, в противном случае возвращает ложь.
+     *
+     * @return Является ли объект из-под этой обёртки нулевым.
+     *
+     * @since 4.0.0
+     */
+    @Contract
+    default boolean hasNot() {
+        return !has();
+    }
+
 }
