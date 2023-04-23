@@ -139,4 +139,16 @@ public interface Optional<T> {
         return Validator.notNull(nullable(), "object");
     }
 
+    /**
+     * Если объект из-под этой обёртки ненулевой, то возвращает истину, в противном случае возвращает ложь.
+     *
+     * @return Является ли объект из-под этой обёртки ненулевым.
+     *
+     * @since 4.0.0
+     */
+    @Contract
+    default boolean has() {
+        return nullable() != null;
+    }
+
 }
