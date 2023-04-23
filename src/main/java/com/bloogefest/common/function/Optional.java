@@ -36,6 +36,20 @@ public interface Optional<T> {
     }
 
     /**
+     * Создаёт и возвращает обёртку переданного объекта.
+     *
+     * @param object обнуляемый объект.
+     *
+     * @return Обёртка переданного объекта.
+     *
+     * @since 4.0.0
+     */
+    @Contract("_ -> new")
+    static <T> @NotNull Optional<T> nullable(final @Nullable T object) {
+        return () -> object;
+    }
+
+    /**
      * Проверяет переданную обёртку. Если она ненулевая, то возвращает её, в противном случае генерирует исключение с её
      * именем.
      *
