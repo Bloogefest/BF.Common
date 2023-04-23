@@ -122,7 +122,7 @@ public interface Optional<T> {
      *
      * @since 4.0.0
      */
-    @Contract(pure = false)
+    @Contract
     @Nullable T nullable();
 
     /**
