@@ -15,7 +15,7 @@ import com.bloogefest.annotation.analysis.Nullable;
  *
  * @param <T> тип объекта.
  *
- * @apiNote Эта обёртка позволяет безопасно работать с обнуляемыми объектами.
+ * @apiNote Позволяет безопасно работать с обнуляемыми объектами.
  * @since 4.0.0
  */
 @FunctionalInterface
