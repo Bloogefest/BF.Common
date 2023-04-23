@@ -180,4 +180,24 @@ public interface Optional<T> {
         return nullable != null ? nullable : object;
     }
 
+    /**
+     * Если объект из-под этой обёртки ненулевой, то возвращает его, в противном случае получает и бросает исключение
+     * поставщика.
+     *
+     * @param supplier поставщик исключения.
+     *
+     * @return Ненулевой объект из-под этой обёртки.
+     *
+     * @throws NullException исключение проверки нулевого объекта.
+     * @throws E исключение поставщика.
+     * @since 4.0.0
+     */
+    @Contract("!null -> !null; _ -> _")
+    default <E extends Throwable> @NotNull T otherwise(final @NotNull Supplier<E> supplier) throws NullException, E {
+        Validator.notNull(supplier, "supplier");
+        final @Nullable var nullable = nullable();
+        if (nullable == null) throw Validator.notNull(supplier.supply(), "failure");
+        return nullable;
+    }
+
 }
