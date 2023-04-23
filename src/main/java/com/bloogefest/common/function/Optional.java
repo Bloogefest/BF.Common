@@ -22,6 +22,21 @@ import com.bloogefest.annotation.analysis.Nullable;
 public interface Optional<T> {
 
     /**
+     * Возвращает переданную обёртку.
+     *
+     * @param optional обёртка обнуляемого объекта.
+     *
+     * @return Переданная обёртка.
+     *
+     * @apiNote Используйте для приведения лямбда-выражений к типу обёртки обнуляемого объекта.
+     * @since 4.0.0
+     */
+    @Contract("_ -> 1")
+    static <T> @NotNull Optional<T> lambda(final @NotNull Optional<T> optional) {
+        return optional;
+    }
+
+    /**
      * Возвращает обнуляемый объект из-под этой обёртки.
      *
      * @return Обнуляемый объект из-под этой обёртки.
