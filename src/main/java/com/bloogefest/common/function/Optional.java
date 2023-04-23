@@ -135,10 +135,8 @@ public interface Optional<T> {
      * @since 4.0.0
      */
     @Contract
-    default @NotNull T get() throws GetException {
-        final var object = nullable();
-        if (object == null) throw new GetException();
-        return object;
+    default @NotNull T get() throws NullException {
+        return Validator.notNull(nullable(), "object");
     }
 
 }
