@@ -22,6 +22,18 @@ import com.bloogefest.annotation.analysis.Nullable;
 public interface Optional<T> {
 
     /**
+     * Создаёт и возвращает пустую обёртку.
+     *
+     * @return Пустая обёртка.
+     *
+     * @since 4.0.0
+     */
+    @Contract("-> new")
+    static <T> @NotNull Optional<T> empty() {
+        return () -> null;
+    }
+
+    /**
      * Возвращает переданную обёртку.
      *
      * @param optional обёртка обнуляемого объекта.
