@@ -9,6 +9,8 @@ package com.bloogefest.common.function;
 import com.bloogefest.annotation.analysis.Contract;
 import com.bloogefest.annotation.analysis.NotNull;
 import com.bloogefest.annotation.analysis.Nullable;
+import com.bloogefest.common.validation.NullException;
+import com.bloogefest.common.validation.Validator;
 
 /**
  * Обёртка обнуляемого объекта.
@@ -31,6 +33,23 @@ public interface Optional<T> {
     @Contract("-> new")
     static <T> @NotNull Optional<T> empty() {
         return () -> null;
+    }
+
+    /**
+     * Проверяет переданную обёртку. Если она ненулевая, то возвращает её, в противном случае создаёт и возвращает
+     * пустую обёртку.
+     *
+     * @param optional обёртка обнуляемого объекта.
+     *
+     * @return Переданная либо пустая обёртка.
+     *
+     * @apiNote Используйте для гарантии безопасного использования обёртки обнуляемого объекта или приведения
+     * лямбда-выражений к типу обёртки обнуляемого объекта.
+     * @since 4.0.0
+     */
+    @Contract("!null -> 1; _ -> new")
+    static <T> @NotNull Optional<T> auto(final @Nullable Optional<T> optional) {
+        return optional != null ? optional : empty();
     }
 
     /**
