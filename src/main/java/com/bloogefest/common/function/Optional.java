@@ -133,7 +133,7 @@ public interface Optional<T> {
      *
      * @since 4.0.0
      */
-    @Contract(pure = false)
+    @Contract
     default @NotNull T get() throws GetException {
         final var object = nullable();
         if (object == null) throw new GetException();
