@@ -19,7 +19,7 @@
 <dependency>
   <groupId>com.bloogefest</groupId>
   <artifactId>common</artifactId>
-  <version>4.0.0-RC1</version>
+  <version>4.0.0-RC2</version>
 </dependency>
 ```
 
@@ -36,7 +36,7 @@ repositories {
 
 ```kotlin
 dependencies {
-    implementation("com.bloogefest:common:4.0.0-RC1")
+    implementation("com.bloogefest:common:4.0.0-RC2")
 }
 ```
 
