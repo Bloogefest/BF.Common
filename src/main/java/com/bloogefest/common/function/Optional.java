@@ -163,4 +163,21 @@ public interface Optional<T> {
         return !has();
     }
 
+    /**
+     * Если объект из-под этой обёртки ненулевой, то возвращает его, в противном случае возвращает переданный объект.
+     *
+     * @param object обнуляемый объект.
+     *
+     * @return Ненулевой объект из-под этой обёртки либо переданный объект.
+     *
+     * @throws NullException исключение проверки нулевого объекта.
+     * @since 4.0.0
+     */
+    @Contract("!null -> !null; _ -> _")
+    default @NotNull T otherwise(final @Nullable T object) throws NullException {
+        Validator.notNull(object, "object");
+        final @Nullable var nullable = nullable();
+        return nullable != null ? nullable : object;
+    }
+
 }
