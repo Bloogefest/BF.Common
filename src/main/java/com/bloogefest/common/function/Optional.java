@@ -36,6 +36,23 @@ public interface Optional<T> {
     }
 
     /**
+     * Проверяет переданную обёртку. Если она ненулевая, то возвращает её, в противном случае генерирует исключение с её
+     * именем.
+     *
+     * @param optional обёртка обнуляемого объекта.
+     *
+     * @return Переданная обёртка.
+     *
+     * @throws NullException исключение проверки нулевой обёртки.
+     * @apiNote Используйте для проверки обёртки обнуляемого объекта перед её использованием.
+     * @since 4.0.0
+     */
+    @Contract("!null -> 1; _ -> failure")
+    static <T> @NotNull Optional<T> check(final @Nullable Optional<T> optional) throws NullException {
+        return Validator.notNull(optional, "optional");
+    }
+
+    /**
      * Проверяет переданную обёртку. Если она ненулевая, то возвращает её, в противном случае создаёт и возвращает
      * пустую обёртку.
      *
