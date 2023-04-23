@@ -36,6 +36,23 @@ public interface Optional<T> {
     }
 
     /**
+     * Проверяет переданный объект. Если он ненулевой, то создаёт и возвращает его обёртку, в противном случае
+     * генерирует исключение с его именем.
+     *
+     * @param object обнуляемый объект.
+     *
+     * @return Обёртка переданного объекта.
+     *
+     * @throws NullException исключение проверки нулевого объекта.
+     * @since 4.0.0
+     */
+    @Contract("_ -> new")
+    static <T> @NotNull Optional<T> of(final @NotNull T object) throws NullException {
+        Validator.notNull(object, "object");
+        return () -> object;
+    }
+
+    /**
      * Создаёт и возвращает обёртку переданного объекта.
      *
      * @param object обнуляемый объект.
