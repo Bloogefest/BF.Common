@@ -8,6 +8,8 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.analysis.Contract;
 import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Obsolete;
+import com.bloogefest.annotation.analysis.Removal;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -110,7 +112,9 @@ public interface Analyzer<T, R> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
      * @since 4.0.0
      */
-    @Contract(value = "_ -> param1")
+    @Removal("4.0.0-RC4")
+    @Obsolete("com.bloogefest.common.function.Analyzer.lambda")
+    @Contract("_ -> 1")
     static <T, R> @NotNull Analyzer<T, R> as(final @NotNull Analyzer<T, R> analyzer) {
         return analyzer;
     }
