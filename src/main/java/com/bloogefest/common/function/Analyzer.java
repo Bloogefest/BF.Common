@@ -95,6 +95,21 @@ public interface Analyzer<T, R> {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
      * @since 4.0.0
      */
+    @Contract("_ -> 1")
+    static <T, R> @NotNull Analyzer<T, R> lambda(final @NotNull Analyzer<T, R> analyzer) {
+        return analyzer;
+    }
+
+    /**
+     * Возвращает переданный анализатор.
+     *
+     * @param analyzer анализатор объекта.
+     *
+     * @return Переданный анализатор.
+     *
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
+     * @since 4.0.0
+     */
     @Contract(value = "_ -> param1")
     static <T, R> @NotNull Analyzer<T, R> as(final @NotNull Analyzer<T, R> analyzer) {
         return analyzer;
