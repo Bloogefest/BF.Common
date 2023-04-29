@@ -96,6 +96,7 @@ public interface Analyzer<T, R> {
      * @throws NullException исключение валидации нулевого объекта (переданного анализатора).
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
      * @since 3.0.0
+     * @deprecated Используйте {@linkplain #check(Analyzer)}.
      */
     @Removal("4.0.0-RC4")
     @Obsolete("com.bloogefest.common.function.Analyzer.check")
