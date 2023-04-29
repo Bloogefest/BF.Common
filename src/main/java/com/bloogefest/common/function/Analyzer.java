@@ -6,10 +6,7 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.NotNull;
-import com.bloogefest.annotation.analysis.Obsolete;
-import com.bloogefest.annotation.analysis.Removal;
+import com.bloogefest.annotation.analysis.*;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -67,6 +64,24 @@ public interface Analyzer<T, R> {
     static <T, R> @NotNull Analyzer<T, R> constant(final @NotNull R object) throws NullException {
         Validator.notNull(object, "object");
         return ignored -> object;
+    }
+
+    /**
+     * Проверяет переданный анализатор и, если тот нулевой, генерирует исключение валидации нулевого объекта
+     * (переданного анализатора) с переопределённым сообщением (отформатированным именем переданного анализатора
+     * шаблонным сообщением), в противном случае возвращает его.
+     *
+     * @param analyzer анализатор объекта.
+     *
+     * @return Переданный анализатор.
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного анализатора).
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
+     * @since 4.0.0
+     */
+    @Contract("!null -> 1; _ -> failure")
+    static <T, R> @NotNull Analyzer<T, R> check(final @Nullable Analyzer<T, R> analyzer) throws NullException {
+        return Validator.notNull(analyzer, "analyzer");
     }
 
     /**
