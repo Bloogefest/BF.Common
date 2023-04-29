@@ -111,6 +111,7 @@ public interface Analyzer<T, R> {
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
      * @since 4.0.0
+     * @deprecated Используйте {@linkplain #lambda(Analyzer)}.
      */
     @Removal("4.0.0-RC4")
     @Obsolete("com.bloogefest.common.function.Analyzer.lambda")
