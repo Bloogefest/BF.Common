@@ -41,7 +41,7 @@ public interface Callback {
      *
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
-     * @since 2.0.0
+     * @since 4.0.0
      */
     @Contract("!null -> 1; _ -> failure")
     static @NotNull Callback check(final @Nullable Callback callback) throws NullException {
