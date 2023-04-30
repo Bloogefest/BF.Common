@@ -60,6 +60,7 @@ public interface Callback {
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 2.0.0
+     * @deprecated Используйте {@linkplain #check(Callback)}.
      */
     @Removal("4.0.0-RC4")
     @Obsolete("com.bloogefest.common.function.Callback.check")
