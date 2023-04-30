@@ -79,6 +79,21 @@ public interface Callback {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 4.0.0
      */
+    @Contract("_ -> 1")
+    static @NotNull Callback lambda(final @NotNull Callback callback) {
+        return callback;
+    }
+
+    /**
+     * Возвращает переданную функцию обратного вызова.
+     *
+     * @param callback функция обратного вызова.
+     *
+     * @return Переданная функция обратного вызова.
+     *
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
+     * @since 4.0.0
+     */
     @Contract(value = "_ -> param1")
     static @NotNull Callback as(final @NotNull Callback callback) {
         return callback;
