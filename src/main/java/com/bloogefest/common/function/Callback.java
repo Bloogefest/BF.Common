@@ -6,9 +6,7 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.NotNull;
-import com.bloogefest.annotation.analysis.Nullable;
+import com.bloogefest.annotation.analysis.*;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -63,7 +61,9 @@ public interface Callback {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 2.0.0
      */
-    @Contract(value = "_ -> param1")
+    @Removal("4.0.0-RC4")
+    @Obsolete("com.bloogefest.common.function.Callback.check")
+    @Contract("_ -> 1")
     static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
         return Validator.notNull(callback, "callback");
     }
