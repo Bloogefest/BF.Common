@@ -43,9 +43,8 @@ public interface Conveyor<I, O> {
      */
     @Experimental
     @Contract("_ -> new")
-    static <I, O> @NotNull Conveyor<I, O> check(final @NotNull O output) throws NullException {
-        Validator.notNull(output, "output");
-        return input -> output;
+    static <I, O> @NotNull Conveyor<I, O> check(final @NotNull Conveyor<I, O> conveyor) throws NullException {
+        return Validator.notNull(conveyor, "conveyor");
     }
 
     /**
