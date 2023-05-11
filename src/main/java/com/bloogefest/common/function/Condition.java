@@ -61,6 +61,21 @@ public interface Condition {
      * @return Переданная логическая функция.
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
+     * @since 4.0.0-RC3
+     */
+    @Contract("_ -> 1")
+    static @NotNull Condition lambda(final @NotNull Condition condition) {
+        return condition;
+    }
+
+    /**
+     * Возвращает переданную логическую функцию.
+     *
+     * @param condition логическая функция.
+     *
+     * @return Переданная логическая функция.
+     *
+     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
      * @since 4.0.0
      */
     @Contract(value = "_ -> param1")
