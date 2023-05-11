@@ -77,7 +77,7 @@ public interface Callback {
      * @return Переданная функция обратного вызова.
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
-     * @since 4.0.0
+     * @since 4.0.0-RC3
      */
     @Contract("_ -> 1")
     static @NotNull Callback lambda(final @NotNull Callback callback) {
