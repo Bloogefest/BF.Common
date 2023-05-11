@@ -67,6 +67,7 @@ public interface Condition {
      * @throws NullException исключение валидации нулевого объекта (переданной логической функции).
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
      * @since 1.0.0
+     * @deprecated Используйте {@linkplain #check(Condition)}.
      */
     @Removal("4.0.0-RC4")
     @Obsolete("com.bloogefest.common.function.Condition.check")
