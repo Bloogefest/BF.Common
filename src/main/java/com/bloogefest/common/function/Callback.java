@@ -93,6 +93,7 @@ public interface Callback {
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 4.0.0
+     * @deprecated Используйте {@linkplain #lambda(Callback)}.
      */
     @Removal("4.0.0-RC4")
     @Obsolete("com.bloogefest.common.function.Callback.lambda")
