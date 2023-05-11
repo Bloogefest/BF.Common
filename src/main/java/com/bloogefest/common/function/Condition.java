@@ -100,6 +100,7 @@ public interface Condition {
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
      * @since 4.0.0
+     * @deprecated Используйте {@linkplain #lambda(Condition)}.
      */
     @Removal("4.0.0-RC4")
     @Obsolete("com.bloogefest.common.function.Condition.lambda")
