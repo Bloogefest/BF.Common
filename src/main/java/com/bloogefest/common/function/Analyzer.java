@@ -77,7 +77,7 @@ public interface Analyzer<T, R> {
      *
      * @throws NullException исключение валидации нулевого объекта (переданного анализатора).
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
-     * @since 4.0.0
+     * @since 4.0.0-RC3
      */
     @Contract("!null -> 1; _ -> failure")
     static <T, R> @NotNull Analyzer<T, R> check(final @Nullable Analyzer<T, R> analyzer) throws NullException {
