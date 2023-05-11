@@ -94,7 +94,9 @@ public interface Callback {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 4.0.0
      */
-    @Contract(value = "_ -> param1")
+    @Removal("4.0.0-RC4")
+    @Obsolete("com.bloogefest.common.function.Callback.lambda")
+    @Contract("_ -> 1")
     static @NotNull Callback as(final @NotNull Callback callback) {
         return callback;
     }
