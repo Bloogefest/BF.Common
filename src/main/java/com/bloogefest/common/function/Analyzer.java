@@ -113,7 +113,7 @@ public interface Analyzer<T, R> {
      * @return Переданный анализатор.
      *
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
-     * @since 4.0.0
+     * @since 4.0.0-RC3
      */
     @Contract("_ -> 1")
     static <T, R> @NotNull Analyzer<T, R> lambda(final @NotNull Analyzer<T, R> analyzer) {
