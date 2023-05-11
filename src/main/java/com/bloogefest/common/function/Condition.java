@@ -68,7 +68,9 @@ public interface Condition {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
      * @since 1.0.0
      */
-    @Contract(value = "_ -> param1")
+    @Removal("4.0.0-RC4")
+    @Obsolete("com.bloogefest.common.function.Condition.check")
+    @Contract("_ -> 1")
     static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
         return Validator.notNull(condition, "condition");
     }
