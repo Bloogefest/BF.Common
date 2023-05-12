@@ -150,12 +150,13 @@ public interface Conveyor<I, O> {
     @SuppressWarnings("unchecked")
     default <F extends Throwable> @NotNull Conveyor<I, O> failure(final @NotNull Analyzer<F, O> analyzer,
                                                                   final @NotNull Class<F> type) throws NullException {
+        Validator.notNull(type, "type");
         Validator.notNull(analyzer, "analyzer");
         return input -> {
             try {
                 return convey(input);
             } catch (final @NotNull Throwable failure) {
-                if (!failure.getClass().isAssignableFrom(type)) throw failure;
+                if (!type.isInstance(failure)) throw failure;
                 return analyzer.analyze((F) failure);
             }
         };
