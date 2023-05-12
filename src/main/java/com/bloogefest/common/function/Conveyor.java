@@ -134,11 +134,11 @@ public interface Conveyor<I, O> {
      */
     @Experimental
     @Contract("_ -> new")
-    default @NotNull Conveyor<I, Optional<O>> predicate(final @NotNull Predicate<? super O> predicate) {
+    default @NotNull Conveyor<I, O> predicate(final @NotNull Predicate<? super O> predicate) {
         Validator.notNull(predicate, "predicate");
         return input -> {
             final @NotNull var output = convey(input);
-            return predicate.evaluate(output) ? Optional.nullable(output) : Optional.empty();
+            return predicate.evaluate(output) ? output : null;
         };
     }
 
