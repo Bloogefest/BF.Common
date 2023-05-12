@@ -148,8 +148,8 @@ public interface Conveyor<I, O> {
     @Experimental
     @Contract("_ -> new")
     @SuppressWarnings("unchecked")
-    default <F extends Throwable> @NotNull Conveyor<I, O> failure(final @NotNull Analyzer<F, O> analyzer,
-                                                                  final @NotNull Class<F> type) throws NullException {
+    default <F extends Throwable> @NotNull Conveyor<I, O> failure(final @NotNull Class<F> type,
+                                                                  final @NotNull Analyzer<F, O> analyzer) throws NullException {
         Validator.notNull(type, "type");
         Validator.notNull(analyzer, "analyzer");
         return input -> {
