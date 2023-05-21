@@ -17,18 +17,17 @@ import com.bloogefest.common.validation.Validator;
  *
  * @param <T> тип объекта.
  *
- * @apiNote Позволяет безопасно работать с обнуляемыми объектами.
- * @since 4.0.0
+ * @since 4.0.0-RC2
  */
 @FunctionalInterface
 public interface Optional<T> {
 
     /**
-     * Создаёт и возвращает пустую обёртку.
+     * Создаёт и возвращает встроенную реализацию на основе объекта (нулевого объекта).
      *
-     * @return Пустая обёртка.
+     * @return Встроенная реализация на основе объекта (нулевого объекта).
      *
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract("-> new")
     static <T> @NotNull Optional<T> empty() {
@@ -36,15 +35,15 @@ public interface Optional<T> {
     }
 
     /**
-     * Проверяет переданный объект. Если он ненулевой, то создаёт и возвращает его обёртку, в противном случае
-     * генерирует исключение с его именем.
+     * Проверяет обнуляемый объект (объект) с помощью {@linkplain Validator#notNull(Object, String)}, а после создаёт и
+     * возвращает встроенную реализацию на основе на основе ненулевого объекта (объекта).
      *
-     * @param object обнуляемый объект.
+     * @param object объект.
      *
-     * @return Обёртка переданного объекта.
+     * @return Встроенная реализация по умолчанию на основе ненулевого объекта (объекта).
      *
-     * @throws NullException исключение проверки нулевого объекта.
-     * @since 4.0.0
+     * @throws NullException исключение проверки нулевого объекта (объекта).
+     * @since 4.0.0-RC2
      */
     @Contract("_ -> new")
     static <T> @NotNull Optional<T> of(final @NotNull T object) throws NullException {
@@ -53,13 +52,13 @@ public interface Optional<T> {
     }
 
     /**
-     * Создаёт и возвращает обёртку переданного объекта.
+     * Создаёт и возвращает встроенную реализацию на основе на основе обнуляемого объекта (объекта).
      *
-     * @param object обнуляемый объект.
+     * @param object объект.
      *
-     * @return Обёртка переданного объекта.
+     * @return Встроенная реализация по умолчанию на основе обнуляемого объекта (объекта).
      *
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract("_ -> new")
     static <T> @NotNull Optional<T> nullable(final @Nullable T object) {
@@ -67,16 +66,16 @@ public interface Optional<T> {
     }
 
     /**
-     * Проверяет переданную обёртку. Если она ненулевая, то возвращает её, в противном случае генерирует исключение с её
+     * Проверяет обнуляемую обёртку. Если она ненулевая, то возвращает её, в противном случае генерирует исключение с её
      * именем.
      *
      * @param optional обёртка обнуляемого объекта.
      *
-     * @return Переданная обёртка.
+     * @return Ненулевая обёртка.
      *
      * @throws NullException исключение проверки нулевой обёртки.
      * @apiNote Используйте для проверки обёртки обнуляемого объекта перед её использованием.
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract("!null -> 1; _ -> failure")
     static <T> @NotNull Optional<T> check(final @Nullable Optional<T> optional) throws NullException {
@@ -84,16 +83,15 @@ public interface Optional<T> {
     }
 
     /**
-     * Проверяет переданную обёртку. Если она ненулевая, то возвращает её, в противном случае создаёт и возвращает
-     * пустую обёртку.
+     * Проверяет обнуляемую обёртку (обёртку обнуляемого объекта), и если она ненулевая, то возвращает её, в противном
+     * случае создаёт и возвращает встроенную реализацию на основе объекта (нулевого объекта).
      *
      * @param optional обёртка обнуляемого объекта.
      *
-     * @return Переданная либо пустая обёртка.
+     * @return Ненулевая обёртка обнуляемого объекта либо встроенная реализация на основе объекта (нулевого объекта).
      *
-     * @apiNote Используйте для гарантии безопасного использования обёртки обнуляемого объекта или приведения
-     * лямбда-выражений к типу обёртки обнуляемого объекта.
-     * @since 4.0.0
+     * @apiNote Используйте для безопасного использования обёртки обнуляемого объекта.
+     * @since 4.0.0-RC2
      */
     @Contract("!null -> 1; _ -> new")
     static <T> @NotNull Optional<T> auto(final @Nullable Optional<T> optional) {
@@ -101,14 +99,14 @@ public interface Optional<T> {
     }
 
     /**
-     * Возвращает переданную обёртку.
+     * Возвращает обёртку (обёртку обнуляемого объекта).
      *
      * @param optional обёртка обнуляемого объекта.
      *
-     * @return Переданная обёртка.
+     * @return Обёртка обнуляемого объекта.
      *
      * @apiNote Используйте для приведения лямбда-выражений к типу обёртки обнуляемого объекта.
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract("_ -> 1")
     static <T> @NotNull Optional<T> lambda(final @NotNull Optional<T> optional) {
@@ -116,23 +114,23 @@ public interface Optional<T> {
     }
 
     /**
-     * Возвращает объект из-под этой обёртки.
+     * Возвращает обнуляемый объект (объект).
      *
-     * @return Обнуляемый объект из-под этой обёртки.
+     * @return Обнуляемый объект (объект).
      *
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract
     @Nullable T nullable();
 
     /**
-     * Если объект из-под этой обёртки ненулевой, то возвращает его, в противном случае генерирует исключение с его
-     * именем.
+     * Проверяет обнуляемый объект (объект) с помощью метода {@linkplain Validator#notNull(Object, String)} и возвращает
+     * его.
      *
-     * @return Ненулевой объект из-под этой обёртки.
+     * @return Ненулевой объект (первичный объект).
      *
-     * @throws NullException исключение проверки нулевого объекта.
-     * @since 4.0.0
+     * @throws NullException исключение проверки нулевого объекта (первичного объекта).
+     * @since 4.0.0-RC3
      */
     @Contract
     default @NotNull T get() throws NullException {
@@ -144,7 +142,7 @@ public interface Optional<T> {
      *
      * @return Является ли объект из-под этой обёртки ненулевым.
      *
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract
     default boolean has() {
@@ -156,7 +154,7 @@ public interface Optional<T> {
      *
      * @return Является ли объект из-под этой обёртки нулевым.
      *
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract
     default boolean hasNot() {
@@ -171,7 +169,7 @@ public interface Optional<T> {
      * @return Ненулевой объект из-под этой обёртки либо переданный объект.
      *
      * @throws NullException исключение проверки нулевого объекта.
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract("!null -> !null; _ -> _")
     default @NotNull T otherwise(final @Nullable T object) throws NullException {
@@ -190,7 +188,7 @@ public interface Optional<T> {
      *
      * @throws NullException исключение проверки нулевого объекта либо нулевого исключения поставщика.
      * @throws E исключение поставщика.
-     * @since 4.0.0
+     * @since 4.0.0-RC2
      */
     @Contract("!null -> !null; _ -> _")
     default <E extends Throwable> @NotNull T otherwise(final @NotNull Supplier<E> supplier) throws NullException, E {
