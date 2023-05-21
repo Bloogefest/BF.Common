@@ -146,20 +146,10 @@ public interface Conveyor<I, O> {
      * @since 4.0.0-RC3
      */
     @Experimental
-    @Contract("_ -> new")
-    @SuppressWarnings("unchecked")
-    default <F extends Throwable> @NotNull Conveyor<I, O> failure(final @NotNull Class<F> type,
-                                                                  final @NotNull Analyzer<F, O> analyzer) throws NullException {
+    @Contract("_, _ -> new")
+    default <F extends Throwable> @NotNull Conveyor<I, BiOptional<O, F>> failure(final @NotNull Class<F> type) throws NullException {
         Validator.notNull(type, "type");
-        Validator.notNull(analyzer, "analyzer");
-        return input -> {
-            try {
-                return convey(input);
-            } catch (final @NotNull Throwable failure) {
-                if (!type.isInstance(failure)) throw failure;
-                return analyzer.analyze((F) failure);
-            }
-        };
+        return Catcher.typed(this, type)::execute;
     }
 
 }
