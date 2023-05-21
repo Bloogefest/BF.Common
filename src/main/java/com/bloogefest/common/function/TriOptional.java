@@ -235,6 +235,43 @@ public interface TriOptional<T1, T2, T3> {
     }
 
     /**
+     * Оборачивает объект (первичный объект) с помощью метода {@linkplain Optional#nullable(Object)} и возвращает
+     * обёртку обнуляемого объекта (обёртку первичного объекта).
+     *
+     * @return Ненулевая обёртка обнуляемого объекта (обёртка первичного объекта).
+     *
+     * @since 4.0.0-RC3
+     */
+    default @NotNull Optional<T1> asFirst() {
+        return Optional.nullable(first());
+    }
+
+    /**
+     * Оборачивает объект (вторичный объект) с помощью метода {@linkplain Optional#nullable(Object)} и возвращает
+     * обёртку обнуляемого объекта (обёртку вторичного объекта).
+     *
+     * @return Ненулевая обёртка обнуляемого объекта (обёртка вторичного объекта).
+     *
+     * @since 4.0.0-RC3
+     */
+    default @NotNull Optional<T2> asSecond() {
+        return Optional.nullable(second());
+    }
+
+    /**
+     * Оборачивает объект (третичный объект) с помощью метода {@linkplain Optional#nullable(Object)} и возвращает
+     * обёртку обнуляемого объекта (обёртку третичного объекта).
+     *
+     * @return Ненулевая обёртка обнуляемого объекта (обёртка третичного объекта).
+     *
+     * @since 4.0.0-RC3
+     */
+    default @NotNull Optional<T3> asThird() {
+        return Optional.nullable(third());
+    }
+
+
+    /**
      * Встроенная реализация на основе объектов (первичного, вторичного и третичного объектов).
      *
      * @since 4.0.0-RC3
