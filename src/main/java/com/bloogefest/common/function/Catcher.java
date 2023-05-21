@@ -315,7 +315,7 @@ public interface Catcher<A, R, F extends Throwable> {
      */
     @Experimental
     default @NotNull Optional<R> asResult(final @NotNull A argument) throws UncaughtException {
-        return Optional.nullable(execute(argument).first());
+        return execute(argument).asFirst();
     }
 
     /**
@@ -323,7 +323,7 @@ public interface Catcher<A, R, F extends Throwable> {
      */
     @Experimental
     default @NotNull Optional<F> asFailure(final @NotNull A argument) throws UncaughtException {
-        return Optional.nullable(execute(argument).second());
+        return execute(argument).asSecond();
     }
 
 }
