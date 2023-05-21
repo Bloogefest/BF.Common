@@ -147,7 +147,8 @@ public interface Conveyor<I, O> {
      */
     @Experimental
     @Contract("_, _ -> new")
-    default <F extends Throwable> @NotNull Conveyor<I, BiOptional<O, F>> failure(final @NotNull Class<F> type) throws NullException {
+    default <F extends Throwable> @NotNull Conveyor<I, BiOptional<O, F>> failure(
+            final @NotNull Class<F> type) throws NullException {
         Validator.notNull(type, "type");
         return Catcher.typed(this, type)::execute;
     }
