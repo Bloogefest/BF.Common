@@ -165,6 +165,148 @@ public interface Catcher<A, R, F extends Throwable> {
      * @since 4.0.0-RC3
      */
     @Experimental
+    @SuppressWarnings("unchecked")
+    static <A, R, F extends Throwable> @NotNull Catcher<A, R, F> analyzed(
+            final @NotNull Analyzer<? super A, R> analyzer, final @NotNull Class<F> type,
+            final @NotNull Analyzer<? super F, BiOptional<R, F>> analyzer_) throws NullException {
+        Validator.notNull(analyzer, "analyzer");
+        Validator.notNull(analyzer_, "analyzer_");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(analyzer.analyze(argument), null);
+            } catch (final @NotNull Throwable failure) {
+                if (type.isInstance(failure)) return analyzer_.analyze((F) failure);
+                throw new UncaughtException(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    @SuppressWarnings("unchecked")
+    static <A, R, F extends Throwable> @NotNull Catcher<A, R, F> analyzed(final @NotNull Callback callback,
+                                                                          final @NotNull Class<F> type,
+                                                                          final @NotNull Analyzer<? super F, BiOptional<R, F>> analyzer) throws NullException {
+        Validator.notNull(callback, "callback");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                callback.call();
+                return BiOptional.empty();
+            } catch (final @NotNull Throwable failure) {
+                if (type.isInstance(failure)) return analyzer.analyze((F) failure);
+                throw new UncaughtException(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    @SuppressWarnings("unchecked")
+    static <A, F extends Throwable> @NotNull Catcher<A, Boolean, F> analyzed(final @NotNull Condition condition,
+                                                                             final @NotNull Class<F> type,
+                                                                             final @NotNull Analyzer<? super F, BiOptional<Boolean, F>> analyzer) throws NullException {
+        Validator.notNull(condition, "condition");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(condition.compute(), null);
+            } catch (final @NotNull Throwable failure) {
+                if (type.isInstance(failure)) return analyzer.analyze((F) failure);
+                throw new UncaughtException(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    @SuppressWarnings("unchecked")
+    static <A, R, F extends Throwable> @NotNull Catcher<A, R, F> analyzed(
+            final @NotNull Conveyor<? super A, R> conveyor, final @NotNull Class<F> type,
+            final @NotNull Analyzer<? super F, BiOptional<R, F>> analyzer) throws NullException {
+        Validator.notNull(conveyor, "conveyor");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(conveyor.convey(argument), null);
+            } catch (final @NotNull Throwable failure) {
+                if (type.isInstance(failure)) return analyzer.analyze((F) failure);
+                throw new UncaughtException(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    @SuppressWarnings("unchecked")
+    static <A, R, F extends Throwable> @NotNull Catcher<A, R, F> analyzed(final @NotNull Handler<? super A> handler,
+                                                                          final @NotNull Class<F> type,
+                                                                          final @NotNull Analyzer<? super F, BiOptional<R, F>> analyzer) throws NullException {
+        Validator.notNull(handler, "handler");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                handler.handle(argument);
+                return BiOptional.empty();
+            } catch (final @NotNull Throwable failure) {
+                if (type.isInstance(failure)) return analyzer.analyze((F) failure);
+                throw new UncaughtException(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    @SuppressWarnings("unchecked")
+    static <A, F extends Throwable> @NotNull Catcher<A, Boolean, F> analyzed(
+            final @NotNull Predicate<? super A> predicate, final @NotNull Class<F> type,
+            final @NotNull Analyzer<? super F, BiOptional<Boolean, F>> analyzer) throws NullException {
+        Validator.notNull(predicate, "predicate");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(predicate.evaluate(argument), null);
+            } catch (final @NotNull Throwable failure) {
+                if (type.isInstance(failure)) return analyzer.analyze((F) failure);
+                throw new UncaughtException(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    @SuppressWarnings("unchecked")
+    static <A, R, F extends Throwable> @NotNull Catcher<A, R, F> analyzed(final @NotNull Supplier<R> supplier,
+                                                                          final @NotNull Class<F> type,
+                                                                          final @NotNull Analyzer<? super F, BiOptional<R, F>> analyzer) throws NullException {
+        Validator.notNull(supplier, "supplier");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(supplier.supply(), null);
+            } catch (final @NotNull Throwable failure) {
+                if (type.isInstance(failure)) return analyzer.analyze((F) failure);
+                throw new UncaughtException(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
     static <A, R> @NotNull Catcher<A, R, Throwable> untyped(
             final @NotNull Analyzer<? super A, R> analyzer) throws NullException {
         Validator.notNull(analyzer, "analyzer");
@@ -269,6 +411,127 @@ public interface Catcher<A, R, F extends Throwable> {
                 return BiOptional.unchecked(supplier.supply(), null);
             } catch (final @NotNull Throwable failure) {
                 return BiOptional.unchecked(null, failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    static <A, R> @NotNull Catcher<A, R, Throwable> analyzed(final @NotNull Analyzer<? super A, R> analyzer,
+                                                             final @NotNull Analyzer<Throwable, BiOptional<R, Throwable>> analyzer_) throws NullException {
+        Validator.notNull(analyzer, "analyzer");
+        Validator.notNull(analyzer_, "analyzer_");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(analyzer.analyze(argument), null);
+            } catch (final @NotNull Throwable failure) {
+                return analyzer_.analyze(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    static <A, R> @NotNull Catcher<A, R, Throwable> analyzed(final @NotNull Callback callback,
+                                                             final @NotNull Analyzer<Throwable, BiOptional<R, Throwable>> analyzer) throws NullException {
+        Validator.notNull(callback, "callback");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                callback.call();
+                return BiOptional.empty();
+            } catch (final @NotNull Throwable failure) {
+                return analyzer.analyze(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    static <A> @NotNull Catcher<A, Boolean, Throwable> analyzed(final @NotNull Condition condition,
+                                                                final @NotNull Analyzer<Throwable, BiOptional<Boolean, Throwable>> analyzer) throws NullException {
+        Validator.notNull(condition, "condition");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(condition.compute(), null);
+            } catch (final @NotNull Throwable failure) {
+                return analyzer.analyze(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    static <A, R> @NotNull Catcher<A, R, Throwable> analyzed(final @NotNull Conveyor<? super A, R> conveyor,
+                                                             final @NotNull Analyzer<Throwable, BiOptional<R, Throwable>> analyzer) throws NullException {
+        Validator.notNull(conveyor, "conveyor");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(conveyor.convey(argument), null);
+            } catch (final @NotNull Throwable failure) {
+                return analyzer.analyze(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    static <A, R> @NotNull Catcher<A, R, Throwable> analyzed(final @NotNull Handler<? super A> handler,
+                                                             final @NotNull Analyzer<Throwable, BiOptional<R, Throwable>> analyzer) throws NullException {
+        Validator.notNull(handler, "handler");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                handler.handle(argument);
+                return BiOptional.empty();
+            } catch (final @NotNull Throwable failure) {
+                return analyzer.analyze(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    static <A> @NotNull Catcher<A, Boolean, Throwable> analyzed(final @NotNull Predicate<? super A> predicate,
+                                                                final @NotNull Analyzer<Throwable, BiOptional<Boolean, Throwable>> analyzer) throws NullException {
+        Validator.notNull(predicate, "predicate");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(predicate.evaluate(argument), null);
+            } catch (final @NotNull Throwable failure) {
+                return analyzer.analyze(failure);
+            }
+        };
+    }
+
+    /**
+     * @since 4.0.0-RC3
+     */
+    @Experimental
+    static <A, R> @NotNull Catcher<A, R, Throwable> analyzed(final @NotNull Supplier<R> supplier,
+                                                             final @NotNull Analyzer<Throwable, BiOptional<R, Throwable>> analyzer) throws NullException {
+        Validator.notNull(supplier, "supplier");
+        Validator.notNull(analyzer, "analyzer");
+        return argument -> {
+            try {
+                return BiOptional.unchecked(supplier.supply(), null);
+            } catch (final @NotNull Throwable failure) {
+                return analyzer.analyze(failure);
             }
         };
     }
