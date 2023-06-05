@@ -120,6 +120,7 @@ public class UtilityException extends CreationException {
      *
      * @since 4.0.0-RC3
      */
+    @Contract("_, _, _ -> new")
     public UtilityException(final String message, final boolean suppression, final boolean writable) {
         super(message, suppression, writable);
     }
@@ -133,6 +134,7 @@ public class UtilityException extends CreationException {
      *
      * @since 4.0.0-RC3
      */
+    @Contract("_, _, _ -> new")
     public UtilityException(final Throwable cause, final boolean suppression, final boolean writable) {
         super(cause, suppression, writable);
     }
