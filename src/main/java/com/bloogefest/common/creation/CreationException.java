@@ -121,6 +121,7 @@ public class CreationException extends SoftException {
      *
      * @since 4.0.0-RC3
      */
+    @Contract("_, _, _ -> new")
     public CreationException(final String message, final boolean suppression, final boolean writable) {
         super(message, suppression, writable);
     }
@@ -134,6 +135,7 @@ public class CreationException extends SoftException {
      *
      * @since 4.0.0-RC3
      */
+    @Contract("_, _, _ -> new")
     public CreationException(final Throwable cause, final boolean suppression, final boolean writable) {
         super(cause, suppression, writable);
     }
