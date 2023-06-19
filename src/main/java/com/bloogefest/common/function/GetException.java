@@ -30,70 +30,110 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String TEMPLATE_MESSAGE = "Failed to get the %s";
+    public static final @NotNls @NotNull String TEMPLATE_MESSAGE = "Failed to get %s";
 
     /**
-     * Создаёт исключение по умолчанию.
+     * Создаёт исключение получения объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения},
+     * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @since 4.0.0-RC3
      */
     @Contract("-> new")
     public GetException() {
-        super(DEFAULT_MESSAGE);
+        this(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
     /**
-     * Создаёт исключение на основе сообщения.
+     * Создаёт исключение получения объекта на основе переданного сообщения, {@linkplain #DEFAULT_CAUSE причины},
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param message сообщение.
      *
      * @since 4.0.0-RC3
      */
-    @Contract("-> new")
+    @Contract("_ -> new")
     public GetException(final @NotNls @Nullable String message) {
-        super(message);
+        this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
     /**
-     * Создаёт исключение на основе причины.
+     * Создаёт исключение получения объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной
+     * причины, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param cause причина.
      *
      * @since 4.0.0-RC3
      */
-    @Contract("-> new")
+    @Contract("_ -> new")
     public GetException(final @Nullable Throwable cause) {
-        super(cause);
+        this(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
     /**
-     * Создаёт исключение на основе сообщения и причины.
+     * Создаёт исключение получения объекта на основе переданного сообщения и причины,
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param message сообщение.
      * @param cause причина.
      *
      * @since 4.0.0-RC3
      */
-    @Contract("-> new")
+    @Contract("_, _ -> new")
     public GetException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
-        super(message, cause);
+        this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
     /**
-     * Создаёт исключение на основе параметров подавления и трассировки стека.
+     * Создаёт исключение получения объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения} и
+     * {@linkplain #DEFAULT_CAUSE причины по умолчанию}, переданных параметров подавления и трассировки стека.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
      * @since 4.0.0-RC3
      */
-    @Contract("-> new")
+    @Contract("_, _ -> new")
     public GetException(final boolean suppression, final boolean writable) {
-        super(suppression, writable);
+        this(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, writable);
     }
 
     /**
-     * Создаёт исключение на основе сообщения, причины, параметров подавления и трассировки стека.
+     * Создаёт исключение получения объекта на основе переданного сообщения,
+     * {@linkplain #DEFAULT_CAUSE причины по умолчанию}, переданных параметров подавления и трассировки стека.
+     *
+     * @param message сообщение.
+     * @param suppression параметр подавления.
+     * @param writable параметр трассировки стека.
+     *
+     * @since 4.0.0-RC3
+     */
+    @Contract("_, _, _ -> new")
+    public GetException(final @NotNls @Nullable String message, final boolean suppression, final boolean writable) {
+        this(message, DEFAULT_CAUSE, suppression, writable);
+    }
+
+    /**
+     * Создаёт исключение получения объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной
+     * причины, параметров подавления и трассировки стека.
+     *
+     * @param cause причина.
+     * @param suppression параметр подавления.
+     * @param writable параметр трассировки стека.
+     *
+     * @since 4.0.0-RC3
+     */
+    @Contract("_, _, _ -> new")
+    public GetException(final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+        this(DEFAULT_MESSAGE, cause, suppression, writable);
+    }
+
+    /**
+     * Создаёт исключение получения объекта на основе переданного сообщения, причины, параметров подавления и
+     * трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -102,9 +142,9 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0-RC3
      */
-    @Contract("-> new")
-    protected GetException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                           final boolean suppression, final boolean writable) {
+    @Contract("_, _, _, _ -> new")
+    public GetException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
+                        final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 
