@@ -31,7 +31,7 @@ public class ValidationException extends SoftException {
      *
      * @since 3.0.0
      */
-    public static final @NotNls @NotNull String templateMessage = "The %s cannot be validated";
+    public static final @NotNls @NotNull String templateMessage = "%s cannot be validated";
 
     /**
      * Инициализирует исключение по умолчанию.
