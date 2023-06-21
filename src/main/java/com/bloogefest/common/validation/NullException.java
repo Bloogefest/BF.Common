@@ -30,7 +30,7 @@ public class NullException extends ValidationException {
      *
      * @since 2.0.0
      */
-    public static final @NotNls @NotNull String templateMessage = "The %s must not be null";
+    public static final @NotNls @NotNull String templateMessage = "%s must not be null";
 
     /**
      * Инициализирует исключение по умолчанию.
