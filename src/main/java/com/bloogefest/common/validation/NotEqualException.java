@@ -30,7 +30,7 @@ public class NotEqualException extends ValidationException {
      *
      * @since 2.0.0
      */
-    public static final @NotNls @NotNull String templateMessage = "The %s must be equal to the %s";
+    public static final @NotNls @NotNull String templateMessage = "%s must be equal to the %s";
 
     /**
      * Инициализирует исключение по умолчанию.
