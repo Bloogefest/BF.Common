@@ -25,7 +25,7 @@ public interface Callback {
      *
      * @since 2.0.0
      */
-    @Contract(value = "-> new")
+    @Contract( "-> new")
     static @NotNull Callback empty() {
         return () -> {};
     }
