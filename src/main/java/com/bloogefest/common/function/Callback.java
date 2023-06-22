@@ -25,7 +25,7 @@ public interface Callback {
      *
      * @since 2.0.0
      */
-    @Contract( "-> new")
+    @Contract("-> new")
     static @NotNull Callback empty() {
         return () -> {};
     }
@@ -114,7 +114,7 @@ public interface Callback {
      * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
      * @since 3.0.0
      */
-    @Contract(value = "!null -> param1; _ -> new")
+    @Contract("!null -> param1; _ -> new")
     static @NotNull Callback auto(final @Nullable Callback callback) {
         return callback != null ? callback : empty();
     }
