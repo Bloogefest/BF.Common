@@ -125,7 +125,6 @@ public interface Callback {
      * @throws CallException исключение вызова функции (этой функции обратного вызова).
      * @since 2.0.0
      */
-    @Contract(pure = false)
     void call() throws CallException;
 
     /**
