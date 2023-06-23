@@ -10,102 +10,193 @@ import com.bloogefest.annotation.analysis.Contract;
 import com.bloogefest.annotation.analysis.Experimental;
 import com.bloogefest.annotation.analysis.NotNull;
 import com.bloogefest.annotation.analysis.Nullable;
+import com.bloogefest.common.validation.NullException;
+import com.bloogefest.common.validation.Validator;
 
 import java.util.concurrent.locks.StampedLock;
 
 /**
- * Контейнер объекта.
+ * Контейнер объекта — это функциональный инструмент, способный содержать объект. Он предоставляет методы для получения
+ * ({@linkplain #get()}, {@linkplain #withNullable()}, {@linkplain #withAnother(Object)},
+ * {@linkplain #withSupplier(Supplier)}, {@linkplain #withThrowable(Supplier)}), установки ({@linkplain #set(Object)}),
+ * сброса ({@linkplain #reset()}) и проверки его содержания ({@linkplain #contains()}).
  *
- * @apiNote Данный функциональный инструмент имеет определённую особенность — объект, контейнером которого он является,
- * может одновременно быть нулевым и существовать.
+ * @param <T> тип объекта.
+ *
+ * @see Impl
+ * @see #without()
+ * @see #with(Object)
  * @since 4.0.0-RC3
  */
-@Experimental("4.0.0-RC4")
+@Experimental("4.0.0-RC5")
 public interface Container<T> {
 
     /**
-     * Создаёт и возвращает непотокобезопасный контейнер объекта (нулевого объекта).
+     * Создаёт и возвращает {@linkplain Impl интегрированную реализацию контейнера объекта} (несуществующего объекта).
      *
-     * @return Непотокобезопасный контейнер объекта (нулевого объекта).
+     * @param <T> тип объекта.
      *
+     * @return {@linkplain Impl Интегрированную реализацию контейнера объекта} (несуществующего объекта).
+     *
+     * @see Impl#Impl()
+     * @see #with(Object)
      * @since 4.0.0-RC3
      */
+    @Experimental("4.0.0-RC4")
     @Contract("-> new")
-    static <T> @NotNull Container<T> sync() {
-        return new Sync<>();
+    static <T> @NotNull Container<T> without() {
+        return new Impl<>();
     }
 
     /**
-     * Создаёт и возвращает непотокобезопасный контейнер объекта (переданного объекта).
+     * Создаёт и возвращает {@linkplain Impl интегрированную реализацию контейнера объекта} (переданного объекта).
      *
-     * @return Непотокобезопасный контейнер объекта (переданного объекта).
+     * @param <T> тип объекта.
+     * @param object объект.
      *
+     * @return {@linkplain Impl Интегрированную реализацию контейнера объекта} (переданного объекта).
+     *
+     * @see Impl#Impl(Object)
+     * @see #without()
      * @since 4.0.0-RC3
      */
+    @Experimental("4.0.0-RC4")
     @Contract("_ -> new")
-    static <T> @NotNull Container<T> sync(final @Nullable T object) {
-        return new Sync<>(object);
+    static <T> @NotNull Container<T> with(final @Nullable T object) {
+        return new Impl<>(object);
     }
 
     /**
-     * Создаёт и возвращает потокобезопасный контейнер объекта (нулевого объекта).
-     *
-     * @return Потокобезопасный контейнер объекта (нулевого объекта).
-     *
-     * @since 4.0.0-RC3
-     */
-    @Contract("-> new")
-    static <T> @NotNull Container<T> async() {
-        return new Async<>();
-    }
-
-    /**
-     * Создаёт и возвращает потокобезопасный контейнер объекта (переданного объекта).
-     *
-     * @return Потокобезопасный контейнер объекта (переданного объекта).
-     *
-     * @since 4.0.0-RC3
-     */
-    @Contract("_ -> new")
-    static <T> @NotNull Container<T> async(final @Nullable T object) {
-        return new Async<>(object);
-    }
-
-    /**
-     * Если {@linkplain #contains() параметр существования текущего объекта} ложный, то генерирует
-     * {@linkplain GetException исключение получения объекта} (текущего объекта). Возвращает текущий объект.
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае генерирует {@linkplain GetException исключение получения объекта} (текущего объекта).
      *
      * @return Текущий объект.
      *
      * @throws GetException исключение получения объекта (текущего объекта).
+     * @see #withNullable()
+     * @see #withAnother(Object)
+     * @see #withSupplier(Supplier)
+     * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
+    @Experimental("4.0.0-RC4")
     @Contract("-> _")
     @Nullable T get() throws GetException;
 
     /**
-     * Устанавливает переданный объект. Возвращает контейнер объекта (переданного объекта).
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае — нулевой.
+     *
+     * @return Текущий или нулевой объект.
+     *
+     * @see #get()
+     * @see #withAnother(Object)
+     * @see #withSupplier(Supplier)
+     * @see #withThrowable(Supplier)
+     * @since 4.0.0-RC3
+     */
+    @Experimental("4.0.0-RC5")
+    @Contract("-> _")
+    default @Nullable T withNullable() {
+        return withAnother(null);
+    }
+
+    /**
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае — переданный.
      *
      * @param object объект.
      *
-     * @return Контейнер объекта (переданного объекта).
+     * @return Текущий или переданный объект.
+     *
+     * @see #get()
+     * @see #withNullable()
+     * @see #withSupplier(Supplier)
+     * @see #withThrowable(Supplier)
+     * @since 4.0.0-RC3
+     */
+    @Experimental("4.0.0-RC5")
+    @Contract("_ -> _")
+    default @Nullable T withAnother(final @Nullable T object) {
+        return contains() ? get() : object;
+    }
+
+    /**
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае получает и возвращает объект от переданного поставщика.
+     *
+     * @param supplier поставщик объекта.
+     *
+     * @return Текущий или полученный от переданного поставщика объект.
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
+     * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком объекта).
+     * @see #get()
+     * @see #withNullable()
+     * @see #withAnother(Object)
+     * @see #withThrowable(Supplier)
+     * @since 4.0.0-RC3
+     */
+    @Experimental("4.0.0-RC5")
+    @Contract("!null -> _; _ -> fail")
+    default @Nullable T withSupplier(
+            final @NotNull Supplier<? extends T> supplier) throws NullException, SupplyException {
+        Validator.notNull(supplier, "The object supplier");
+        return contains() ? get() : supplier.supply();
+    }
+
+    /**
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае получает и бросает исключение от переданного поставщика.
+     *
+     * @param supplier поставщик объекта (исключения).
+     *
+     * @return Текущий объект.
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного поставщика или поставляемого им объекта
+     * (исключения)).
+     * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком исключения).
+     * @throws F поставляемое переданным поставщиком исключение.
+     * @see #get()
+     * @see #withNullable()
+     * @see #withAnother(Object)
+     * @see #withSupplier(Supplier)
+     * @since 4.0.0-RC3
+     */
+    @Experimental("4.0.0-RC5")
+    @Contract("!null -> _; _ -> fail")
+    default <F extends Throwable> @Nullable T withThrowable(
+            final @NotNull Supplier<F> supplier) throws NullException, SupplyException, F {
+        Validator.notNull(supplier, "The throwable supplier");
+        if (!contains()) throw Validator.notNull(supplier.supply(), "A throwable");
+        return get();
+    }
+
+    /**
+     * Устанавливает переданный объект. Возвращает текущий контейнер объекта (переданного объекта).
+     *
+     * @param object объект.
+     *
+     * @return Текущий контейнер объекта (переданного объекта).
      *
      * @throws SetException исключение установки объекта (переданного объекта).
      * @since 4.0.0-RC3
      */
+    @Experimental("4.0.0-RC4")
     @Contract("_ -> this")
     @NotNull Container<T> set(final @Nullable T object) throws SetException;
 
     /**
-     * Если {@linkplain #contains() параметр существования текущего объекта} ложный, то генерирует
-     * {@linkplain ResetException исключение сброса объекта} (текущего объекта). Сбрасывает текущий объект. Возвращает
-     * контейнер объекта (нулевого объекта).
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то сбрасывает текущий объект, в
+     * противном случае генерирует {@linkplain ResetException исключение сброса объекта} (текущего объекта). Возвращает
+     * текущий контейнер объекта (несуществующего объекта).
      *
-     * @return Контейнер объекта (нулевого объекта).
+     * @return Текущий контейнер объекта (несуществующего объекта).
      *
      * @throws ResetException исключение сброса объекта (текущего объекта).
      * @since 4.0.0-RC3
      */
+    @Experimental("4.0.0-RC4")
     @Contract("-> this")
     @NotNull Container<T> reset() throws ResetException;
 
@@ -116,237 +207,92 @@ public interface Container<T> {
      *
      * @since 4.0.0-RC3
      */
+    @Experimental("4.0.0-RC4")
+    @Contract("-> _")
     boolean contains();
 
     /**
-     * Непотокобезопасный контейнер объекта.
+     * Интегрированная реализация контейнера объекта.
      *
+     * @see Container
+     * @see #Impl()
+     * @see #Impl(Object)
      * @since 4.0.0-RC3
      */
-    class Sync<T> implements Container<T> {
-
-        /**
-         * Текущий объект.
-         *
-         * @since 4.0.0-RC3
-         */
-        protected @Nullable T object;
-
-        /**
-         * Параметр существования текущего объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        protected boolean contains;
-
-        /**
-         * Создаёт непотокобезопасный контейнер объекта на основе нулевого объекта и ложного параметра его
-         * существования.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("-> new")
-        public Sync() {
-            this(null, false);
-        }
-
-        /**
-         * Создаёт непотокобезопасный контейнер объекта на основе переданного объекта и ложного параметра его
-         * существования.
-         *
-         * @param object объект.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("_ -> new")
-        public Sync(final @Nullable T object) {
-            this(object, true);
-        }
-
-        /**
-         * Создаёт непотокобезопасный контейнер объекта на основе нулевого объекта и переданного параметра его
-         * существования.
-         *
-         * @param contains параметр существования объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("_ -> new")
-        public Sync(final boolean contains) {
-            this(null, contains);
-        }
-
-        /**
-         * Создаёт непотокобезопасный контейнер объекта на основе переданного объекта и параметра его существования.
-         *
-         * @param object объект.
-         * @param contains параметр существования объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("_, _ -> new")
-        public Sync(final @Nullable T object, final boolean contains) {
-            this.object = object;
-            this.contains = contains;
-        }
-
-        /**
-         * Если {@linkplain #contains параметр существования текущего объекта} ложный, то генерирует
-         * {@linkplain GetException исключение получения объекта} (текущего объекта). Возвращает текущий объект.
-         *
-         * @return Текущий объект.
-         *
-         * @throws GetException исключение получения объекта (текущего объекта).
-         * @since 4.0.0-RC3
-         */
-        @Contract("-> _")
-        public @Nullable T get() throws GetException {
-            if (!contains) throw new GetException();
-            return object;
-        }
-
-        /**
-         * Устанавливает переданный объект.
-         *
-         * @param object объект.
-         *
-         * @return Контейнер объекта (переданного объекта).
-         *
-         * @since 4.0.0-RC3
-         */
-        @Override
-        @Contract("_ -> this")
-        public @NotNull Container<T> set(final T object) {
-            this.object = object;
-            contains = true;
-            return this;
-        }
-
-        /**
-         * Если {@linkplain #contains параметр существования текущего объекта} ложный, то генерирует
-         * {@linkplain ResetException исключение сброса объекта} (текущего объекта). Сбрасывает текущий объект.
-         * Возвращает контейнер объекта (нулевого объекта).
-         *
-         * @return Контейнер объекта (нулевого объекта).
-         *
-         * @throws ResetException исключение сброса объекта (текущего объекта).
-         * @since 4.0.0-RC3
-         */
-        @Override
-        @Contract("-> this")
-        public @NotNull Container<T> reset() throws ResetException {
-            if (!contains) throw new ResetException();
-            object = null;
-            contains = false;
-            return this;
-        }
-
-        /**
-         * Возвращает {@linkplain #contains параметр существования текущего объекта}.
-         *
-         * @return {@linkplain #contains Параметр существования текущего объекта}.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("-> _")
-        public boolean contains() {
-            return contains;
-        }
-
-    }
-
-    /**
-     * Потокобезопасный контейнер объекта.
-     *
-     * @since 4.0.0-RC3
-     */
-    class Async<T> implements Container<T> {
+    @Experimental("4.0.0-RC5")
+    final class Impl<T> implements Container<T> {
 
         /**
          * Инструмент для управления доступом.
          *
          * @since 4.0.0-RC3
          */
-        protected final @NotNull StampedLock lock = new StampedLock();
+        @Experimental("4.0.0-RC5")
+        private final @NotNull StampedLock lock = new StampedLock();
 
         /**
          * Текущий объект.
          *
          * @since 4.0.0-RC3
          */
-        protected volatile @Nullable T object;
+        @Experimental("4.0.0-RC4")
+        private @Nullable T object;
 
         /**
          * Параметр существования текущего объекта.
          *
          * @since 4.0.0-RC3
          */
-        protected volatile boolean contains;
+        @Experimental("4.0.0-RC5")
+        private boolean contains;
 
         /**
-         * Создаёт потокобезопасный контейнер объекта на основе нулевого объекта и ложного параметра его существования.
+         * Создаёт интегрированную реализацию контейнера объекта (несуществующего объекта).
          *
          * @since 4.0.0-RC3
          */
+        @Experimental("4.0.0-RC4")
         @Contract("-> new")
-        public Async() {
-            this(null, false);
+        public Impl() {
+            this.object = null;
+            this.contains = false;
         }
 
         /**
-         * Создаёт потокобезопасный контейнер объекта на основе переданного объекта и ложного параметра его
-         * существования.
+         * Создаёт интегрированную реализацию контейнера объекта (переданного объекта).
          *
          * @param object объект.
          *
          * @since 4.0.0-RC3
          */
+        @Experimental("4.0.0-RC4")
         @Contract("_ -> new")
-        public Async(final @Nullable T object) {
-            this(object, true);
-        }
-
-        /**
-         * Создаёт потокобезопасный контейнер объекта на основе нулевого объекта и переданного параметра его
-         * существования.
-         *
-         * @param contains параметр существования объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("_ -> new")
-        public Async(final boolean contains) {
-            this(null, contains);
-        }
-
-        /**
-         * Создаёт потокобезопасный контейнер объекта на основе переданного объекта и параметра его существования.
-         *
-         * @param object объект.
-         * @param contains параметр существования объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("_, _ -> new")
-        public Async(final @Nullable T object, final boolean contains) {
+        public Impl(final @Nullable T object) {
             this.object = object;
-            this.contains = contains;
+            this.contains = true;
         }
 
         /**
-         * Если {@linkplain #contains параметр существования текущего объекта} ложный, то генерирует
-         * {@linkplain GetException исключение получения объекта} (текущего объекта). Возвращает текущий объект.
+         * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
+         * {@linkplain #object текущий объект}, в противном случае генерирует
+         * {@linkplain GetException исключение получения объекта} (текущего объекта).
          *
-         * @return Текущий объект.
+         * @return {@linkplain #object Текущий объект}.
          *
          * @throws GetException исключение получения объекта (текущего объекта).
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
+        @Override
+        @Experimental("4.0.0-RC4")
         @Contract("-> _")
         public @Nullable T get() throws GetException {
             final var stamp = lock.readLock();
             try {
-                if (!contains) throw new GetException();
+                if (!contains) throw new GetException(GetException.TEMPLATE_MESSAGE.formatted("the current object"));
                 return object;
             } finally {
                 lock.unlockRead(stamp);
@@ -354,15 +300,108 @@ public interface Container<T> {
         }
 
         /**
-         * Устанавливает переданный объект.
+         * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
+         * {@linkplain #object текущий объект}, в противном случае — переданный.
          *
          * @param object объект.
          *
-         * @return Контейнер объекта (переданного объекта).
+         * @return {@linkplain #object Текущий} или переданный объект.
          *
+         * @see #get()
+         * @see #withNullable()
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
         @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("_ -> _")
+        public @Nullable T withAnother(final @Nullable T object) {
+            final var stamp = lock.readLock();
+            try {
+                return contains ? this.object : object;
+            } finally {
+                lock.unlockRead(stamp);
+            }
+        }
+
+        /**
+         * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
+         * {@linkplain #object текущий объект}, в противном случае получает и возвращает объект от переданного
+         * поставщика.
+         *
+         * @param supplier поставщик объекта.
+         *
+         * @return {@linkplain #object Текущий} или полученный от переданного поставщика объект.
+         *
+         * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
+         * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком объекта).
+         * @see #get()
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("!null -> _; _ -> fail")
+        public @Nullable T withSupplier(
+                final @NotNull Supplier<? extends T> supplier) throws NullException, SupplyException {
+            Validator.notNull(supplier, "The object supplier");
+            final var stamp = lock.readLock();
+            try {
+                return contains ? object : supplier.supply();
+            } finally {
+                lock.unlockRead(stamp);
+            }
+        }
+
+        /**
+         * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
+         * {@linkplain #object текущий объект}, в противном случае получает и бросает исключение от переданного
+         * поставщика.
+         *
+         * @param supplier поставщик объекта (исключения).
+         *
+         * @return {@linkplain #object Текущий объект}.
+         *
+         * @throws NullException исключение валидации нулевого объекта (переданного поставщика или поставляемого им
+         * объекта (исключения)).
+         * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком исключения).
+         * @throws F поставляемое переданным поставщиком исключение.
+         * @see #get()
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withSupplier(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("!null -> _; _ -> fail")
+        public <F extends Throwable> @Nullable T withThrowable(
+                final @NotNull Supplier<F> supplier) throws NullException, SupplyException, F {
+            Validator.notNull(supplier, "The throwable supplier");
+            final var stamp = lock.readLock();
+            try {
+                if (!contains) throw Validator.notNull(supplier.supply(), "A throwable");
+                return object;
+            } finally {
+                lock.unlockRead(stamp);
+            }
+        }
+
+        /**
+         * Устанавливает переданный объект. Возвращает текущий контейнер объекта (переданного объекта).
+         *
+         * @param object объект.
+         *
+         * @return Текущий контейнер объекта (переданного объекта).
+         *
+         * @throws SetException исключение установки объекта (переданного объекта).
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC4")
         @Contract("_ -> this")
         public @NotNull Container<T> set(final T object) {
             final var stamp = lock.writeLock();
@@ -376,16 +415,17 @@ public interface Container<T> {
         }
 
         /**
-         * Если {@linkplain #contains параметр существования текущего объекта} ложный, то генерирует
-         * {@linkplain ResetException исключение сброса объекта} (текущего объекта). Сбрасывает текущий объект.
-         * Возвращает контейнер объекта (нулевого объекта).
+         * Если {@linkplain #contains параметр существования текущего объекта} истинный, то сбрасывает текущий объект, в
+         * противном случае генерирует {@linkplain ResetException исключение сброса объекта} (текущего объекта).
+         * Возвращает текущий контейнер объекта (несуществующего объекта).
          *
-         * @return Контейнер объекта (нулевого объекта).
+         * @return Текущий контейнер объекта (несуществующего объекта).
          *
          * @throws ResetException исключение сброса объекта (текущего объекта).
          * @since 4.0.0-RC3
          */
         @Override
+        @Experimental("4.0.0-RC4")
         @Contract("-> this")
         public @NotNull Container<T> reset() throws ResetException {
             var stamp = lock.readLock();
@@ -408,6 +448,8 @@ public interface Container<T> {
          *
          * @since 4.0.0-RC3
          */
+        @Override
+        @Experimental("4.0.0-RC4")
         @Contract("-> _")
         public boolean contains() {
             final var stamp = lock.readLock();
