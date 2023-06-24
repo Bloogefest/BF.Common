@@ -19,7 +19,7 @@ import java.util.concurrent.locks.StampedLock;
  * Контейнер объекта — это функциональный инструмент, способный содержать объект. Он предоставляет методы для получения
  * ({@linkplain #get()}, {@linkplain #withNullable()}, {@linkplain #withAnother(Object)},
  * {@linkplain #withSupplier(Supplier)}, {@linkplain #withThrowable(Supplier)}), установки ({@linkplain #set(Object)}),
- * сброса ({@linkplain #reset()}) и проверки его содержания ({@linkplain #contains()}).
+ * сброса ({@linkplain #reset()}) и проверки его существования ({@linkplain #contains()}).
  *
  * @param <T> тип объекта.
  *
