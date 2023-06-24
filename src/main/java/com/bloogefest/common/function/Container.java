@@ -167,8 +167,8 @@ public interface Container<T> {
     @Contract("!null -> _; _ -> fail")
     default <F extends Throwable> @Nullable T withThrowable(
             final @NotNull Supplier<F> supplier) throws NullException, SupplyException, F {
-        Validator.notNull(supplier, "The throwable supplier");
-        if (!contains()) throw Validator.notNull(supplier.supply(), "A throwable");
+        Validator.notNull(supplier, "The passed supplier of a throwable");
+        if (!contains()) throw Validator.notNull(supplier.supply(), "A throwable supplied by the passed supplier");
         return get();
     }
 
