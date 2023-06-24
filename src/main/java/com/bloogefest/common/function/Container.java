@@ -141,7 +141,7 @@ public interface Container<T> {
     @Contract("!null -> _; _ -> fail")
     default @Nullable T withSupplier(
             final @NotNull Supplier<? extends T> supplier) throws NullException, SupplyException {
-        Validator.notNull(supplier, "The object supplier");
+        Validator.notNull(supplier, "The passed supplier of an object");
         return contains() ? get() : supplier.supply();
     }
 
