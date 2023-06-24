@@ -380,10 +380,11 @@ public interface Container<T> {
         @Contract("!null -> _; _ -> fail")
         public <F extends Throwable> @Nullable T withThrowable(
                 final @NotNull Supplier<F> supplier) throws NullException, SupplyException, F {
-            Validator.notNull(supplier, "The throwable supplier");
+            Validator.notNull(supplier, "The passed supplier of a throwable");
             final var stamp = lock.readLock();
             try {
-                if (!contains) throw Validator.notNull(supplier.supply(), "A throwable");
+                if (!contains)
+                    throw Validator.notNull(supplier.supply(), "A throwable supplied by the passed supplier");
                 return object;
             } finally {
                 lock.unlockRead(stamp);
