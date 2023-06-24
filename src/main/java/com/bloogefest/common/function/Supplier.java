@@ -8,6 +8,7 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.analysis.Contract;
 import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.analysis.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -71,6 +72,23 @@ public interface Supplier<T> {
     @Contract(value = "_ -> param1")
     static <T> @NotNull Supplier<T> as(final @NotNull Supplier<T> supplier) {
         return supplier;
+    }
+
+    /**
+     * Получает и возвращает объект.
+     *
+     * @return Объект.
+     *
+     * @throws GetException исключение получения объекта.
+     * @since 4.0.0-RC3
+     */
+    @Contract("-> _")
+    default @Nullable T get() throws GetException {
+        try {
+            return supply();
+        } catch (final @NotNull SupplyException e) {
+            throw new GetException(e);
+        }
     }
 
     /**
