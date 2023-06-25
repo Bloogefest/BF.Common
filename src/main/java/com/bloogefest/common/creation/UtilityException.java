@@ -48,7 +48,7 @@ public class UtilityException extends CreationException {
      */
     @Deprecated(since = "4.0.0-RC3", forRemoval = true)
     @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.CreationException.TEMPLATE_MESSAGE")
+    @Obsolete("com.bloogefest.common.creation.UtilityException.TEMPLATE_MESSAGE")
     public static final @NotNls @NotNull String templateMessage = TEMPLATE_MESSAGE;
 
     /**
