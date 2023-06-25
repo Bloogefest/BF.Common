@@ -38,7 +38,7 @@ public class CreationException extends SoftException {
      */
     @Deprecated(since = "4.0.0-RC3", forRemoval = true)
     @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.CreationException.DEFAULT_MESSAGE")
+    @Obsolete("com.bloogefest.common.creation.CreationException.DEFAULT_MESSAGE")
     public static final @NotNls @NotNull String defaultMessage = DEFAULT_MESSAGE;
 
     /**
