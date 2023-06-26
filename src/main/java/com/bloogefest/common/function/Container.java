@@ -32,11 +32,14 @@ import java.util.concurrent.locks.StampedLock;
 public interface Container<T> {
 
     /**
-     * Создаёт и возвращает {@linkplain Impl интегрированную реализацию контейнера объекта} (несуществующего объекта).
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl() интегрированную реализацию контейнера объекта на основе нулевого объекта и ложного
+     * параметра его существования}.
      *
      * @param <T> тип объекта.
      *
-     * @return {@linkplain Impl Интегрированную реализацию контейнера объекта} (несуществующего объекта).
+     * @return {@linkplain Impl#Impl() Интегрированную реализацию контейнера объекта на основе нулевого объекта и
+     * ложного параметра его существования}.
      *
      * @see Impl#Impl()
      * @see #with(Object)
@@ -49,12 +52,15 @@ public interface Container<T> {
     }
 
     /**
-     * Создаёт и возвращает {@linkplain Impl интегрированную реализацию контейнера объекта} (переданного объекта).
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl(Object) интегрированную реализацию контейнера объекта на основе переданного объекта и
+     * истинного параметра его существования}.
      *
      * @param <T> тип объекта.
      * @param object объект.
      *
-     * @return {@linkplain Impl Интегрированную реализацию контейнера объекта} (переданного объекта).
+     * @return {@linkplain Impl Интегрированную реализацию контейнера объекта на основе переданного объекта и истинного
+     * параметра его существования}.
      *
      * @see Impl#Impl(Object)
      * @see #without()
@@ -123,7 +129,7 @@ public interface Container<T> {
 
     /**
      * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
-     * противном случае получает и возвращает объект от переданного поставщика.
+     * противном случае получает и возвращает объект от переданного поставщика объекта.
      *
      * @param supplier поставщик объекта.
      *
@@ -142,19 +148,19 @@ public interface Container<T> {
     default @Nullable T withSupplier(
             final @NotNull Supplier<? extends T> supplier) throws NullException, SupplyException {
         Validator.notNull(supplier, "The passed supplier of an object");
-        return contains() ? get() : supplier.supply();
+        return contains() ? get() : supplier.get();
     }
 
     /**
      * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
-     * противном случае получает и бросает исключение от переданного поставщика.
+     * противном случае получает и бросает исключение от переданного поставщика исключения.
      *
-     * @param supplier поставщик объекта (исключения).
+     * @param supplier поставщик исключения.
      *
      * @return Текущий объект.
      *
-     * @throws NullException исключение валидации нулевого объекта (переданного поставщика или поставляемого им объекта
-     * (исключения)).
+     * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения или поставляемого
+     * им исключения).
      * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком исключения).
      * @throws F поставляемое переданным поставщиком исключение.
      * @see #get()
@@ -168,36 +174,36 @@ public interface Container<T> {
     default <F extends Throwable> @Nullable T withThrowable(
             final @NotNull Supplier<F> supplier) throws NullException, SupplyException, F {
         Validator.notNull(supplier, "The passed supplier of a throwable");
-        if (!contains()) throw Validator.notNull(supplier.supply(), "A throwable supplied by the passed supplier");
+        if (!contains()) throw Validator.notNull(supplier.get(), "A throwable supplied by the passed supplier");
         return get();
     }
 
     /**
-     * Устанавливает переданный объект. Возвращает текущий контейнер объекта (переданного объекта).
+     * Устанавливает переданный объект. Возвращает текущий контейнер переданного объекта.
      *
      * @param object объект.
      *
-     * @return Текущий контейнер объекта (переданного объекта).
+     * @return Текущий контейнер переданного объекта.
      *
      * @throws SetException исключение установки объекта (переданного объекта).
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC4")
-    @Contract("_ -> this")
+    @Contract(value = "_ -> this", pure = false)
     @NotNull Container<T> set(final @Nullable T object) throws SetException;
 
     /**
      * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то сбрасывает текущий объект, в
      * противном случае генерирует {@linkplain ResetException исключение сброса объекта} (текущего объекта). Возвращает
-     * текущий контейнер объекта (несуществующего объекта).
+     * текущий контейнер несуществующего объекта.
      *
-     * @return Текущий контейнер объекта (несуществующего объекта).
+     * @return Текущий контейнер несуществующего объекта.
      *
      * @throws ResetException исключение сброса объекта (текущего объекта).
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC4")
-    @Contract("-> this")
+    @Contract(value = "-> this", pure = false)
     @NotNull Container<T> reset() throws ResetException;
 
     /**
@@ -219,8 +225,7 @@ public interface Container<T> {
      * @see #Impl(Object)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
-    final class Impl<T> implements Container<T> {
+    @Experimental("4.0.0-RC5") class Impl<T> implements Container<T> {
 
         /**
          * Инструмент для управления доступом.
@@ -243,23 +248,24 @@ public interface Container<T> {
          *
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
+        @Experimental("4.0.0-RC4")
         private boolean contains;
 
         /**
-         * Создаёт интегрированную реализацию контейнера объекта (несуществующего объекта).
+         * Создаёт интегрированную реализацию контейнера объекта на основе нулевого объекта и ложного параметра его
+         * существования.
          *
          * @since 4.0.0-RC3
          */
         @Experimental("4.0.0-RC4")
         @Contract("-> new")
         public Impl() {
-            this.object = null;
-            this.contains = false;
+            this(null, false);
         }
 
         /**
-         * Создаёт интегрированную реализацию контейнера объекта (переданного объекта).
+         * Создаёт интегрированную реализацию контейнера объекта на основе переданного объекта и истинного параметра его
+         * существования.
          *
          * @param object объект.
          *
@@ -268,18 +274,33 @@ public interface Container<T> {
         @Experimental("4.0.0-RC4")
         @Contract("_ -> new")
         public Impl(final @Nullable T object) {
+            this(object, true);
+        }
+
+        /**
+         * Создаёт интегрированную реализацию контейнера объекта на основе переданного объекта и параметра его
+         * существования.
+         *
+         * @param object объект.
+         * @param contains параметр существования объекта.
+         *
+         * @since 4.0.0-RC3
+         */
+        @Experimental("4.0.0-RC5")
+        @Contract("_, _ -> new")
+        public Impl(final @Nullable T object, final boolean contains) {
             this.object = object;
-            this.contains = true;
+            this.contains = contains;
         }
 
         /**
          * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
          * {@linkplain #object текущий объект}, в противном случае генерирует
-         * {@linkplain GetException исключение получения объекта} (текущего объекта).
+         * {@linkplain GetException исключение получения объекта} ({@linkplain #object текущего объекта}).
          *
          * @return {@linkplain #object Текущий объект}.
          *
-         * @throws GetException исключение получения объекта (текущего объекта).
+         * @throws GetException исключение получения объекта ({@linkplain #object текущего объекта}).
          * @see #withNullable()
          * @see #withAnother(Object)
          * @see #withSupplier(Supplier)
@@ -328,7 +349,7 @@ public interface Container<T> {
         /**
          * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
          * {@linkplain #object текущий объект}, в противном случае получает и возвращает объект от переданного
-         * поставщика.
+         * поставщика объекта.
          *
          * @param supplier поставщик объекта.
          *
@@ -350,7 +371,7 @@ public interface Container<T> {
             Validator.notNull(supplier, "The passed supplier of an object");
             final var stamp = lock.readLock();
             try {
-                return contains ? object : supplier.supply();
+                return contains ? object : supplier.get();
             } finally {
                 lock.unlockRead(stamp);
             }
@@ -359,14 +380,14 @@ public interface Container<T> {
         /**
          * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
          * {@linkplain #object текущий объект}, в противном случае получает и бросает исключение от переданного
-         * поставщика.
+         * поставщика исключения.
          *
-         * @param supplier поставщик объекта (исключения).
+         * @param supplier поставщик исключения.
          *
          * @return {@linkplain #object Текущий объект}.
          *
-         * @throws NullException исключение валидации нулевого объекта (переданного поставщика или поставляемого им
-         * объекта (исключения)).
+         * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения или
+         * поставляемого им исключения).
          * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком исключения).
          * @throws F поставляемое переданным поставщиком исключение.
          * @see #get()
@@ -383,8 +404,7 @@ public interface Container<T> {
             Validator.notNull(supplier, "The passed supplier of a throwable");
             final var stamp = lock.readLock();
             try {
-                if (!contains)
-                    throw Validator.notNull(supplier.supply(), "A throwable supplied by the passed supplier");
+                if (!contains) throw Validator.notNull(supplier.get(), "A throwable supplied by the passed supplier");
                 return object;
             } finally {
                 lock.unlockRead(stamp);
@@ -392,18 +412,18 @@ public interface Container<T> {
         }
 
         /**
-         * Устанавливает переданный объект. Возвращает текущий контейнер объекта (переданного объекта).
+         * Устанавливает переданный объект. Возвращает текущий контейнер переданного объекта.
          *
          * @param object объект.
          *
-         * @return Текущий контейнер объекта (переданного объекта).
+         * @return Текущий контейнер переданного объекта.
          *
          * @throws SetException исключение установки объекта (переданного объекта).
          * @since 4.0.0-RC3
          */
         @Override
         @Experimental("4.0.0-RC4")
-        @Contract("_ -> this")
+        @Contract(value = "_ -> this", pure = false)
         public @NotNull Container<T> set(final T object) {
             final var stamp = lock.writeLock();
             try {
@@ -416,22 +436,24 @@ public interface Container<T> {
         }
 
         /**
-         * Если {@linkplain #contains параметр существования текущего объекта} истинный, то сбрасывает текущий объект, в
-         * противном случае генерирует {@linkplain ResetException исключение сброса объекта} (текущего объекта).
-         * Возвращает текущий контейнер объекта (несуществующего объекта).
+         * Если {@linkplain #contains параметр существования текущего объекта} истинный, то сбрасывает
+         * {@linkplain #object текущий объект}, в противном случае генерирует
+         * {@linkplain ResetException исключение сброса объекта} ({@linkplain #object текущего объекта}). Возвращает
+         * текущий контейнер несуществующего объекта.
          *
-         * @return Текущий контейнер объекта (несуществующего объекта).
+         * @return Текущий контейнер несуществующего объекта.
          *
-         * @throws ResetException исключение сброса объекта (текущего объекта).
+         * @throws ResetException исключение сброса объекта ({@linkplain #object текущего объекта}).
          * @since 4.0.0-RC3
          */
         @Override
         @Experimental("4.0.0-RC4")
-        @Contract("-> this")
+        @Contract(value = "-> this", pure = false)
         public @NotNull Container<T> reset() throws ResetException {
             var stamp = lock.readLock();
             try {
-                if (!contains) throw new ResetException();
+                if (!contains)
+                    throw new ResetException(ResetException.TEMPLATE_MESSAGE.formatted("the current object"));
                 stamp = lock.tryConvertToWriteLock(stamp);
                 if (stamp == 0) stamp = lock.writeLock();
                 object = null;
