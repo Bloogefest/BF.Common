@@ -32,7 +32,7 @@ public interface Condition {
      *
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new")
+    @Contract("_ -> new")
     static @NotNull Condition constant(final boolean result) {
         return () -> result;
     }
