@@ -64,8 +64,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Создаёт исключение создания объекта одиночного типа на основе переданного сообщения, {@linkplain #DEFAULT_CAUSE причины},
-     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * Создаёт исключение создания объекта одиночного типа на основе переданного сообщения,
+     * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param message сообщение.
@@ -78,7 +78,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Создаёт исключение создания объекта одиночного типа на основе {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной причины,
+     * Создаёт исключение создания объекта одиночного типа на основе
+     * {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной причины,
      * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
@@ -121,8 +122,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Создаёт исключение создания объекта одиночного типа на основе переданного сообщения, {@linkplain #DEFAULT_CAUSE причины по умолчанию},
-     * переданных параметров подавления и трассировки стека.
+     * Создаёт исключение создания объекта одиночного типа на основе переданного сообщения,
+     * {@linkplain #DEFAULT_CAUSE причины по умолчанию}, переданных параметров подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param suppression параметр подавления.
@@ -132,13 +133,14 @@ public class SingletonException extends CreationException {
      */
     @Contract("_, _, _ -> new")
     public SingletonException(final @NotNls @Nullable String message, final boolean suppression,
-                             final boolean writable) {
+                              final boolean writable) {
         this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
     /**
-     * Создаёт исключение создания объекта одиночного типа на основе {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной причины,
-     * параметров подавления и трассировки стека.
+     * Создаёт исключение создания объекта одиночного типа на основе
+     * {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной причины, параметров подавления и трассировки
+     * стека.
      *
      * @param cause причина.
      * @param suppression параметр подавления.
@@ -152,7 +154,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Создаёт исключение создания объекта одиночного типа на основе переданного сообщения, причины, параметров подавления и трассировки стека.
+     * Создаёт исключение создания объекта одиночного типа на основе переданного сообщения, причины, параметров
+     * подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -163,7 +166,7 @@ public class SingletonException extends CreationException {
      */
     @Contract("_, _, _, _ -> new")
     public SingletonException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                             final boolean suppression, final boolean writable) {
+                              final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 
