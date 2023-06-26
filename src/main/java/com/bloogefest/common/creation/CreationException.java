@@ -53,17 +53,21 @@ public class CreationException extends SoftException {
     public static final @NotNls @NotNull String templateMessage = TEMPLATE_MESSAGE;
 
     /**
-     * Создаёт исключение по умолчанию.
+     * Создаёт исключение создания объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения},
+     * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @since 3.0.0
      */
     @Contract("-> new")
     public CreationException() {
-        super(DEFAULT_MESSAGE);
+        this(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
     /**
-     * Создаёт исключение на основе сообщения.
+     * Создаёт исключение создания объекта на основе переданного сообщения, {@linkplain #DEFAULT_CAUSE причины},
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param message сообщение.
      *
@@ -71,11 +75,13 @@ public class CreationException extends SoftException {
      */
     @Contract("_ -> new")
     public CreationException(final @NotNls @Nullable String message) {
-        super(message);
+        this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
     /**
-     * Создаёт исключение на основе причины.
+     * Создаёт исключение создания объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной причины,
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param cause причина.
      *
@@ -83,11 +89,13 @@ public class CreationException extends SoftException {
      */
     @Contract("_ -> new")
     public CreationException(final @Nullable Throwable cause) {
-        super(cause);
+        this(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
     /**
-     * Создаёт исключение на основе сообщения и причины.
+     * Создаёт исключение создания объекта на основе переданного сообщения и причины,
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -96,11 +104,12 @@ public class CreationException extends SoftException {
      */
     @Contract("_, _ -> new")
     public CreationException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
-        super(message, cause);
+        this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
     /**
-     * Создаёт исключение на основе параметров подавления и трассировки стека.
+     * Создаёт исключение создания объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения} и
+     * {@linkplain #DEFAULT_CAUSE причины по умолчанию}, переданных параметров подавления и трассировки стека.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
@@ -109,11 +118,12 @@ public class CreationException extends SoftException {
      */
     @Contract("_, _ -> new")
     public CreationException(final boolean suppression, final boolean writable) {
-        super(suppression, writable);
+        this(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, writable);
     }
 
     /**
-     * Создаёт исключение на основе сообщения, параметров подавления и трассировки стека.
+     * Создаёт исключение создания объекта на основе переданного сообщения, {@linkplain #DEFAULT_CAUSE причины по умолчанию},
+     * переданных параметров подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param suppression параметр подавления.
@@ -122,12 +132,14 @@ public class CreationException extends SoftException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public CreationException(final String message, final boolean suppression, final boolean writable) {
-        super(message, suppression, writable);
+    public CreationException(final @NotNls @Nullable String message, final boolean suppression,
+                             final boolean writable) {
+        this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
     /**
-     * Создаёт исключение на основе причины, параметров подавления и трассировки стека.
+     * Создаёт исключение создания объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной причины,
+     * параметров подавления и трассировки стека.
      *
      * @param cause причина.
      * @param suppression параметр подавления.
@@ -136,12 +148,12 @@ public class CreationException extends SoftException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public CreationException(final Throwable cause, final boolean suppression, final boolean writable) {
-        super(cause, suppression, writable);
+    public CreationException(final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
+        this(DEFAULT_MESSAGE, cause, suppression, writable);
     }
 
     /**
-     * Создаёт исключение на основе сообщения, причины, параметров подавления и трассировки стека.
+     * Создаёт исключение создания объекта на основе переданного сообщения, причины, параметров подавления и трассировки стека.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -151,8 +163,8 @@ public class CreationException extends SoftException {
      * @since 3.0.0
      */
     @Contract("_, _, _, _ -> new")
-    protected CreationException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                                final boolean suppression, final boolean writable) {
+    public CreationException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
+                             final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }
 
