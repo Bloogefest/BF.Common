@@ -6,21 +6,43 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.NotNull;
-import com.bloogefest.annotation.analysis.Nullable;
+import com.bloogefest.annotation.analysis.*;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
 /**
- * Обёртка обнуляемого объекта.
+ * Обёртка объекта — это функциональный инструмент, способный содержать объект. Он предоставляет методы для получения
+ * ({@linkplain #get()}, {@linkplain #withNullable()}, {@linkplain #withAnother(Object)},
+ * {@linkplain #withSupplier(Supplier)}, {@linkplain #withThrowable(Supplier)}) и проверки его существования
+ * ({@linkplain #contains()}).
  *
  * @param <T> тип объекта.
  *
+ * @see Without
+ * @see With
+ * @see #without()
+ * @see #with(Object)
  * @since 4.0.0-RC2
  */
-@FunctionalInterface
+@Experimental("4.0.0-RC5")
 public interface Optional<T> {
+
+    /**
+     * Создаёт и возвращает {@linkplain Without интегрированную реализацию обёртки несуществующего объекта}.
+     *
+     * @param <T> тип объекта.
+     *
+     * @return {@linkplain Without Интегрированную реализацию обёртки несуществующего объекта}.
+     *
+     * @see Without#Without()
+     * @see #with(Object)
+     * @since 4.0.0-RC3
+     */
+    @Experimental("4.0.0-RC4")
+    @Contract("-> new")
+    static <T> @NotNull Optional<T> without() {
+        return new Without<>();
+    }
 
     /**
      * Создаёт и возвращает встроенную реализацию на основе объекта (нулевого объекта).
@@ -28,10 +50,34 @@ public interface Optional<T> {
      * @return Встроенная реализация на основе объекта (нулевого объекта).
      *
      * @since 4.0.0-RC2
+     * @deprecated Используйте {@linkplain #with(Object)}, но вместе с {@linkplain Validator#notNull(Object, String)}.
      */
+    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
+    @Removal("4.0.0-RC4")
+    @Obsolete("com.bloogefest.common.function.Optional::without()")
     @Contract("-> new")
     static <T> @NotNull Optional<T> empty() {
-        return () -> null;
+        return without();
+    }
+
+    /**
+     * Создаёт и возвращает {@linkplain With интегрированную реализацию обёртки существующего объекта} (переданного
+     * объекта).
+     *
+     * @param <T> тип объекта.
+     * @param object объект.
+     *
+     * @return {@linkplain With Интегрированную реализацию обёртки существующего объекта} (переданного объекта).
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного объекта).
+     * @see With#With(Object)
+     * @see #without()
+     * @since 4.0.0-RC3
+     */
+    @Experimental("4.0.0-RC4")
+    @Contract("!null -> new; _ -> fail")
+    static <T> @NotNull Optional<T> with(final @NotNull T object) throws NullException {
+        return new With<>(object);
     }
 
     /**
@@ -44,11 +90,34 @@ public interface Optional<T> {
      *
      * @throws NullException исключение проверки нулевого объекта (объекта).
      * @since 4.0.0-RC2
+     * @deprecated Используйте {@linkplain #with(Object)}.
+     */
+    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
+    @Removal("4.0.0-RC4")
+    @Obsolete("com.bloogefest.common.function.Optional::with(Object)")
+    @Contract("!null -> new; _ -> fail")
+    static <T> @NotNull Optional<T> of(final @NotNull T object) throws NullException {
+        return with(object);
+    }
+
+    /**
+     * Если переданный объект ненулевой, то создаёт и возвращает
+     * {@linkplain With интегрированную реализацию обёртки существующего объекта} (переданного объекта), в противном
+     * случае — {@linkplain Without интегрированную реализацию обёртки несуществующего объекта}.
+     *
+     * @param <T> тип объекта.
+     * @param object объект.
+     *
+     * @return {@linkplain With Интегрированную реализацию обёртки существующего объекта} (переданного объекта) или
+     * {@linkplain Without интегрированную реализацию обёртки несуществующего объекта}.
+     *
+     * @see With#With(Object)
+     * @see #without()
+     * @since 4.0.0-RC3
      */
     @Contract("_ -> new")
-    static <T> @NotNull Optional<T> of(final @NotNull T object) throws NullException {
-        Validator.notNull(object, "object");
-        return () -> object;
+    static <T> @NotNull Optional<T> auto(final @Nullable T object) {
+        return object != null ? with(object) : without();
     }
 
     /**
@@ -59,10 +128,14 @@ public interface Optional<T> {
      * @return Встроенная реализация по умолчанию на основе обнуляемого объекта (объекта).
      *
      * @since 4.0.0-RC2
+     * @deprecated Используйте {@linkplain #auto(Object)}.
      */
+    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
+    @Removal("4.0.0-RC4")
+    @Obsolete("com.bloogefest.common.function.Optional::auto(Object)")
     @Contract("_ -> new")
     static <T> @NotNull Optional<T> nullable(final @Nullable T object) {
-        return () -> object;
+        return auto(object);
     }
 
     /**
@@ -76,7 +149,11 @@ public interface Optional<T> {
      * @throws NullException исключение проверки нулевой обёртки.
      * @apiNote Используйте для проверки обёртки обнуляемого объекта перед её использованием.
      * @since 4.0.0-RC2
+     * @deprecated Используйте {@linkplain Validator#notNull(Object, String)} самостоятельно.
      */
+    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
+    @Removal("4.0.0-RC4")
+    @Obsolete("com.bloogefest.common.validation.Validation::notNull(Object, String)")
     @Contract("!null -> 1; _ -> failure")
     static <T> @NotNull Optional<T> check(final @Nullable Optional<T> optional) throws NullException {
         return Validator.notNull(optional, "optional");
@@ -92,7 +169,11 @@ public interface Optional<T> {
      *
      * @apiNote Используйте для безопасного использования обёртки обнуляемого объекта.
      * @since 4.0.0-RC2
+     * @deprecated Проверяйте и используйте {@linkplain #without()} самостоятельно.
      */
+    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
+    @Removal("4.0.0-RC4")
+    @Obsolete
     @Contract("!null -> 1; _ -> new")
     static <T> @NotNull Optional<T> auto(final @Nullable Optional<T> optional) {
         return optional != null ? optional : empty();
@@ -107,115 +188,420 @@ public interface Optional<T> {
      *
      * @apiNote Используйте для приведения лямбда-выражений к типу обёртки обнуляемого объекта.
      * @since 4.0.0-RC2
+     * @deprecated Приводите к типу обёртки самостоятельно.
      */
+    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
+    @Removal("4.0.0-RC4")
+    @Obsolete
     @Contract("_ -> 1")
     static <T> @NotNull Optional<T> lambda(final @NotNull Optional<T> optional) {
         return optional;
     }
 
     /**
-     * Возвращает обнуляемый объект (объект).
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае генерирует {@linkplain GetException исключение получения объекта} (текущего объекта).
      *
-     * @return Обнуляемый объект (объект).
+     * @return Текущий объект.
      *
-     * @since 4.0.0-RC2
-     */
-    @Contract
-    @Nullable T nullable();
-
-    /**
-     * Проверяет обнуляемый объект (объект) с помощью метода {@linkplain Validator#notNull(Object, String)} и возвращает
-     * его.
-     *
-     * @return Ненулевой объект (первичный объект).
-     *
-     * @throws NullException исключение проверки нулевого объекта (первичного объекта).
+     * @throws GetException исключение получения объекта (текущего объекта).
+     * @see #withNullable()
+     * @see #withAnother(Object)
+     * @see #withSupplier(Supplier)
+     * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
-    @Contract
-    default @NotNull T get() throws NullException {
-        return Validator.notNull(nullable(), "object");
-    }
+    @Experimental("4.0.0-RC4")
+    @Contract("-> _")
+    @NotNull T get() throws GetException;
 
     /**
-     * Если объект из-под этой обёртки ненулевой, то возвращает истину, в противном случае возвращает ложь.
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае — нулевой.
      *
-     * @return Является ли объект из-под этой обёртки ненулевым.
+     * @return Текущий или нулевой объект.
      *
-     * @since 4.0.0-RC2
+     * @see #get()
+     * @see #withAnother(Object)
+     * @see #withSupplier(Supplier)
+     * @see #withThrowable(Supplier)
+     * @since 4.0.0-RC3
      */
-    @Contract
-    default boolean has() {
-        return nullable() != null;
+    @Experimental("4.0.0-RC5")
+    @Contract("-> _")
+    default @Nullable T withNullable() {
+        return contains() ? get() : null;
     }
 
     /**
-     * Если объект из-под этой обёртки нулевой, то возвращает истину, в противном случае возвращает ложь.
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае — переданный.
      *
-     * @return Является ли объект из-под этой обёртки нулевым.
+     * @param object объект.
      *
-     * @since 4.0.0-RC2
+     * @return Текущий или переданный объект.
+     *
+     * @see #get()
+     * @see #withNullable()
+     * @see #withSupplier(Supplier)
+     * @see #withThrowable(Supplier)
+     * @since 4.0.0-RC3
      */
-    @Contract
-    default boolean hasNot() {
-        return !has();
+    @Experimental("4.0.0-RC5")
+    @Contract("!null -> !null; _ -> fail")
+    default @NotNull T withAnother(final @NotNull T object) throws NullException {
+        Validator.notNull(object, "The passed object");
+        return contains() ? get() : object;
     }
 
     /**
-     * Если объект из-под этой обёртки ненулевой, то возвращает его, в противном случае возвращает переданный объект.
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае получает и возвращает объект от переданного поставщика объекта.
      *
-     * @param object обнуляемый объект.
+     * @param supplier поставщик объекта.
      *
-     * @return Ненулевой объект из-под этой обёртки либо переданный объект.
+     * @return Текущий или полученный от переданного поставщика объект.
      *
-     * @throws NullException исключение проверки нулевого объекта.
-     * @since 4.0.0-RC2
+     * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
+     * @throws GetException исключение получения объекта (поставляемого переданным поставщиком объекта).
+     * @see #get()
+     * @see #withNullable()
+     * @see #withAnother(Object)
+     * @see #withThrowable(Supplier)
+     * @since 4.0.0-RC3
      */
-    @Contract("!null -> !null; _ -> _")
-    default @NotNull T otherwise(final @Nullable T object) throws NullException {
-        Validator.notNull(object, "object");
-        final @Nullable var nullable = nullable();
-        return nullable != null ? nullable : object;
+    @Experimental("4.0.0-RC5")
+    @Contract("!null -> _; _ -> fail")
+    default @NotNull T withSupplier(final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
+        Validator.notNull(supplier, "The passed supplier of an object");
+        return contains() ? get() : Validator.notNull(supplier.get(), "An object supplied by the passed supplier");
     }
 
     /**
-     * Если объект из-под этой обёртки ненулевой, то возвращает его, в противном случае получает и бросает исключение
-     * поставщика.
+     * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то возвращает текущий объект, в
+     * противном случае получает и бросает исключение от переданного поставщика исключения.
      *
      * @param supplier поставщик исключения.
      *
-     * @return Ненулевой объект из-под этой обёртки.
+     * @return Текущий объект.
      *
-     * @throws NullException исключение проверки нулевого объекта либо нулевого исключения поставщика.
-     * @throws E исключение поставщика.
-     * @since 4.0.0-RC2
+     * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения или поставляемого
+     * им исключения).
+     * @throws GetException исключение получения объекта (поставляемого переданным поставщиком исключения).
+     * @throws F поставляемое переданным поставщиком исключение.
+     * @see #get()
+     * @see #withNullable()
+     * @see #withAnother(Object)
+     * @see #withSupplier(Supplier)
+     * @since 4.0.0-RC3
      */
-    @Contract("!null -> !null; _ -> _")
-    default <E extends Throwable> @NotNull T otherwise(final @NotNull Supplier<E> supplier) throws NullException, E {
-        Validator.notNull(supplier, "supplier");
-        final @Nullable var nullable = nullable();
-        if (nullable == null) throw Validator.notNull(supplier.supply(), "failure");
-        return nullable;
+    @Experimental("4.0.0-RC5")
+    @Contract("!null -> _; _ -> fail")
+    default <F extends Throwable> @NotNull T withThrowable(
+            final @NotNull Supplier<F> supplier) throws NullException, GetException, F {
+        Validator.notNull(supplier, "The passed supplier of a throwable");
+        if (!contains()) throw Validator.notNull(supplier.get(), "A throwable supplied by the passed supplier");
+        return get();
     }
 
     /**
-     * Если объект из-под этой обёртки ненулевой, то возвращает его, в противном случае получает и бросает исключение
-     * поставщика.
+     * Возвращает параметр существования текущего объекта.
      *
-     * @param supplier поставщик исключения.
+     * @return Параметр существования текущего объекта.
      *
-     * @return Ненулевой объект из-под этой обёртки.
-     *
-     * @throws NullException исключение проверки нулевого поставщика либо его исключения.
-     * @throws F исключение поставщика.
      * @since 4.0.0-RC3
      */
-    @Contract("_ -> !null | failure")
-    default <F extends Throwable> @NotNull T failure(final @NotNull Supplier<F> supplier) throws NullException, F {
-        Validator.notNull(supplier, "supplier");
-        final @Nullable var nullable = nullable();
-        if (nullable == null) throw Validator.notNull(supplier.supply(), "failure");
-        return nullable;
+    @Experimental("4.0.0-RC4")
+    @Contract("-> const")
+    boolean contains();
+
+    /**
+     * Интегрированная реализация обёртки несуществующего объекта.
+     *
+     * @see Optional
+     * @see With
+     * @see #Without()
+     * @since 4.0.0-RC3
+     */
+    @Experimental("4.0.0-RC5") class Without<T> implements Optional<T> {
+
+        /**
+         * Создаёт интегрированную реализацию обёртки несуществующего объекта.
+         *
+         * @since 4.0.0-RC3
+         */
+        @Experimental("4.0.0-RC4")
+        @Contract("-> new")
+        public Without() {}
+
+        /**
+         * Генерирует {@linkplain GetException исключение получения объекта} (текущего объекта).
+         *
+         * @throws GetException исключение получения объекта (текущего объекта).
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC4")
+        @Contract("-> fail")
+        public @Null T get() {
+            throw new GetException(GetException.TEMPLATE_MESSAGE.formatted("the current object"));
+        }
+
+        /**
+         * Возвращает нулевой объект.
+         *
+         * @return Нулевой объект.
+         *
+         * @see #get()
+         * @see #withNullable()
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("-> null")
+        public @Null T withNullable() {
+            return null;
+        }
+
+        /**
+         * Возвращает переданный объект.
+         *
+         * @param object объект.
+         *
+         * @return Переданный объект.
+         *
+         * @throws NullException исключение валидации объекта (переданного объекта).
+         * @see #get()
+         * @see #withNullable()
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("!null -> 1; _ -> fail")
+        public @NotNull T withAnother(final @NotNull T object) throws NullException {
+            return Validator.notNull(object, "The passed object");
+        }
+
+        /**
+         * Получает и возвращает объект от переданного поставщика объекта.
+         *
+         * @param supplier поставщик объекта.
+         *
+         * @return Полученный от переданного поставщика объект.
+         *
+         * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
+         * @throws GetException исключение получения объекта (поставляемого переданным поставщиком объекта).
+         * @see #get()
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("!null -> _; _ -> fail")
+        public @NotNull T withSupplier(
+                final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
+            return Validator.notNull(Validator.notNull(supplier, "The passed supplier of an object").get(),
+                                     "An object supplied by the passed supplier");
+        }
+
+        /**
+         * Получает и бросает исключение от переданного поставщика исключения.
+         *
+         * @param supplier поставщик исключения.
+         *
+         * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения или
+         * поставляемого им исключения).
+         * @throws GetException исключение получения объекта (поставляемого переданным поставщиком исключения).
+         * @throws F поставляемое переданным поставщиком исключение.
+         * @see #get()
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withSupplier(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("_ -> fail")
+        public <F extends Throwable> @Null T withThrowable(
+                final @NotNull Supplier<F> supplier) throws NullException, GetException, F {
+            throw Validator.notNull(Validator.notNull(supplier, "The passed supplier of a throwable").get(),
+                                    "A throwable supplied by the passed supplier");
+        }
+
+        /**
+         * Возвращает параметр существования текущего объекта.
+         *
+         * @return Параметр существования текущего объекта.
+         *
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC4")
+        @Contract("-> false")
+        public boolean contains() {
+            return false;
+        }
+
+    }
+
+    /**
+     * Интегрированная реализация обёртки существующего объекта.
+     *
+     * @see Optional
+     * @see Without
+     * @see #With(Object)
+     * @since 4.0.0-RC3
+     */
+    @Experimental("4.0.0-RC5") class With<T> implements Optional<T> {
+
+        /**
+         * Текущий объект.
+         *
+         * @since 4.0.0-RC3
+         */
+        @Experimental("4.0.0-RC4")
+        private final @NotNull T object;
+
+        /**
+         * Создаёт интегрированную реализацию обёртки существующего объекта (переданного объекта).
+         *
+         * @param object объект.
+         *
+         * @throws NullException исключение валидации нулевого объекта (переданного объекта).
+         * @since 4.0.0-RC3
+         */
+        @Experimental("4.0.0-RC4")
+        @Contract("!null -> new; _ -> fail")
+        public With(final @NotNull T object) throws NullException {
+            this.object = Validator.notNull(object, "The passed object");
+        }
+
+        /**
+         * Возвращает {@linkplain #object текущий объект}.
+         *
+         * @return {@linkplain #object Текущий объект}.
+         *
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC4")
+        @Contract("-> const & !null")
+        public @NotNull T get() {
+            return object;
+        }
+
+        /**
+         * Возвращает {@linkplain #object текущий объект}.
+         *
+         * @return {@linkplain #object Текущий объект}.
+         *
+         * @see #get()
+         * @see #withAnother(Object)
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("-> const & !null")
+        public @NotNull T withNullable() {
+            return object;
+        }
+
+        /**
+         * Возвращает {@linkplain #object текущий объект}.
+         *
+         * @param object объект.
+         *
+         * @return {@linkplain #object Текущий объект}.
+         *
+         * @see #get()
+         * @see #withNullable()
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("!null -> const & !null; _ -> fail")
+        public @NotNull T withAnother(final @Nullable T object) throws NullException {
+            Validator.notNull(object, "The passed object");
+            return this.object;
+        }
+
+        /**
+         * Возвращает {@linkplain #object текущий объект}.
+         *
+         * @param supplier поставщик объекта.
+         *
+         * @return {@linkplain #object Текущий объект}.
+         *
+         * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
+         * @see #get()
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("!null -> const & !null; _ -> fail")
+        public @NotNull T withSupplier(final @NotNull Supplier<? extends T> supplier) throws NullException {
+            Validator.notNull(supplier, "The passed supplier of an object");
+            return object;
+        }
+
+        /**
+         * Возвращает {@linkplain #object текущий объект}.
+         *
+         * @param supplier поставщик исключения.
+         *
+         * @return {@linkplain #object Текущий объект}.
+         *
+         * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения).
+         * @see #get()
+         * @see #withNullable()
+         * @see #withAnother(Object)
+         * @see #withSupplier(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC5")
+        @Contract("!null -> const & !null; _ -> fail")
+        public <F extends Throwable> @NotNull T withThrowable(
+                final @NotNull Supplier<F> supplier) throws NullException {
+            Validator.notNull(supplier, "The passed supplier of a throwable");
+            return object;
+        }
+
+        /**
+         * Возвращает параметр существования текущего объекта.
+         *
+         * @return Параметр существования текущего объекта.
+         *
+         * @since 4.0.0-RC3
+         */
+        @Override
+        @Experimental("4.0.0-RC4")
+        @Contract("-> true")
+        public boolean contains() {
+            return true;
+        }
+
     }
 
 }
