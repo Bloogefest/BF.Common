@@ -41,6 +41,7 @@ public interface Container<T> {
      * @return {@linkplain Impl#Impl() Интегрированную реализацию контейнера объекта на основе нулевого объекта и
      * ложного параметра его существования}.
      *
+     * @see Impl
      * @see Impl#Impl()
      * @see #with(Object)
      * @since 4.0.0-RC3
