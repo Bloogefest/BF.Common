@@ -153,7 +153,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(type, "type");
         return argument -> {
             try {
-                return BiOptional.unchecked(supplier.supply(), null);
+                return BiOptional.unchecked(supplier.get(), null);
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return BiOptional.unchecked(null, (F) failure);
                 throw new UncaughtException(failure);
@@ -295,7 +295,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(supplier.supply(), null);
+                return BiOptional.unchecked(supplier.get(), null);
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return analyzer.analyze((F) failure);
                 throw new UncaughtException(failure);
@@ -408,7 +408,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(supplier, "supplier");
         return argument -> {
             try {
-                return BiOptional.unchecked(supplier.supply(), null);
+                return BiOptional.unchecked(supplier.get(), null);
             } catch (final @NotNull Throwable failure) {
                 return BiOptional.unchecked(null, failure);
             }
@@ -529,7 +529,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(supplier.supply(), null);
+                return BiOptional.unchecked(supplier.get(), null);
             } catch (final @NotNull Throwable failure) {
                 return analyzer.analyze(failure);
             }
