@@ -151,7 +151,7 @@ public interface Conveyor<I, O> {
     @Experimental
     @Contract("-> new")
     default @NotNull Conveyor<I, Optional<O>> optional() {
-        return input -> Optional.nullable(convey(input));
+        return input -> Optional.auto(convey(input));
     }
 
     /**
@@ -175,7 +175,7 @@ public interface Conveyor<I, O> {
     default <O_> @NotNull Conveyor<I, BiOptional<O, O_>> supplier(
             final @NotNull Supplier<O_> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
-        return input -> BiOptional.unchecked(convey(input), supplier.supply());
+        return input -> BiOptional.unchecked(convey(input), supplier.get());
     }
 
     /**
