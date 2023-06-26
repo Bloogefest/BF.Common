@@ -101,6 +101,10 @@ signing {
     sign(publishing.publications["master"])
 }
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+}
+
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
