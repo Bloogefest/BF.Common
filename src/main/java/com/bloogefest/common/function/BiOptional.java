@@ -195,27 +195,27 @@ public interface BiOptional<T1, T2> {
     }
 
     /**
-     * Оборачивает обнуляемый объект (первичный объект) с помощью метода {@linkplain Optional#nullable(Object)} и
-     * возвращает обёртку обнуляемого объекта (обёртку первичного объекта).
+     * Оборачивает обнуляемый объект (первичный объект) с помощью метода {@linkplain Optional#auto(Object)} и возвращает
+     * обёртку обнуляемого объекта (обёртку первичного объекта).
      *
      * @return Ненулевая обёртка обнуляемого объекта (обёртка первичного объекта).
      *
      * @since 4.0.0-RC3
      */
     default @NotNull Optional<T1> asFirst() {
-        return Optional.nullable(first());
+        return Optional.auto(first());
     }
 
     /**
-     * Оборачивает обнуляемый объект (вторичный объект) с помощью метода {@linkplain Optional#nullable(Object)} и
-     * возвращает обёртку обнуляемого объекта (обёртку вторичного объекта).
+     * Оборачивает обнуляемый объект (вторичный объект) с помощью метода {@linkplain Optional#auto(Object)} и возвращает
+     * обёртку обнуляемого объекта (обёртку вторичного объекта).
      *
      * @return Ненулевая обёртка обнуляемого объекта (обёртка вторичного объекта).
      *
      * @since 4.0.0-RC3
      */
     default @NotNull Optional<T2> asSecond() {
-        return Optional.nullable(second());
+        return Optional.auto(second());
     }
 
     /**
@@ -325,7 +325,7 @@ public interface BiOptional<T1, T2> {
         @Override
         public @Nullable T1 first() throws GetException {
             try {
-                return first.supply();
+                return first.get();
             } catch (final @NotNull Exception failure) {
                 throw new GetException(failure);
             }
@@ -342,7 +342,7 @@ public interface BiOptional<T1, T2> {
         @Override
         public @Nullable T2 second() throws GetException {
             try {
-                return second.supply();
+                return second.get();
             } catch (final @NotNull Exception failure) {
                 throw new GetException(failure);
             }
