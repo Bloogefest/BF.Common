@@ -59,9 +59,10 @@ public interface Container<T> {
      * @param <T> тип объекта.
      * @param object объект.
      *
-     * @return {@linkplain Impl Интегрированную реализацию контейнера объекта на основе переданного объекта и истинного
-     * параметра его существования}.
+     * @return {@linkplain Impl#Impl(Object) Интегрированную реализацию контейнера объекта на основе переданного объекта
+     * и истинного параметра его существования}.
      *
+     * @see Impl
      * @see Impl#Impl(Object)
      * @see #without()
      * @since 4.0.0-RC3
