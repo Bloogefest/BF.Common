@@ -57,7 +57,7 @@ public class ValidationException extends SoftException {
      * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
-     * @since 4.0.0-RC3
+     * @since 1.0.0
      */
     @Contract("-> new")
     public ValidationException() {
@@ -71,7 +71,7 @@ public class ValidationException extends SoftException {
      *
      * @param message сообщение.
      *
-     * @since 4.0.0-RC3
+     * @since 1.0.0
      */
     @Contract("_ -> new")
     public ValidationException(final @NotNls @Nullable String message) {
@@ -85,7 +85,7 @@ public class ValidationException extends SoftException {
      *
      * @param cause причина.
      *
-     * @since 4.0.0-RC3
+     * @since 1.0.0
      */
     @Contract("_ -> new")
     public ValidationException(final @Nullable Throwable cause) {
@@ -100,7 +100,7 @@ public class ValidationException extends SoftException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 4.0.0-RC3
+     * @since 1.0.0
      */
     @Contract("_, _ -> new")
     public ValidationException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
@@ -114,7 +114,7 @@ public class ValidationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 4.0.0-RC3
+     * @since 3.0.0
      */
     @Contract("_, _ -> new")
     public ValidationException(final boolean suppression, final boolean writable) {
@@ -161,7 +161,7 @@ public class ValidationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 4.0.0-RC3
+     * @since 1.0.0
      */
     @Contract("_, _, _, _ -> new")
     public ValidationException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
