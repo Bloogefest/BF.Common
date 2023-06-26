@@ -399,7 +399,7 @@ public interface Supplier<T> {
          * @since 4.0.0-RC3
          */
         @Experimental("4.0.0-RC4")
-        private final @NotNull T object;
+        protected final @NotNull T object;
 
         /**
          * Создаёт интегрированную реализацию поставщика существующего объекта (переданного объекта).
