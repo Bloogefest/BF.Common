@@ -253,7 +253,7 @@ public interface Condition {
     default @NotNull Condition then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return () -> {
-            if (compute()) throw new ComputeException(supplier.supply());
+            if (compute()) throw new ComputeException(supplier.get());
             return false;
         };
     }
@@ -307,7 +307,7 @@ public interface Condition {
     default @NotNull Condition otherwise(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return () -> {
-            if (!compute()) throw new ComputeException(supplier.supply());
+            if (!compute()) throw new ComputeException(supplier.get());
             return true;
         };
     }
