@@ -254,7 +254,7 @@ public interface Predicate<T> {
     default @NotNull Predicate<T> then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return object -> {
-            if (evaluate(object)) throw new EvaluateException(supplier.supply());
+            if (evaluate(object)) throw new EvaluateException(supplier.get());
             return false;
         };
     }
@@ -338,7 +338,7 @@ public interface Predicate<T> {
             final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return object -> {
-            if (!evaluate(object)) throw new ComputeException(supplier.supply());
+            if (!evaluate(object)) throw new ComputeException(supplier.get());
             return true;
         };
     }
