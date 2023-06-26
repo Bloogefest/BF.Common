@@ -248,7 +248,7 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Experimental("4.0.0-RC4")
-        private boolean contains;
+        protected boolean contains;
 
         /**
          * Создаёт интегрированную реализацию контейнера объекта на основе нулевого объекта и ложного параметра его
