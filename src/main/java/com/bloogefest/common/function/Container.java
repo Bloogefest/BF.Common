@@ -232,7 +232,7 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Experimental("4.0.0-RC5")
-        private final @NotNull StampedLock lock = new StampedLock();
+        protected final @NotNull StampedLock lock = new StampedLock();
 
         /**
          * Текущий объект.
