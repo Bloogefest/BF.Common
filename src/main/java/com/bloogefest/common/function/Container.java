@@ -136,7 +136,7 @@ public interface Container<T> {
      * @return Текущий или полученный от переданного поставщика объект.
      *
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
-     * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком объекта).
+     * @throws GetException исключение получения объекта (поставляемого переданным поставщиком объекта).
      * @see #get()
      * @see #withNullable()
      * @see #withAnother(Object)
@@ -145,8 +145,7 @@ public interface Container<T> {
      */
     @Experimental("4.0.0-RC5")
     @Contract("!null -> _; _ -> fail")
-    default @Nullable T withSupplier(
-            final @NotNull Supplier<? extends T> supplier) throws NullException, SupplyException {
+    default @Nullable T withSupplier(final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
         Validator.notNull(supplier, "The passed supplier of an object");
         return contains() ? get() : supplier.get();
     }
@@ -161,7 +160,7 @@ public interface Container<T> {
      *
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения или поставляемого
      * им исключения).
-     * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком исключения).
+     * @throws GetException исключение получения объекта (поставляемого переданным поставщиком исключения).
      * @throws F поставляемое переданным поставщиком исключение.
      * @see #get()
      * @see #withNullable()
@@ -172,7 +171,7 @@ public interface Container<T> {
     @Experimental("4.0.0-RC5")
     @Contract("!null -> _; _ -> fail")
     default <F extends Throwable> @Nullable T withThrowable(
-            final @NotNull Supplier<F> supplier) throws NullException, SupplyException, F {
+            final @NotNull Supplier<F> supplier) throws NullException, GetException, F {
         Validator.notNull(supplier, "The passed supplier of a throwable");
         if (!contains()) throw Validator.notNull(supplier.get(), "A throwable supplied by the passed supplier");
         return get();
@@ -356,7 +355,7 @@ public interface Container<T> {
          * @return {@linkplain #object Текущий} или полученный от переданного поставщика объект.
          *
          * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
-         * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком объекта).
+         * @throws GetException исключение получения объекта (поставляемого переданным поставщиком объекта).
          * @see #get()
          * @see #withNullable()
          * @see #withAnother(Object)
@@ -367,7 +366,7 @@ public interface Container<T> {
         @Experimental("4.0.0-RC5")
         @Contract("!null -> _; _ -> fail")
         public @Nullable T withSupplier(
-                final @NotNull Supplier<? extends T> supplier) throws NullException, SupplyException {
+                final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
             Validator.notNull(supplier, "The passed supplier of an object");
             final var stamp = lock.readLock();
             try {
@@ -388,7 +387,7 @@ public interface Container<T> {
          *
          * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения или
          * поставляемого им исключения).
-         * @throws SupplyException исключение поставки объекта (поставляемого переданным поставщиком исключения).
+         * @throws GetException исключение получения объекта (поставляемого переданным поставщиком исключения).
          * @throws F поставляемое переданным поставщиком исключение.
          * @see #get()
          * @see #withNullable()
@@ -400,7 +399,7 @@ public interface Container<T> {
         @Experimental("4.0.0-RC5")
         @Contract("!null -> _; _ -> fail")
         public <F extends Throwable> @Nullable T withThrowable(
-                final @NotNull Supplier<F> supplier) throws NullException, SupplyException, F {
+                final @NotNull Supplier<F> supplier) throws NullException, GetException, F {
             Validator.notNull(supplier, "The passed supplier of a throwable");
             final var stamp = lock.readLock();
             try {
