@@ -169,7 +169,7 @@ public interface Analyzer<T, R> {
      * @throws NullException исключение валидации нулевого объекта (переданного анализатора).
      * @since 3.0.0
      */
-    @Contract(value = "_ -> new")
+    @Contract("!null -> new; _ -> fail")
     default <R_> @NotNull Analyzer<T, R_> with(final @NotNull Analyzer<? super R, R_> analyzer) throws NullException {
         Validator.notNull(analyzer, "analyzer");
         return object -> analyzer.analyze(analyze(object));
