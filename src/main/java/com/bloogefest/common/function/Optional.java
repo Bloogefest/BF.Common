@@ -22,6 +22,7 @@ import com.bloogefest.common.validation.Validator;
  * @see With
  * @see #without()
  * @see #with(Object)
+ * @see #auto(Object)
  * @since 4.0.0-RC2
  */
 @Experimental("4.0.0-RC5")
@@ -36,6 +37,7 @@ public interface Optional<T> {
      *
      * @see Without#Without()
      * @see #with(Object)
+     * @see #auto(Object)
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC4")
@@ -72,6 +74,7 @@ public interface Optional<T> {
      * @throws NullException исключение валидации нулевого объекта (переданного объекта).
      * @see With#With(Object)
      * @see #without()
+     * @see #auto(Object)
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC4")
@@ -113,6 +116,7 @@ public interface Optional<T> {
      *
      * @see With#With(Object)
      * @see #without()
+     * @see #with(Object)
      * @since 4.0.0-RC3
      */
     @Contract("_ -> new")
