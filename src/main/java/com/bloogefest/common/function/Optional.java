@@ -29,12 +29,13 @@ import com.bloogefest.common.validation.Validator;
 public interface Optional<T> {
 
     /**
-     * Создаёт и возвращает {@linkplain Without интегрированную реализацию обёртки несуществующего объекта}.
+     * Создаёт и возвращает {@linkplain Without#Without() интегрированную реализацию обёртки несуществующего объекта}.
      *
      * @param <T> тип объекта.
      *
-     * @return {@linkplain Without Интегрированную реализацию обёртки несуществующего объекта}.
+     * @return {@linkplain Without#Without() Интегрированную реализацию обёртки несуществующего объекта}.
      *
+     * @see Without
      * @see Without#Without()
      * @see #with(Object)
      * @see #auto(Object)
