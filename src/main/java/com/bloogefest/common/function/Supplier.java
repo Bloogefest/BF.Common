@@ -388,6 +388,8 @@ public interface Supplier<T> {
     /**
      * Интегрированная реализация поставщика существующего объекта.
      *
+     * @param <T> тип объекта.
+     *
      * @see Supplier
      * @see Without
      * @see #With(Object)
