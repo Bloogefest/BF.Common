@@ -273,6 +273,8 @@ public interface Supplier<T> {
     /**
      * Интегрированная реализация поставщика несуществующего объекта.
      *
+     * @param <T> тип объекта.
+     *
      * @see Supplier
      * @see With
      * @see #Without()
