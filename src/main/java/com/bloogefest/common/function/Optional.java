@@ -325,6 +325,8 @@ public interface Optional<T> {
     /**
      * Интегрированная реализация обёртки несуществующего объекта.
      *
+     * @param <T> тип объекта.
+     *
      * @see Optional
      * @see With
      * @see #Without()
