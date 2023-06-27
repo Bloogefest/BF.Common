@@ -28,7 +28,8 @@ import com.bloogefest.common.validation.Validator;
 public interface Supplier<T> {
 
     /**
-     * Создаёт и возвращает {@linkplain Without интегрированную реализацию поставщика несуществующего объекта}.
+     * Создаёт и возвращает
+     * {@linkplain Without#Without() интегрированную реализацию поставщика несуществующего объекта}.
      *
      * @return {@linkplain Without#Without() Интегрированную реализацию поставщика несуществующего объекта}.
      *
