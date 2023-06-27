@@ -221,6 +221,8 @@ public interface Container<T> {
     /**
      * Интегрированная реализация контейнера объекта.
      *
+     * @param <T> тип объекта.
+     *
      * @see Container
      * @see #Impl()
      * @see #Impl(Object)
