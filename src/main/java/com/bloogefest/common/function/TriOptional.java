@@ -7,492 +7,839 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.NotNls;
 import com.bloogefest.annotation.analysis.NotNull;
 import com.bloogefest.annotation.analysis.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
 /**
- * Обёртка трёх обнуляемых объектов.
+ * Обёртка трёх объектов — это функциональный инструмент, способный содержать три объекта. Он предоставляет методы для
+ * получения их обёрток ({@linkplain #first()}, {@linkplain #second()}, {@linkplain #third()}).
  *
- * @param <T1> тип первичного объекта.
- * @param <T2> тип вторичного объекта.
- * @param <T3> тип третичного объекта.
+ * @param <T1> тип первого объекта.
+ * @param <T2> тип второго объекта.
+ * @param <T3> тип третьего объекта.
  *
- * @since 4.0.0-RC3
+ * @see Impl
+ * @see #without()
+ * @see #withFirst(Object)
+ * @see #withSecond(Object)
+ * @see #withThird(Object)
+ * @see #withFirstAndSecond(Object, Object)
+ * @see #withSecondAndThird(Object, Object)
+ * @see #withFirstAndThird(Object, Object)
+ * @see #with(Object, Object, Object)
+ * @see #autoFirst(Object, Object, Object)
+ * @see #autoSecond(Object, Object, Object)
+ * @see #autoThird(Object, Object, Object)
+ * @see #autoFirstAndSecond(Object, Object, Object)
+ * @see #autoSecondAndThird(Object, Object, Object)
+ * @see #autoFirstAndThird(Object, Object, Object)
+ * @see #auto(Object, Object, Object)
+ * @since 4.0.0-RC2
  */
-public interface TriOptional<T1, T2, T3> {
+public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
 
     /**
-     * Имя первичного объекта.
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl() интегрированную реализацию обёртки трёх объектов на основе трёх обёрток несуществующего
+     * объекта}.
      *
-     * @since 4.0.0-RC3
-     */
-    @NotNls @NotNull String FIRST_OBJECT_NAME = "first object";
-
-    /**
-     * Имя вторичного объекта.
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
      *
-     * @since 4.0.0-RC3
-     */
-    @NotNls @NotNull String SECOND_OBJECT_NAME = "second object";
-
-    /**
-     * Имя третичного объекта.
+     * @return {@linkplain Impl#Impl() Интегрированную реализацию обёртки трёх объектов на основе трёх обёрток
+     * несуществующего объекта}.
      *
-     * @since 4.0.0-RC3
-     */
-    @NotNls @NotNull String THIRD_OBJECT_NAME = "third object";
-
-    /**
-     * Имя поставщика первичного объекта.
-     *
-     * @since 4.0.0-RC3
-     */
-    @NotNls @NotNull String FIRST_OBJECT_SUPPLIER_NAME = "first object supplier";
-
-    /**
-     * Имя поставщика вторичного объекта.
-     *
-     * @since 4.0.0-RC3
-     */
-    @NotNls @NotNull String SECOND_OBJECT_SUPPLIER_NAME = "second object supplier";
-
-    /**
-     * Имя поставщика третичного объекта.
-     *
-     * @since 4.0.0-RC3
-     */
-    @NotNls @NotNull String THIRD_OBJECT_SUPPLIER_NAME = "third object supplier";
-
-    /**
-     * Создаёт и возвращает встроенную реализацию на основе объектов (нулевых объектов).
-     *
-     * @return Встроенная реализация на основе объектов (нулевых объектов).
-     *
+     * @see Impl
+     * @see Impl#Impl()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
     @Contract("-> new")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> empty() {
-        return new Objects<>(null, null, null);
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> without() {
+        return new Impl<T1, T2, T3>();
     }
 
     /**
-     * Проверяет обнуляемые объекты (первичный и вторичный объекты) с помощью
-     * {@linkplain Validator#notNull(Object, String)}, а после создаёт и возвращает встроенную реализацию на основе
-     * ненулевых объектов (первичного и вторичного объектов).
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки переданного первого объекта и двух обёрток несуществующего
+     * объекта).
      *
-     * @param first первичный объект.
-     * @param second вторичный объект.
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param object первый объект.
      *
-     * @return Встроенная реализация по умолчанию на основе ненулевых объектов (первичного и вторичного объектов).
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёртки переданного первого объекта и двух обёрток
+     * несуществующего объекта).
      *
-     * @throws NullException исключение проверки нулевого объекта (первичного либо вторичного объекта).
+     * @throws NullException исключение валидации нулевого объекта (переданного первого объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    @Contract("!null, !null -> new; _, _ -> failure")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> checked(final @NotNull T1 first, final @NotNull T2 second,
-                                                                 final @NotNull T3 third) throws NullException {
-        return new Objects<>(Validator.notNull(first, FIRST_OBJECT_NAME), Validator.notNull(second, SECOND_OBJECT_NAME),
-                             Validator.notNull(third, THIRD_OBJECT_SUPPLIER_NAME));
+    @Contract("!null -> new; _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withFirst(final @NotNull T1 object) throws NullException {
+        return new Impl<T1, T2, T3>(Optional.with(object), Optional.without(), Optional.without());
     }
 
     /**
-     * Создаёт и возвращает встроенную реализацию на основе обнуляемых объектов (первичного и вторичного объектов).
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного второго
+     * объекта).
      *
-     * @param first первичный объект.
-     * @param second вторичный объект.
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param object второй объект.
      *
-     * @return Встроенная реализация по умолчанию на основе обнуляемых объектов (первичного и вторичного объектов).
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки
+     * переданного второго объекта).
      *
+     * @throws NullException исключение валидации нулевого объекта (переданного второго объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    @Contract("_, _ -> new")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> unchecked(final @Nullable T1 first, final @Nullable T2 second,
-                                                                   final @Nullable T3 third) {
-        return new Objects<>(first, second, third);
+    @Contract("!null -> new; _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withSecond(final @NotNull T2 object) throws NullException {
+        return new Impl<T1, T2, T3>(Optional.without(), Optional.with(object), Optional.without());
     }
 
     /**
-     * Проверяет обнуляемые объекты (поставщики первичного и вторичного объектов) с помощью
-     * {@linkplain Validator#notNull(Object, String)}, а после создаёт и возвращает встроенную реализацию на основе
-     * поставщиков (поставщиков первичного и вторичного объектов).
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного
+     * третьего объекта).
      *
-     * @param first поставщик первичного объекта.
-     * @param second поставщик вторичного объекта.
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param object третий объект.
      *
-     * @return Встроенная реализация по умолчанию на основе поставщиков (поставщиков первичного и вторичного объектов).
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки
+     * переданного третьего объекта).
      *
-     * @throws NullException исключение проверки нулевого объекта (поставщика первичного либо вторичного объекта).
+     * @throws NullException исключение валидации нулевого объекта (переданного третьего объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    @Contract("!null, !null -> new; _, _ -> failure")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> suppliers(final @NotNull Supplier<T1> first,
-                                                                   final @NotNull Supplier<T2> second,
-                                                                   final @NotNull Supplier<T3> third) throws NullException {
-        return new Suppliers<>(Validator.notNull(first, FIRST_OBJECT_SUPPLIER_NAME),
-                               Validator.notNull(second, SECOND_OBJECT_SUPPLIER_NAME),
-                               Validator.notNull(third, THIRD_OBJECT_SUPPLIER_NAME));
+    @Contract("!null -> new; _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withThird(final @NotNull T3 object) throws NullException {
+        return new Impl<T1, T2, T3>(Optional.without(), Optional.without(), Optional.with(object));
     }
 
     /**
-     * Проверяет обнуляемую обёртку (обёртку трёх обнуляемых объектов), и если она ненулевая, то возвращает её, в
-     * противном случае создаёт и возвращает встроенную реализацию на основе объектов (нулевых объектов).
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта).
      *
-     * @param optional обёртка трёх обнуляемых объектов.
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
      *
-     * @return Ненулевая обёртка трёх обнуляемых объектов либо встроенная реализация на основе объектов (нулевых
-     * объектов).
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и
+     * обёртки несуществующего объекта).
      *
-     * @apiNote Используйте для безопасного использования обёртки трёх обнуляемых объектов.
+     * @throws NullException исключение валидации нулевого объекта (переданного первого или второго объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    @Contract("!null -> 1; _ -> new")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> auto(final @Nullable TriOptional<T1, T2, T3> optional) {
-        return optional != null ? optional : empty();
+    @Contract("!null, !null -> new; _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withFirstAndSecond(final @NotNull T1 first,
+                                                                            final @NotNull T2 second) throws NullException {
+        return new Impl<T1, T2, T3>(Optional.with(first), Optional.with(second), Optional.without());
     }
 
     /**
-     * Возвращает обёртку (обёртку трёх обнуляемых объектов).
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного второго и третьего объектов и обёртки
+     * несуществующего объекта).
      *
-     * @param optional обёртка трёх обнуляемый объектов.
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param second второй объект.
+     * @param third третий объект.
      *
-     * @return Обёртка трёх обнуляемых объектов.
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного второго и третьего объектов и
+     * обёртки несуществующего объекта).
      *
-     * @apiNote Используйте для приведения лямбда-выражений к типу обёртки трёх обнуляемых объектов.
+     * @throws NullException исключение валидации нулевого объекта (переданного второго или третьего объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    @Contract("_ -> 1")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> lambda(final @NotNull TriOptional<T1, T2, T3> optional) {
-        return optional;
+    @Contract("!null, !null -> new; _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withSecondAndThird(final @NotNull T2 second,
+                                                                            final @NotNull T3 third) throws NullException {
+        return new Impl<T1, T2, T3>(Optional.without(), Optional.with(second), Optional.with(third));
     }
 
     /**
-     * Возвращает обнуляемый объект (первичный объект).
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта).
      *
-     * @return Обнуляемый объект (первичный объект).
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param third третий объект.
      *
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и
+     * обёртки несуществующего объекта).
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного первого или третьего объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    @Nullable T1 first();
-
-    /**
-     * Возвращает обнуляемый объект (вторичный объект).
-     *
-     * @return Обнуляемый объект (вторичный объект).
-     *
-     * @since 4.0.0-RC3
-     */
-    @Nullable T2 second();
-
-    /**
-     * Возвращает обнуляемый объект (третичный объект).
-     *
-     * @return Обнуляемый объект (третичный объект).
-     *
-     * @since 4.0.0-RC3
-     */
-    @Nullable T3 third();
-
-    /**
-     * Проверяет обнуляемый объект (первичный объект) с помощью метода {@linkplain Validator#notNull(Object, String)} и
-     * возвращает его.
-     *
-     * @return Ненулевой объект (первичный объект).
-     *
-     * @throws NullException исключение проверки нулевого объекта (первичного объекта).
-     * @since 4.0.0-RC3
-     */
-    default @NotNull T1 toFirst() throws NullException {
-        return Validator.notNull(first(), FIRST_OBJECT_NAME);
+    @Contract("!null, !null -> new; _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withFirstAndThird(final @NotNull T1 first,
+                                                                           final @NotNull T3 third) throws NullException {
+        return new Impl<T1, T2, T3>(Optional.with(first), Optional.without(), Optional.with(third));
     }
 
     /**
-     * Проверяет обнуляемый объект (вторичный объект) с помощью метода {@linkplain Validator#notNull(Object, String)} и
-     * возвращает его.
+     * Создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого и второго объектов} (обёрток переданного первого и второго объектов).
      *
-     * @return Ненулевой объект (вторичный объект).
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
+     * @param third третий объект.
      *
-     * @throws NullException исключение проверки нулевого объекта (вторичного объекта).
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки трёх объектов на
+     * основе переданных обёрток первого и второго объекта)}.
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного первого или второго объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    default @NotNull T2 toSecond() throws NullException {
-        return Validator.notNull(second(), SECOND_OBJECT_NAME);
+    @Contract("!null, !null, !null -> new; _, _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> with(final @NotNull T1 first, final @NotNull T2 second,
+                                                              final @NotNull T3 third) throws NullException {
+        return new Impl<>(Optional.with(first), Optional.with(second), Optional.with(third));
     }
 
     /**
-     * Проверяет обнуляемый объект (третичный объект) с помощью метода {@linkplain Validator#notNull(Object, String)} и
-     * возвращает его.
+     * Если переданный первый объект ненулевой, то создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего объектов), в
+     * противном случае —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки несуществующего объекта и обёрток переданного второго и
+     * третьего объектов).
      *
-     * @return Ненулевой объект (третичный объект).
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
+     * @param third третий объект.
      *
-     * @throws NullException исключение проверки нулевого объекта (третичного объекта).
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего
+     * объектов) или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки несуществующего объекта и обёрток переданного второго и
+     * третьего объектов).
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного второго или третьего объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    default @NotNull T3 toThird() throws NullException {
-        return Validator.notNull(third(), THIRD_OBJECT_NAME);
+    @Contract("_, !null, !null -> new; _, _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoFirst(final @Nullable T1 first, final @NotNull T2 second,
+                                                                   final @NotNull T3 third) throws NullException {
+        return first != null ? with(first, second, third) : withSecondAndThird(second, third);
     }
 
     /**
-     * Оборачивает обнуляемый объект (первичный объект) с помощью метода {@linkplain Optional#auto(Object)} и возвращает
-     * обёртку обнуляемого объекта (обёртку первичного объекта).
+     * Если переданный второй объект ненулевой, то создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего объектов), в
+     * противном случае —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта).
      *
-     * @return Ненулевая обёртка обнуляемого объекта (обёртка первичного объекта).
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
+     * @param third третий объект.
      *
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего
+     * объектов) или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта).
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного первого или третьего объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    default @NotNull Optional<T1> asFirst() {
-        return Optional.auto(first());
+    @Contract("!null, _, !null -> new; _, _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoSecond(final @NotNull T1 first, final @Nullable T2 second,
+                                                                    final @NotNull T3 third) throws NullException {
+        return second != null ? with(first, second, third) : withFirstAndThird(first, third);
     }
 
     /**
-     * Оборачивает обнуляемый объект (вторичный объект) с помощью метода {@linkplain Optional#auto(Object)} и возвращает
-     * обёртку обнуляемого объекта (обёртку вторичного объекта).
+     * Если переданный третий объект ненулевой, то создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего объектов), в
+     * противном случае —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта).
      *
-     * @return Ненулевая обёртка обнуляемого объекта (обёртка вторичного объекта).
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
+     * @param third третий объект.
      *
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего
+     * объектов) или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта).
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного первого или второго объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    default @NotNull Optional<T2> asSecond() {
-        return Optional.auto(second());
+    @Contract("!null, !null, _ -> new; _, _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoThird(final @NotNull T1 first, final @NotNull T2 second,
+                                                                   final @Nullable T3 third) throws NullException {
+        return third != null ? with(first, second, third) : withFirstAndSecond(first, second);
     }
 
     /**
-     * Оборачивает обнуляемый объект (третичный объект) с помощью метода {@linkplain Optional#auto(Object)} и возвращает
-     * обёртку обнуляемого объекта (обёртку третичного объекта).
+     * Если переданный первый и второй объекты ненулевые, то создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего объектов), в
+     * противном случае если только переданный первый объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта), в противном случае если только переданный второй объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки несуществующего объекта и обёрток переданного второго и
+     * третьего объектов), в противном случае —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного
+     * третьего объекта).
      *
-     * @return Ненулевая обёртка обнуляемого объекта (обёртка третичного объекта).
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
+     * @param third третий объект.
      *
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего
+     * объектов), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки несуществующего объекта и обёрток переданного второго и
+     * третьего объектов), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного
+     * третьего объекта).
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного второго или третьего объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
      * @since 4.0.0-RC3
      */
-    default @NotNull Optional<T3> asThird() {
-        return Optional.auto(third());
+    @Contract("_, _, !null -> new; _, _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoFirstAndSecond(final @Nullable T1 first,
+                                                                            final @Nullable T2 second,
+                                                                            final @NotNull T3 third) throws NullException {
+        return first != null ? second != null ? with(first, second, third) : withFirstAndThird(first, third) :
+               second != null ? withSecondAndThird(second, third) : withThird(third);
     }
 
+    /**
+     * Если переданный второй и третий объекты ненулевые, то создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего объектов), в
+     * противном случае если только переданный второй объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта), в противном случае если только переданный третий объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта), в противном случае —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки переданного первого объекта и двух обёрток несуществующего
+     * объекта).
+     *
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
+     * @param third третий объект.
+     *
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего
+     * объектов), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки переданного первого объекта и двух обёрток несуществующего
+     * объекта).
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного второго или третьего объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
+     * @since 4.0.0-RC3
+     */
+    @Contract("!null, _, _ -> new; _, _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoSecondAndThird(final @NotNull T1 first,
+                                                                            final @Nullable T2 second,
+                                                                            final @Nullable T3 third) throws NullException {
+        return second != null ? third != null ? with(first, second, third) : withFirstAndSecond(first, second) :
+               third != null ? withFirstAndThird(first, third) : withFirst(first);
+    }
 
     /**
-     * Встроенная реализация на основе объектов (первичного, вторичного и третичного объектов).
+     * Если переданный первый и третий объекты ненулевые, то создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего объектов), в
+     * противном случае если только переданный первый объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта), в противном случае если только переданный третий объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки несуществующего объекта и обёрток переданного второго и
+     * третьего объектов), в противном случае —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного второго
+     * объекта).
+     *
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
+     * @param third третий объект.
+     *
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего
+     * объектов), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки несуществующего объекта и обёрток переданного второго и
+     * третьего объектов), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного второго
+     * объекта).
+     *
+     * @throws NullException исключение валидации нулевого объекта (переданного первого или второго объекта).
+     * @see Impl
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #auto(Object, Object, Object)
+     * @since 4.0.0-RC3
+     */
+    @Contract("_, !null, _ -> new; _, _, _ -> fail")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoFirstAndThird(final @Nullable T1 first,
+                                                                           final @NotNull T2 second,
+                                                                           final @Nullable T3 third) throws NullException {
+        return first != null ? third != null ? with(first, second, third) : withFirstAndSecond(first, second) :
+               third != null ? withSecondAndThird(second, third) : withSecond(second);
+    }
+
+    /**
+     * Если переданный первый, второй и третий объекты ненулевые, то создаёт и возвращает
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего объектов), в
+     * противном случае если только переданный первый и второй объекты ненулевые, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта), в противном случае если только переданный первый и третий объекты ненулевые, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта), в противном случае если только переданный первый объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки переданного первого и двух обёрток несуществующего
+     * объекта), в противном случае если только переданный второй и третий объекты ненулевые, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки несуществующего объекта и обёрток переданного второго и
+     * третьего объектов), в противном случае если только переданный второй объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного второго
+     * объекта), в противном случае если только переданный третий объект ненулевой, то —
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного
+     * третьего объекта), в противном случае —
+     * {@linkplain Impl#Impl() интегрированную реализацию обёртки на основе трёх обёрток несуществующего объекта}.
+     *
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     * @param first первый объект.
+     * @param second второй объект.
+     * @param third третий объект.
+     *
+     * @return {@linkplain Impl#Impl(Optional, Optional, Optional) Интегрированную реализацию обёртки на основе
+     * переданных обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего
+     * объектов), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и второго объектов и обёртки
+     * несуществующего объекта), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого и третьего объектов и обёртки
+     * несуществующего объекта), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки переданного первого и двух обёрток несуществующего
+     * объекта), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (обёртки несуществующего объекта и обёрток переданного второго и
+     * третьего объектов), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного второго
+     * объекта), или
+     * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
+     * обёрток первого, второго и третьего объектов} (двух обёрток несуществующего объекта и обёртки переданного
+     * третьего объекта), или
+     * {@linkplain Impl#Impl() интегрированную реализацию обёртки на основе трёх обёрток несуществующего объекта}.
+     *
+     * @see Impl
+     * @see Impl#Impl()
+     * @see Impl#Impl(Optional, Optional, Optional)
+     * @see #without()
+     * @see #withFirst(Object)
+     * @see #withSecond(Object)
+     * @see #withThird(Object)
+     * @see #withFirstAndSecond(Object, Object)
+     * @see #withSecondAndThird(Object, Object)
+     * @see #withFirstAndThird(Object, Object)
+     * @see #with(Object, Object, Object)
+     * @see #autoFirst(Object, Object, Object)
+     * @see #autoSecond(Object, Object, Object)
+     * @see #autoThird(Object, Object, Object)
+     * @see #autoFirstAndSecond(Object, Object, Object)
+     * @see #autoSecondAndThird(Object, Object, Object)
+     * @see #autoFirstAndThird(Object, Object, Object)
+     * @since 4.0.0-RC3
+     */
+    @Contract("_, _, _ -> new")
+    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> auto(final @Nullable T1 first, final @Nullable T2 second,
+                                                              final @Nullable T3 third) {
+        return first != null ?
+               second != null ? third != null ? with(first, second, third) : withFirstAndSecond(first, second) :
+               third != null ? withFirstAndThird(first, third) : withFirst(first) :
+               second != null ? third != null ? withSecondAndThird(second, third) : withSecond(second) :
+               third != null ? withThird(third) : without();
+    }
+
+    /**
+     * Возвращает обёртку текущего третьего объекта.
+     *
+     * @return Обёртка текущего третьего объекта.
      *
      * @since 4.0.0-RC3
      */
-    final class Objects<T1, T2, T3> implements TriOptional<T1, T2, T3> {
+    @Contract("-> const")
+    @NotNull Optional<T3> third();
+
+    /**
+     * Интегрированная реализация обёртки трёх объектов.
+     *
+     * @param <T1> тип первого объекта.
+     * @param <T2> тип второго объекта.
+     * @param <T3> тип третьего объекта.
+     *
+     * @see TriOptional
+     * @see #Impl()
+     * @see #Impl(Optional, Optional, Optional)
+     * @since 4.0.0-RC3
+     */
+    class Impl<T1, T2, T3> extends BiOptional.Impl<T1, T2> implements TriOptional<T1, T2, T3> {
 
         /**
-         * Первичный объект.
+         * Обёртка текущего третьего объекта.
          *
          * @since 4.0.0-RC3
          */
-        private final @Nullable T1 first;
+        protected final @NotNull Optional<T3> third;
 
         /**
-         * Вторичный объект.
+         * Создаёт интегрированную реализацию обёртки трёх объектов на основе трёх обёрток несуществующего объекта.
          *
          * @since 4.0.0-RC3
          */
-        private final @Nullable T2 second;
-
-        /**
-         * Третичный объект.
-         *
-         * @since 4.0.0-RC3
-         */
-        private final @Nullable T3 third;
-
-        /**
-         * Создаёт встроенную реализацию на основе объектов (первичного, вторичного и третичного объектов).
-         *
-         * @param first первичный объект.
-         * @param second вторичный объект.
-         * @param third третичный объект.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("_, _ -> new")
-        private Objects(final @Nullable T1 first, final @Nullable T2 second, final @Nullable T3 third) {
-            this.first = first;
-            this.second = second;
-            this.third = third;
+        @Contract("-> new")
+        public Impl() {
+            this(Optional.without(), Optional.without(), Optional.without());
         }
 
         /**
-         * Возвращает обнуляемый объект (первичный объект).
+         * Создаёт интегрированную реализацию обёртки трёх объектов на основе переданных обёрток первого, второго и
+         * третьего объектов.
          *
-         * @return Обнуляемый объект (первичный объект).
+         * @param first обёртка первого объекта.
+         * @param second обёртка второго объекта.
+         * @param third обёртка третьего объекта.
+         *
+         * @throws NullException исключение валидации нулевого объекта (переданной обёртки первого, второго или третьего
+         * объекта).
+         * @since 4.0.0-RC3
+         */
+        @Contract("!null, !null, !null -> new; _, _, _ -> fail")
+        public Impl(final @NotNull Optional<T1> first, final @NotNull Optional<T2> second,
+                    final @NotNull Optional<T3> third) throws NullException {
+            super(first, second);
+            this.third = Validator.notNull(third, "The passed optional of the third object");
+        }
+
+        /**
+         * Возвращает {@linkplain #third обёртку текущего третьего объекта}.
+         *
+         * @return {@linkplain #third Обёртка текущего третьего объекта}.
          *
          * @since 4.0.0-RC3
          */
         @Override
-        public @Nullable T1 first() {
-            return first;
-        }
-
-        /**
-         * Возвращает обнуляемый объект (вторичный объект).
-         *
-         * @return Обнуляемый объект (вторичный объект).
-         *
-         * @since 4.0.0-RC3
-         */
-        @Override
-        public @Nullable T2 second() {
-            return second;
-        }
-
-        /**
-         * Возвращает обнуляемый объект (третичный объект).
-         *
-         * @return Обнуляемый объект (третичный объект).
-         *
-         * @since 4.0.0-RC3
-         */
-        @Override
-        public @Nullable T3 third() {
+        @Contract("-> const")
+        public @NotNull Optional<T3> third() {
             return third;
-        }
-
-    }
-
-    /**
-     * Встроенная реализация на основе поставщиков (поставщиков первичного, вторичного и третичного объектов).
-     *
-     * @since 4.0.0-RC3
-     */
-    final class Suppliers<T1, T2, T3> implements TriOptional<T1, T2, T3> {
-
-        /**
-         * Поставщик первичного объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        private final @NotNull Supplier<T1> first;
-
-        /**
-         * Поставщик вторичного объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        private final @NotNull Supplier<T2> second;
-
-        /**
-         * Поставщик третичного объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        private final @NotNull Supplier<T3> third;
-
-        /**
-         * Создаёт встроенную реализацию на основе поставщиков (поставщиков первичного, вторичного и третичного
-         * объектов).
-         *
-         * @param first поставщик первичного объекта.
-         * @param second поставщик вторичного объекта.
-         * @param third поставщик третичного объекта.
-         *
-         * @since 4.0.0-RC3
-         */
-        @Contract("_, _ -> new")
-        private Suppliers(final @NotNull Supplier<T1> first, final @NotNull Supplier<T2> second,
-                          final @NotNull Supplier<T3> third) {
-            this.first = first;
-            this.second = second;
-            this.third = third;
-        }
-
-        /**
-         * Получает у поставщика (поставщика первичного объекта) обнуляемый объект (первичный объект) и возвращает его.
-         *
-         * @return Обнуляемый объект (первичный объект).
-         *
-         * @throws GetException исключение получения объекта (первичного объекта).
-         * @since 4.0.0-RC3
-         */
-        @Override
-        public @Nullable T1 first() throws GetException {
-            try {
-                return first.get();
-            } catch (final @NotNull Exception failure) {
-                throw new GetException(failure);
-            }
-        }
-
-        /**
-         * Получает у поставщика (поставщика вторичного объекта) обнуляемый объект (вторичный объект) и возвращает его.
-         *
-         * @return Обнуляемый объект (вторичный объект).
-         *
-         * @throws GetException исключение получения объекта (вторичного объекта).
-         * @since 4.0.0-RC3
-         */
-        @Override
-        public @Nullable T2 second() throws GetException {
-            try {
-                return second.get();
-            } catch (final @NotNull Exception failure) {
-                throw new GetException(failure);
-            }
-        }
-
-        /**
-         * Получает у поставщика (поставщика третичного объекта) обнуляемый объект (третичный объект) и возвращает его.
-         *
-         * @return Обнуляемый объект (третичный объект).
-         *
-         * @throws GetException исключение получения объекта (третичного объекта).
-         * @since 4.0.0-RC3
-         */
-        @Override
-        public @Nullable T3 third() throws GetException {
-            try {
-                return third.get();
-            } catch (final @NotNull Exception failure) {
-                throw new GetException(failure);
-            }
-        }
-
-        /**
-         * Проверяет обнуляемый объект (первичный объект) с помощью метода
-         * {@linkplain Validator#notNull(Object, String)} и возвращает его.
-         *
-         * @return Ненулевой объект (первичный объект).
-         *
-         * @throws GetException исключение получения объекта (первичного объекта).
-         * @throws NullException исключение проверки нулевого объекта (первичного объекта).
-         * @since 4.0.0-RC3
-         */
-        @Override
-        public @NotNull T1 toFirst() throws GetException, NullException {
-            return Validator.notNull(first(), FIRST_OBJECT_NAME);
-        }
-
-        /**
-         * Проверяет обнуляемый объект (вторичный объект) с помощью метода
-         * {@linkplain Validator#notNull(Object, String)} и возвращает его.
-         *
-         * @return Ненулевой объект (вторичный объект).
-         *
-         * @throws GetException исключение получения объекта (вторичного объекта).
-         * @throws NullException исключение проверки нулевого объекта (вторичного объекта).
-         * @since 4.0.0-RC3
-         */
-        @Override
-        public @NotNull T2 toSecond() throws GetException, NullException {
-            return Validator.notNull(second(), SECOND_OBJECT_NAME);
-        }
-
-        /**
-         * Проверяет обнуляемый объект (третичный объект) с помощью метода
-         * {@linkplain Validator#notNull(Object, String)} и возвращает его.
-         *
-         * @return Ненулевой объект (третичный объект).
-         *
-         * @throws GetException исключение получения объекта (третичного объекта).
-         * @throws NullException исключение проверки нулевого объекта (третичного объекта).
-         * @since 4.0.0-RC3
-         */
-        @Override
-        public @NotNull T3 toThird() throws GetException, NullException {
-            return Validator.notNull(third(), THIRD_OBJECT_NAME);
         }
 
     }
