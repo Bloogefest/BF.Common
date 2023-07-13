@@ -117,7 +117,7 @@ public interface Conveyor<I, O> {
     default @NotNull Conveyor<I, BiOptional<O, Boolean>> condition(
             final @NotNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
-        return input -> BiOptional.unchecked(convey(input), condition.compute());
+        return input -> BiOptional.auto(convey(input), condition.compute());
     }
 
     /**
@@ -163,7 +163,7 @@ public interface Conveyor<I, O> {
         Validator.notNull(predicate, "predicate");
         return input -> {
             final var output = convey(input);
-            return BiOptional.unchecked(output, predicate.evaluate(output));
+            return BiOptional.auto(output, predicate.evaluate(output));
         };
     }
 
@@ -175,7 +175,7 @@ public interface Conveyor<I, O> {
     default <O_> @NotNull Conveyor<I, BiOptional<O, O_>> supplier(
             final @NotNull Supplier<O_> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
-        return input -> BiOptional.unchecked(convey(input), supplier.get());
+        return input -> BiOptional.auto(convey(input), supplier.get());
     }
 
     /**
