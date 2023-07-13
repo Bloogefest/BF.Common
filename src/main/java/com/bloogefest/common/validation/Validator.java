@@ -64,7 +64,7 @@ public final class Validator {
     @Contract(value = "!null, _ -> fail; _, _ -> null")
     public static <T> @Nullable T isNull(final @Nullable T object,
                                          final @NotNls @NotNull String name) throws NotNullException {
-        if (object != null) throw new NotNullException(NotNullException.templateMessage.formatted(name));
+        if (object != null) throw new NotNullException(NotNullException.TEMPLATE_MESSAGE.formatted(name));
         return null;
     }
 
@@ -101,7 +101,7 @@ public final class Validator {
     @Contract(value = "!null, _ -> param1; null, _ -> fail")
     public static <T> @NotNull T notNull(final @Nullable T object,
                                          final @NotNls @NotNull String name) throws NullException {
-        if (object == null) throw new NullException(NullException.templateMessage.formatted(name));
+        if (object == null) throw new NullException(NullException.TEMPLATE_MESSAGE.formatted(name));
         return object;
     }
 
@@ -149,7 +149,7 @@ public final class Validator {
                                          final @NotNls @NotNull String primaryName,
                                          final @NotNls @NotNull String secondaryName) throws NotEqualException {
         if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
-            throw new NotEqualException(NotEqualException.templateMessage.formatted(primaryName, secondaryName));
+            throw new NotEqualException(NotEqualException.TEMPLATE_MESSAGE.formatted(primaryName, secondaryName));
         return primaryObject;
     }
 
@@ -197,7 +197,7 @@ public final class Validator {
                                             final @NotNls @NotNull String primaryName,
                                             final @NotNls @NotNull String secondaryName) throws EqualException {
         if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
-            throw new EqualException(EqualException.templateMessage.formatted(primaryName, secondaryName));
+            throw new EqualException(EqualException.TEMPLATE_MESSAGE.formatted(primaryName, secondaryName));
         return primaryObject;
     }
 
