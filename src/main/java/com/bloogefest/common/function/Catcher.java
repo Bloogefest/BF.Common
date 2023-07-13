@@ -23,7 +23,7 @@ public interface Catcher<A, R, F extends Throwable> {
      * @since 4.0.0-RC3
      */
     static <A, R, F extends Throwable> Catcher<A, R, F> empty() {
-        return argument -> BiOptional.empty();
+        return argument -> BiOptional.without();
     }
 
     /**
@@ -37,9 +37,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(type, "type");
         return argument -> {
             try {
-                return BiOptional.unchecked(analyzer.analyze(argument), null);
+                return BiOptional.withFirst(analyzer.analyze(argument));
             } catch (final @NotNull Throwable failure) {
-                if (type.isInstance(failure)) return BiOptional.unchecked(null, (F) failure);
+                if (type.isInstance(failure)) return BiOptional.withSecond((F) failure);
                 throw new UncaughtException(failure);
             }
         };
@@ -57,9 +57,9 @@ public interface Catcher<A, R, F extends Throwable> {
         return argument -> {
             try {
                 callback.call();
-                return BiOptional.empty();
+                return BiOptional.without();
             } catch (final @NotNull Throwable failure) {
-                if (type.isInstance(failure)) return BiOptional.unchecked(null, (F) failure);
+                if (type.isInstance(failure)) return BiOptional.withSecond((F) failure);
                 throw new UncaughtException(failure);
             }
         };
@@ -76,9 +76,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(type, "type");
         return argument -> {
             try {
-                return BiOptional.unchecked(condition.compute(), null);
+                return BiOptional.withFirst(condition.compute());
             } catch (final @NotNull Throwable failure) {
-                if (type.isInstance(failure)) return BiOptional.unchecked(null, (F) failure);
+                if (type.isInstance(failure)) return BiOptional.withSecond((F) failure);
                 throw new UncaughtException(failure);
             }
         };
@@ -95,9 +95,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(type, "type");
         return argument -> {
             try {
-                return BiOptional.unchecked(conveyor.convey(argument), null);
+                return BiOptional.withFirst(conveyor.convey(argument));
             } catch (final @NotNull Throwable failure) {
-                if (type.isInstance(failure)) return BiOptional.unchecked(null, (F) failure);
+                if (type.isInstance(failure)) return BiOptional.withSecond((F) failure);
                 throw new UncaughtException(failure);
             }
         };
@@ -115,9 +115,9 @@ public interface Catcher<A, R, F extends Throwable> {
         return argument -> {
             try {
                 handler.handle(argument);
-                return BiOptional.empty();
+                return BiOptional.without();
             } catch (final @NotNull Throwable failure) {
-                if (type.isInstance(failure)) return BiOptional.unchecked(null, (F) failure);
+                if (type.isInstance(failure)) return BiOptional.withSecond((F) failure);
                 throw new UncaughtException(failure);
             }
         };
@@ -134,9 +134,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(type, "type");
         return argument -> {
             try {
-                return BiOptional.unchecked(predicate.evaluate(argument), null);
+                return BiOptional.withFirst(predicate.evaluate(argument));
             } catch (final @NotNull Throwable failure) {
-                if (type.isInstance(failure)) return BiOptional.unchecked(null, (F) failure);
+                if (type.isInstance(failure)) return BiOptional.withSecond((F) failure);
                 throw new UncaughtException(failure);
             }
         };
@@ -153,9 +153,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(type, "type");
         return argument -> {
             try {
-                return BiOptional.unchecked(supplier.get(), null);
+                return BiOptional.withFirst(supplier.get());
             } catch (final @NotNull Throwable failure) {
-                if (type.isInstance(failure)) return BiOptional.unchecked(null, (F) failure);
+                if (type.isInstance(failure)) return BiOptional.withSecond((F) failure);
                 throw new UncaughtException(failure);
             }
         };
@@ -173,7 +173,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer_, "analyzer_");
         return argument -> {
             try {
-                return BiOptional.unchecked(analyzer.analyze(argument), null);
+                return BiOptional.withFirst(analyzer.analyze(argument));
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return analyzer_.analyze((F) failure);
                 throw new UncaughtException(failure);
@@ -194,7 +194,7 @@ public interface Catcher<A, R, F extends Throwable> {
         return argument -> {
             try {
                 callback.call();
-                return BiOptional.empty();
+                return BiOptional.without();
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return analyzer.analyze((F) failure);
                 throw new UncaughtException(failure);
@@ -214,7 +214,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(condition.compute(), null);
+                return BiOptional.withFirst(condition.compute());
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return analyzer.analyze((F) failure);
                 throw new UncaughtException(failure);
@@ -234,7 +234,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(conveyor.convey(argument), null);
+                return BiOptional.withFirst(conveyor.convey(argument));
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return analyzer.analyze((F) failure);
                 throw new UncaughtException(failure);
@@ -255,7 +255,7 @@ public interface Catcher<A, R, F extends Throwable> {
         return argument -> {
             try {
                 handler.handle(argument);
-                return BiOptional.empty();
+                return BiOptional.without();
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return analyzer.analyze((F) failure);
                 throw new UncaughtException(failure);
@@ -275,7 +275,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(predicate.evaluate(argument), null);
+                return BiOptional.withFirst(predicate.evaluate(argument));
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return analyzer.analyze((F) failure);
                 throw new UncaughtException(failure);
@@ -295,7 +295,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(supplier.get(), null);
+                return BiOptional.withFirst(supplier.get());
             } catch (final @NotNull Throwable failure) {
                 if (type.isInstance(failure)) return analyzer.analyze((F) failure);
                 throw new UncaughtException(failure);
@@ -312,9 +312,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(analyzer.analyze(argument), null);
+                return BiOptional.withFirst(analyzer.analyze(argument));
             } catch (final @NotNull Throwable failure) {
-                return BiOptional.unchecked(null, failure);
+                return BiOptional.withSecond(failure);
             }
         };
     }
@@ -328,9 +328,9 @@ public interface Catcher<A, R, F extends Throwable> {
         return argument -> {
             try {
                 callback.call();
-                return BiOptional.empty();
+                return BiOptional.without();
             } catch (final @NotNull Throwable failure) {
-                return BiOptional.unchecked(null, failure);
+                return BiOptional.withSecond(failure);
             }
         };
     }
@@ -344,9 +344,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(condition, "condition");
         return argument -> {
             try {
-                return BiOptional.unchecked(condition.compute(), null);
+                return BiOptional.withFirst(condition.compute());
             } catch (final @NotNull Throwable failure) {
-                return BiOptional.unchecked(null, failure);
+                return BiOptional.withSecond(failure);
             }
         };
     }
@@ -360,9 +360,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(conveyor, "conveyor");
         return argument -> {
             try {
-                return BiOptional.unchecked(conveyor.convey(argument), null);
+                return BiOptional.withFirst(conveyor.convey(argument));
             } catch (final @NotNull Throwable failure) {
-                return BiOptional.unchecked(null, failure);
+                return BiOptional.withSecond(failure);
             }
         };
     }
@@ -377,9 +377,9 @@ public interface Catcher<A, R, F extends Throwable> {
         return argument -> {
             try {
                 handler.handle(argument);
-                return BiOptional.empty();
+                return BiOptional.without();
             } catch (final @NotNull Throwable failure) {
-                return BiOptional.unchecked(null, failure);
+                return BiOptional.withSecond(failure);
             }
         };
     }
@@ -393,9 +393,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(predicate, "predicate");
         return argument -> {
             try {
-                return BiOptional.unchecked(predicate.evaluate(argument), null);
+                return BiOptional.withFirst(predicate.evaluate(argument));
             } catch (final @NotNull Throwable failure) {
-                return BiOptional.unchecked(null, failure);
+                return BiOptional.withSecond(failure);
             }
         };
     }
@@ -408,9 +408,9 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(supplier, "supplier");
         return argument -> {
             try {
-                return BiOptional.unchecked(supplier.get(), null);
+                return BiOptional.withFirst(supplier.get());
             } catch (final @NotNull Throwable failure) {
-                return BiOptional.unchecked(null, failure);
+                return BiOptional.withSecond(failure);
             }
         };
     }
@@ -425,7 +425,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer_, "analyzer_");
         return argument -> {
             try {
-                return BiOptional.unchecked(analyzer.analyze(argument), null);
+                return BiOptional.withFirst(analyzer.analyze(argument));
             } catch (final @NotNull Throwable failure) {
                 return analyzer_.analyze(failure);
             }
@@ -443,7 +443,7 @@ public interface Catcher<A, R, F extends Throwable> {
         return argument -> {
             try {
                 callback.call();
-                return BiOptional.empty();
+                return BiOptional.without();
             } catch (final @NotNull Throwable failure) {
                 return analyzer.analyze(failure);
             }
@@ -460,7 +460,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(condition.compute(), null);
+                return BiOptional.withFirst(condition.compute());
             } catch (final @NotNull Throwable failure) {
                 return analyzer.analyze(failure);
             }
@@ -477,7 +477,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(conveyor.convey(argument), null);
+                return BiOptional.withFirst(conveyor.convey(argument));
             } catch (final @NotNull Throwable failure) {
                 return analyzer.analyze(failure);
             }
@@ -495,7 +495,7 @@ public interface Catcher<A, R, F extends Throwable> {
         return argument -> {
             try {
                 handler.handle(argument);
-                return BiOptional.empty();
+                return BiOptional.without();
             } catch (final @NotNull Throwable failure) {
                 return analyzer.analyze(failure);
             }
@@ -512,7 +512,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(predicate.evaluate(argument), null);
+                return BiOptional.withFirst(predicate.evaluate(argument));
             } catch (final @NotNull Throwable failure) {
                 return analyzer.analyze(failure);
             }
@@ -529,7 +529,7 @@ public interface Catcher<A, R, F extends Throwable> {
         Validator.notNull(analyzer, "analyzer");
         return argument -> {
             try {
-                return BiOptional.unchecked(supplier.get(), null);
+                return BiOptional.withFirst(supplier.get());
             } catch (final @NotNull Throwable failure) {
                 return analyzer.analyze(failure);
             }
@@ -546,7 +546,7 @@ public interface Catcher<A, R, F extends Throwable> {
      */
     @Experimental
     default @Nullable R result(final @NotNull A argument) throws UncaughtException {
-        return execute(argument).first();
+        return execute(argument).first().get();
     }
 
     /**
@@ -554,7 +554,7 @@ public interface Catcher<A, R, F extends Throwable> {
      */
     @Experimental
     default @Nullable F failure(final @NotNull A argument) throws UncaughtException {
-        return execute(argument).second();
+        return execute(argument).second().get();
     }
 
     /**
@@ -562,7 +562,7 @@ public interface Catcher<A, R, F extends Throwable> {
      */
     @Experimental
     default @NotNull R toResult(final @NotNull A argument) throws UncaughtException {
-        return execute(argument).toFirst();
+        return execute(argument).first().get();
     }
 
     /**
@@ -570,7 +570,7 @@ public interface Catcher<A, R, F extends Throwable> {
      */
     @Experimental
     default @NotNull F toFailure(final @NotNull A argument) throws UncaughtException {
-        return execute(argument).toSecond();
+        return execute(argument).second().get();
     }
 
     /**
@@ -578,7 +578,7 @@ public interface Catcher<A, R, F extends Throwable> {
      */
     @Experimental
     default @NotNull Optional<R> asResult(final @NotNull A argument) throws UncaughtException {
-        return execute(argument).asFirst();
+        return execute(argument).first();
     }
 
     /**
@@ -586,7 +586,7 @@ public interface Catcher<A, R, F extends Throwable> {
      */
     @Experimental
     default @NotNull Optional<F> asFailure(final @NotNull A argument) throws UncaughtException {
-        return execute(argument).asSecond();
+        return execute(argument).second();
     }
 
 }
