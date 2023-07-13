@@ -22,7 +22,7 @@ jobs:
       - name: Сборка и тестирование проекта
         uses: gradle/gradle-build-action@v2.4.0
         with:
-          gradle-version: 8.1.1
+          gradle-version: 8.2.1
           arguments: test
   cd:
     runs-on: ubuntu-latest
@@ -44,5 +44,5 @@ jobs:
           SINGING_KEY_PASSWORD: ${{ secrets.SINGING_KEY_PASSWORD }}
           SINGING_KEY_SECRET: ${{ secrets.SINGING_KEY_SECRET }}
         with:
-          gradle-version: 8.1.1
+          gradle-version: 8.2.1
           arguments: publish
