@@ -9,10 +9,12 @@ version = "4.0.0-SNAPSHOT"
 description = "Библиотека общего назначения."
 
 repositories {
-    mavenLocal()
     mavenCentral()
+    maven {
+        name = "OSSRH SNAPSHOT"
+        url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    }
 }
-
 dependencies {
     implementation("com.bloogefest:annotation:2.1.0")
 
