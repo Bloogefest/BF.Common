@@ -12,7 +12,7 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.*;
+import com.bloogefest.annotation.*;
 
 /**
  * Исключение оценивания объекта.

@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.NotNull;
-import com.bloogefest.annotation.analysis.Obsolete;
-import com.bloogefest.annotation.analysis.Removal;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.Obsolete;
+import com.bloogefest.annotation.Removal;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -117,7 +117,6 @@ public interface Condition {
      * @throws ComputeException исключение вычисления функции (этой логической функции).
      * @since 3.0.0
      */
-    @Contract(pure = false)
     boolean compute() throws ComputeException;
 
     /**

@@ -6,7 +6,7 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.*;
+import com.bloogefest.annotation.*;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -149,7 +149,6 @@ public interface Analyzer<T, R> {
      * @throws AnalyzeException исключение анализа объекта (переданного анализируемого объекта).
      * @since 3.0.0
      */
-    @Contract(pure = false)
     @NotNull R analyze(final @NotNull T object) throws NullException, AnalyzeException;
 
     /**

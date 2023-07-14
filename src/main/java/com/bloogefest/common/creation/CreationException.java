@@ -6,7 +6,7 @@
 
 package com.bloogefest.common.creation;
 
-import com.bloogefest.annotation.analysis.*;
+import com.bloogefest.annotation.*;
 import com.bloogefest.common.SoftException;
 
 /**

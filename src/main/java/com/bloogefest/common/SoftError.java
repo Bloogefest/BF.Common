@@ -6,7 +6,7 @@
 
 package com.bloogefest.common;
 
-import com.bloogefest.annotation.analysis.*;
+import com.bloogefest.annotation.*;
 
 /**
  * Мягкая ошибка.

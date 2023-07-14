@@ -6,7 +6,7 @@
 
 package com.bloogefest.common.validation;
 
-import com.bloogefest.annotation.analysis.*;
+import com.bloogefest.annotation.*;
 
 /**
  * Исключение валидации неравенства первичного и вторичного объекта.

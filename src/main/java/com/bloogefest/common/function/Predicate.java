@@ -6,8 +6,8 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.NotNull;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NotNull;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -81,7 +81,6 @@ public interface Predicate<T> {
      * @throws EvaluateException исключение оценивания объекта (переданного оцениваемого объекта).
      * @since 1.0.0
      */
-    @Contract(pure = false)
     boolean evaluate(final @NotNull T object) throws NullException, EvaluateException;
 
     /**

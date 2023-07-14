@@ -6,9 +6,9 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.NotNull;
-import com.bloogefest.annotation.analysis.Nullable;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -118,7 +118,6 @@ public interface Handler<T> {
      * @throws HandleException исключение обработки объекта (переданного обрабатываемого объекта).
      * @since 3.0.0
      */
-    @Contract(pure = false)
     void handle(final @NotNull T object) throws NullException, HandleException;
 
     /**

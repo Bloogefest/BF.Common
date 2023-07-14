@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.NotNls;
-import com.bloogefest.annotation.analysis.NotNull;
-import com.bloogefest.annotation.analysis.Nullable;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NotNls;
+import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.Nullable;
 
 /**
  * Исключение сброса объекта.

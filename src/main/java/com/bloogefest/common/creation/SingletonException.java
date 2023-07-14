@@ -6,7 +6,7 @@
 
 package com.bloogefest.common.creation;
 
-import com.bloogefest.annotation.analysis.*;
+import com.bloogefest.annotation.*;
 
 /**
  * Исключение создания объекта одиночного типа.

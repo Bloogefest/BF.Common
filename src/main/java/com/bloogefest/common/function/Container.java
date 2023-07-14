@@ -6,10 +6,10 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.analysis.Contract;
-import com.bloogefest.annotation.analysis.Experimental;
-import com.bloogefest.annotation.analysis.NotNull;
-import com.bloogefest.annotation.analysis.Nullable;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.Experimental;
+import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -190,7 +190,7 @@ public interface Container<T> {
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC4")
-    @Contract(value = "_ -> this", pure = false)
+    @Contract(value = "_ -> this", impact = Contract.Impact.WEAK)
     @NotNull Container<T> set(final @Nullable T object) throws SetException;
 
     /**
@@ -204,7 +204,7 @@ public interface Container<T> {
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC4")
-    @Contract(value = "-> this", pure = false)
+    @Contract(value = "-> this", impact = Contract.Impact.WEAK)
     @NotNull Container<T> reset() throws ResetException;
 
     /**
@@ -426,7 +426,7 @@ public interface Container<T> {
          */
         @Override
         @Experimental("4.0.0-RC4")
-        @Contract(value = "_ -> this", pure = false)
+        @Contract(value = "_ -> this", impact = Contract.Impact.WEAK)
         public @NotNull Container<T> set(final T object) {
             final var stamp = lock.writeLock();
             try {
@@ -451,7 +451,7 @@ public interface Container<T> {
          */
         @Override
         @Experimental("4.0.0-RC4")
-        @Contract(value = "-> this", pure = false)
+        @Contract(value = "-> this", impact = Contract.Impact.WEAK)
         public @NotNull Container<T> reset() throws ResetException {
             var stamp = lock.readLock();
             try {
