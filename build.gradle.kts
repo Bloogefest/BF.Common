@@ -16,7 +16,7 @@ repositories {
     }
 }
 dependencies {
-    implementation("com.bloogefest:annotation:2.1.0")
+    implementation("com.bloogefest:annotation:3.0.0-SNAPSHOT")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
