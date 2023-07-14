@@ -1,6 +1,6 @@
-**/.gradle/
-**/.idea/
-**/build/
-**/future/
+.gradle/
+.idea/
+build/
+future/
 
-**/*.iml
+*.iml
