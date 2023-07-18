@@ -3,9 +3,18 @@
 [![RELEASE](https://img.shields.io/github/v/release/Bloogefest/BF.Common?style=for-the-badge)](https://github.com/Bloogefest/BF.Common/releases/latest)
 [![CI/CD](https://img.shields.io/github/actions/workflow/status/Bloogefest/BF.Common/master.yml?label=CI%2FCD&style=for-the-badge)](https://github.com/Bloogefest/BF.Common/actions/workflows/master.yml)
 
-### Release Candidate
+### Описание
 
-#### Maven
+`BF.Common` — это библиотека общего назначения. Пока что она предоставляет только некоторые общие инструменты для
+функционального программирования и валидации значений, однако планируется её расширение и переработка, введение новых
+функциональных инструментов, переработка старых, расширение и переработка интерфейса инструментов валидации значений и,
+может быть, что-нибудь ещё.
+
+### Подключение
+
+#### Выпуск-кандидата
+
+С помощью `Maven`.
 
 ```xml
 <repository>
@@ -23,26 +32,22 @@
 </dependency>
 ```
 
-#### Gradle
+С помощью `Gradle`.
 
 ```kotlin
-repositories {
-    maven {
-        name = "OSSRH RC"
-        url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
-    }
+maven {
+    name = "OSSRH RC"
+    url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
 }
 ```
 
 ```kotlin
-dependencies {
-    implementation("com.bloogefest:common:4.0.0-RC2")
-}
+implementation("com.bloogefest:common:4.0.0-RC2")
 ```
 
-### Snapshot
+#### Снимка
 
-#### Maven
+С помощью `Maven`.
 
 ```xml
 <repository>
@@ -60,19 +65,47 @@ dependencies {
 </dependency>
 ```
 
-#### Gradle
+C помощью `Gradle`.
 
 ```kotlin
-repositories {
-    maven {
-        name = "OSSRH SNAPSHOT"
-        url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-    }
+maven {
+    name = "OSSRH SNAPSHOT"
+    url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 }
 ```
 
 ```kotlin
-dependencies {
-    implementation("com.bloogefest:common:4.0.0-SNAPSHOT")
-}
+implementation("com.bloogefest:common:4.0.0-SNAPSHOT")
+```
+
+### Краткий обзор
+
+#### Работа с функциональными инструментами
+
+...
+
+#### Работа с инструментами валидации значений
+
+Гарантирует, что переданный объект не является нулевым.
+
+```java
+Validator.notNull(object, "The passed object");
+```
+
+Гарантирует, что внутренний объект является нулевым.
+
+```java
+Validator.isNull(object, "The internal object");
+```
+
+Гарантирует, что переданный и внутренний объекты равны.
+
+```java
+Validator.equals(object1, object2, "The passed object", "The internal object");
+```
+
+Гарантирует, что переданный первый и второй объекты неравны.
+
+```java
+Validator.notEquals(object1, object2, "The first passed object", "The second passed object");
 ```
