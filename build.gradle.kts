@@ -79,26 +79,26 @@ publishing {
             name = "OSSRH"
 
             val version = version.toString()
-            url = uri(when {
-                          "-SNAPSHOT" in version -> "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                          "-RC" in version -> "https://s01.oss.sonatype.org/content/repositories/releases/"
-                          else -> "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                      })
+            url = uri(
+                when {
+                    "-SNAPSHOT" in version -> "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                    "-RC" in version -> "https://s01.oss.sonatype.org/content/repositories/releases/"
+                    else -> "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                }
+            )
 
             credentials {
-                username = System.getenv("OSSRH_CREDENTIALS_USERNAME") ?: findProperty(
-                        "OSSRH_CREDENTIALS_USERNAME").toString()
-                password = System.getenv("OSSRH_CREDENTIALS_PASSWORD") ?: findProperty(
-                        "OSSRH_CREDENTIALS_PASSWORD").toString()
+                username = System.getenv("OSSRH_CREDENTIALS_USERNAME")
+                password = System.getenv("OSSRH_CREDENTIALS_PASSWORD")
             }
         }
     }
 }
 
 signing {
-    useInMemoryPgpKeys(System.getenv("SINGING_KEY_ID") ?: findProperty("SINGING_KEY_ID").toString(),
-                       System.getenv("SINGING_KEY_SECRET") ?: findProperty("SINGING_KEY_SECRET").toString(),
-                       System.getenv("SINGING_KEY_PASSWORD") ?: findProperty("SINGING_KEY_PASSWORD").toString())
+    useInMemoryPgpKeys(
+        System.getenv("SINGING_KEY_ID"), System.getenv("SINGING_KEY_SECRET"), System.getenv("SINGING_KEY_PASSWORD")
+    )
 
     sign(publishing.publications["master"])
 }
@@ -107,11 +107,11 @@ configurations.all {
     resolutionStrategy.cacheChangingModulesFor(0, "seconds")
 }
 
-tasks.getByName<Test>("test") {
+tasks.test {
     useJUnitPlatform()
 }
 
-tasks.getByName<Javadoc>("javadoc") {
+tasks.javadoc {
     val options = options as CoreJavadocOptions
 
     options.encoding = "UTF-8"
@@ -122,10 +122,10 @@ tasks.getByName<Javadoc>("javadoc") {
     options.addStringOption("tag", "implNote:a:Implementation Note:")
 }
 
-tasks.getByName<JavaCompile>("compileJava") {
+tasks.compileJava {
     options.encoding = "UTF-8"
 }
 
-tasks.getByName<JavaCompile>("compileTestJava") {
+tasks.compileTestJava {
     options.encoding = "UTF-8"
 }
