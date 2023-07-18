@@ -53,7 +53,7 @@ public interface Optional<T> {
      * @return Встроенная реализация на основе объекта (нулевого объекта).
      *
      * @since 4.0.0-RC2
-     * @deprecated Используйте {@linkplain #with(Object)}, но вместе с {@linkplain Validator#notNull(Object, String)}.
+     * @deprecated Используйте {@linkplain #without()}.
      */
     @Deprecated(since = "4.0.0-RC3", forRemoval = true)
     @Removal("4.0.0-RC4")
