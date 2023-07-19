@@ -26,24 +26,21 @@ import java.util.concurrent.locks.StampedLock;
  * @see Impl
  * @see #without()
  * @see #with(Object)
+ * @see #auto(Object)
  * @since 4.0.0-RC3
  */
 @Experimental("4.0.0-RC5")
 public interface Container<T> {
 
     /**
-     * Создаёт и возвращает
-     * {@linkplain Impl#Impl() интегрированную реализацию контейнера объекта на основе нулевого объекта и ложного
-     * параметра его существования}.
+     * Создаёт и возвращает контейнер несуществующего объекта.
      *
      * @param <T> тип объекта.
      *
-     * @return {@linkplain Impl#Impl() Интегрированную реализацию контейнера объекта на основе нулевого объекта и
-     * ложного параметра его существования}.
+     * @return Контейнер несуществующего объекта.
      *
-     * @see Impl
-     * @see Impl#Impl()
      * @see #with(Object)
+     * @see #auto(Object)
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC4")
@@ -53,25 +50,39 @@ public interface Container<T> {
     }
 
     /**
-     * Создаёт и возвращает
-     * {@linkplain Impl#Impl(Object) интегрированную реализацию контейнера объекта на основе переданного объекта и
-     * истинного параметра его существования}.
+     * Создаёт и возвращает контейнер переданного объекта.
      *
      * @param <T> тип объекта.
      * @param object объект.
      *
-     * @return {@linkplain Impl#Impl(Object) Интегрированную реализацию контейнера объекта на основе переданного объекта
-     * и истинного параметра его существования}.
+     * @return Контейнер переданного объекта.
      *
-     * @see Impl
-     * @see Impl#Impl(Object)
      * @see #without()
+     * @see #auto(Object)
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC4")
     @Contract("_ -> new")
     static <T> @NotNull Container<T> with(final @Nullable T object) {
         return new Impl<>(object);
+    }
+
+    /**
+     * Если переданный объект ненулевой, то создаёт и возвращает его контейнер, в противном случае — контейнер
+     * несуществующего объекта.
+     *
+     * @param <T> тип объекта.
+     * @param object объект.
+     *
+     * @return Контейнер переданного или несуществующего объекта.
+     *
+     * @see #without()
+     * @see #with(T)
+     * @since 4.0.0-RC3
+     */
+    @Contract("_ -> new")
+    static <T> @NotNull Container<T> auto(final @Nullable T object) {
+        return new Impl<>(object, object != null);
     }
 
     /**
@@ -226,6 +237,7 @@ public interface Container<T> {
      * @see Container
      * @see #Impl()
      * @see #Impl(Object)
+     * @see #Impl(Object, boolean)
      * @since 4.0.0-RC3
      */
     @Experimental("4.0.0-RC5") class Impl<T> implements Container<T> {
@@ -258,6 +270,8 @@ public interface Container<T> {
          * Создаёт интегрированную реализацию контейнера объекта на основе нулевого объекта и ложного параметра его
          * существования.
          *
+         * @see #Impl(Object)
+         * @see #Impl(Object, boolean)
          * @since 4.0.0-RC3
          */
         @Experimental("4.0.0-RC4")
@@ -272,6 +286,8 @@ public interface Container<T> {
          *
          * @param object объект.
          *
+         * @see #Impl()
+         * @see #Impl(Object, boolean)
          * @since 4.0.0-RC3
          */
         @Experimental("4.0.0-RC4")
@@ -287,6 +303,8 @@ public interface Container<T> {
          * @param object объект.
          * @param contains параметр существования объекта.
          *
+         * @see #Impl()
+         * @see #Impl(Object)
          * @since 4.0.0-RC3
          */
         @Experimental("4.0.0-RC5")
