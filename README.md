@@ -86,16 +86,16 @@ implementation("com.bloogefest:common:4.0.0-SNAPSHOT")
 
 #### Работа с инструментами валидации значений
 
-Гарантирует, что переданный объект не является нулевым.
-
-```java
-Validator.notNull(object, "The passed object");
-```
-
 Гарантирует, что внутренний объект является нулевым.
 
 ```java
 Validator.isNull(object, "The internal object");
+```
+
+Гарантирует, что переданный объект не является нулевым.
+
+```java
+Validator.notNull(object, "The passed object");
 ```
 
 Гарантирует, что переданный и внутренний объекты равны.
