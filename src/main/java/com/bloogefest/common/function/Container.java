@@ -343,6 +343,29 @@ public interface Container<T> {
 
         /**
          * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
+         * {@linkplain #object текущий объект}, в противном случае — нулевой.
+         *
+         * @return {@linkplain #object Текущий} или нулевой объект.
+         *
+         * @see #get()
+         * @see #withAnother(Object)
+         * @see #withSupplier(Supplier)
+         * @see #withThrowable(Supplier)
+         * @since 4.0.0-RC3
+         */
+        @Experimental("4.0.0-RC5")
+        @Contract("-> _")
+        public @Nullable T withNullable() {
+            final var stamp = lock.readLock();
+            try {
+                return contains ? object : null;
+            } finally {
+                lock.unlockRead(stamp);
+            }
+        }
+
+        /**
+         * Если {@linkplain #contains параметр существования текущего объекта} истинный, то возвращает
          * {@linkplain #object текущий объект}, в противном случае — переданный.
          *
          * @param object объект.
