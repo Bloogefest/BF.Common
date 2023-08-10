@@ -172,7 +172,7 @@ public interface BiContainer<T1, T2> {
      * @return Контейнер переданного первого и второго объектов или переданного первого объекта и несуществующего
      * объекта.
      *
-     * @throws NullException исключение валидации нулевого объекта (переданного первого объекта).
+     * @throws NullException исключение валидации нулевого переданного первого объекта.
      * @see Impl
      * @see Impl#Impl(Container, Container)
      * @see #without()
