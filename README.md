@@ -10,16 +10,20 @@
 переработка, введение новых инструментов для создания объектов, функциональных инструментов, переработка старых,
 расширение и переработка интерфейса инструментов валидации значений и, может быть, что-нибудь ещё.
 
+В данный момент ведётся активная разработка и отлаживание таких функциональных инструментов, как: `Container`,
+`BiContainer`, `TriContainer`, `Optional`, `BiOptional`, `TriOptional`, `Catcher` и `Conveyor`. Некоторые из них
+являются экспериментальными и часто изменяются, поэтому рекомендуется воздержаться от их использования хотя бы до выхода
+выпуска `4.0.0-RC3`.
+
 ### Подключение
 
 #### Выпуск-кандидата
 
-С помощью `Maven`.
+##### Maven
 
 ```xml
 <repository>
   <id>ossrh-rc</id>
-  <name>OSSRH RC</name>
   <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
 </repository>
 ```
@@ -32,13 +36,10 @@
 </dependency>
 ```
 
-С помощью `Gradle`.
+##### Gradle
 
 ```kotlin
-maven {
-    name = "OSSRH RC"
-    url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
-}
+maven("https://s01.oss.sonatype.org/content/repositories/releases/")
 ```
 
 ```kotlin
@@ -47,12 +48,11 @@ implementation("com.bloogefest:common:4.0.0-RC2")
 
 #### Снимка
 
-С помощью `Maven`.
+##### Maven
 
 ```xml
 <repository>
   <id>ossrh-snapshot</id>
-  <name>OSSRH SNAPSHOT</name>
   <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
 </repository>
 ```
@@ -65,51 +65,12 @@ implementation("com.bloogefest:common:4.0.0-RC2")
 </dependency>
 ```
 
-C помощью `Gradle`.
+##### Gradle
 
 ```kotlin
-maven {
-    name = "OSSRH SNAPSHOT"
-    url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-}
+maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 ```
 
 ```kotlin
 implementation("com.bloogefest:common:4.0.0-SNAPSHOT")
-```
-
-### Краткий обзор
-
-#### Работа с инструментами создания объектов
-
-...
-
-#### Работа с функциональными инструментами
-
-...
-
-#### Работа с инструментами валидации значений
-
-Гарантирует, что внутренний объект является нулевым.
-
-```java
-Validator.isNull(object, "The internal object");
-```
-
-Гарантирует, что переданный объект не является нулевым.
-
-```java
-Validator.notNull(object, "The passed object");
-```
-
-Гарантирует, что переданный и внутренний объекты равны.
-
-```java
-Validator.equals(object1, object2, "The passed object", "The internal object");
-```
-
-Гарантирует, что переданный первый и второй объекты неравны.
-
-```java
-Validator.notEquals(object1, object2, "The first passed object", "The second passed object");
 ```
