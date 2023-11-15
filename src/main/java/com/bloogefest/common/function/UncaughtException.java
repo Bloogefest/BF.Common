@@ -19,8 +19,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNls;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 
 /**
@@ -35,14 +34,14 @@ public class UncaughtException extends FunctionException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String DEFAULT_MESSAGE = "Failed to catch the exception or error";
+    public static final @NonNull String DEFAULT_MESSAGE = "Failed to catch the exception or error";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String TEMPLATE_MESSAGE = "Failed to catch the %s";
+    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to catch the %s";
 
     /**
      * Создаёт исключение ловли исключения либо ошибки на основе {@linkplain #DEFAULT_MESSAGE сообщения},
@@ -66,7 +65,7 @@ public class UncaughtException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_ -> new")
-    public UncaughtException(final @NotNls @Nullable String message) {
+    public UncaughtException(final @Nullable String message) {
         this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -95,7 +94,7 @@ public class UncaughtException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _ -> new")
-    public UncaughtException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
+    public UncaughtException(final @Nullable String message, final @Nullable Throwable cause) {
         this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -124,8 +123,7 @@ public class UncaughtException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public UncaughtException(final @NotNls @Nullable String message, final boolean suppression,
-                             final boolean writable) {
+    public UncaughtException(final @Nullable String message, final boolean suppression, final boolean writable) {
         this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
@@ -156,8 +154,8 @@ public class UncaughtException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _, _ -> new")
-    public UncaughtException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                             final boolean suppression, final boolean writable) {
+    public UncaughtException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                             final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

@@ -7,7 +7,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
@@ -50,7 +50,7 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("-> new")
-    static <T1, T2> @NotNull BiContainer<T1, T2> without() {
+    static <T1, T2> @NonNull BiContainer<T1, T2> without() {
         return new Impl<>();
     }
 
@@ -75,7 +75,7 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> new; _ -> fail")
-    static <T1, T2> @NotNull BiContainer<T1, T2> withFirst(final @NotNull T1 object) throws NullException {
+    static <T1, T2> @NonNull BiContainer<T1, T2> withFirst(final @NonNull T1 object) throws NullException {
         return new Impl<>(Container.with(object), Container.without());
     }
 
@@ -100,7 +100,7 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> new; _ -> fail")
-    static <T1, T2> @NotNull BiContainer<T1, T2> withSecond(final @NotNull T2 object) throws NullException {
+    static <T1, T2> @NonNull BiContainer<T1, T2> withSecond(final @NonNull T2 object) throws NullException {
         return new Impl<>(Container.without(), Container.with(object));
     }
 
@@ -126,8 +126,8 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, !null -> new; _, _ -> fail")
-    static <T1, T2> @NotNull BiContainer<T1, T2> with(final @NotNull T1 first,
-                                                      final @NotNull T2 second) throws NullException {
+    static <T1, T2> @NonNull BiContainer<T1, T2> with(final @NonNull T1 first,
+                                                      final @NonNull T2 second) throws NullException {
         return new Impl<>(Container.with(first), Container.with(second));
     }
 
@@ -155,8 +155,8 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("_, !null -> new; _, _ -> fail")
-    static <T1, T2> @NotNull BiContainer<T1, T2> autoFirst(final @Nullable T1 first,
-                                                           final @NotNull T2 second) throws NullException {
+    static <T1, T2> @NonNull BiContainer<T1, T2> autoFirst(final @Nullable T1 first,
+                                                           final @NonNull T2 second) throws NullException {
         return first != null ? with(first, second) : withSecond(second);
     }
 
@@ -184,7 +184,7 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, _ -> new; _, _ -> fail")
-    static <T1, T2> @NotNull BiContainer<T1, T2> autoSecond(final @NotNull T1 first,
+    static <T1, T2> @NonNull BiContainer<T1, T2> autoSecond(final @NonNull T1 first,
                                                             final @Nullable T2 second) throws NullException {
         return second != null ? with(first, second) : withFirst(first);
     }
@@ -214,7 +214,7 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("_, _ -> new")
-    static <T1, T2> @NotNull BiContainer<T1, T2> auto(final @Nullable T1 first, final @Nullable T2 second) {
+    static <T1, T2> @NonNull BiContainer<T1, T2> auto(final @Nullable T1 first, final @Nullable T2 second) {
         return first != null ? second != null ? with(first, second) : withFirst(first) :
                second != null ? withSecond(second) : without();
     }
@@ -227,7 +227,7 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("-> !null")
-    @NotNull Container<T1> first();
+    @NonNull Container<T1> first();
 
     /**
      * Возвращает контейнер текущего второго объекта.
@@ -237,7 +237,7 @@ public interface BiContainer<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("-> !null")
-    @NotNull Container<T2> second();
+    @NonNull Container<T2> second();
 
     /**
      * Интегрированная реализация контейнера двух объектов.
@@ -257,14 +257,14 @@ public interface BiContainer<T1, T2> {
          *
          * @since 4.0.0-RC3
          */
-        protected final @NotNull Container<T1> first;
+        protected final @NonNull Container<T1> first;
 
         /**
          * Контейнер текущего второго объекта.
          *
          * @since 4.0.0-RC3
          */
-        protected final @NotNull Container<T2> second;
+        protected final @NonNull Container<T2> second;
 
         /**
          * Создаёт интегрированную реализацию контейнера двух объектов на основе двух контейнеров несуществующего
@@ -288,7 +288,7 @@ public interface BiContainer<T1, T2> {
          * @since 4.0.0-RC3
          */
         @Contract("!null, !null -> new; _, _ -> fail")
-        public Impl(final @NotNull Container<T1> first, final @NotNull Container<T2> second) throws NullException {
+        public Impl(final @NonNull Container<T1> first, final @NonNull Container<T2> second) throws NullException {
             this.first = Validator.notNull(first, "The passed container of the first object");
             this.second = Validator.notNull(second, "The passed container of the second object");
         }
@@ -302,7 +302,7 @@ public interface BiContainer<T1, T2> {
          */
         @Override
         @Contract("-> const")
-        public @NotNull Container<T1> first() {
+        public @NonNull Container<T1> first() {
             return first;
         }
 
@@ -315,7 +315,7 @@ public interface BiContainer<T1, T2> {
          */
         @Override
         @Contract("-> const")
-        public @NotNull Container<T2> second() {
+        public @NonNull Container<T2> second() {
             return second;
         }
 

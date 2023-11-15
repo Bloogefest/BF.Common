@@ -7,9 +7,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNull;
-import com.bloogefest.annotation.Obsolete;
-import com.bloogefest.annotation.Removal;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -33,7 +31,7 @@ public interface Condition {
      * @since 1.0.0
      */
     @Contract("_ -> new")
-    static @NotNull Condition constant(final boolean result) {
+    static @NonNull Condition constant(final boolean result) {
         return () -> result;
     }
 
@@ -51,28 +49,7 @@ public interface Condition {
      * @since 4.0.0-RC3
      */
     @Contract("_ -> 1")
-    static @NotNull Condition check(final @NotNull Condition condition) throws NullException {
-        return Validator.notNull(condition, "condition");
-    }
-
-    /**
-     * Проверяет переданную логическую функцию и, если та нулевая, генерирует исключение валидации нулевого объекта
-     * (переданной логической функции) с переопределённым сообщением (отформатированным именем переданной логической
-     * функции шаблонным сообщением), в противном случае возвращает её.
-     *
-     * @param condition логическая функция.
-     *
-     * @return Переданная логическая функция.
-     *
-     * @throws NullException исключение валидации нулевого объекта (переданной логической функции).
-     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
-     * @since 1.0.0
-     * @deprecated Используйте {@linkplain #check(Condition)}.
-     */
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Condition.check")
-    @Contract("_ -> 1")
-    static @NotNull Condition of(final @NotNull Condition condition) throws NullException {
+    static @NonNull Condition check(final @NonNull Condition condition) throws NullException {
         return Validator.notNull(condition, "condition");
     }
 
@@ -87,25 +64,7 @@ public interface Condition {
      * @since 4.0.0-RC3
      */
     @Contract("_ -> 1")
-    static @NotNull Condition lambda(final @NotNull Condition condition) {
-        return condition;
-    }
-
-    /**
-     * Возвращает переданную логическую функцию.
-     *
-     * @param condition логическая функция.
-     *
-     * @return Переданная логическая функция.
-     *
-     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу логической функции.
-     * @since 4.0.0
-     * @deprecated Используйте {@linkplain #lambda(Condition)}.
-     */
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Condition.lambda")
-    @Contract("_ -> 1")
-    static @NotNull Condition as(final @NotNull Condition condition) {
+    static @NonNull Condition lambda(final @NonNull Condition condition) {
         return condition;
     }
 
@@ -129,7 +88,7 @@ public interface Condition {
      * @since 1.0.0
      */
     @Contract(value = "-> new")
-    default @NotNull Condition invert() {
+    default @NonNull Condition invert() {
         return () -> !compute();
     }
 
@@ -151,7 +110,7 @@ public interface Condition {
      * @since 1.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Condition and(final @NotNull Condition condition) throws NullException {
+    default @NonNull Condition and(final @NonNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> compute() && condition.compute();
     }
@@ -175,7 +134,7 @@ public interface Condition {
      * @since 1.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Condition xor(final @NotNull Condition condition) throws NullException {
+    default @NonNull Condition xor(final @NonNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> compute() ^ condition.compute();
     }
@@ -198,7 +157,7 @@ public interface Condition {
      * @since 1.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Condition or(final @NotNull Condition condition) throws NullException {
+    default @NonNull Condition or(final @NonNull Condition condition) throws NullException {
         Validator.notNull(condition, "condition");
         return () -> compute() || condition.compute();
     }
@@ -221,7 +180,7 @@ public interface Condition {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Condition then(final @NotNull Callback callback) throws NullException {
+    default @NonNull Condition then(final @NonNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
             final var result = compute();
@@ -249,7 +208,7 @@ public interface Condition {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Condition then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
+    default @NonNull Condition then(final @NonNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return () -> {
             if (compute()) throw new ComputeException(supplier.get());
@@ -275,7 +234,7 @@ public interface Condition {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Condition otherwise(final @NotNull Callback callback) throws NullException {
+    default @NonNull Condition otherwise(final @NonNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
             final var result = compute();
@@ -303,7 +262,7 @@ public interface Condition {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Condition otherwise(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
+    default @NonNull Condition otherwise(final @NonNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return () -> {
             if (!compute()) throw new ComputeException(supplier.get());

@@ -19,8 +19,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNls;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 
 /**
@@ -35,14 +34,14 @@ public class ConveyException extends FunctionException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String DEFAULT_MESSAGE = "Failed to convey the object";
+    public static final @NonNull String DEFAULT_MESSAGE = "Failed to convey the object";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String TEMPLATE_MESSAGE = "Failed to convey %s";
+    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to convey %s";
 
     /**
      * Создаёт исключение передачи объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения},
@@ -66,7 +65,7 @@ public class ConveyException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_ -> new")
-    public ConveyException(final @NotNls @Nullable String message) {
+    public ConveyException(final @Nullable String message) {
         this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -95,7 +94,7 @@ public class ConveyException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _ -> new")
-    public ConveyException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
+    public ConveyException(final @Nullable String message, final @Nullable Throwable cause) {
         this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -124,7 +123,7 @@ public class ConveyException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public ConveyException(final @NotNls @Nullable String message, final boolean suppression, final boolean writable) {
+    public ConveyException(final @Nullable String message, final boolean suppression, final boolean writable) {
         this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
@@ -155,8 +154,8 @@ public class ConveyException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _, _ -> new")
-    public ConveyException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                           final boolean suppression, final boolean writable) {
+    public ConveyException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                           final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

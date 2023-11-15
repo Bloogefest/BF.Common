@@ -6,7 +6,9 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.*;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NonNull;
+import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -40,8 +42,8 @@ public interface Analyzer<T, R> {
      * @since 4.0.0
      */
     @Contract(value = "_, _ -> new")
-    static <T, R> @NotNull Analyzer<T, R> constant(final @NotNull Analyzer<? super T, R> analyzer,
-                                                   final @NotNull T object) throws NullException {
+    static <T, R> @NonNull Analyzer<T, R> constant(final @NonNull Analyzer<? super T, R> analyzer,
+                                                   final @NonNull T object) throws NullException {
         Validator.notNull(analyzer, "analyzer");
         Validator.notNull(object, "object");
         return ignored -> analyzer.analyze(object);
@@ -61,7 +63,7 @@ public interface Analyzer<T, R> {
      * @since 3.0.0
      */
     @Contract(value = "_ -> new")
-    static <T, R> @NotNull Analyzer<T, R> constant(final @NotNull R object) throws NullException {
+    static <T, R> @NonNull Analyzer<T, R> constant(final @NonNull R object) throws NullException {
         Validator.notNull(object, "object");
         return ignored -> object;
     }
@@ -80,28 +82,7 @@ public interface Analyzer<T, R> {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> 1; _ -> failure")
-    static <T, R> @NotNull Analyzer<T, R> check(final @Nullable Analyzer<T, R> analyzer) throws NullException {
-        return Validator.notNull(analyzer, "analyzer");
-    }
-
-    /**
-     * Проверяет переданный анализатор и, если тот нулевой, генерирует исключение валидации нулевого объекта
-     * (переданного анализатора) с переопределённым сообщением (отформатированным именем переданного анализатора
-     * шаблонным сообщением), в противном случае возвращает его.
-     *
-     * @param analyzer анализатор объекта.
-     *
-     * @return Переданный анализатор.
-     *
-     * @throws NullException исключение валидации нулевого объекта (переданного анализатора).
-     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
-     * @since 3.0.0
-     * @deprecated Используйте {@linkplain #check(Analyzer)}.
-     */
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Analyzer.check")
-    @Contract("_ -> 1")
-    static <T, R> @NotNull Analyzer<T, R> of(final @NotNull Analyzer<T, R> analyzer) throws NullException {
+    static <T, R> @NonNull Analyzer<T, R> check(final @Nullable Analyzer<T, R> analyzer) throws NullException {
         return Validator.notNull(analyzer, "analyzer");
     }
 
@@ -116,25 +97,7 @@ public interface Analyzer<T, R> {
      * @since 4.0.0-RC3
      */
     @Contract("_ -> 1")
-    static <T, R> @NotNull Analyzer<T, R> lambda(final @NotNull Analyzer<T, R> analyzer) {
-        return analyzer;
-    }
-
-    /**
-     * Возвращает переданный анализатор.
-     *
-     * @param analyzer анализатор объекта.
-     *
-     * @return Переданный анализатор.
-     *
-     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу анализатора объекта.
-     * @since 4.0.0
-     * @deprecated Используйте {@linkplain #lambda(Analyzer)}.
-     */
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Analyzer.lambda")
-    @Contract("_ -> 1")
-    static <T, R> @NotNull Analyzer<T, R> as(final @NotNull Analyzer<T, R> analyzer) {
+    static <T, R> @NonNull Analyzer<T, R> lambda(final @NonNull Analyzer<T, R> analyzer) {
         return analyzer;
     }
 
@@ -149,7 +112,7 @@ public interface Analyzer<T, R> {
      * @throws AnalyzeException исключение анализа объекта (переданного анализируемого объекта).
      * @since 3.0.0
      */
-    @NotNull R analyze(final @NotNull T object) throws NullException, AnalyzeException;
+    @NonNull R analyze(final @NonNull T object) throws NullException, AnalyzeException;
 
     /**
      * Проверяет переданный анализатор и, если тот нулевой, генерирует исключение валидации нулевого объекта
@@ -169,7 +132,7 @@ public interface Analyzer<T, R> {
      * @since 3.0.0
      */
     @Contract("!null -> new; _ -> fail")
-    default <R_> @NotNull Analyzer<T, R_> with(final @NotNull Analyzer<? super R, R_> analyzer) throws NullException {
+    default <R_> @NonNull Analyzer<T, R_> with(final @NonNull Analyzer<? super R, R_> analyzer) throws NullException {
         Validator.notNull(analyzer, "analyzer");
         return object -> analyzer.analyze(analyze(object));
     }

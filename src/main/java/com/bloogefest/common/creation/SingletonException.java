@@ -6,7 +6,9 @@
 
 package com.bloogefest.common.creation;
 
-import com.bloogefest.annotation.*;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NonNull;
+import com.bloogefest.annotation.Nullable;
 
 /**
  * Исключение создания объекта одиночного типа.
@@ -20,36 +22,14 @@ public class SingletonException extends CreationException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String DEFAULT_MESSAGE = "The singleton object has already been created";
+    public static final @NonNull String DEFAULT_MESSAGE = "The singleton object has already been created";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String TEMPLATE_MESSAGE = "The %s has already been created";
-
-    /**
-     * Сообщение по умолчанию.
-     *
-     * @since 3.0.0
-     * @deprecated Используйте {@linkplain #DEFAULT_MESSAGE}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.creation.SingletonException.DEFAULT_MESSAGE")
-    public static final @NotNls @NotNull String defaultMessage = DEFAULT_MESSAGE;
-
-    /**
-     * Шаблонное сообщение.
-     *
-     * @since 3.0.0
-     * @deprecated Используйте {@linkplain #TEMPLATE_MESSAGE}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.creation.SingletonException.TEMPLATE_MESSAGE")
-    public static final @NotNls @NotNull String templateMessage = TEMPLATE_MESSAGE;
+    public static final @NonNull String TEMPLATE_MESSAGE = "The %s has already been created";
 
     /**
      * Создаёт исключение создания объекта одиночного типа на основе {@linkplain #DEFAULT_MESSAGE сообщения},
@@ -73,7 +53,7 @@ public class SingletonException extends CreationException {
      * @since 3.0.0
      */
     @Contract("_ -> new")
-    public SingletonException(final @NotNls @Nullable String message) {
+    public SingletonException(final @Nullable String message) {
         this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -103,7 +83,7 @@ public class SingletonException extends CreationException {
      * @since 3.0.0
      */
     @Contract("_, _ -> new")
-    public SingletonException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
+    public SingletonException(final @Nullable String message, final @Nullable Throwable cause) {
         this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -132,8 +112,7 @@ public class SingletonException extends CreationException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public SingletonException(final @NotNls @Nullable String message, final boolean suppression,
-                              final boolean writable) {
+    public SingletonException(final @Nullable String message, final boolean suppression, final boolean writable) {
         this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
@@ -165,7 +144,7 @@ public class SingletonException extends CreationException {
      * @since 3.0.0
      */
     @Contract("_, _, _, _ -> new")
-    public SingletonException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
+    public SingletonException(final @Nullable String message, final @Nullable Throwable cause,
                               final boolean suppression, final boolean writable) {
         super(message, cause, suppression, writable);
     }

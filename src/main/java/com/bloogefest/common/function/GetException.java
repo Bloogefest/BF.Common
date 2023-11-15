@@ -7,8 +7,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNls;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 
 /**
@@ -23,14 +22,14 @@ public class GetException extends FunctionException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String DEFAULT_MESSAGE = "Failed to get the object";
+    public static final @NonNull String DEFAULT_MESSAGE = "Failed to get the object";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String TEMPLATE_MESSAGE = "Failed to get %s";
+    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to get %s";
 
     /**
      * Создаёт исключение получения объекта на основе {@linkplain #DEFAULT_MESSAGE сообщения},
@@ -54,7 +53,7 @@ public class GetException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_ -> new")
-    public GetException(final @NotNls @Nullable String message) {
+    public GetException(final @Nullable String message) {
         this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -83,7 +82,7 @@ public class GetException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _ -> new")
-    public GetException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
+    public GetException(final @Nullable String message, final @Nullable Throwable cause) {
         this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -112,7 +111,7 @@ public class GetException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public GetException(final @NotNls @Nullable String message, final boolean suppression, final boolean writable) {
+    public GetException(final @Nullable String message, final boolean suppression, final boolean writable) {
         this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
@@ -143,8 +142,8 @@ public class GetException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _, _ -> new")
-    public GetException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                        final boolean suppression, final boolean writable) {
+    public GetException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                        final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

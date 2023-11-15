@@ -6,7 +6,9 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.*;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.Null;
+import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.SoftException;
 
 /**
@@ -21,36 +23,14 @@ public class FunctionException extends SoftException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @Null String DEFAULT_MESSAGE = null;
+    public static final @Null String DEFAULT_MESSAGE = null;
 
     /**
      * Шаблонное сообщение.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @Null String TEMPLATE_MESSAGE = null;
-
-    /**
-     * Сообщение по умолчанию.
-     *
-     * @since 3.0.0
-     * @deprecated Используйте {@linkplain #DEFAULT_MESSAGE}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.FunctionException.DEFAULT_MESSAGE")
-    public static final @NotNls @Null String defaultMessage = DEFAULT_MESSAGE;
-
-    /**
-     * Шаблонное сообщение.
-     *
-     * @since 3.0.0
-     * @deprecated Используйте {@linkplain #TEMPLATE_MESSAGE}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.FunctionException.TEMPLATE_MESSAGE")
-    public static final @NotNls @Null String templateMessage = TEMPLATE_MESSAGE;
+    public static final @Null String TEMPLATE_MESSAGE = null;
 
     /**
      * Создаёт исключение функции на основе {@linkplain #DEFAULT_MESSAGE сообщения},
@@ -74,7 +54,7 @@ public class FunctionException extends SoftException {
      * @since 1.0.0
      */
     @Contract("_ -> new")
-    public FunctionException(final @NotNls @Nullable String message) {
+    public FunctionException(final @Nullable String message) {
         this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -103,7 +83,7 @@ public class FunctionException extends SoftException {
      * @since 1.0.0
      */
     @Contract("_, _ -> new")
-    public FunctionException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
+    public FunctionException(final @Nullable String message, final @Nullable Throwable cause) {
         this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -132,8 +112,7 @@ public class FunctionException extends SoftException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public FunctionException(final @NotNls @Nullable String message, final boolean suppression,
-                             final boolean writable) {
+    public FunctionException(final @Nullable String message, final boolean suppression, final boolean writable) {
         this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
@@ -163,8 +142,8 @@ public class FunctionException extends SoftException {
      * @since 1.0.0
      */
     @Contract("_, _, _, _ -> new")
-    public FunctionException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                             final boolean suppression, final boolean writable) {
+    public FunctionException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                             final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

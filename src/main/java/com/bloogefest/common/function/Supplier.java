@@ -23,88 +23,42 @@ import com.bloogefest.common.validation.Validator;
  * @see #with(Object)
  * @since 1.0.0
  */
-@Experimental("4.0.0-RC5")
+@Experimental(from = "4.0.0-RC5")
 @FunctionalInterface
 public interface Supplier<T> {
 
     /**
-     * Создаёт и возвращает
-     * {@linkplain Without#Without() интегрированную реализацию поставщика несуществующего объекта}.
+     * Создаёт и возвращает поставщик несуществующего объекта.
      *
-     * @return {@linkplain Without#Without() Интегрированную реализацию поставщика несуществующего объекта}.
+     * @return Поставщик несуществующего объекта.
      *
      * @see Without#Without()
      * @see #with(Object)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
+    @Experimental(from = "4.0.0-RC4")
     @Contract("_ -> new")
-    static <T> @NotNull Supplier<T> without() {
+    static <T> @NonNull Supplier<T> without() {
         return new Without<>();
     }
 
     /**
-     * Создаёт и возвращает {@linkplain With#With(Object) интегрированную реализацию поставщика существующего объекта}
-     * (переданного объекта).
+     * Создаёт и возвращает поставщик переданного объекта.
      *
      * @param <T> тип объекта.
      * @param object объект.
      *
-     * @return {@linkplain With#With(Object) Интегрированную реализацию поставщика существующего объекта} (переданного
-     * объекта).
+     * @return Поставщик переданного объекта.
      *
      * @throws NullException исключение валидации нулевого объекта (переданного объекта).
      * @see With#With(Object)
      * @see #without()
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
+    @Experimental(from = "4.0.0-RC4")
     @Contract("_ -> new")
-    static <T> @NotNull Supplier<T> with(final @Nullable T object) throws NullException {
+    static <T> @NonNull Supplier<T> with(final @Nullable T object) throws NullException {
         return new With<>(object);
-    }
-
-    /**
-     * Проверяет переданный поставляемый объект и, если тот нулевой, генерирует исключение валидации нулевого объекта
-     * (переданного поставляемого объекта) с переопределённым сообщением (отформатированным именем переданного
-     * поставляемого объекта шаблонным сообщением), в противном случае инициализирует и возвращает поставщик, метод
-     * поставки которого возвращает переданный в этот метод поставляемый объект.
-     *
-     * @param object поставляемый объект.
-     *
-     * @return Новый поставщик, метод поставки которого возвращает переданный в этот метод поставляемый объект.
-     *
-     * @throws NullException исключение валидации нулевого объекта (переданного поставляемого объекта).
-     * @since 1.0.0
-     * @deprecated Используйте {@linkplain #with(Object)}, но вместе с {@linkplain Validator#notNull(Object, String)}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Supplier::with(Object)")
-    @Contract("!null -> new; _ -> fail")
-    static <T> @NotNull Supplier<T> constant(final @NotNull T object) throws NullException {
-        return with(Validator.notNull(object, "The passed object"));
-    }
-
-    /**
-     * Проверяет переданный поставщик и, если тот нулевой, генерирует исключение валидации нулевого объекта (переданного
-     * поставщика) с переопределённым сообщением (отформатированным именем переданного поставщика шаблонным сообщением),
-     * в противном случае возвращает его.
-     *
-     * @param supplier поставщик объекта.
-     *
-     * @return Переданный поставщик.
-     *
-     * @throws NullException исключение валидации нулевого объекта (переданного поставщика).
-     * @since 1.0.0
-     * @deprecated Используйте {@linkplain Validator#notNull(Object, String)} самостоятельно.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.validation.Validation::notNull(Object, String)")
-    @Contract("!null -> 1; _ -> fail")
-    static <T> @NotNull Supplier<T> of(final @NotNull Supplier<T> supplier) throws NullException {
-        return Validator.notNull(supplier, "supplier");
     }
 
     /**
@@ -117,30 +71,10 @@ public interface Supplier<T> {
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика).
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
+    @Experimental(from = "4.0.0-RC4")
     @Contract("!null -> 1; _ -> fail")
-    static <T> @NotNull Supplier<T> lambda(final @NotNull Supplier<T> supplier) throws NullException {
+    static <T> @NonNull Supplier<T> lambda(final @NonNull Supplier<T> supplier) throws NullException {
         return Validator.notNull(supplier, "The passed supplier");
-    }
-
-    /**
-     * Возвращает переданный поставщик.
-     *
-     * @param supplier поставщик объекта.
-     *
-     * @return Переданный поставщик.
-     *
-     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу поставщика объекта.
-     * @since 4.0.0
-     * @deprecated Используйте {@linkplain #lambda(Supplier)}, но учтите, что он использует
-     * {@linkplain Validator#notNull(Object, String)}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Supplier::lambda(Supplier)")
-    @Contract("_ -> 1")
-    static <T> @NotNull Supplier<T> as(final @NotNull Supplier<T> supplier) {
-        return supplier;
     }
 
 
@@ -149,126 +83,146 @@ public interface Supplier<T> {
      *
      * @return Текущий объект.
      *
-     * @throws GetException исключение получения объекта (текущего объекта).
+     * @throws GetException исключение получения текущего объекта.
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
+    @Experimental(from = "4.0.0-RC4")
     @Contract("-> _")
     @Nullable T get() throws GetException;
 
     /**
-     * Поставляет поставляемый объект.
+     * Пытается получить текущий объект и, если успешно, то возвращает обёртку его и несуществующего объекта, в
+     * противном случае — нулевого объекта и исключения, возникшего при получении текущего объекта.
      *
-     * @return Поставляемый объект этого поставщика.
+     * @return Обёртку текущего и несуществующего объекта или нулевого объекта и исключения, возникшего при получении
+     * текущего объекта.
      *
-     * @throws SupplyException исключение поставки объекта (поставляемого объекта этого поставщика).
-     * @since 1.0.0
-     * @deprecated Используйте {@linkplain #get()}, но учтите, что может вернуть нулевой объект.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Supplier::lambda(Supplier)")
-    @Contract("-> ")
-    default @NotNull T supply() throws SupplyException {
-        final @Nullable var object = get();
-        if (object == null) throw new SupplyException(SupplyException.TEMPLATE_MESSAGE.formatted("the current object"));
-        return object;
-    }
-
-    /**
-     * Пытается получить текущий объект и, если успешно, то возвращает его, в противном случае — нулевой.
-     *
-     * @return Текущий или нулевой объект.
-     *
+     * @see BiContainer
+     * @see BiContainer#withFirst(Object)
+     * @see BiContainer#with(Object, Object)
      * @see #get()
      * @see #withAnother(Object)
      * @see #withSupplier(Supplier)
      * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
-    @Contract("-> _")
-    default @Nullable T withNullable() {
-        return withAnother(null);
+    @Experimental(from = "4.0.0-RC5")
+    @Contract("-> new")
+    default @NonNull BiContainer<T, ? extends Exception> withNullable() {
+        try {
+            return BiContainer.withFirst(get());
+        } catch (final @NonNull Exception failure) {
+            return BiContainer.with(null, failure);
+        }
     }
 
     /**
-     * Пытается получить текущий объект и, если успешно, то возвращает его, в противном случае — переданный.
+     * Пытается получить текущий объект и, если успешно, то возвращает обёртку его и несуществующего объекта, в
+     * противном случае — переданного объекта и исключения, возникшего при получении текущего объекта.
      *
      * @param object объект.
      *
-     * @return Текущий или переданный объект.
+     * @return Обёртку текущего и несуществующего объекта или переданного объекта и исключения, возникшего при получении
+     * текущего объекта.
      *
+     * @see BiContainer
+     * @see BiContainer#withFirst(Object)
+     * @see BiContainer#with(Object, Object)
      * @see #get()
      * @see #withNullable()
      * @see #withSupplier(Supplier)
      * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
-    @Contract("_ -> _")
-    default @Nullable T withAnother(final @Nullable T object) {
+    @Experimental(from = "4.0.0-RC5")
+    @Contract("_ -> new")
+    default @NonNull BiContainer<T, ? extends Exception> withAnother(final @Nullable T object) {
         try {
-            return get();
-        } catch (final @NotNull GetException e) {
-            return object;
+            return BiContainer.withFirst(get());
+        } catch (final @NonNull Exception e) {
+            return BiContainer.with(object, e);
         }
     }
 
     /**
-     * Пытается получить текущий объект и, если успешно, то возвращает его, в противном случае получает и возвращает
-     * объект от переданного поставщика.
+     * Пытается получить текущий объект и, если успешно, то возвращает обёртку его и двух несуществующих объектов, в
+     * противном случае пытается получить объект от переданного поставщика и возвращает обёртку его, исключения,
+     * возникшего при получении текущего объекта, и несуществующего объекта, в противном случае возвращает обёртку
+     * несуществующего объекта, исключения, возникшего при получении текущего объекта, и исключения, возникшего при
+     * получении объекта от переданного поставщика.
      *
      * @param supplier поставщик объекта.
      *
-     * @return Текущий или полученный от переданного поставщика объект.
+     * @return Обёртку текущего и двух несуществующих объектов, или объекта, полученного от переданного поставщика,
+     * исключения, возникшего при получении текущего объекта, и несуществующего объекта, или несуществующего объекта,
+     * исключения, возникшего при получении текущего объекта, и исключения, возникшего при получении объекта от
+     * переданного поставщика.
      *
-     * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
-     * @throws GetException исключение получения объекта (поставляемого переданным поставщиком объекта).
+     * @throws NullException исключение валидации нулевого переданного поставщика объекта.
+     * @see TriOptional
+     * @see TriOptional#withFirst(Object)
+     * @see TriOptional#withFirstAndSecond(Object, Object)
+     * @see TriOptional#withSecondAndThird(Object, Object)
      * @see #get()
      * @see #withNullable()
      * @see #withAnother(Object)
      * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
-    @Contract("!null -> _; _ -> fail")
-    default @Nullable T withSupplier(final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
+    @Experimental(from = "4.0.0-RC5")
+    @Contract("!null -> new; _ -> fail")
+    default @NonNull TriOptional<T, ? extends Exception, ? extends Exception> withSupplier(
+            final @NonNull Supplier<? extends T> supplier) throws NullException {
         Validator.notNull(supplier, "The passed supplier of an object");
         try {
-            return get();
-        } catch (final @NotNull GetException e) {
-            return supplier.get();
+            return TriOptional.withFirst(get());
+        } catch (final @NonNull Exception e) {
+            try {
+                return TriOptional.withFirstAndSecond(supplier.get(), e);
+            } catch (final @NonNull Exception e_) {
+                return TriOptional.withSecondAndThird(e, e_);
+            }
         }
     }
 
     /**
-     * Пытается получить текущий объект и, если успешно, то возвращает его, в противном случае получает и бросает
-     * исключение от переданного поставщика исключения.
+     * Пытается получить текущий объект и, если успешно, то возвращает обёртку его и двух несуществующих объектов, в
+     * противном случае пытается получить и бросить исключение от переданного поставщика, в противном случае возвращает
+     * обёртку несуществующего объекта, исключения, возникшего при получении текущего объекта, и исключения, возникшего
+     * при получении исключения от переданного поставщика.
      *
      * @param supplier поставщик исключения.
      *
-     * @return Текущий объект.
+     * @return Обёртку текущего и двух несуществующих объектов или несуществующего объекта, исключения, возникшего при
+     * получении текущего объекта, и исключения, возникшего при получении исключения от переданного поставщика.
      *
-     * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения или поставляемого
-     * им исключения).
-     * @throws GetException исключение получения объекта (поставляемого переданным поставщиком исключения).
-     * @throws F поставляемое переданным поставщиком исключение.
+     * @throws NullException исключение валидации нулевого переданного поставщика исключения или поставляемого им
+     * исключения.
+     * @throws E поставляемое переданным поставщиком исключение.
+     * @see TriOptional
+     * @see TriOptional#withFirst(Object)
+     * @see TriOptional#withSecondAndThird(Object, Object)
      * @see #get()
      * @see #withNullable()
      * @see #withAnother(Object)
      * @see #withSupplier(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
+    @Experimental(from = "4.0.0-RC5")
     @Contract("!null -> _; _ -> fail")
-    default <F extends Throwable> @Nullable T withThrowable(
-            final @NotNull Supplier<F> supplier) throws NullException, GetException, F {
+    default <E extends Throwable> @NonNull TriOptional<T, ? extends Exception, ? extends Exception> withThrowable(
+            final @NonNull Supplier<? extends E> supplier) throws NullException, GetException, E {
         Validator.notNull(supplier, "The passed supplier of a throwable");
         try {
-            return get();
-        } catch (final @NotNull GetException e) {
-            throw Validator.notNull(supplier.get(), "A throwable supplied by the passed supplier");
+            return TriOptional.withFirst(get());
+        } catch (final @NonNull Exception e) {
+            final E e_;
+            try {
+                e_ = Validator.notNull(supplier.get(), "A throwable supplied by the passed supplier");
+            } catch (final @NonNull Exception e__) {
+                return TriOptional.withSecondAndThird(e, e__);
+            }
+            throw e_;
         }
     }
 
@@ -282,7 +236,7 @@ public interface Supplier<T> {
      * @see #Without()
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5") class Without<T> implements Supplier<T> {
+    @Experimental(from = "4.0.0-RC5") class Without<T> implements Supplier<T> {
 
 
         /**
@@ -293,96 +247,127 @@ public interface Supplier<T> {
         public Without() {}
 
         /**
-         * Генерирует исключение получения объекта (текущего объекта).
+         * Генерирует исключение получения текущего объекта.
          *
          * @throws GetException исключение получения объекта (текущего объекта).
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         @Contract("-> fail")
         public @Null T get() throws GetException {
             throw new GetException(GetException.TEMPLATE_MESSAGE.formatted("the current object"));
         }
 
         /**
-         * Возвращает нулевой объект.
+         * Возвращает обёртку нулевого объекта и исключения получения текущего объекта.
          *
-         * @return Нулевой объект.
+         * @return Обёртку нулевого объекта и исключения получения текущего объекта.
          *
+         * @see BiContainer
+         * @see BiContainer#with(Object, Object)
          * @see #get()
          * @see #withAnother(Object)
          * @see #withSupplier(Supplier)
          * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
-        @Contract("-> null")
-        public @Null T withNullable() {
-            return null;
+        @Experimental(from = "4.0.0-RC5")
+        @Contract("-> new")
+        public @NonNull BiContainer<T, ? extends Exception> withNullable() {
+            return BiContainer.with(null,
+                                    new GetException(GetException.TEMPLATE_MESSAGE.formatted("the current object")));
         }
 
         /**
-         * Возвращает переданный объект.
+         * Возвращает обёртку переданного объекта и исключения получения текущего объекта.
          *
          * @param object объект.
          *
-         * @return Переданный объект.
+         * @return Обёртку переданного объекта и исключения получения текущего объекта.
          *
+         * @see BiContainer
+         * @see BiContainer#with(Object, Object)
          * @see #get()
          * @see #withNullable()
          * @see #withSupplier(Supplier)
          * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
-        @Contract("_ -> 1")
-        public @Nullable T withAnother(final @Nullable T object) {
-            return object;
+        @Experimental(from = "4.0.0-RC5")
+        @Contract("_ -> new")
+        public @NonNull BiContainer<T, ? extends Exception> withAnother(final @Nullable T object) {
+            return BiContainer.with(object,
+                                    new GetException(GetException.TEMPLATE_MESSAGE.formatted("the current object")));
         }
 
         /**
-         * Получает и возвращает объект от переданного поставщика.
+         * Пытается получить объект от переданного поставщика и возвращает обёртку его, исключения получения текущего
+         * объекта и несуществующего объекта, в противном случае возвращает обёртку несуществующего объекта, исключения
+         * получения текущего объекта и исключения, возникшего при получении объекта от переданного поставщика.
          *
          * @param supplier поставщик объекта.
          *
-         * @return Полученный от переданного поставщика объект.
+         * @return Обёртку объекта, полученного от переданного поставщика, исключения получения текущего объекта и
+         * несуществующего объекта, или несуществующего объекта, исключения получения текущего объекта и исключения,
+         * возникшего при получении объекта от переданного поставщика.
          *
-         * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
-         * @throws GetException исключение получения объекта (поставляемого переданным поставщиком объекта).
+         * @throws NullException исключение валидации нулевого переданного поставщика объекта.
+         * @see TriOptional
+         * @see TriOptional#withFirstAndSecond(Object, Object)
+         * @see TriOptional#withSecondAndThird(Object, Object)
          * @see #get()
          * @see #withNullable()
          * @see #withAnother(Object)
          * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
-        @Contract("!null -> _; _ -> fail")
-        public @Nullable T withSupplier(
-                final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
-            return Validator.notNull(supplier, "The passed supplier of an object").get();
+        @Experimental(from = "4.0.0-RC5")
+        @Contract("!null -> new; _ -> fail")
+        public @NonNull TriOptional<T, ? extends Exception, ? extends Exception> withSupplier(
+                final @NonNull Supplier<? extends T> supplier) throws NullException, GetException {
+            Validator.notNull(supplier, "The passed supplier of an object");
+            final var e = new GetException(GetException.TEMPLATE_MESSAGE.formatted("the current object"));
+            try {
+                return TriOptional.withFirstAndSecond(supplier.get(), e);
+            } catch (final @NonNull Exception e_) {
+                return TriOptional.withSecondAndThird(e, e_);
+            }
         }
 
         /**
-         * Получает и бросает исключение от переданного поставщика исключения.
+         * Пытается получить и бросить исключение от переданного поставщика, в противном случае возвращает обёртку
+         * несуществующего объекта, исключения получения текущего объекта и исключения, возникшего при получении
+         * исключения от переданного поставщика.
          *
          * @param supplier поставщик исключения.
          *
-         * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения или
-         * поставляемого им исключения).
-         * @throws GetException исключение получения объекта (поставляемого переданным поставщиком исключения).
-         * @throws F поставляемое переданным поставщиком исключение.
+         * @return Обёртку несуществующего объекта, исключения получения текущего объекта и исключения, возникшего при
+         * получении исключения от переданного поставщика.
+         *
+         * @throws NullException исключение валидации нулевого переданного поставщика исключения или поставляемого им
+         * исключения.
+         * @throws E поставляемое переданным поставщиком исключение.
+         * @see TriOptional
+         * @see TriOptional#withSecondAndThird(Object, Object)
          * @see #get()
          * @see #withNullable()
          * @see #withAnother(Object)
          * @see #withSupplier(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
-        @Contract("_ -> fail")
-        public <F extends Throwable> @Null T withThrowable(
-                final @NotNull Supplier<F> supplier) throws NullException, GetException, F {
-            throw Validator.notNull(Validator.notNull(supplier, "The passed supplier of a throwable").get(),
-                                    "A throwable supplied by the passed supplier");
+        @Experimental(from = "4.0.0-RC5")
+        @Contract("!null -> _; _ -> fail")
+        public <E extends Throwable> @NonNull TriOptional<T, ? extends Exception, ? extends Exception> withThrowable(
+                final @NonNull Supplier<? extends E> supplier) throws NullException, GetException, E {
+            Validator.notNull(supplier, "The passed supplier of a throwable");
+            final var e = new GetException(GetException.TEMPLATE_MESSAGE.formatted("the current object"));
+            final E e_;
+            try {
+                e_ = Validator.notNull(supplier.get(), "A throwable supplied by the passed supplier");
+            } catch (final @NonNull Exception e__) {
+                return TriOptional.withSecondAndThird(e, e__);
+            }
+            throw e_;
         }
 
     }
@@ -397,27 +382,27 @@ public interface Supplier<T> {
      * @see #With(Object)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5") class With<T> implements Supplier<T> {
+    @Experimental(from = "4.0.0-RC5") class With<T> implements Supplier<T> {
 
         /**
          * Текущий объект.
          *
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC4")
-        protected final @NotNull T object;
+        @Experimental(from = "4.0.0-RC4")
+        protected final @NonNull T object;
 
         /**
-         * Создаёт интегрированную реализацию поставщика существующего объекта (переданного объекта).
+         * Создаёт интегрированную реализацию поставщика переданного объекта.
          *
          * @param object объект.
          *
-         * @throws NullException исключение валидации нулевого объекта (переданного объекта).
+         * @throws NullException исключение валидации нулевого переданного объекта.
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         @Contract("!null -> new; _ -> fail")
-        public With(final @NotNull T object) throws NullException {
+        public With(final @NonNull T object) throws NullException {
             this.object = Validator.notNull(object, "The passed object");
         }
 
@@ -428,91 +413,98 @@ public interface Supplier<T> {
          *
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         @Contract("-> const")
         public @Nullable T get() {
             return object;
         }
 
         /**
-         * Возвращает {@linkplain #object текущий объект}.
+         * Возвращает обёртку {@linkplain #object текущего} и несуществующего объекта.
          *
-         * @return {@linkplain #object Текущий объект}.
+         * @return Обёртку {@linkplain #object текущего} и несуществующего объекта.
          *
+         * @see BiContainer
+         * @see BiContainer#withFirst(Object)
          * @see #get()
          * @see #withAnother(Object)
          * @see #withSupplier(Supplier)
          * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
-        @Contract("-> const")
-        public @Nullable T withNullable() {
-            return object;
+        @Experimental(from = "4.0.0-RC5")
+        @Contract("-> new")
+        public @NonNull BiContainer<T, Exception> withNullable() {
+            return BiContainer.withFirst(object);
         }
 
         /**
-         * Возвращает {@linkplain #object текущий объект}.
+         * Возвращает обёртку {@linkplain #object текущего} и несуществующего объекта.
          *
          * @param object объект.
          *
-         * @return {@linkplain #object Текущий объект}.
+         * @return Обёртку {@linkplain #object текущего} и несуществующего объекта.
          *
+         * @see BiContainer
+         * @see BiContainer#withFirst(Object)
          * @see #get()
          * @see #withNullable()
          * @see #withSupplier(Supplier)
          * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
-        @Contract("_ -> const")
-        public @Nullable T withAnother(final @Nullable T object) {
-            return this.object;
+        @Experimental(from = "4.0.0-RC5")
+        @Contract("_ -> new")
+        public @NonNull BiContainer<T, Exception> withAnother(final @Nullable T object) {
+            return BiContainer.withFirst(this.object);
         }
 
         /**
-         * Возвращает {@linkplain #object текущий объект}.
+         * Возвращает обёртку {@linkplain #object текущего} и двух несуществующих объектов.
          *
          * @param supplier поставщик объекта.
          *
-         * @return {@linkplain #object Текущий объект}.
+         * @return Обёртку {@linkplain #object текущего} и двух несуществующих объектов.
          *
-         * @throws NullException исключение валидации нулевого объекта (переданного поставщика объекта).
-         * @throws GetException исключение получения объекта (поставляемого переданным поставщиком объекта).
+         * @throws NullException исключение валидации нулевого переданного поставщика объекта.
+         * @see TriOptional
+         * @see TriOptional#withFirst(Object)
          * @see #get()
          * @see #withNullable()
          * @see #withAnother(Object)
          * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
-        @Contract("!null -> const; _ -> fail")
-        public @Nullable T withSupplier(
-                final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
+        @Experimental(from = "4.0.0-RC5")
+        @Contract("!null -> new; _ -> fail")
+        public @NonNull TriOptional<T, Exception, Exception> withSupplier(
+                final @NonNull Supplier<? extends T> supplier) throws NullException {
             Validator.notNull(supplier, "The passed supplier of an object");
-            return object;
+            return TriOptional.withFirst(object);
         }
 
         /**
-         * Возвращает {@linkplain #object текущий объект}.
+         * Возвращает обёртку {@linkplain #object текущего} и двух несуществующих объектов.
          *
          * @param supplier поставщик исключения.
          *
-         * @return {@linkplain #object Текущий объект}.
+         * @return Обёртку {@linkplain #object текущего} и двух несуществующих объектов.
          *
-         * @throws NullException исключение валидации нулевого объекта (переданного поставщика исключения).
+         * @throws NullException исключение валидации нулевого переданного поставщика исключения.
+         * @see TriOptional
+         * @see TriOptional#withFirst(Object)
          * @see #get()
          * @see #withNullable()
          * @see #withAnother(Object)
          * @see #withSupplier(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
+        @Experimental(from = "4.0.0-RC5")
         @Contract("!null -> const; _ -> fail")
-        public <F extends Throwable> @Nullable T withThrowable(
-                final @NotNull Supplier<F> supplier) throws NullException {
+        public <E extends Throwable> @NonNull TriOptional<T, Exception, Exception> withThrowable(
+                final @NonNull Supplier<? extends E> supplier) throws NullException {
             Validator.notNull(supplier, "The passed supplier of a throwable");
-            return object;
+            return TriOptional.withFirst(object);
         }
 
     }

@@ -7,7 +7,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
@@ -53,7 +53,7 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("-> new")
-    static <T1, T2> @NotNull BiOptional<T1, T2> without() {
+    static <T1, T2> @NonNull BiOptional<T1, T2> without() {
         return new Impl<>();
     }
 
@@ -81,7 +81,7 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> new; _ -> fail")
-    static <T1, T2> @NotNull BiOptional<T1, T2> withFirst(final @NotNull T1 object) throws NullException {
+    static <T1, T2> @NonNull BiOptional<T1, T2> withFirst(final @NonNull T1 object) throws NullException {
         return new Impl<>(Optional.with(object), Optional.without());
     }
 
@@ -109,7 +109,7 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> new; _ -> fail")
-    static <T1, T2> @NotNull BiOptional<T1, T2> withSecond(final @NotNull T2 object) throws NullException {
+    static <T1, T2> @NonNull BiOptional<T1, T2> withSecond(final @NonNull T2 object) throws NullException {
         return new Impl<>(Optional.without(), Optional.with(object));
     }
 
@@ -138,8 +138,8 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, !null -> new; _, _ -> fail")
-    static <T1, T2> @NotNull BiOptional<T1, T2> with(final @NotNull T1 first,
-                                                     final @NotNull T2 second) throws NullException {
+    static <T1, T2> @NonNull BiOptional<T1, T2> with(final @NonNull T1 first,
+                                                     final @NonNull T2 second) throws NullException {
         return new Impl<>(Optional.with(first), Optional.with(second));
     }
 
@@ -172,8 +172,8 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("_, !null -> new; _, _ -> fail")
-    static <T1, T2> @NotNull BiOptional<T1, T2> autoFirst(final @Nullable T1 first,
-                                                          final @NotNull T2 second) throws NullException {
+    static <T1, T2> @NonNull BiOptional<T1, T2> autoFirst(final @Nullable T1 first,
+                                                          final @NonNull T2 second) throws NullException {
         return first != null ? with(first, second) : withSecond(second);
     }
 
@@ -206,7 +206,7 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, _ -> new; _, _ -> fail")
-    static <T1, T2> @NotNull BiOptional<T1, T2> autoSecond(final @NotNull T1 first,
+    static <T1, T2> @NonNull BiOptional<T1, T2> autoSecond(final @NonNull T1 first,
                                                            final @Nullable T2 second) throws NullException {
         return second != null ? with(first, second) : withFirst(first);
     }
@@ -249,7 +249,7 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("_, _ -> new")
-    static <T1, T2> @NotNull BiOptional<T1, T2> auto(final @Nullable T1 first, final @Nullable T2 second) {
+    static <T1, T2> @NonNull BiOptional<T1, T2> auto(final @Nullable T1 first, final @Nullable T2 second) {
         return first != null ? second != null ? with(first, second) : withFirst(first) :
                second != null ? withSecond(second) : without();
     }
@@ -262,7 +262,7 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("-> const")
-    @NotNull Optional<T1> first();
+    @NonNull Optional<T1> first();
 
     /**
      * Возвращает обёртку текущего второго объекта.
@@ -272,7 +272,7 @@ public interface BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("-> const")
-    @NotNull Optional<T2> second();
+    @NonNull Optional<T2> second();
 
     /**
      * Интегрированная реализация обёртки двух объектов.
@@ -292,14 +292,14 @@ public interface BiOptional<T1, T2> {
          *
          * @since 4.0.0-RC3
          */
-        protected final @NotNull Optional<T1> first;
+        protected final @NonNull Optional<T1> first;
 
         /**
          * Обёртка текущего второго объекта.
          *
          * @since 4.0.0-RC3
          */
-        protected final @NotNull Optional<T2> second;
+        protected final @NonNull Optional<T2> second;
 
         /**
          * Создаёт интегрированную реализацию обёртки двух объектов на основе двух обёрток несуществующего объекта.
@@ -323,7 +323,7 @@ public interface BiOptional<T1, T2> {
          * @since 4.0.0-RC3
          */
         @Contract("!null, !null -> new; _, _ -> fail")
-        public Impl(final @NotNull Optional<T1> first, final @NotNull Optional<T2> second) throws NullException {
+        public Impl(final @NonNull Optional<T1> first, final @NonNull Optional<T2> second) throws NullException {
             this.first = Validator.notNull(first, "The passed optional of the first object");
             this.second = Validator.notNull(second, "The passed optional of the second object");
         }
@@ -337,7 +337,7 @@ public interface BiOptional<T1, T2> {
          */
         @Override
         @Contract("-> const")
-        public @NotNull Optional<T1> first() {
+        public @NonNull Optional<T1> first() {
             return first;
         }
 
@@ -350,7 +350,7 @@ public interface BiOptional<T1, T2> {
          */
         @Override
         @Contract("-> const")
-        public @NotNull Optional<T2> second() {
+        public @NonNull Optional<T2> second() {
             return second;
         }
 

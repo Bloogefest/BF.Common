@@ -7,7 +7,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
@@ -30,7 +30,7 @@ public interface Handler<T> {
      * @since 3.0.0
      */
     @Contract(value = "-> new")
-    static <T> @NotNull Handler<T> empty() {
+    static <T> @NonNull Handler<T> empty() {
         return ignored -> {};
     }
 
@@ -52,8 +52,8 @@ public interface Handler<T> {
      * @since 3.0.0
      */
     @Contract(value = "_, _ -> new")
-    static <T> @NotNull Handler<T> constant(final @NotNull Handler<? super T> handler,
-                                            final @NotNull T object) throws NullException {
+    static <T> @NonNull Handler<T> constant(final @NonNull Handler<? super T> handler,
+                                            final @NonNull T object) throws NullException {
         Validator.notNull(handler, "handler");
         Validator.notNull(object, "object");
         return ignored -> handler.handle(object);
@@ -73,7 +73,7 @@ public interface Handler<T> {
      * @since 3.0.0
      */
     @Contract(value = "_ -> param1")
-    static <T> @NotNull Handler<T> of(final @NotNull Handler<T> handler) throws NullException {
+    static <T> @NonNull Handler<T> of(final @NonNull Handler<T> handler) throws NullException {
         return Validator.notNull(handler, "handler");
     }
 
@@ -88,7 +88,7 @@ public interface Handler<T> {
      * @since 4.0.0
      */
     @Contract(value = "_ -> param1")
-    static <T> @NotNull Handler<T> as(final @NotNull Handler<T> handler) {
+    static <T> @NonNull Handler<T> as(final @NonNull Handler<T> handler) {
         return handler;
     }
 
@@ -105,7 +105,7 @@ public interface Handler<T> {
      * @since 3.0.0
      */
     @Contract(value = "!null -> param1; _ -> new")
-    static <T> @NotNull Handler<T> auto(final @Nullable Handler<T> handler) {
+    static <T> @NonNull Handler<T> auto(final @Nullable Handler<T> handler) {
         return handler != null ? handler : empty();
     }
 
@@ -118,7 +118,7 @@ public interface Handler<T> {
      * @throws HandleException исключение обработки объекта (переданного обрабатываемого объекта).
      * @since 3.0.0
      */
-    void handle(final @NotNull T object) throws NullException, HandleException;
+    void handle(final @NonNull T object) throws NullException, HandleException;
 
     /**
      * Проверяет переданный обработчик и, если тот нулевой, генерирует исключение валидации нулевого объекта
@@ -138,7 +138,7 @@ public interface Handler<T> {
      * @since 3.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Handler<T> with(final @NotNull Handler<? super T> handler) throws NullException {
+    default @NonNull Handler<T> with(final @NonNull Handler<? super T> handler) throws NullException {
         Validator.notNull(handler, "handler");
         return object -> {
             handle(object);

@@ -6,7 +6,9 @@
 
 package com.bloogefest.common.validation;
 
-import com.bloogefest.annotation.*;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NonNull;
+import com.bloogefest.annotation.Nullable;
 
 /**
  * Исключение валидации равенства первичного и вторичного объекта.
@@ -20,36 +22,14 @@ public class NotEqualException extends ValidationException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String DEFAULT_MESSAGE = "The primary object must be equal to the secondary object";
+    public static final @NonNull String DEFAULT_MESSAGE = "The primary object must be equal to the secondary object";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String TEMPLATE_MESSAGE = "%s must be equal to the %s";
-
-    /**
-     * Сообщение по умолчанию.
-     *
-     * @since 1.0.0
-     * @deprecated Используйте {@linkplain #DEFAULT_MESSAGE}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.validation.NotEqualException.DEFAULT_MESSAGE")
-    public static final @NotNls @NotNull String defaultMessage = DEFAULT_MESSAGE;
-
-    /**
-     * Шаблонное сообщение.
-     *
-     * @since 2.0.0
-     * @deprecated Используйте {@linkplain #TEMPLATE_MESSAGE}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.validation.NotEqualException.TEMPLATE_MESSAGE")
-    public static final @NotNls @NotNull String templateMessage = TEMPLATE_MESSAGE;
+    public static final @NonNull String TEMPLATE_MESSAGE = "%s must be equal to the %s";
 
     /**
      * Создаёт исключение валидации равенства первичного и вторичного объекта на основе
@@ -74,7 +54,7 @@ public class NotEqualException extends ValidationException {
      * @since 1.0.0
      */
     @Contract("_ -> new")
-    public NotEqualException(final @NotNls @Nullable String message) {
+    public NotEqualException(final @Nullable String message) {
         this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -104,7 +84,7 @@ public class NotEqualException extends ValidationException {
      * @since 1.0.0
      */
     @Contract("_, _ -> new")
-    public NotEqualException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
+    public NotEqualException(final @Nullable String message, final @Nullable Throwable cause) {
         this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -134,8 +114,7 @@ public class NotEqualException extends ValidationException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public NotEqualException(final @NotNls @Nullable String message, final boolean suppression,
-                             final boolean writable) {
+    public NotEqualException(final @Nullable String message, final boolean suppression, final boolean writable) {
         this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
@@ -167,8 +146,8 @@ public class NotEqualException extends ValidationException {
      * @since 1.0.0
      */
     @Contract("_, _, _, _ -> new")
-    public NotEqualException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                             final boolean suppression, final boolean writable) {
+    public NotEqualException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                             final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

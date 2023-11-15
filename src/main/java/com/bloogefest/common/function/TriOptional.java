@@ -7,7 +7,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
@@ -71,7 +71,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("-> new")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> without() {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> without() {
         return new Impl<T1, T2, T3>();
     }
 
@@ -110,7 +110,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> new; _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withFirst(final @NotNull T1 object) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> withFirst(final @NonNull T1 object) throws NullException {
         return new Impl<T1, T2, T3>(Optional.with(object), Optional.without(), Optional.without());
     }
 
@@ -149,7 +149,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> new; _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withSecond(final @NotNull T2 object) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> withSecond(final @NonNull T2 object) throws NullException {
         return new Impl<T1, T2, T3>(Optional.without(), Optional.with(object), Optional.without());
     }
 
@@ -188,7 +188,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> new; _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withThird(final @NotNull T3 object) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> withThird(final @NonNull T3 object) throws NullException {
         return new Impl<T1, T2, T3>(Optional.without(), Optional.without(), Optional.with(object));
     }
 
@@ -228,8 +228,8 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, !null -> new; _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withFirstAndSecond(final @NotNull T1 first,
-                                                                            final @NotNull T2 second) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> withFirstAndSecond(final @NonNull T1 first,
+                                                                            final @NonNull T2 second) throws NullException {
         return new Impl<T1, T2, T3>(Optional.with(first), Optional.with(second), Optional.without());
     }
 
@@ -269,8 +269,8 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, !null -> new; _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withSecondAndThird(final @NotNull T2 second,
-                                                                            final @NotNull T3 third) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> withSecondAndThird(final @NonNull T2 second,
+                                                                            final @NonNull T3 third) throws NullException {
         return new Impl<T1, T2, T3>(Optional.without(), Optional.with(second), Optional.with(third));
     }
 
@@ -310,15 +310,15 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, !null -> new; _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> withFirstAndThird(final @NotNull T1 first,
-                                                                           final @NotNull T3 third) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> withFirstAndThird(final @NonNull T1 first,
+                                                                           final @NonNull T3 third) throws NullException {
         return new Impl<T1, T2, T3>(Optional.with(first), Optional.without(), Optional.with(third));
     }
 
     /**
      * Создаёт и возвращает
      * {@linkplain Impl#Impl(Optional, Optional, Optional) интегрированную реализацию обёртки на основе переданных
-     * обёрток первого и второго объектов} (обёрток переданного первого и второго объектов).
+     * обёрток первого, второго и третьего объектов} (обёрток переданного первого, второго и третьего объектов).
      *
      * @param <T1> тип первого объекта.
      * @param <T2> тип второго объекта.
@@ -350,8 +350,8 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, !null, !null -> new; _, _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> with(final @NotNull T1 first, final @NotNull T2 second,
-                                                              final @NotNull T3 third) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> with(final @NonNull T1 first, final @NonNull T2 second,
+                                                              final @NonNull T3 third) throws NullException {
         return new Impl<>(Optional.with(first), Optional.with(second), Optional.with(third));
     }
 
@@ -398,8 +398,8 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("_, !null, !null -> new; _, _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoFirst(final @Nullable T1 first, final @NotNull T2 second,
-                                                                   final @NotNull T3 third) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> autoFirst(final @Nullable T1 first, final @NonNull T2 second,
+                                                                   final @NonNull T3 third) throws NullException {
         return first != null ? with(first, second, third) : withSecondAndThird(second, third);
     }
 
@@ -446,8 +446,8 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, _, !null -> new; _, _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoSecond(final @NotNull T1 first, final @Nullable T2 second,
-                                                                    final @NotNull T3 third) throws NullException {
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> autoSecond(final @NonNull T1 first, final @Nullable T2 second,
+                                                                    final @NonNull T3 third) throws NullException {
         return second != null ? with(first, second, third) : withFirstAndThird(first, third);
     }
 
@@ -494,7 +494,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, !null, _ -> new; _, _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoThird(final @NotNull T1 first, final @NotNull T2 second,
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> autoThird(final @NonNull T1 first, final @NonNull T2 second,
                                                                    final @Nullable T3 third) throws NullException {
         return third != null ? with(first, second, third) : withFirstAndSecond(first, second);
     }
@@ -554,9 +554,9 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, !null -> new; _, _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoFirstAndSecond(final @Nullable T1 first,
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> autoFirstAndSecond(final @Nullable T1 first,
                                                                             final @Nullable T2 second,
-                                                                            final @NotNull T3 third) throws NullException {
+                                                                            final @NonNull T3 third) throws NullException {
         return first != null ? second != null ? with(first, second, third) : withFirstAndThird(first, third) :
                second != null ? withSecondAndThird(second, third) : withThird(third);
     }
@@ -616,7 +616,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("!null, _, _ -> new; _, _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoSecondAndThird(final @NotNull T1 first,
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> autoSecondAndThird(final @NonNull T1 first,
                                                                             final @Nullable T2 second,
                                                                             final @Nullable T3 third) throws NullException {
         return second != null ? third != null ? with(first, second, third) : withFirstAndSecond(first, second) :
@@ -678,8 +678,8 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("_, !null, _ -> new; _, _, _ -> fail")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> autoFirstAndThird(final @Nullable T1 first,
-                                                                           final @NotNull T2 second,
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> autoFirstAndThird(final @Nullable T1 first,
+                                                                           final @NonNull T2 second,
                                                                            final @Nullable T3 third) throws NullException {
         return first != null ? third != null ? with(first, second, third) : withFirstAndSecond(first, second) :
                third != null ? withSecondAndThird(second, third) : withSecond(second);
@@ -760,7 +760,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    static <T1, T2, T3> @NotNull TriOptional<T1, T2, T3> auto(final @Nullable T1 first, final @Nullable T2 second,
+    static <T1, T2, T3> @NonNull TriOptional<T1, T2, T3> auto(final @Nullable T1 first, final @Nullable T2 second,
                                                               final @Nullable T3 third) {
         return first != null ?
                second != null ? third != null ? with(first, second, third) : withFirstAndSecond(first, second) :
@@ -777,7 +777,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
      * @since 4.0.0-RC3
      */
     @Contract("-> const")
-    @NotNull Optional<T3> third();
+    @NonNull Optional<T3> third();
 
     /**
      * Интегрированная реализация обёртки трёх объектов.
@@ -798,7 +798,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
          *
          * @since 4.0.0-RC3
          */
-        protected final @NotNull Optional<T3> third;
+        protected final @NonNull Optional<T3> third;
 
         /**
          * Создаёт интегрированную реализацию обёртки трёх объектов на основе трёх обёрток несуществующего объекта.
@@ -823,8 +823,8 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
          * @since 4.0.0-RC3
          */
         @Contract("!null, !null, !null -> new; _, _, _ -> fail")
-        public Impl(final @NotNull Optional<T1> first, final @NotNull Optional<T2> second,
-                    final @NotNull Optional<T3> third) throws NullException {
+        public Impl(final @NonNull Optional<T1> first, final @NonNull Optional<T2> second,
+                    final @NonNull Optional<T3> third) throws NullException {
             super(first, second);
             this.third = Validator.notNull(third, "The passed optional of the third object");
         }
@@ -838,7 +838,7 @@ public interface TriOptional<T1, T2, T3> extends BiOptional<T1, T2> {
          */
         @Override
         @Contract("-> const")
-        public @NotNull Optional<T3> third() {
+        public @NonNull Optional<T3> third() {
             return third;
         }
 

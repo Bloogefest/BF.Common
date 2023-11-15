@@ -6,12 +6,15 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.*;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NonNull;
+import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
 /**
- * Функциональный интерфейс функции обратного вызова.
+ * Функция обратного вызова — это функциональный инструмент, способный содержать логику. Он предоставляет методы для её
+ * выполнения ({@linkplain #call()}).
  *
  * @since 2.0.0
  */
@@ -26,7 +29,7 @@ public interface Callback {
      * @since 2.0.0
      */
     @Contract("-> new")
-    static @NotNull Callback empty() {
+    static @NonNull Callback empty() {
         return () -> {};
     }
 
@@ -44,28 +47,7 @@ public interface Callback {
      * @since 4.0.0-RC3
      */
     @Contract("!null -> 1; _ -> failure")
-    static @NotNull Callback check(final @Nullable Callback callback) throws NullException {
-        return Validator.notNull(callback, "callback");
-    }
-
-    /**
-     * Проверяет переданную функцию обратного вызова и, если та нулевая, генерирует исключение валидации нулевого
-     * объекта (переданной функции обратного вызова) с переопределённым сообщением (отформатированным именем переданной
-     * функции обратного вызова шаблонным сообщением), в противном случае возвращает её.
-     *
-     * @param callback функция обратного вызова.
-     *
-     * @return Переданная функция обратного вызова.
-     *
-     * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
-     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
-     * @since 2.0.0
-     * @deprecated Используйте {@linkplain #check(Callback)}.
-     */
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Callback.check")
-    @Contract("_ -> 1")
-    static @NotNull Callback of(final @NotNull Callback callback) throws NullException {
+    static @NonNull Callback check(final @Nullable Callback callback) throws NullException {
         return Validator.notNull(callback, "callback");
     }
 
@@ -80,25 +62,7 @@ public interface Callback {
      * @since 4.0.0-RC3
      */
     @Contract("_ -> 1")
-    static @NotNull Callback lambda(final @NotNull Callback callback) {
-        return callback;
-    }
-
-    /**
-     * Возвращает переданную функцию обратного вызова.
-     *
-     * @param callback функция обратного вызова.
-     *
-     * @return Переданная функция обратного вызова.
-     *
-     * @apiNote Этот метод можно использовать для приведения лямбда-выражений к типу функции обратного вызова.
-     * @since 4.0.0
-     * @deprecated Используйте {@linkplain #lambda(Callback)}.
-     */
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.Callback.lambda")
-    @Contract("_ -> 1")
-    static @NotNull Callback as(final @NotNull Callback callback) {
+    static @NonNull Callback lambda(final @NonNull Callback callback) {
         return callback;
     }
 
@@ -115,7 +79,7 @@ public interface Callback {
      * @since 3.0.0
      */
     @Contract("!null -> param1; _ -> new")
-    static @NotNull Callback auto(final @Nullable Callback callback) {
+    static @NonNull Callback auto(final @Nullable Callback callback) {
         return callback != null ? callback : empty();
     }
 
@@ -143,7 +107,7 @@ public interface Callback {
      * @since 2.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Callback with(final @NotNull Callback callback) throws NullException {
+    default @NonNull Callback with(final @NonNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return () -> {
             call();

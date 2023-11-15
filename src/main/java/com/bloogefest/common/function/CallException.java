@@ -12,7 +12,9 @@
 
 package com.bloogefest.common.function;
 
-import com.bloogefest.annotation.*;
+import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.NonNull;
+import com.bloogefest.annotation.Nullable;
 
 /**
  * Исключение вызова функции.
@@ -26,36 +28,14 @@ public class CallException extends FunctionException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String DEFAULT_MESSAGE = "Failed to call the function";
+    public static final @NonNull String DEFAULT_MESSAGE = "Failed to call the function";
 
     /**
      * Шаблонное сообщение.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NotNls @NotNull String TEMPLATE_MESSAGE = "Failed to call %s";
-
-    /**
-     * Сообщение по умолчанию.
-     *
-     * @since 3.0.0
-     * @deprecated Используйте {@linkplain #DEFAULT_MESSAGE}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.FunctionException.DEFAULT_MESSAGE")
-    public static final @NotNls @NotNull String defaultMessage = DEFAULT_MESSAGE;
-
-    /**
-     * Шаблонное сообщение.
-     *
-     * @since 3.0.0
-     * @deprecated Используйте {@linkplain #TEMPLATE_MESSAGE}.
-     */
-    @Deprecated(since = "4.0.0-RC3", forRemoval = true)
-    @Removal("4.0.0-RC4")
-    @Obsolete("com.bloogefest.common.function.FunctionException.TEMPLATE_MESSAGE")
-    public static final @NotNls @NotNull String templateMessage = TEMPLATE_MESSAGE;
+    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to call %s";
 
     /**
      * Создаёт исключение вызова функции на основе {@linkplain #DEFAULT_MESSAGE сообщения},
@@ -79,7 +59,7 @@ public class CallException extends FunctionException {
      * @since 3.0.0
      */
     @Contract("_ -> new")
-    public CallException(final @NotNls @Nullable String message) {
+    public CallException(final @Nullable String message) {
         this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -108,7 +88,7 @@ public class CallException extends FunctionException {
      * @since 3.0.0
      */
     @Contract("_, _ -> new")
-    public CallException(final @NotNls @Nullable String message, final @Nullable Throwable cause) {
+    public CallException(final @Nullable String message, final @Nullable Throwable cause) {
         this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
     }
 
@@ -137,7 +117,7 @@ public class CallException extends FunctionException {
      * @since 4.0.0-RC3
      */
     @Contract("_, _, _ -> new")
-    public CallException(final @NotNls @Nullable String message, final boolean suppression, final boolean writable) {
+    public CallException(final @Nullable String message, final boolean suppression, final boolean writable) {
         this(message, DEFAULT_CAUSE, suppression, writable);
     }
 
@@ -168,8 +148,8 @@ public class CallException extends FunctionException {
      * @since 3.0.0
      */
     @Contract("_, _, _, _ -> new")
-    public CallException(final @NotNls @Nullable String message, final @Nullable Throwable cause,
-                         final boolean suppression, final boolean writable) {
+    public CallException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
+                         final boolean writable) {
         super(message, cause, suppression, writable);
     }
 

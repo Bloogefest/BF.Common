@@ -8,7 +8,7 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
 import com.bloogefest.annotation.Experimental;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
@@ -29,7 +29,7 @@ import java.util.concurrent.locks.StampedLock;
  * @see #auto(Object)
  * @since 4.0.0-RC3
  */
-@Experimental("4.0.0-RC5")
+@Experimental(from = "4.0.0-RC5")
 public interface Container<T> {
 
     /**
@@ -43,9 +43,9 @@ public interface Container<T> {
      * @see #auto(Object)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
+    @Experimental(from = "4.0.0-RC4")
     @Contract("-> new")
-    static <T> @NotNull Container<T> without() {
+    static <T> @NonNull Container<T> without() {
         return new Impl<>();
     }
 
@@ -61,9 +61,9 @@ public interface Container<T> {
      * @see #auto(Object)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
+    @Experimental(from = "4.0.0-RC4")
     @Contract("_ -> new")
-    static <T> @NotNull Container<T> with(final @Nullable T object) {
+    static <T> @NonNull Container<T> with(final @Nullable T object) {
         return new Impl<>(object);
     }
 
@@ -81,7 +81,7 @@ public interface Container<T> {
      * @since 4.0.0-RC3
      */
     @Contract("_ -> new")
-    static <T> @NotNull Container<T> auto(final @Nullable T object) {
+    static <T> @NonNull Container<T> auto(final @Nullable T object) {
         return new Impl<>(object, object != null);
     }
 
@@ -98,7 +98,7 @@ public interface Container<T> {
      * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
+    @Experimental(from = "4.0.0-RC4")
     @Contract("-> _")
     @Nullable T get() throws GetException;
 
@@ -114,7 +114,7 @@ public interface Container<T> {
      * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
+    @Experimental(from = "4.0.0-RC5")
     @Contract("-> _")
     default @Nullable T withNullable() {
         return withAnother(null);
@@ -134,7 +134,7 @@ public interface Container<T> {
      * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
+    @Experimental(from = "4.0.0-RC5")
     @Contract("_ -> _")
     default @Nullable T withAnother(final @Nullable T object) {
         return contains() ? get() : object;
@@ -156,9 +156,9 @@ public interface Container<T> {
      * @see #withThrowable(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
+    @Experimental(from = "4.0.0-RC5")
     @Contract("!null -> _; _ -> fail")
-    default @Nullable T withSupplier(final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
+    default @Nullable T withSupplier(final @NonNull Supplier<? extends T> supplier) throws NullException, GetException {
         Validator.notNull(supplier, "The passed supplier of an object");
         return contains() ? get() : supplier.get();
     }
@@ -181,10 +181,10 @@ public interface Container<T> {
      * @see #withSupplier(Supplier)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5")
+    @Experimental(from = "4.0.0-RC5")
     @Contract("!null -> _; _ -> fail")
     default <F extends Throwable> @Nullable T withThrowable(
-            final @NotNull Supplier<F> supplier) throws NullException, GetException, F {
+            final @NonNull Supplier<F> supplier) throws NullException, GetException, F {
         Validator.notNull(supplier, "The passed supplier of a throwable");
         if (!contains()) throw Validator.notNull(supplier.get(), "A throwable supplied by the passed supplier");
         return get();
@@ -200,9 +200,9 @@ public interface Container<T> {
      * @throws SetException исключение установки объекта (переданного объекта).
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
-    @Contract(value = "_ -> this", impact = Contract.Impact.WEAK)
-    @NotNull Container<T> set(final @Nullable T object) throws SetException;
+    @Experimental(from = "4.0.0-RC4")
+    @Contract(value = "_ -> this", impact = Contract.Impact.INTERNAL)
+    @NonNull Container<T> set(final @Nullable T object) throws SetException;
 
     /**
      * Если {@linkplain #contains() параметр существования текущего объекта} истинный, то сбрасывает текущий объект, в
@@ -214,9 +214,9 @@ public interface Container<T> {
      * @throws ResetException исключение сброса объекта (текущего объекта).
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
-    @Contract(value = "-> this", impact = Contract.Impact.WEAK)
-    @NotNull Container<T> reset() throws ResetException;
+    @Experimental(from = "4.0.0-RC4")
+    @Contract(value = "-> this", impact = Contract.Impact.INTERNAL)
+    @NonNull Container<T> reset() throws ResetException;
 
     /**
      * Возвращает параметр существования текущего объекта.
@@ -225,7 +225,7 @@ public interface Container<T> {
      *
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC4")
+    @Experimental(from = "4.0.0-RC4")
     @Contract("-> _")
     boolean contains();
 
@@ -240,22 +240,22 @@ public interface Container<T> {
      * @see #Impl(Object, boolean)
      * @since 4.0.0-RC3
      */
-    @Experimental("4.0.0-RC5") class Impl<T> implements Container<T> {
+    @Experimental(from = "4.0.0-RC5") class Impl<T> implements Container<T> {
 
         /**
          * Инструмент для управления доступом.
          *
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
-        protected final @NotNull StampedLock lock = new StampedLock();
+        @Experimental(from = "4.0.0-RC5")
+        protected final @NonNull StampedLock lock = new StampedLock();
 
         /**
          * Текущий объект.
          *
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         protected @Nullable T object;
 
         /**
@@ -263,7 +263,7 @@ public interface Container<T> {
          *
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         protected boolean contains;
 
         /**
@@ -274,7 +274,7 @@ public interface Container<T> {
          * @see #Impl(Object, boolean)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         @Contract("-> new")
         public Impl() {
             this(null, false);
@@ -290,7 +290,7 @@ public interface Container<T> {
          * @see #Impl(Object, boolean)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         @Contract("_ -> new")
         public Impl(final @Nullable T object) {
             this(object, true);
@@ -307,7 +307,7 @@ public interface Container<T> {
          * @see #Impl(Object)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
+        @Experimental(from = "4.0.0-RC5")
         @Contract("_, _ -> new")
         public Impl(final @Nullable T object, final boolean contains) {
             this.object = object;
@@ -329,7 +329,7 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Override
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         @Contract("-> _")
         public @Nullable T get() throws GetException {
             final var stamp = lock.readLock();
@@ -353,7 +353,7 @@ public interface Container<T> {
          * @see #withThrowable(Supplier)
          * @since 4.0.0-RC3
          */
-        @Experimental("4.0.0-RC5")
+        @Experimental(from = "4.0.0-RC5")
         @Contract("-> _")
         public @Nullable T withNullable() {
             final var stamp = lock.readLock();
@@ -379,7 +379,7 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Override
-        @Experimental("4.0.0-RC5")
+        @Experimental(from = "4.0.0-RC5")
         @Contract("_ -> _")
         public @Nullable T withAnother(final @Nullable T object) {
             final var stamp = lock.readLock();
@@ -408,10 +408,10 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Override
-        @Experimental("4.0.0-RC5")
+        @Experimental(from = "4.0.0-RC5")
         @Contract("!null -> _; _ -> fail")
         public @Nullable T withSupplier(
-                final @NotNull Supplier<? extends T> supplier) throws NullException, GetException {
+                final @NonNull Supplier<? extends T> supplier) throws NullException, GetException {
             Validator.notNull(supplier, "The passed supplier of an object");
             final var stamp = lock.readLock();
             try {
@@ -441,10 +441,10 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Override
-        @Experimental("4.0.0-RC5")
+        @Experimental(from = "4.0.0-RC5")
         @Contract("!null -> _; _ -> fail")
         public <F extends Throwable> @Nullable T withThrowable(
-                final @NotNull Supplier<F> supplier) throws NullException, GetException, F {
+                final @NonNull Supplier<F> supplier) throws NullException, GetException, F {
             Validator.notNull(supplier, "The passed supplier of a throwable");
             final var stamp = lock.readLock();
             try {
@@ -466,9 +466,9 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Override
-        @Experimental("4.0.0-RC4")
-        @Contract(value = "_ -> this", impact = Contract.Impact.WEAK)
-        public @NotNull Container<T> set(final T object) {
+        @Experimental(from = "4.0.0-RC4")
+        @Contract(value = "_ -> this", impact = Contract.Impact.INTERNAL)
+        public @NonNull Container<T> set(final T object) {
             final var stamp = lock.writeLock();
             try {
                 this.object = object;
@@ -491,9 +491,9 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Override
-        @Experimental("4.0.0-RC4")
-        @Contract(value = "-> this", impact = Contract.Impact.WEAK)
-        public @NotNull Container<T> reset() throws ResetException {
+        @Experimental(from = "4.0.0-RC4")
+        @Contract(value = "-> this", impact = Contract.Impact.INTERNAL)
+        public @NonNull Container<T> reset() throws ResetException {
             var stamp = lock.readLock();
             try {
                 if (!contains)
@@ -516,7 +516,7 @@ public interface Container<T> {
          * @since 4.0.0-RC3
          */
         @Override
-        @Experimental("4.0.0-RC4")
+        @Experimental(from = "4.0.0-RC4")
         @Contract("-> _")
         public boolean contains() {
             final var stamp = lock.readLock();

@@ -7,7 +7,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.NotNull;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -33,7 +33,7 @@ public interface Predicate<T> {
      * @since 1.0.0
      */
     @Contract(value = "_ -> new")
-    static <T> @NotNull Predicate<T> constant(final boolean result) {
+    static <T> @NonNull Predicate<T> constant(final boolean result) {
         return ignored -> result;
     }
 
@@ -51,7 +51,7 @@ public interface Predicate<T> {
      * @since 1.0.0
      */
     @Contract(value = "_ -> param1")
-    static <T> @NotNull Predicate<T> of(final @NotNull Predicate<T> predicate) throws NullException {
+    static <T> @NonNull Predicate<T> of(final @NonNull Predicate<T> predicate) throws NullException {
         return Validator.notNull(predicate, "predicate");
     }
 
@@ -66,7 +66,7 @@ public interface Predicate<T> {
      * @since 4.0.0
      */
     @Contract(value = "_ -> param1")
-    static <T> @NotNull Predicate<T> as(final @NotNull Predicate<T> predicate) {
+    static <T> @NonNull Predicate<T> as(final @NonNull Predicate<T> predicate) {
         return predicate;
     }
 
@@ -81,7 +81,7 @@ public interface Predicate<T> {
      * @throws EvaluateException исключение оценивания объекта (переданного оцениваемого объекта).
      * @since 1.0.0
      */
-    boolean evaluate(final @NotNull T object) throws NullException, EvaluateException;
+    boolean evaluate(final @NonNull T object) throws NullException, EvaluateException;
 
     /**
      * Инициализирует и возвращает предикативную функцию, метод оценивания которой сначала вызывает метод оценивания
@@ -95,7 +95,7 @@ public interface Predicate<T> {
      * @since 1.0.0
      */
     @Contract(value = "-> new")
-    default @NotNull Predicate<T> invert() {
+    default @NonNull Predicate<T> invert() {
         return object -> !evaluate(object);
     }
 
@@ -119,7 +119,7 @@ public interface Predicate<T> {
      * @since 1.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> and(final @NotNull Predicate<? super T> predicate) throws NullException {
+    default @NonNull Predicate<T> and(final @NonNull Predicate<? super T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) && predicate.evaluate(object);
     }
@@ -145,7 +145,7 @@ public interface Predicate<T> {
      * @since 1.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> xor(final @NotNull Predicate<? super T> predicate) throws NullException {
+    default @NonNull Predicate<T> xor(final @NonNull Predicate<? super T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) ^ predicate.evaluate(object);
     }
@@ -170,7 +170,7 @@ public interface Predicate<T> {
      * @since 1.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> or(final @NotNull Predicate<? super T> predicate) throws NullException {
+    default @NonNull Predicate<T> or(final @NonNull Predicate<? super T> predicate) throws NullException {
         Validator.notNull(predicate, "predicate");
         return object -> evaluate(object) || predicate.evaluate(object);
     }
@@ -193,7 +193,7 @@ public interface Predicate<T> {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> then(final @NotNull Callback callback) throws NullException {
+    default @NonNull Predicate<T> then(final @NonNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return object -> {
             final var result = evaluate(object);
@@ -222,7 +222,7 @@ public interface Predicate<T> {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> then(final @NotNull Handler<T> handler) throws NullException {
+    default @NonNull Predicate<T> then(final @NonNull Handler<T> handler) throws NullException {
         Validator.notNull(handler, "handler");
         return object -> {
             final var result = evaluate(object);
@@ -250,7 +250,7 @@ public interface Predicate<T> {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> then(final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
+    default @NonNull Predicate<T> then(final @NonNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return object -> {
             if (evaluate(object)) throw new EvaluateException(supplier.get());
@@ -276,7 +276,7 @@ public interface Predicate<T> {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> otherwise(final @NotNull Callback callback) throws NullException {
+    default @NonNull Predicate<T> otherwise(final @NonNull Callback callback) throws NullException {
         Validator.notNull(callback, "callback");
         return object -> {
             final var result = evaluate(object);
@@ -305,7 +305,7 @@ public interface Predicate<T> {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> otherwise(final @NotNull Handler<T> handler) throws NullException {
+    default @NonNull Predicate<T> otherwise(final @NonNull Handler<T> handler) throws NullException {
         Validator.notNull(handler, "handler");
         return object -> {
             final var result = evaluate(object);
@@ -333,8 +333,8 @@ public interface Predicate<T> {
      * @since 4.0.0
      */
     @Contract(value = "_ -> new")
-    default @NotNull Predicate<T> otherwise(
-            final @NotNull Supplier<? extends Throwable> supplier) throws NullException {
+    default @NonNull Predicate<T> otherwise(
+            final @NonNull Supplier<? extends Throwable> supplier) throws NullException {
         Validator.notNull(supplier, "supplier");
         return object -> {
             if (!evaluate(object)) throw new ComputeException(supplier.get());
