@@ -1,1 +1,1 @@
-rootProject.name = "BF.Common"
+rootProject.name = "common"
