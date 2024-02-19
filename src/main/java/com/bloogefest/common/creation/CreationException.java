@@ -12,34 +12,29 @@ import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.SoftException;
 
 /**
- * Данный класс представляет собой исключение создания объекта класса и применяется в некритических ситуациях, не
- * требующих немедленного реагирования. Для этого он расширяет класс мягкого исключения, а также объявляет и реализует
- * наиболее полезные конструкторы и статические поля.
+ * Исключение создания экземпляра класса — это исключение, которое возникает при неудачной попытке создания экземпляра
+ * класса.
  *
- * @apiNote Исключение создания объекта класса обычно возникает при неудачной попытке создания объекта класса. Например,
- * когда вызывается конструктор класса-утилиты.
  * @since 3.0.0-RC1
  */
 public class CreationException extends SoftException {
 
     /**
-     * Данное неизменяемое статическое поле представляет собой ненулевой объект класса строки и содержит сообщение
-     * исключения создания объекта класса по умолчанию.
+     * Содержит сообщение этого исключения по умолчанию.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "Failed to create the object";
+    public static final @NonNull String DEFAULT_MESSAGE = "Failed to create an instance of the class";
 
     /**
-     * Данное неизменяемое статическое поле представляет собой ненулевой объект класса строки и содержит шаблонное
-     * сообщение исключения создания объекта класса.
+     * Содержит шаблонное сообщение этого исключения.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to create %s";
+    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to create an instance of %s";
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса на основе {@linkplain #DEFAULT_MESSAGE сообщения},
+     * Создаёт экземпляр этого исключения на основе {@linkplain #DEFAULT_MESSAGE сообщения},
      * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
@@ -51,8 +46,8 @@ public class CreationException extends SoftException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса на основе переданного сообщения, а также
-     * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * Создаёт экземпляр этого исключения на основе переданного сообщения, а также {@linkplain #DEFAULT_CAUSE причины},
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param message сообщение.
@@ -65,8 +60,8 @@ public class CreationException extends SoftException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса на основе переданной причины, а также
-     * {@linkplain #DEFAULT_MESSAGE сообщения}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * Создаёт экземпляр этого исключения на основе переданной причины, а также {@linkplain #DEFAULT_MESSAGE сообщения},
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param cause причина.
@@ -79,7 +74,7 @@ public class CreationException extends SoftException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса на основе переданного сообщения и причины, а также
+     * Создаёт экземпляр этого исключения на основе переданных сообщения и причины, а также
      * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
@@ -94,9 +89,8 @@ public class CreationException extends SoftException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса на основе переданных параметров подавления и
-     * трассировки стека, а также {@linkplain #DEFAULT_MESSAGE сообщения} и
-     * {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
+     * Создаёт экземпляр этого исключения на основе переданных параметров подавления и трассировки стека, а также
+     * {@linkplain #DEFAULT_MESSAGE сообщения} и {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
@@ -109,8 +103,8 @@ public class CreationException extends SoftException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса на основе переданного сообщения, параметров
-     * подавления и трассировки стека, а также {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
+     * Создаёт экземпляр этого исключения на основе переданных сообщения, параметров подавления и трассировки стека, а
+     * также {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
      *
      * @param message сообщение.
      * @param suppression параметр подавления.
@@ -124,8 +118,8 @@ public class CreationException extends SoftException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса на основе переданной причины, параметров подавления
-     * и трассировки стека, а также {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}.
+     * Создаёт экземпляр этого исключения на основе переданных причины, параметров подавления и трассировки стека, а
+     * также {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}.
      *
      * @param cause причина.
      * @param suppression параметр подавления.
@@ -139,8 +133,8 @@ public class CreationException extends SoftException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса на основе переданного сообщения, причины,
-     * параметров подавления и трассировки стека.
+     * Создаёт экземпляр этого исключения на основе переданных сообщения, причины, параметров подавления и трассировки
+     * стека.
      *
      * @param message сообщение.
      * @param cause причина.
