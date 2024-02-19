@@ -23,14 +23,14 @@ jobs:
       - name: Инициализация рабочего процесса
         uses: actions/checkout@v4
       - name: Подготовка JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: corretto
       - name: Сборка и тестирование проекта
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
-          gradle-version: 8.4
+          gradle-version: 8.6
           arguments: test
   cd:
     runs-on: ubuntu-latest
@@ -39,12 +39,12 @@ jobs:
       - name: Инициализация рабочего процесса
         uses: actions/checkout@v4
       - name: Подготовка JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: corretto
       - name: Сборка и публикация проекта
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         env:
           OSSRH_CREDENTIALS_USERNAME: ${{ secrets.OSSRH_CREDENTIALS_USERNAME }}
           OSSRH_CREDENTIALS_PASSWORD: ${{ secrets.OSSRH_CREDENTIALS_PASSWORD }}
@@ -52,5 +52,5 @@ jobs:
           SINGING_KEY_PASSWORD: ${{ secrets.SINGING_KEY_PASSWORD }}
           SINGING_KEY_SECRET: ${{ secrets.SINGING_KEY_SECRET }}
         with:
-          gradle-version: 8.4
+          gradle-version: 8.6
           arguments: publish
