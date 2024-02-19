@@ -15,14 +15,16 @@ repositories {
 dependencies {
     implementation("com.bloogefest:annotation:3.0.0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
 }
 
 publishing {
     publications {
-        create<MavenPublication>("master") {
-            artifactId = "common"
+        create<MavenPublication>("common") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
             from(components["java"])
             pom {
                 name = project.name
@@ -43,6 +45,11 @@ publishing {
                         timezone = "Europe/Moscow"
                     }
                 }
+                scm {
+                    connection = "scm://github.com/Bloogefest/BF.Common.git"
+                    developerConnection = "scm:git://github.com/Bloogefest/BF.Common.git"
+                    url = "https://github.com/Bloogefest/BF.Common"
+                }
                 issueManagement {
                     system = "Github"
                     url = "https://github.com/Bloogefest/BF.Common/issues"
@@ -51,28 +58,17 @@ publishing {
                     system = "Github"
                     url = "https://github.com/Bloogefest/BF.Common/actions"
                 }
-                scm {
-                    connection = "scm:git:git://github.com/Bloogefest/BF.Common.git"
-                    developerConnection = "scm:git:ssh://github.com/Bloogefest/BF.Common.git"
-                    url = "https://github.com/Bloogefest/BF.Common"
-                }
-                distributionManagement {
-                    downloadUrl = "https://github.com/Bloogefest/BF.Common"
-                }
             }
         }
     }
     repositories {
         maven {
             name = "OSSRH"
-            val version = version.toString()
-            url = uri(
-                when {
-                    "-SNAPSHOT" in version -> "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                    "-RC" in version -> "https://s01.oss.sonatype.org/content/repositories/releases/"
-                    else -> "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                }
-            )
+            url = uri(when {
+                          "-SNAPSHOT" in version.toString() -> "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                          "-RC" in version.toString() -> "https://s01.oss.sonatype.org/content/repositories/releases/"
+                          else -> "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                      })
             credentials {
                 username = System.getenv("OSSRH_CREDENTIALS_USERNAME")
                 password = System.getenv("OSSRH_CREDENTIALS_PASSWORD")
@@ -82,11 +78,9 @@ publishing {
 }
 
 signing {
-    useInMemoryPgpKeys(
-        System.getenv("SINGING_KEY_ID"), System.getenv("SINGING_KEY_SECRET"), System.getenv("SINGING_KEY_PASSWORD")
-    )
-
-    sign(publishing.publications["master"])
+    useInMemoryPgpKeys(System.getenv("SINGING_KEY_ID"), System.getenv("SINGING_KEY_SECRET"),
+                       System.getenv("SINGING_KEY_PASSWORD"))
+    sign(publishing.publications)
 }
 
 java {
@@ -94,15 +88,21 @@ java {
     withJavadocJar()
 }
 
+tasks.wrapper {
+    gradleVersion = "8.6"
+}
+
 tasks.test {
     useJUnitPlatform()
 }
 
 tasks.compileJava {
+    version = JavaVersion.VERSION_17
     options.encoding = "UTF-8"
 }
 
 tasks.compileTestJava {
+    version = JavaVersion.VERSION_17
     options.encoding = "UTF-8"
 }
 
