@@ -11,36 +11,30 @@ import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 
 /**
- * Данный класс представляет собой исключение создания объекта класса-одиночки и применяется в некритических ситуациях,
- * не требующих немедленного реагирования. Для этого он расширяет класс исключения создания объекта, а также объявляет и
- * реализует наиболее полезные конструкторы и статические поля.
+ * Исключение создания экземпляра класса-одиночки — это исключение, которое возникает при попытке создания второго
+ * экземпляра класса-одиночки.
  *
- * @apiNote Исключение создания объекта класса-одиночки обычно возникает при второй и последующих попытках создания
- * объекта класса-одиночки.
  * @since 3.0.0-RC1
  */
 public class SingletonException extends CreationException {
 
     /**
-     * Данное неизменяемое статическое поле представляет собой ненулевой объект класса строки и содержит сообщение
-     * исключения создания объекта класса-одиночки по умолчанию.
+     * Содержит сообщение этого исключения по умолчанию.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "The singleton class object has already been created";
+    public static final @NonNull String DEFAULT_MESSAGE = "Only one instance of the singleton class can be created";
 
     /**
-     * Данное неизменяемое статическое поле представляет собой ненулевой объект класса строки и содержит шаблонное
-     * сообщение исключения создания объекта класса-одиночки.
+     * Содержит шаблонное сообщение этого исключения.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String TEMPLATE_MESSAGE = "%s has already been created";
+    public static final @NonNull String TEMPLATE_MESSAGE = "Only one instance of %s can be created";
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса-одиночки на основе
-     * {@linkplain #DEFAULT_MESSAGE сообщения}, {@linkplain #DEFAULT_CAUSE причины},
-     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * Создаёт экземпляр этого исключения на основе {@linkplain #DEFAULT_MESSAGE сообщения},
+     * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @since 3.0.0-RC1
@@ -51,8 +45,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса-одиночки на основе переданного сообщения, а также
-     * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * Создаёт экземпляр этого исключения на основе переданного сообщения, а также {@linkplain #DEFAULT_CAUSE причины},
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param message сообщение.
@@ -65,8 +59,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса-одиночки на основе переданной причины, а также
-     * {@linkplain #DEFAULT_MESSAGE сообщения}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * Создаёт экземпляр этого исключения на основе переданной причины, а также {@linkplain #DEFAULT_MESSAGE сообщения},
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param cause причина.
@@ -79,8 +73,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса-одиночки на основе переданного сообщения и причины,
-     * а также {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
+     * Создаёт экземпляр этого исключения на основе переданных сообщения и причины, а также
+     * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @param message сообщение.
@@ -94,9 +88,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса-одиночки на основе переданных параметров подавления
-     * и трассировки стека, а также {@linkplain #DEFAULT_MESSAGE сообщения} и
-     * {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
+     * Создаёт экземпляр этого исключения на основе переданных параметров подавления и трассировки стека, а также
+     * {@linkplain #DEFAULT_MESSAGE сообщения} и {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
@@ -109,8 +102,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса-одиночки на основе переданного сообщения,
-     * параметров подавления и трассировки стека, а также {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
+     * Создаёт экземпляр этого исключения на основе переданных сообщения, параметров подавления и трассировки стека, а
+     * также {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
      *
      * @param message сообщение.
      * @param suppression параметр подавления.
@@ -124,8 +117,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса-одиночки на основе переданной причины, параметров
-     * подавления и трассировки стека, а также {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}.
+     * Создаёт экземпляр этого исключения на основе переданных причины, параметров подавления и трассировки стека, а
+     * также {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}.
      *
      * @param cause причина.
      * @param suppression параметр подавления.
@@ -139,8 +132,8 @@ public class SingletonException extends CreationException {
     }
 
     /**
-     * Данный конструктор создаёт исключение создания объекта класса-одиночки на основе переданного сообщения, причины,
-     * параметров подавления и трассировки стека.
+     * Создаёт экземпляр этого исключения на основе переданных сообщения, причины, параметров подавления и трассировки
+     * стека.
      *
      * @param message сообщение.
      * @param cause причина.
