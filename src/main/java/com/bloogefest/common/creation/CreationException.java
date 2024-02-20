@@ -15,7 +15,7 @@ import com.bloogefest.common.SoftException;
  * Исключение создания экземпляра класса — это исключение, которое возникает при неудачной попытке создания экземпляра
  * класса.
  *
- * @since 3.0.0-RC1
+ * @since 3.0.0
  */
 public class CreationException extends SoftException {
 
@@ -38,7 +38,7 @@ public class CreationException extends SoftException {
      * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "-> new", impact = Contract.Impact.INTERNAL)
     public CreationException() {
@@ -52,7 +52,7 @@ public class CreationException extends SoftException {
      *
      * @param message сообщение.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "? -> new", impact = Contract.Impact.INTERNAL)
     public CreationException(final @Nullable String message) {
@@ -66,7 +66,7 @@ public class CreationException extends SoftException {
      *
      * @param cause причина.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "? -> new", impact = Contract.Impact.INTERNAL)
     public CreationException(final @Nullable Throwable cause) {
@@ -81,7 +81,7 @@ public class CreationException extends SoftException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ? -> new", impact = Contract.Impact.INTERNAL)
     public CreationException(final @Nullable String message, final @Nullable Throwable cause) {
@@ -95,7 +95,7 @@ public class CreationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ? -> new", impact = Contract.Impact.INTERNAL)
     public CreationException(final boolean suppression, final boolean writable) {
@@ -141,7 +141,7 @@ public class CreationException extends SoftException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ?, ?, ? -> new", impact = Contract.Impact.INTERNAL)
     public CreationException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
