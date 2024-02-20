@@ -12,190 +12,193 @@ import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.creation.UtilityException;
 
 /**
- * Утилитарный класс валидатора объектов.
+ * Валидатор — это класс-утилита, предназначенный для валидации условий, значений и экземпляров классов.
  *
  * @since 1.0.0
  */
 public final class Validator {
 
     /**
-     * Генерирует исключение создания объекта утилитарного типа (утилитарного класса валидатора объектов).
+     * Генерирует {@linkplain UtilityException исключение создания экземпляра валидатора}.
      *
-     * @throws UtilityException исключение создания объекта утилитарного типа (утилитарного класса валидатора
-     * объектов).
+     * @throws UtilityException исключение создания экземпляра валидатора.
      * @since 1.0.0
      */
-    @Contract(value = "-> fail")
+    @Contract(value = "-> fail", impact = Contract.Impact.INTERNAL)
     private Validator() throws UtilityException {
-        throw new UtilityException();
+        throw new UtilityException(UtilityException.TEMPLATE_MESSAGE.formatted("the Validator class"));
     }
 
     /**
-     * Проверяет переданный объект и, если тот ненулевой, генерирует исключение валидации ненулевого объекта
-     * (переданного объекта), в противном случае возвращает его.
+     * Возвращает переданный экземпляр класса, если он нулевой.
      *
-     * @param object объект.
+     * @param instance экземпляр класса.
      *
-     * @return Переданный объект.
+     * @return Переданный нулевой экземпляр класса.
      *
-     * @throws NotNullException исключение валидации ненулевого объекта (переданного объекта).
+     * @throws NotNullException исключение валидации переданного ненулевого экземпляра класса.
      * @since 1.0.0
      */
-    @Contract(value = "!null -> fail; _ -> null")
-    public static <T> @Nullable T isNull(final @Nullable T object) throws NotNullException {
-        if (object != null) throw new NotNullException();
+    @Contract(value = "null -> null; !null -> fail", impact = Contract.Impact.NONE)
+    public static <T> @Nullable T isNull(final @Nullable T instance) throws NotNullException {
+        if (instance != null)
+            throw new NotNullException(NotNullException.TEMPLATE_MESSAGE.formatted("The passed instance of the class"));
         return null;
     }
 
     /**
-     * Проверяет переданный объект и, если тот ненулевой, генерирует исключение валидации ненулевого объекта
-     * (переданного объекта) с переопределённым сообщением (отформатированным переданным именем объекта шаблонным
-     * сообщением), в противном случае возвращает его.
+     * Возвращает переданный экземпляр класса, если он нулевой.
      *
-     * @param object объект.
-     * @param name имя объекта.
+     * @param instance экземпляр класса.
+     * @param name имя экземпляра класса.
      *
-     * @return Переданный объект.
+     * @return Переданный нулевой экземпляр класса.
      *
-     * @throws NotNullException исключение валидации ненулевого объекта (переданного объекта).
+     * @throws NotNullException исключение валидации переданного ненулевого экземпляра класса.
+     * @throws NullException исключение валидации переданного нулевого имени экземпляра класса.
      * @since 1.0.0
      */
-    @Contract(value = "!null, _ -> fail; _, _ -> null")
-    public static <T> @Nullable T isNull(final @Nullable T object, final @NonNull String name) throws NotNullException {
-        if (object != null) throw new NotNullException(NotNullException.TEMPLATE_MESSAGE.formatted(name));
+    @Contract(value = "null, !null -> null; ?, ? -> fail", impact = Contract.Impact.NONE)
+    public static <T> @Nullable T isNull(final @Nullable T instance, final @NonNull String name) throws
+                                                                                                 NotNullException,
+                                                                                                 NullException {
+        Validator.notNull(name, "The passed name of the instance of the class");
+        if (instance != null) throw new NotNullException(NotNullException.TEMPLATE_MESSAGE.formatted(name));
         return null;
     }
 
     /**
-     * Проверяет переданный объект и, если тот нулевой, генерирует исключение валидации ненулевого объекта (переданного
-     * объекта), в противном случае возвращает его.
+     * Возвращает переданный экземпляр класса, если он ненулевой.
      *
-     * @param object объект.
+     * @param instance экземпляр класса.
      *
-     * @return Переданный объект.
+     * @return Переданный ненулевой экземпляр класса.
      *
-     * @throws NullException исключение валидации нулевого объекта (переданного объекта).
+     * @throws NullException исключение валидации переданного нулевого экземпляра класса.
      * @since 1.0.0
      */
-    @Contract(value = "!null -> param1; null -> fail")
-    public static <T> @NonNull T notNull(final @Nullable T object) throws NullException {
-        if (object == null) throw new NullException();
-        return object;
+    @Contract(value = "!null -> 1; null -> fail", impact = Contract.Impact.NONE)
+    public static <T> @NonNull T notNull(final @Nullable T instance) throws NullException {
+        if (instance == null)
+            throw new NullException(NullException.TEMPLATE_MESSAGE.formatted("The passed instance of the class"));
+        return instance;
     }
 
     /**
-     * Проверяет переданный объект и, если тот нулевой, генерирует исключение валидации ненулевого объекта (переданного
-     * объекта) с переопределённым сообщением (отформатированным переданным именем объекта шаблонным сообщением), в
-     * противном случае возвращает его.
+     * Возвращает переданный экземпляр класса, если он ненулевой.
      *
-     * @param object объект.
-     * @param name имя объекта.
+     * @param instance экземпляр класса.
+     * @param name имя экземпляра класса.
      *
-     * @return Переданный объект.
+     * @return Переданный ненулевой экземпляр класса.
      *
-     * @throws NullException исключение валидации нулевого объекта (переданного объекта).
+     * @throws NullException исключение валидации переданного нулевого имени экземпляра класса или переданного нулевого
+     * экземпляра класса.
      * @since 1.0.0
      */
-    @Contract(value = "!null, _ -> param1; null, _ -> fail")
-    public static <T> @NonNull T notNull(final @Nullable T object, final @NonNull String name) throws NullException {
-        if (object == null) throw new NullException(NullException.TEMPLATE_MESSAGE.formatted(name));
-        return object;
+    @Contract(value = "!null, !null -> 1; ?, ? -> fail", impact = Contract.Impact.NONE)
+    public static <T> @NonNull T notNull(final @Nullable T instance, final @NonNull String name) throws NullException {
+        if (name == null) throw new NullException(
+                NullException.TEMPLATE_MESSAGE.formatted("The passed name of the instance of the class"));
+        if (instance == null) throw new NullException(NullException.TEMPLATE_MESSAGE.formatted(name));
+        return instance;
     }
 
     /**
-     * Проверяет равенство переданного первичного и вторичного объекта и, если те неравны, генерирует исключение
-     * валидации равенства первичного и вторичного объекта (переданного первичного и вторичного объекта), в противном
-     * случае возвращает переданный первичный объект.
+     * Возвращает переданный первичный экземпляр класса, если он равен переданному вторичному экземпляру класса.
      *
-     * @param primaryObject первичный объект.
-     * @param secondaryObject вторичный объект.
+     * @param primaryInstance первичный экземпляр класса.
+     * @param secondaryInstance вторичный экземпляр класса.
      *
-     * @return Переданный первичный объект.
+     * @return Переданный первичный экземпляр.
      *
-     * @throws NotEqualException исключение валидации равенства первичного и вторичного объекта (переданного первичного
-     * и вторичного объекта).
+     * @throws NotEqualException исключение валидации равенства переданных первичного и вторичного экземпляров класса.
      * @since 1.0.0
      */
-    @Contract
-    public static <T> @Nullable T equals(final @Nullable T primaryObject,
-                                         final @Nullable T secondaryObject) throws NotEqualException {
-        if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
-            throw new NotEqualException();
-        return primaryObject;
+    @Contract(value = "?, ? -> ?", impact = Contract.Impact.NONE)
+    public static <T> @Nullable T equals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance) throws
+                                                                                                                 NotEqualException {
+        if (primaryInstance != secondaryInstance &&
+            (primaryInstance == null || !primaryInstance.equals(secondaryInstance))) throw new NotEqualException(
+                NotEqualException.TEMPLATE_MESSAGE.formatted(
+                        "The passed primary instance and the passed secondary instance"));
+        return primaryInstance;
     }
 
     /**
-     * Проверяет равенство переданного первичного и вторичного объекта и, если те неравны, генерирует исключение
-     * валидации равенства первичного и вторичного объекта (переданного первичного и вторичного объекта) с
-     * переопределённым сообщением (отформатированным переданным именем первичного и вторичного объекта шаблонным
-     * сообщением), в противном случае возвращает переданный первичный объект.
+     * Возвращает переданный первичный экземпляр класса, если он равен переданному вторичному экземпляру класса.
      *
-     * @param primaryObject первичный объект.
-     * @param secondaryObject вторичный объект.
-     * @param primaryName имя первичного объекта.
-     * @param secondaryName имя вторичного объекта.
+     * @param primaryInstance первичный экземпляр класса.
+     * @param secondaryInstance вторичный экземпляр класса.
+     * @param primaryName имя первичного экземпляра класса.
+     * @param secondaryName имя вторичного экземпляра класса.
      *
-     * @return Переданный первичный объект.
+     * @return Переданный первичный экземпляр.
      *
-     * @throws NotEqualException исключение валидации равенства первичного и вторичного объекта (переданного первичного
-     * и вторичного объекта).
+     * @throws NotEqualException исключение валидации равенства переданных первичного и вторичного экземпляров класса.
+     * @throws NullException исключение валидации переданного нулевого имени первичного экземпляра класса или
+     * переданного нулевого имени вторичного экземпляра класса.
      * @since 1.0.0
      */
-    @Contract
-    public static <T> @Nullable T equals(final @Nullable T primaryObject, final @Nullable T secondaryObject,
-                                         final @NonNull String primaryName,
-                                         final @NonNull String secondaryName) throws NotEqualException {
-        if (primaryObject != secondaryObject && (primaryObject == null || !primaryObject.equals(secondaryObject)))
-            throw new NotEqualException(NotEqualException.TEMPLATE_MESSAGE.formatted(primaryName, secondaryName));
-        return primaryObject;
+    @Contract(value = "?, ?, ?, ? -> ?", impact = Contract.Impact.NONE)
+    public static <T> @Nullable T equals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance,
+                                         final @NonNull String primaryName, final @NonNull String secondaryName) throws
+                                                                                                                 NotEqualException,
+                                                                                                                 NullException {
+        Validator.notNull(primaryName, "The passed name of the primary instance");
+        Validator.notNull(secondaryName, "The passed name of the secondary instance");
+        if (primaryInstance != secondaryInstance &&
+            (primaryInstance == null || !primaryInstance.equals(secondaryInstance))) throw new NotEqualException(
+                NotEqualException.TEMPLATE_MESSAGE.formatted("%s and %s").formatted(primaryName, secondaryName));
+        return primaryInstance;
     }
 
     /**
-     * Проверяет равенство переданного первичного и вторичного объекта и, если те равны, генерирует исключение валидации
-     * неравенства первичного и вторичного объекта (переданного первичного и вторичного объекта), в противном случае
-     * возвращает переданный первичный объект.
+     * Возвращает переданный первичный экземпляр класса, если он неравен переданному вторичному экземпляру класса.
      *
-     * @param primaryObject первичный объект.
-     * @param secondaryObject вторичный объект.
+     * @param primaryInstance первичный экземпляр класса.
+     * @param secondaryInstance вторичный экземпляр класса.
      *
-     * @return Переданный первичный объект.
+     * @return Переданный первичный экземпляр.
      *
-     * @throws EqualException исключение валидации неравенства первичного и вторичного объекта (переданного первичного и
-     * вторичного объекта).
+     * @throws EqualException исключение валидации неравенства переданных первичного и вторичного экземпляров класса.
      * @since 1.0.0
      */
-    @Contract
-    public static <T> @Nullable T notEquals(final @Nullable T primaryObject,
-                                            final @Nullable T secondaryObject) throws EqualException {
-        if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
-            throw new EqualException();
-        return primaryObject;
+    @Contract(value = "?, ? -> ?", impact = Contract.Impact.NONE)
+    public static <T> @Nullable T notEquals(final @Nullable T primaryInstance,
+                                            final @Nullable T secondaryInstance) throws EqualException {
+        if (primaryInstance == secondaryInstance ||
+            primaryInstance != null && primaryInstance.equals(secondaryInstance)) throw new EqualException(
+                EqualException.TEMPLATE_MESSAGE.formatted(
+                        "The passed primary instance and the passed secondary instance"));
+        return primaryInstance;
     }
 
     /**
-     * Проверяет равенство переданного первичного и вторичного объекта и, если те равны, генерирует исключение валидации
-     * неравенства первичного и вторичного объекта (переданного первичного и вторичного объекта) с переопределённым
-     * сообщением (отформатированным переданным именем первичного и вторичного объекта шаблонным сообщением), в
-     * противном случае возвращает переданный первичный объект.
+     * Возвращает переданный первичный экземпляр класса, если он неравен переданному вторичному экземпляру класса.
      *
-     * @param primaryObject первичный объект.
-     * @param secondaryObject вторичный объект.
-     * @param primaryName имя первичного объекта.
-     * @param secondaryName имя вторичного объекта.
+     * @param primaryInstance первичный экземпляр класса.
+     * @param secondaryInstance вторичный экземпляр класса.
+     * @param primaryName имя первичного экземпляра класса.
+     * @param secondaryName имя вторичного экземпляра класса.
      *
-     * @return Переданный первичный объект.
+     * @return Переданный первичный экземпляр.
      *
-     * @throws EqualException исключение валидации неравенства первичного и вторичного объекта (переданного первичного и
-     * вторичного объекта).
+     * @throws EqualException исключение валидации неравенства переданных первичного и вторичного экземпляров класса.
+     * @throws NullException исключение валидации переданного нулевого имени первичного экземпляра класса или
+     * переданного нулевого имени вторичного экземпляра класса.
      * @since 1.0.0
      */
-    @Contract
-    public static <T> @Nullable T notEquals(final @Nullable T primaryObject, final @Nullable T secondaryObject,
+    @Contract(value = "?, ?, ?, ? -> ?", impact = Contract.Impact.NONE)
+    public static <T> @Nullable T notEquals(final @Nullable T primaryInstance, final @Nullable T secondaryInstance,
                                             final @NonNull String primaryName,
-                                            final @NonNull String secondaryName) throws EqualException {
-        if (primaryObject == secondaryObject || primaryObject != null && primaryObject.equals(secondaryObject))
-            throw new EqualException(EqualException.TEMPLATE_MESSAGE.formatted(primaryName, secondaryName));
-        return primaryObject;
+                                            final @NonNull String secondaryName) throws EqualException, NullException {
+        Validator.notNull(primaryName, "The passed name of the primary instance");
+        Validator.notNull(secondaryName, "The passed name of the secondary instance");
+        if (primaryInstance == secondaryInstance ||
+            primaryInstance != null && primaryInstance.equals(secondaryInstance)) throw new EqualException(
+                EqualException.TEMPLATE_MESSAGE.formatted("%s and %s").formatted(primaryName, secondaryName));
+        return primaryInstance;
     }
 
 }
