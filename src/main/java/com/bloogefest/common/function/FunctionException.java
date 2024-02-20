@@ -7,45 +7,45 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
-import com.bloogefest.annotation.Null;
+import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.SoftException;
 
 /**
- * Исключение функции.
+ * Исключение функции — это исключение, которое возникает при неудачной попытке вызова функции.
  *
  * @since 1.0.0
  */
 public class FunctionException extends SoftException {
 
     /**
-     * Сообщение по умолчанию.
+     * Содержит сообщение этого исключения по умолчанию.
      *
      * @since 4.0.0-RC3
      */
-    public static final @Null String DEFAULT_MESSAGE = null;
+    public static final @NonNull String DEFAULT_MESSAGE = "Failed to call the function";
 
     /**
-     * Шаблонное сообщение.
+     * Содержит шаблонное сообщение этого исключения.
      *
      * @since 4.0.0-RC3
      */
-    public static final @Null String TEMPLATE_MESSAGE = null;
+    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to call %s";
 
     /**
-     * Создаёт исключение функции на основе {@linkplain #DEFAULT_MESSAGE сообщения},
+     * Создаёт экземпляр этого исключения на основе {@linkplain #DEFAULT_MESSAGE сообщения},
      * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
      * @since 1.0.0
      */
-    @Contract("-> new")
+    @Contract(value = "-> new", impact = Contract.Impact.INTERNAL)
     public FunctionException() {
-        this(DEFAULT_MESSAGE, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
+        super(DEFAULT_MESSAGE);
     }
 
     /**
-     * Создаёт исключение функции на основе переданного сообщения, {@linkplain #DEFAULT_CAUSE причины},
+     * Создаёт экземпляр этого исключения на основе переданного сообщения, а также {@linkplain #DEFAULT_CAUSE причины},
      * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
@@ -53,13 +53,13 @@ public class FunctionException extends SoftException {
      *
      * @since 1.0.0
      */
-    @Contract("_ -> new")
+    @Contract(value = "? -> new", impact = Contract.Impact.INTERNAL)
     public FunctionException(final @Nullable String message) {
-        this(message, DEFAULT_CAUSE, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
+        super(message);
     }
 
     /**
-     * Создаёт исключение функции на основе {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной причины,
+     * Создаёт экземпляр этого исключения на основе переданной причины, а также {@linkplain #DEFAULT_MESSAGE сообщения},
      * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
@@ -67,13 +67,13 @@ public class FunctionException extends SoftException {
      *
      * @since 1.0.0
      */
-    @Contract("_ -> new")
+    @Contract(value = "? -> new", impact = Contract.Impact.INTERNAL)
     public FunctionException(final @Nullable Throwable cause) {
-        this(DEFAULT_MESSAGE, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
+        super(DEFAULT_MESSAGE, cause);
     }
 
     /**
-     * Создаёт исключение функции на основе переданного сообщения и причины,
+     * Создаёт экземпляр этого исключения на основе переданных сообщения и причины, а также
      * {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
@@ -82,28 +82,28 @@ public class FunctionException extends SoftException {
      *
      * @since 1.0.0
      */
-    @Contract("_, _ -> new")
+    @Contract(value = "?, ? -> new", impact = Contract.Impact.INTERNAL)
     public FunctionException(final @Nullable String message, final @Nullable Throwable cause) {
-        this(message, cause, DEFAULT_SUPPRESSION, DEFAULT_WRITABLE);
+        super(message, cause);
     }
 
     /**
-     * Создаёт исключение функции на основе {@linkplain #DEFAULT_MESSAGE сообщения} и
-     * {@linkplain #DEFAULT_CAUSE причины по умолчанию}, переданных параметров подавления и трассировки стека.
+     * Создаёт экземпляр этого исключения на основе переданных параметров подавления и трассировки стека, а также
+     * {@linkplain #DEFAULT_MESSAGE сообщения} и {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
      *
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
      * @since 3.0.0
      */
-    @Contract("_, _ -> new")
+    @Contract(value = "?, ? -> new", impact = Contract.Impact.INTERNAL)
     public FunctionException(final boolean suppression, final boolean writable) {
-        this(DEFAULT_MESSAGE, DEFAULT_CAUSE, suppression, writable);
+        super(DEFAULT_MESSAGE, suppression, writable);
     }
 
     /**
-     * Создаёт исключение функции на основе переданного сообщения, {@linkplain #DEFAULT_CAUSE причины по умолчанию},
-     * переданных параметров подавления и трассировки стека.
+     * Создаёт экземпляр этого исключения на основе переданных сообщения, параметров подавления и трассировки стека, а
+     * также {@linkplain #DEFAULT_CAUSE причины по умолчанию}.
      *
      * @param message сообщение.
      * @param suppression параметр подавления.
@@ -111,14 +111,14 @@ public class FunctionException extends SoftException {
      *
      * @since 4.0.0-RC3
      */
-    @Contract("_, _, _ -> new")
+    @Contract(value = "?, ?, ? -> new", impact = Contract.Impact.INTERNAL)
     public FunctionException(final @Nullable String message, final boolean suppression, final boolean writable) {
-        this(message, DEFAULT_CAUSE, suppression, writable);
+        super(message, suppression, writable);
     }
 
     /**
-     * Создаёт исключение функции на основе {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}, переданной причины,
-     * параметров подавления и трассировки стека.
+     * Создаёт экземпляр этого исключения на основе переданных причины, параметров подавления и трассировки стека, а
+     * также {@linkplain #DEFAULT_MESSAGE сообщения по умолчанию}.
      *
      * @param cause причина.
      * @param suppression параметр подавления.
@@ -126,13 +126,14 @@ public class FunctionException extends SoftException {
      *
      * @since 4.0.0-RC3
      */
-    @Contract("_, _, _ -> new")
+    @Contract(value = "?, ?, ? -> new", impact = Contract.Impact.INTERNAL)
     public FunctionException(final @Nullable Throwable cause, final boolean suppression, final boolean writable) {
-        this(DEFAULT_MESSAGE, cause, suppression, writable);
+        super(DEFAULT_MESSAGE, cause, suppression, writable);
     }
 
     /**
-     * Создаёт исключение функции на основе переданного сообщения, причины, параметров подавления и трассировки стека.
+     * Создаёт экземпляр этого исключения на основе переданных сообщения, причины, параметров подавления и трассировки
+     * стека.
      *
      * @param message сообщение.
      * @param cause причина.
@@ -141,7 +142,7 @@ public class FunctionException extends SoftException {
      *
      * @since 1.0.0
      */
-    @Contract("_, _, _, _ -> new")
+    @Contract(value = "?, ?, ?, ? -> new", impact = Contract.Impact.INTERNAL)
     public FunctionException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
                              final boolean writable) {
         super(message, cause, suppression, writable);
