@@ -13,7 +13,7 @@ import com.bloogefest.annotation.Nullable;
 /**
  * Мягкое исключение — это исключение, которое не требует немедленного реагирования.
  *
- * @since 3.0.0-RC1
+ * @since 3.0.0
  */
 public class SoftException extends RuntimeException {
 
@@ -50,7 +50,7 @@ public class SoftException extends RuntimeException {
      * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "-> new", impact = Contract.Impact.INTERNAL)
     public SoftException() {
@@ -64,7 +64,7 @@ public class SoftException extends RuntimeException {
      *
      * @param message сообщение.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "? -> new", impact = Contract.Impact.INTERNAL)
     public SoftException(final @Nullable String message) {
@@ -78,7 +78,7 @@ public class SoftException extends RuntimeException {
      *
      * @param cause причина.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "? -> new", impact = Contract.Impact.INTERNAL)
     public SoftException(final @Nullable Throwable cause) {
@@ -93,7 +93,7 @@ public class SoftException extends RuntimeException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ? -> new", impact = Contract.Impact.INTERNAL)
     public SoftException(final @Nullable String message, final @Nullable Throwable cause) {
@@ -107,7 +107,7 @@ public class SoftException extends RuntimeException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ? -> new", impact = Contract.Impact.INTERNAL)
     public SoftException(final boolean suppression, final boolean writable) {
@@ -153,7 +153,7 @@ public class SoftException extends RuntimeException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ?, ?, ? -> new", impact = Contract.Impact.INTERNAL)
     public SoftException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
