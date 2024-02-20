@@ -14,7 +14,7 @@ import com.bloogefest.annotation.Nullable;
  * Исключение создания экземпляра класса-утилиты — это исключение, которое возникает при неудачной попытке создания
  * экземпляра класса-утилиты.
  *
- * @since 3.0.0-RC1
+ * @since 3.0.0
  */
 public class UtilityException extends CreationException {
 
@@ -37,7 +37,7 @@ public class UtilityException extends CreationException {
      * {@linkplain #DEFAULT_CAUSE причины}, {@linkplain #DEFAULT_SUPPRESSION параметров подавления} и
      * {@linkplain #DEFAULT_WRITABLE трассировки стека по умолчанию}.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "-> new", impact = Contract.Impact.INTERNAL)
     public UtilityException() {
@@ -51,7 +51,7 @@ public class UtilityException extends CreationException {
      *
      * @param message сообщение.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "? -> new", impact = Contract.Impact.INTERNAL)
     public UtilityException(final @Nullable String message) {
@@ -65,7 +65,7 @@ public class UtilityException extends CreationException {
      *
      * @param cause причина.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "? -> new", impact = Contract.Impact.INTERNAL)
     public UtilityException(final @Nullable Throwable cause) {
@@ -80,7 +80,7 @@ public class UtilityException extends CreationException {
      * @param message сообщение.
      * @param cause причина.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ? -> new", impact = Contract.Impact.INTERNAL)
     public UtilityException(final @Nullable String message, final @Nullable Throwable cause) {
@@ -94,7 +94,7 @@ public class UtilityException extends CreationException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ? -> new", impact = Contract.Impact.INTERNAL)
     public UtilityException(final boolean suppression, final boolean writable) {
@@ -140,7 +140,7 @@ public class UtilityException extends CreationException {
      * @param suppression параметр подавления.
      * @param writable параметр трассировки стека.
      *
-     * @since 3.0.0-RC1
+     * @since 3.0.0
      */
     @Contract(value = "?, ?, ?, ? -> new", impact = Contract.Impact.INTERNAL)
     public UtilityException(final @Nullable String message, final @Nullable Throwable cause, final boolean suppression,
