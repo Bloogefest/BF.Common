@@ -11,7 +11,7 @@ import com.bloogefest.annotation.Null;
 import com.bloogefest.annotation.Nullable;
 
 /**
- * Строгая ошибка — это ошибка, которая требует немедленного реагирования.
+ * Строгая ошибка. Требует немедленного реагирования.
  *
  * @since 3.0.0
  */
