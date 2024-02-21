@@ -23,7 +23,7 @@ public class FunctionException extends SoftException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "Failed to call the function";
+    public static final @NonNull String DEFAULT_MESSAGE = "Failed to execute the function";
 
     /**
      * Содержит шаблонное сообщение этого исключения.
