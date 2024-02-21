@@ -12,7 +12,7 @@ import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.creation.UtilityException;
 
 /**
- * Валидатор — это класс-утилита, предназначенный для валидации условий, значений и экземпляров классов.
+ * Валидатор — класс-утилита. Предназначен для валидации экземпляров классов.
  *
  * @since 1.0.0
  */
