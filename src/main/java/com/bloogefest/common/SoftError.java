@@ -11,7 +11,7 @@ import com.bloogefest.annotation.Null;
 import com.bloogefest.annotation.Nullable;
 
 /**
- * Мягкая ошибка — это ошибка, которая не требует немедленного реагирования.
+ * Мягкая ошибка. Не требует немедленного реагирования.
  *
  * @since 3.0.0
  */
