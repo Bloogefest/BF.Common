@@ -30,7 +30,7 @@ public class FunctionException extends SoftException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to call %s";
+    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to execute %s";
 
     /**
      * Создаёт экземпляр этого исключения на основе {@linkplain #DEFAULT_MESSAGE сообщения},
