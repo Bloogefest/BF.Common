@@ -11,7 +11,7 @@ import com.bloogefest.annotation.Null;
 import com.bloogefest.annotation.Nullable;
 
 /**
- * Мягкое исключение — это исключение, которое не требует немедленного реагирования.
+ * Мягкое исключение. Не требует немедленного реагирования.
  *
  * @since 3.0.0
  */
