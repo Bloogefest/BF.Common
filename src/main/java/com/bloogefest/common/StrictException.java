@@ -11,7 +11,7 @@ import com.bloogefest.annotation.Null;
 import com.bloogefest.annotation.Nullable;
 
 /**
- * Строгое исключение — это исключение, которое требует немедленного реагирования.
+ * Строгое исключение. Требует немедленного реагирования.
  *
  * @since 3.0.0
  */
