@@ -12,7 +12,7 @@ import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.SoftException;
 
 /**
- * Исключение валидации — это исключение, которое возникает при неудачной попытке валидации.
+ * Исключение валидации. Возникает при неудачной попытке валидации.
  *
  * @since 1.0.0
  */
