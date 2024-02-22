@@ -26,7 +26,7 @@ public final class Validator {
      */
     @Contract(value = "-> fail", impact = Contract.Impact.INTERNAL)
     private Validator() throws UtilityException {
-        throw new UtilityException(UtilityException.TEMPLATE_MESSAGE.formatted("the Validator class"));
+        throw new UtilityException(UtilityException.TEMPLATE_MESSAGE.formatted("the Validator"));
     }
 
     /**
