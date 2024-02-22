@@ -110,7 +110,7 @@ public final class Validator {
      * @param primaryInstance первичный экземпляр класса.
      * @param secondaryInstance вторичный экземпляр класса.
      *
-     * @return Переданный первичный экземпляр.
+     * @return Переданный первичный экземпляр класса.
      *
      * @throws NotEqualException исключение валидации равенства переданных первичного и вторичного экземпляров класса.
      * @since 1.0.0
