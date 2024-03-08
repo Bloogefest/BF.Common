@@ -12,7 +12,7 @@ import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.creation.UtilityException;
 
 /**
- * Валидатор — класс-утилита. Предназначен для валидации экземпляров классов.
+ * Валидатор — это класс-утилита. Предназначен для валидации экземпляров.
  *
  * @since 1.0.0
  */
@@ -30,89 +30,88 @@ public final class Validator {
     }
 
     /**
-     * Возвращает переданный экземпляр класса, если он нулевой.
+     * Возвращает переданный экземпляр, если он нулевой.
      *
-     * @param instance экземпляр класса.
+     * @param instance экземпляр.
      *
-     * @return Переданный нулевой экземпляр класса.
+     * @return Переданный нулевой экземпляр.
      *
-     * @throws NotNullException исключение валидации переданного ненулевого экземпляра класса.
+     * @throws NotNullException исключение валидации переданного ненулевого экземпляра.
      * @since 1.0.0
      */
     @Contract(value = "null -> null; !null -> fail", impact = Contract.Impact.NONE)
     public static <T> @Nullable T isNull(final @Nullable T instance) throws NotNullException {
         if (instance != null)
-            throw new NotNullException(NotNullException.TEMPLATE_MESSAGE.formatted("The passed instance of the class"));
+            throw new NotNullException(NotNullException.TEMPLATE_MESSAGE.formatted("The passed instance"));
         return null;
     }
 
     /**
-     * Возвращает переданный экземпляр класса, если он нулевой.
+     * Возвращает переданный экземпляр, если он нулевой.
      *
-     * @param instance экземпляр класса.
-     * @param name имя экземпляра класса.
+     * @param instance экземпляр.
+     * @param name имя экземпляра.
      *
-     * @return Переданный нулевой экземпляр класса.
+     * @return Переданный нулевой экземпляр.
      *
-     * @throws NotNullException исключение валидации переданного ненулевого экземпляра класса.
-     * @throws NullException исключение валидации переданного нулевого имени экземпляра класса.
+     * @throws NotNullException исключение валидации переданного ненулевого экземпляра.
+     * @throws NullException исключение валидации переданного нулевого имени экземпляра.
      * @since 1.0.0
      */
     @Contract(value = "null, !null -> null; ?, ? -> fail", impact = Contract.Impact.NONE)
     public static <T> @Nullable T isNull(final @Nullable T instance, final @NonNull String name) throws
                                                                                                  NotNullException,
                                                                                                  NullException {
-        Validator.notNull(name, "The passed name of the instance of the class");
+        Validator.notNull(name, "The passed name of the instance");
         if (instance != null) throw new NotNullException(NotNullException.TEMPLATE_MESSAGE.formatted(name));
         return null;
     }
 
     /**
-     * Возвращает переданный экземпляр класса, если он ненулевой.
+     * Возвращает переданный экземпляр, если он ненулевой.
      *
-     * @param instance экземпляр класса.
+     * @param instance экземпляр.
      *
-     * @return Переданный ненулевой экземпляр класса.
+     * @return Переданный ненулевой экземпляр.
      *
-     * @throws NullException исключение валидации переданного нулевого экземпляра класса.
+     * @throws NullException исключение валидации переданного нулевого экземпляра.
      * @since 1.0.0
      */
     @Contract(value = "!null -> 1; null -> fail", impact = Contract.Impact.NONE)
     public static <T> @NonNull T notNull(final @Nullable T instance) throws NullException {
-        if (instance == null)
-            throw new NullException(NullException.TEMPLATE_MESSAGE.formatted("The passed instance of the class"));
+        if (instance == null) throw new NullException(NullException.TEMPLATE_MESSAGE.formatted("The passed instance"));
         return instance;
     }
 
     /**
-     * Возвращает переданный экземпляр класса, если он ненулевой.
+     * Возвращает переданный экземпляр, если он ненулевой.
      *
-     * @param instance экземпляр класса.
-     * @param name имя экземпляра класса.
+     * @param instance экземпляр.
+     * @param name имя экземпляра.
      *
-     * @return Переданный ненулевой экземпляр класса.
+     * @return Переданный ненулевой экземпляр.
      *
-     * @throws NullException исключение валидации переданного нулевого имени экземпляра класса или переданного нулевого
-     * экземпляра класса.
+     * @throws NullException исключение валидации переданного нулевого имени экземпляра или переданного нулевого
+     * экземпляра.
      * @since 1.0.0
      */
     @Contract(value = "!null, !null -> 1; ?, ? -> fail", impact = Contract.Impact.NONE)
     public static <T> @NonNull T notNull(final @Nullable T instance, final @NonNull String name) throws NullException {
-        if (name == null) throw new NullException(
-                NullException.TEMPLATE_MESSAGE.formatted("The passed name of the instance of the class"));
+        if (name == null)
+            throw new NullException(NullException.TEMPLATE_MESSAGE.formatted("The passed name of the instance"));
         if (instance == null) throw new NullException(NullException.TEMPLATE_MESSAGE.formatted(name));
         return instance;
     }
 
     /**
-     * Возвращает переданный первичный экземпляр класса, если он равен переданному вторичному экземпляру класса.
+     * Возвращает переданный первичный экземпляр, если он равен переданному вторичному экземпляру.
      *
-     * @param primaryInstance первичный экземпляр класса.
-     * @param secondaryInstance вторичный экземпляр класса.
+     * @param primaryInstance первичный экземпляр.
+     * @param secondaryInstance вторичный экземпляр.
      *
-     * @return Переданный первичный экземпляр класса.
+     * @return Переданный первичный экземпляр.
      *
-     * @throws NotEqualException исключение валидации равенства переданных первичного и вторичного экземпляров класса.
+     * @throws NotEqualException исключение валидации равенства переданных первичного и вторичного экземпляров.
      * @since 1.0.0
      */
     @Contract(value = "?, ? -> ?", impact = Contract.Impact.NONE)
@@ -126,18 +125,18 @@ public final class Validator {
     }
 
     /**
-     * Возвращает переданный первичный экземпляр класса, если он равен переданному вторичному экземпляру класса.
+     * Возвращает переданный первичный экземпляр, если он равен переданному вторичному экземпляру.
      *
-     * @param primaryInstance первичный экземпляр класса.
-     * @param secondaryInstance вторичный экземпляр класса.
-     * @param primaryName имя первичного экземпляра класса.
-     * @param secondaryName имя вторичного экземпляра класса.
+     * @param primaryInstance первичный экземпляр.
+     * @param secondaryInstance вторичный экземпляр.
+     * @param primaryName имя первичного экземпляра.
+     * @param secondaryName имя вторичного экземпляра.
      *
-     * @return Переданный первичный экземпляр класса.
+     * @return Переданный первичный экземпляр.
      *
-     * @throws NotEqualException исключение валидации равенства переданных первичного и вторичного экземпляров класса.
-     * @throws NullException исключение валидации переданного нулевого имени первичного экземпляра класса или
-     * переданного нулевого имени вторичного экземпляра класса.
+     * @throws NotEqualException исключение валидации равенства переданных первичного и вторичного экземпляров.
+     * @throws NullException исключение валидации переданного нулевого имени первичного экземпляра или переданного
+     * нулевого имени вторичного экземпляра.
      * @since 1.0.0
      */
     @Contract(value = "?, ?, ?, ? -> ?", impact = Contract.Impact.NONE)
@@ -154,14 +153,14 @@ public final class Validator {
     }
 
     /**
-     * Возвращает переданный первичный экземпляр класса, если он неравен переданному вторичному экземпляру класса.
+     * Возвращает переданный первичный экземпляр, если он неравен переданному вторичному экземпляру.
      *
-     * @param primaryInstance первичный экземпляр класса.
-     * @param secondaryInstance вторичный экземпляр класса.
+     * @param primaryInstance первичный экземпляр.
+     * @param secondaryInstance вторичный экземпляр.
      *
-     * @return Переданный первичный экземпляр класса.
+     * @return Переданный первичный экземпляр.
      *
-     * @throws EqualException исключение валидации неравенства переданных первичного и вторичного экземпляров класса.
+     * @throws EqualException исключение валидации неравенства переданных первичного и вторичного экземпляров.
      * @since 1.0.0
      */
     @Contract(value = "?, ? -> ?", impact = Contract.Impact.NONE)
@@ -175,18 +174,18 @@ public final class Validator {
     }
 
     /**
-     * Возвращает переданный первичный экземпляр класса, если он неравен переданному вторичному экземпляру класса.
+     * Возвращает переданный первичный экземпляр, если он неравен переданному вторичному экземпляру.
      *
-     * @param primaryInstance первичный экземпляр класса.
-     * @param secondaryInstance вторичный экземпляр класса.
-     * @param primaryName имя первичного экземпляра класса.
-     * @param secondaryName имя вторичного экземпляра класса.
+     * @param primaryInstance первичный экземпляр.
+     * @param secondaryInstance вторичный экземпляр.
+     * @param primaryName имя первичного экземпляра.
+     * @param secondaryName имя вторичного экземпляра.
      *
-     * @return Переданный первичный экземпляр класса.
+     * @return Переданный первичный экземпляр.
      *
-     * @throws EqualException исключение валидации неравенства переданных первичного и вторичного экземпляров класса.
-     * @throws NullException исключение валидации переданного нулевого имени первичного экземпляра класса или
-     * переданного нулевого имени вторичного экземпляра класса.
+     * @throws EqualException исключение валидации неравенства переданных первичного и вторичного экземпляров.
+     * @throws NullException исключение валидации переданного нулевого имени первичного экземпляра или переданного
+     * нулевого имени вторичного экземпляра.
      * @since 1.0.0
      */
     @Contract(value = "?, ?, ?, ? -> ?", impact = Contract.Impact.NONE)
