@@ -12,7 +12,7 @@ import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.SoftException;
 
 /**
- * Исключение создания экземпляра класса. Возникает при неудачной попытке создания экземпляра класса.
+ * Исключение создания экземпляра. Возникает при неудачной попытке создания экземпляра.
  *
  * @since 3.0.0
  */
@@ -23,14 +23,14 @@ public class CreationException extends SoftException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "Failed to create an instance of the class";
+    public static final @NonNull String DEFAULT_MESSAGE = "Failed to create an instance";
 
     /**
      * Содержит шаблонное сообщение этого исключения.
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to create an instance of %s";
+    public static final @NonNull String TEMPLATE_MESSAGE = "Failed to create %s";
 
     /**
      * Создаёт экземпляр этого исключения на основе {@linkplain #DEFAULT_MESSAGE сообщения},
