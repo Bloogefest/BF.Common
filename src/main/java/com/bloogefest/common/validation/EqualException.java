@@ -11,7 +11,7 @@ import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 
 /**
- * Исключение валидации неравенства экземпляров класса. Возникает при попытке валидации неравенства экземпляров класса.
+ * Исключение валидации неравенства экземпляров. Возникает при попытке валидации неравенства экземпляров.
  *
  * @since 1.0.0
  */
@@ -22,7 +22,7 @@ public class EqualException extends ValidationException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "The instances of the class mustn't be equal";
+    public static final @NonNull String DEFAULT_MESSAGE = "The instances mustn't be equal";
 
     /**
      * Содержит шаблонное сообщение этого исключения.
