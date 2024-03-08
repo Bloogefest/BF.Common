@@ -11,7 +11,7 @@ import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 
 /**
- * Исключение валидации нулевого экземпляра класса. Возникает при попытке валидации нулевого экземпляра класса.
+ * Исключение валидации нулевого экземпляра. Возникает при попытке валидации нулевого экземпляра.
  *
  * @since 1.0.0
  */
@@ -22,7 +22,7 @@ public class NullException extends ValidationException {
      *
      * @since 4.0.0-RC3
      */
-    public static final @NonNull String DEFAULT_MESSAGE = "The instance of the class mustn't be null";
+    public static final @NonNull String DEFAULT_MESSAGE = "The instance mustn't be null";
 
     /**
      * Содержит шаблонное сообщение этого исключения.
