@@ -209,4 +209,42 @@ public interface Function<A, R> {
         };
     }
 
+    /**
+     * Создаёт и возвращает (1).
+     *
+     * @param condition одинарная функция алгебры логики.
+     * @param function одинарная функция.
+     *
+     * @return (1).
+     *
+     * @throws NullException исключение валидации нулевой (2) или нулевой (3).
+     * @apiNote (1) — это данная одинарная функция.
+     * <p>
+     * (2) — это переданная в этот метод одинарная функция алгебры логики.
+     * <p>
+     * (3) — это переданная в этот метод одинарная функция.
+     * <p>
+     * (4) — это одинарная функция, которая сначала выполняет (1), а потом выполняет (2). Если экземпляр-результат (2)
+     * является истиной, то возвращает экземпляр-результат (1), в противном случае выполняет (3) и возвращает её
+     * экземпляр-результат.
+     * @since 4.0.0-RC3
+     */
+    @Contract(value = "!null, !null -> new; ?, ? -> fail", impact = Contract.Impact.NONE)
+    default @Nullable Function<A, R> when(final @NonNull Condition condition,
+                                          final @NonNull Function<? super R, ? extends R> function) throws
+                                                                                                    NullException {
+        Validator.notNull(condition, "The passed condition");
+        Validator.notNull(function, "The passed function");
+        return argument -> {
+            final @Nullable var result = execute(argument);
+            try {
+                return condition.compute() ? result : function.execute(result);
+            } catch (final @NonNull RuntimeException exception) {
+                throw new FunctionException(exception);
+            } catch (final @NonNull Error error) {
+                throw new FunctionError(error);
+            }
+        };
+    }
+
 }
