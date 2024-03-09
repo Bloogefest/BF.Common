@@ -90,7 +90,7 @@ public interface Function<A, R> {
      * @since 4.0.0-RC3
      */
     @Contract(value = "!null -> new; null -> fail", impact = Contract.Impact.NONE)
-    default <R2> @Nullable Function<A, R2> with(final @NonNull Function<? super R, R2> function) throws NullException {
+    default <R2> @NonNull Function<A, R2> with(final @NonNull Function<? super R, R2> function) throws NullException {
         Validator.notNull(function, "The passed function");
         return argument -> function.execute(execute(argument));
     }
