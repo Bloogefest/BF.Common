@@ -239,12 +239,13 @@ public interface Function<A, R> {
         return argument -> {
             final @Nullable var result = execute(argument);
             try {
-                return condition.compute() ? result : function.execute(result);
+                if (condition.compute()) return result;
             } catch (final @NonNull RuntimeException exception) {
                 throw new FunctionException(exception);
             } catch (final @NonNull Error error) {
                 throw new FunctionError(error);
             }
+            return function.execute(result);
         };
     }
 
