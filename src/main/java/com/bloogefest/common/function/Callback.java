@@ -45,7 +45,7 @@ public interface Callback {
      * @since 4.0.0-RC3
      */
     @Contract(value = "? -> 1", impact = Contract.Impact.NONE)
-    static @NonNull Callback lambda(final @NonNull Callback callback) {
+    static @Nullable Callback lambda(final @Nullable Callback callback) {
         return callback;
     }
 
