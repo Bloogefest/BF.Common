@@ -8,6 +8,7 @@ package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
 import com.bloogefest.annotation.NonNull;
+import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
@@ -45,8 +46,8 @@ public interface Condition {
      * @apiNote (1) — это переданная в этот метод функция алгебры логики.
      * @since 4.0.0-RC3
      */
-    @Contract("_ -> 1")
-    static @NonNull Condition lambda(final @NonNull Condition condition) {
+    @Contract(value = "? -> 1", impact = Contract.Impact.NONE)
+    static @Nullable Condition lambda(final @Nullable Condition condition) {
         return condition;
     }
 
