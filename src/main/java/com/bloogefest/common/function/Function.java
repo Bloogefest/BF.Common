@@ -34,7 +34,7 @@ public interface Function<A, R> {
      *
      * @return (1).
      *
-     * @apiNote (1) — это одинарная функция с постоянным экземпляром-результатом, переданным в этот метод.
+     * @apiNote (1) — это одинарная функция с переданным в этот метод экземпляром-результатом.
      * @since 4.0.0-RC3
      */
     @Contract(value = "? -> new", impact = Contract.Impact.NONE)
