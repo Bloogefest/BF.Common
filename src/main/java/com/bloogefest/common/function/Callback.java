@@ -74,6 +74,7 @@ public interface Callback {
      * @apiNote (1) — это описанная функция без экземпляров-параметров и экземпляров-результатов.
      * @since 2.0.0
      */
+    @Contract(value = "->", impact = Contract.Impact.UNDEFINED)
     void call() throws CallbackException, CallbackError;
 
     /**
