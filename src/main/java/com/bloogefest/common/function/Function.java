@@ -38,7 +38,7 @@ public interface Function<A, R> {
      * @since 4.0.0-RC3
      */
     @Contract(value = "? -> new", impact = Contract.Impact.NONE)
-    static <A, R> @Nullable Function<A, R> constant(final @Nullable R result) {
+    static <A, R> @NonNull Function<A, R> constant(final @Nullable R result) {
         return ignored -> result;
     }
 
