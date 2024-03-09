@@ -12,7 +12,8 @@ import com.bloogefest.common.validation.NullException;
 import com.bloogefest.common.validation.Validator;
 
 /**
- * Функциональный интерфейс логической функции.
+ * Функция алгебры логики — это функциональный интерфейс. Позволяет описать функцию без экземпляров-параметров, но с
+ * логическим экземпляром-результатом.
  *
  * @since 1.0.0
  */
