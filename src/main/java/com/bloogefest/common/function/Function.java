@@ -192,8 +192,8 @@ public interface Function<A, R> {
      * @since 4.0.0-RC3
      */
     @Contract(value = "!null, !null -> new; ?, ? -> fail", impact = Contract.Impact.NONE)
-    default @Nullable Function<A, R> when(final @NonNull Predicate<? super R> predicate,
-                                          final @NonNull Handler<? super R> handler) throws NullException {
+    default @NonNull Function<A, R> when(final @NonNull Predicate<? super R> predicate,
+                                         final @NonNull Handler<? super R> handler) throws NullException {
         Validator.notNull(predicate, "The passed predicate");
         Validator.notNull(handler, "The passed handler");
         return argument -> {
