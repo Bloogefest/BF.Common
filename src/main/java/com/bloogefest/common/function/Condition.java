@@ -61,7 +61,8 @@ public interface Condition {
      * @apiNote (1) — это описанная функция без экземпляров-параметров, но с логическим экземпляром-результатом.
      * @since 3.0.0
      */
-    boolean compute() throws ComputeException;
+    @Contract(value = "-> ?", impact = Contract.Impact.UNDEFINED)
+    boolean compute() throws ConditionException, ConditionError;
 
     /**
      * Инициализирует и возвращает логическую функцию, метод вычисления которой сначала вызывает метод вычисления этой
