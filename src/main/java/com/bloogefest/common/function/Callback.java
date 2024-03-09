@@ -44,7 +44,7 @@ public interface Callback {
      * @apiNote (1) — это переданная в этот метод функция обратного вызова.
      * @since 4.0.0-RC3
      */
-    @Contract("_ -> 1")
+    @Contract(value = "? -> 1", impact = Contract.Impact.NONE)
     static @NonNull Callback lambda(final @NonNull Callback callback) {
         return callback;
     }
