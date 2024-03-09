@@ -30,7 +30,7 @@ public interface Condition {
      * @apiNote (1) — это функция алгебры логики с переданным в этот метод экземпляром-результатом.
      * @since 1.0.0
      */
-    @Contract("_ -> new")
+    @Contract(value = "? -> new", impact = Contract.Impact.NONE)
     static @NonNull Condition constant(final boolean result) {
         return () -> result;
     }
