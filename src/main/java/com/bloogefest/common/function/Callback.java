@@ -94,7 +94,7 @@ public interface Callback {
      */
     @Contract(value = "_ -> new")
     default @NonNull Callback with(final @NonNull Callback callback) throws NullException {
-        Validator.notNull(callback, "callback");
+        Validator.notNull(callback, "The passed callback");
         return () -> {
             call();
             callback.call();
