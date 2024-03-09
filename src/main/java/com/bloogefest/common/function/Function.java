@@ -360,4 +360,41 @@ public interface Function<A, R> {
         };
     }
 
+    /**
+     * Создаёт и возвращает (4).
+     *
+     * @param condition функция алгебры логики.
+     * @param supplier функция-поставщик.
+     *
+     * @return (4).
+     *
+     * @throws NullException исключение валидации нулевой (2) или нулевой (3).
+     * @apiNote (1) — это данная одинарная функция.
+     * <p>
+     * (2) — это переданная в этот метод функция алгебры логики.
+     * <p>
+     * (3) — это переданная в этот метод функция-поставщик.
+     * <p>
+     * (4) — это одинарная функция, которая сначала выполняет (1), а потом выполняет (2). Если экземпляр-результат (2)
+     * является истиной, то возвращает экземпляр-результат (1), в противном случае выполняет (3) и возвращает её
+     * экземпляр-результат.
+     * @since 4.0.0-RC3
+     */
+    @Contract(value = "!null, !null -> new; ?, ? -> fail", impact = Contract.Impact.NONE)
+    default @NonNull Function<A, R> when(final @NonNull Condition condition,
+                                         final @NonNull Supplier<? extends R> supplier) throws NullException {
+        Validator.notNull(condition, "The passed condition");
+        Validator.notNull(supplier, "The passed supplier");
+        return argument -> {
+            final @Nullable var result = execute(argument);
+            try {
+                return condition.compute() ? result : supplier.get();
+            } catch (final @NonNull RuntimeException exception) {
+                throw new FunctionException(exception);
+            } catch (final @NonNull Error error) {
+                throw new FunctionError(error);
+            }
+        };
+    }
+
 }
