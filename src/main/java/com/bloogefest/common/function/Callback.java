@@ -69,8 +69,8 @@ public interface Callback {
     /**
      * Выполняет (1).
      *
-     * @throws FunctionException исключение выполнения (1).
-     * @throws FunctionError ошибка выполнения (1).
+     * @throws CallbackException исключение выполнения (1).
+     * @throws CallbackError ошибка выполнения (1).
      * @apiNote (1) — это описанная функция без экземпляров-параметров и экземпляров-результатов.
      * @since 2.0.0
      */
