@@ -61,7 +61,7 @@ public interface Callback {
      * (2) — это пустая функция обратного вызова.
      * @since 3.0.0
      */
-    @Contract("!null -> param1; _ -> new")
+    @Contract(value = "!null -> 1; null -> new", impact = Contract.Impact.NONE)
     static @NonNull Callback auto(final @Nullable Callback callback) {
         return callback != null ? callback : empty();
     }
