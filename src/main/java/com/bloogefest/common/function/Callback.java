@@ -92,7 +92,7 @@ public interface Callback {
      * (3) — это функция обратного вызова, которая сначала выполняет (1), а потом выполняет (2).
      * @since 2.0.0
      */
-    @Contract(value = "_ -> new")
+    @Contract(value = "!null -> new; null -> fail", impact = Contract.Impact.NONE)
     default @NonNull Callback with(final @NonNull Callback callback) throws NullException {
         Validator.notNull(callback, "The passed callback");
         return () -> {
