@@ -53,7 +53,7 @@ public interface Function<A, R> {
      * @since 4.0.0-RC3
      */
     @Contract(value = "? -> 1", impact = Contract.Impact.NONE)
-    static <A, R> @NonNull Function<A, R> lambda(final @Nullable Function<A, R> function) {
+    static <A, R> @Nullable Function<A, R> lambda(final @Nullable Function<A, R> function) {
         return function;
     }
 
