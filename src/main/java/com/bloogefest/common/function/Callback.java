@@ -74,7 +74,7 @@ public interface Callback {
      * @apiNote (1) — это описанная функция без экземпляров-параметров и экземпляров-результатов.
      * @since 2.0.0
      */
-    void call() throws CallException;
+    void call() throws CallbackException, CallbackError;
 
     /**
      * Проверяет переданную функцию обратного вызова и, если та нулевая, генерирует исключение валидации нулевого
