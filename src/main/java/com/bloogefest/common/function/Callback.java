@@ -101,4 +101,42 @@ public interface Callback {
         };
     }
 
+    /**
+     * Создаёт и возвращает (4).
+     *
+     * @param condition функция алгебры логики.
+     * @param callback функция обратного вызова.
+     *
+     * @return (4).
+     *
+     * @throws NullException исключение валидации нулевой (2) или нулевой (3).
+     * @apiNote (1) — это данная функция обратного вызова.
+     * <p>
+     * (2) — это переданная в этот метод функция алгебры логики.
+     * <p>
+     * (3) — это переданная в этот метод функция обратного вызова.
+     * <p>
+     * (4) — это функция обратного вызова, которая сначала выполняет (1), а потом выполняет (2). Если
+     * экземпляр-результат (2) является истиной, то выполняет ещё и (3).
+     * @since 4.0.0-RC3
+     */
+    @Contract(value = "!null, !null -> new; ?, ? -> fail", impact = Contract.Impact.NONE)
+    default @NonNull Callback when(final @NonNull Condition condition, final @NonNull Callback callback) throws
+                                                                                                         NullException {
+        Validator.notNull(condition, "The passed condition");
+        Validator.notNull(callback, "The passed callback");
+        return () -> {
+            call();
+            final boolean value;
+            try {
+                value = condition.compute();
+            } catch (final @NonNull RuntimeException exception) {
+                throw new CallbackException(exception);
+            } catch (final @NonNull Error error) {
+                throw new CallbackError(error);
+            }
+            if (value) callback.call();
+        };
+    }
+
 }
