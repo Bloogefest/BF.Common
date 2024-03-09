@@ -29,7 +29,7 @@ public interface Callback {
      * @apiNote (1) — это пустая функция обратного вызова.
      * @since 2.0.0
      */
-    @Contract("-> new")
+    @Contract(value = "-> new", impact = Contract.Impact.NONE)
     static @NonNull Callback empty() {
         return () -> {};
     }
