@@ -124,12 +124,13 @@ public interface Function<A, R> {
         return argument -> {
             final @Nullable var result = execute(argument);
             try {
-                return predicate.evaluate(result) ? result : function.execute(result);
+                if (predicate.evaluate(result)) return result;
             } catch (final @NonNull RuntimeException exception) {
                 throw new FunctionException(exception);
             } catch (final @NonNull Error error) {
                 throw new FunctionError(error);
             }
+            return function.execute(result);
         };
     }
 
