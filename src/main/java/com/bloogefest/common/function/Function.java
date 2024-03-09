@@ -154,8 +154,8 @@ public interface Function<A, R> {
      * @since 4.0.0-RC3
      */
     @Contract(value = "!null, !null -> new; ?, ? -> fail", impact = Contract.Impact.NONE)
-    default @Nullable Function<A, R> when(final @NonNull Predicate<? super R> predicate,
-                                          final @NonNull Callback callback) throws NullException {
+    default @NonNull Function<A, R> when(final @NonNull Predicate<? super R> predicate,
+                                         final @NonNull Callback callback) throws NullException {
         Validator.notNull(predicate, "The passed predicate");
         Validator.notNull(callback, "The passed callback");
         return argument -> {
