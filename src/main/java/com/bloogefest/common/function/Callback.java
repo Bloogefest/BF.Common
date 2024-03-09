@@ -67,9 +67,11 @@ public interface Callback {
     }
 
     /**
-     * Вызывает эту функцию обратного вызова.
+     * Выполняет (1).
      *
-     * @throws CallException исключение вызова функции (этой функции обратного вызова).
+     * @throws FunctionException исключение выполнения (1).
+     * @throws FunctionError ошибка выполнения (1).
+     * @apiNote (1) — это описанная функция без экземпляров-параметров и экземпляров-результатов.
      * @since 2.0.0
      */
     void call() throws CallException;
