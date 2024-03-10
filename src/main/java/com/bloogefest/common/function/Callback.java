@@ -63,7 +63,7 @@ public interface Callback {
      */
     @Contract(value = "!null -> 1; null -> new", impact = Contract.Impact.NONE)
     static @NonNull Callback auto(final @Nullable Callback callback) {
-        return callback != null ? callback : empty();
+        return callback != null ? callback : () -> {};
     }
 
     /**
