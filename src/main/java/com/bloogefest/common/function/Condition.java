@@ -201,7 +201,7 @@ public interface Condition {
      */
     @Contract(value = "!null -> new; null -> fail", impact = Contract.Impact.NONE)
     default @NonNull Condition xor(final @NonNull Condition condition) throws NullException {
-        Validator.notNull(condition, "condition");
+        Validator.notNull(condition, "The passed condition");
         return () -> compute() ^ condition.compute();
     }
 
