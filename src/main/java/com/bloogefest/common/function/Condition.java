@@ -96,7 +96,7 @@ public interface Condition {
      * возвращает его, в противном случае выполняет (2) и возвращает её экземпляр-результат.
      * @since 1.0.0
      */
-    @Contract(value = "_ -> new")
+    @Contract(value = "!null -> new; null -> fail", impact = Contract.Impact.NONE)
     default @NonNull Condition and(final @NonNull Condition condition) throws NullException {
         Validator.notNull(condition, "The passed condition");
         return () -> compute() && condition.compute();
