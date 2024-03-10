@@ -7,6 +7,7 @@
 package com.bloogefest.common.function;
 
 import com.bloogefest.annotation.Contract;
+import com.bloogefest.annotation.Experimental;
 import com.bloogefest.annotation.NonNull;
 import com.bloogefest.annotation.Nullable;
 import com.bloogefest.common.validation.NullException;
@@ -100,6 +101,35 @@ public interface Condition {
     default @NonNull Condition and(final @NonNull Condition condition) throws NullException {
         Validator.notNull(condition, "The passed condition");
         return () -> compute() && condition.compute();
+    }
+
+    /**
+     * Если (3) является истиной, то создаёт и возвращает (4), в противном случае — (5).
+     *
+     * @param condition функция алгебры логики.
+     * @param both параметр полного выполнения.
+     *
+     * @return (4) или (5).
+     *
+     * @throws NullException исключение валидации нулевой (2).
+     * @apiNote (1) — это данная функция алгебры логики.
+     * <p>
+     * (2) — это переданная в этот метод функция алгебры логики.
+     * <p>
+     * (3) — это переданный в этот метод параметр полного выполнения.
+     * <p>
+     * (4) — это функция алгебры логики, которая сначала выполняет (1), а потом выполняет (2). Если
+     * экземпляры-результаты (1) и (2) являются истинами, то возвращает истину, в противном случае — ложь.
+     * <p>
+     * (5) — это функция алгебры логики, которая выполняет (1). Если экземпляр-результат (1) является ложью, то
+     * возвращает его, в противном случае выполняет (2) и возвращает её экземпляр-результат.
+     * @since 4.0.0-RC3
+     */
+    @Experimental(from = "4.0.0-RC3", to = "4.0.0-RC5")
+    @Contract(value = "!null, ? -> new; null, ? -> fail", impact = Contract.Impact.NONE)
+    default @NonNull Condition and(final @NonNull Condition condition, final boolean both) throws NullException {
+        Validator.notNull(condition, "The passed condition");
+        return both ? () -> compute() & condition.compute() : () -> compute() && condition.compute();
     }
 
     /**
