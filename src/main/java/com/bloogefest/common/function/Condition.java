@@ -98,7 +98,7 @@ public interface Condition {
      */
     @Contract(value = "_ -> new")
     default @NonNull Condition and(final @NonNull Condition condition) throws NullException {
-        Validator.notNull(condition, "condition");
+        Validator.notNull(condition, "The passed condition");
         return () -> compute() && condition.compute();
     }
 
