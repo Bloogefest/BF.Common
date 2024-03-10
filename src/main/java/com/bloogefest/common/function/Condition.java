@@ -259,8 +259,8 @@ public interface Condition {
         Validator.notNull(supplier, "The passed supplier");
         return () -> {
             if (compute()) return true;
-            final @NonNull var throwable = supplier.get();
-            throw throwable instanceof ConditionException ? throwable : new ConditionException(throwable);
+            final @NonNull var exception = supplier.get();
+            throw exception instanceof ConditionException ? exception : new ConditionException(exception);
         };
     }
 
