@@ -206,6 +206,33 @@ public interface Condition {
     }
 
     /**
+     * Создаёт и возвращает (3).
+     *
+     * @param callback функция обратного вызова.
+     *
+     * @return (3).
+     *
+     * @throws NullException исключение валидации нулевой (2).
+     * @apiNote (1) — это данная функция алгебры логики.
+     * <p>
+     * (2) — это переданная в этот метод функция обратного вызова.
+     * <p>
+     * (3) — это функция алгебры логики, которая выполняет (1). Если экземпляр-результат (1) является истиной, то
+     * выполняет (2). Возвращает экземпляр-результат (1).
+     * @since 4.0.0-RC3
+     */
+    @Experimental(from = "4.0.0-RC3", to = "4.0.0-RC5")
+    @Contract(value = "!null -> new; null -> fail", impact = Contract.Impact.NONE)
+    default @NonNull Condition when(final @NonNull Callback callback) throws NullException {
+        Validator.notNull(callback, "The passed callback");
+        return () -> {
+            final var result = compute();
+            if (result) callback.call();
+            return result;
+        };
+    }
+
+    /**
      * Проверяет переданную функцию обратного вызова и, если та нулевая, генерирует исключение валидации нулевого
      * объекта (переданной функции обратного вызова) с переопределённым сообщением (отформатированным именем переданной
      * функции обратного вызова шаблонным сообщением), в противном случае инициализирует и возвращает логическую
