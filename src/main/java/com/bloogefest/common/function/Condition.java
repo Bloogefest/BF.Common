@@ -163,7 +163,7 @@ public interface Condition {
      * возвращает результат вычисления этой логической функции.
      *
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
-     * @since 4.0.0
+     * @since 4.0.0-RC1
      */
     @Contract(value = "_ -> new")
     default @NonNull Condition then(final @NonNull Callback callback) throws NullException {
@@ -191,7 +191,7 @@ public interface Condition {
      * противном случае возвращает ложный результат вычисления.
      *
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика).
-     * @since 4.0.0
+     * @since 4.0.0-RC1
      */
     @Contract(value = "_ -> new")
     default @NonNull Condition then(final @NonNull Supplier<? extends Throwable> supplier) throws NullException {
@@ -217,7 +217,7 @@ public interface Condition {
      * возвращает результат вычисления этой логической функции.
      *
      * @throws NullException исключение валидации нулевого объекта (переданной функции обратного вызова).
-     * @since 4.0.0
+     * @since 4.0.0-RC1
      */
     @Contract(value = "_ -> new")
     default @NonNull Condition otherwise(final @NonNull Callback callback) throws NullException {
@@ -245,7 +245,7 @@ public interface Condition {
      * противном случае возвращает истинный результат вычисления.
      *
      * @throws NullException исключение валидации нулевого объекта (переданного поставщика).
-     * @since 4.0.0
+     * @since 4.0.0-RC1
      */
     @Contract(value = "_ -> new")
     default @NonNull Condition otherwise(final @NonNull Supplier<? extends Throwable> supplier) throws NullException {
