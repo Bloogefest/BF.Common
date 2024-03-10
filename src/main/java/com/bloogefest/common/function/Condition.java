@@ -65,9 +65,9 @@ public interface Condition {
     boolean compute() throws ConditionException, ConditionError;
 
     /**
-     * Создаёт и возвращает (1).
+     * Создаёт и возвращает (2).
      *
-     * @return (1).
+     * @return (2).
      *
      * @apiNote (1) — это данная функция алгебры логики.
      * <p>
