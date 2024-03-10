@@ -264,4 +264,35 @@ public interface Condition {
         };
     }
 
+    /**
+     * Создаёт и возвращает (4).
+     *
+     * @param supplier функция-поставщик.
+     *
+     * @return (4).
+     *
+     * @throws NullException исключение валидации нулевой (2).
+     * @apiNote (1) — это данная функция алгебры логики.
+     * <p>
+     * (2) — это переданная в этот метод функция-поставщик.
+     * <p>
+     * (3) — это ошибка выполнения функции алгебры логики.
+     * <p>
+     * (4) — это функция алгебры логики, которая выполняет (1). Если экземпляр-результат (1) является истиной, то
+     * возвращает его, в противном случае выполняет (2). Если класс экземпляра-результата (2) можно привести к классу
+     * (3), то бросает экземпляр-результат (2), в противном случае генерирует (3) на основе причины, заданной
+     * экземпляром-результатом (2).
+     * @since 4.0.0-RC3
+     */
+    @Experimental(from = "4.0.0-RC3", to = "4.0.0-RC5")
+    @Contract(value = "!null -> new; null -> fail", impact = Contract.Impact.NONE)
+    default @NonNull Condition error(final @NonNull Supplier<? extends Error> supplier) throws NullException {
+        Validator.notNull(supplier, "The passed supplier");
+        return () -> {
+            if (compute()) return true;
+            final @NonNull var error = supplier.get();
+            throw error instanceof ConditionError ? error : new ConditionError(error);
+        };
+    }
+
 }
